@@ -23,10 +23,10 @@ add () {  # src dst
 }
 Q=$RUNS/qwen_pc_recipe_e1; I=$RUNS/ivl1b_pc_recipe_e1
 for e in 1 2 3 4; do add $Q/final_e$e qwen3vl2b_pgm_ep$e; add $I/final_e$e internvl35_1b_pgm_ep$e; done
-add $Q/final qwen3vl2b_pgm_ep5; add $I/final internvl35_1b_pgm_ep6
+add $Q/final_e5 qwen3vl2b_pgm_ep5; add $I/final_e6 internvl35_1b_pgm_ep6
 same () { cmp -s "$1/adapter_model.safetensors" "$2/adapter_model.safetensors"; }
-same $Q/best $Q/final || add $Q/best qwen3vl2b_pgm_ep5_bestval
-same $I/best $I/final || add $I/best internvl35_1b_pgm_ep6_bestval
+same $Q/best_e5 $Q/final_e5 || add $Q/best_e5 qwen3vl2b_pgm_ep5_bestval
+same $I/best_e6 $I/final_e6 || add $I/best_e6 internvl35_1b_pgm_ep6_bestval
 
 # results (tables, curves, validation loss); no per-problem dumps
 cp results/lora/lora_pgm_results.csv results/lora/lora_pgm_results.md results/lora/val_loss_*.json \
