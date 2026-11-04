@@ -1,0 +1,32 @@
+{
+ "1": {
+  "adapter": "/home/hice1/psunkad3/scratch/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e1",
+  "n": 1000,
+  "val_loss": 1.1531355571150779,
+  "val_acc": 0.567
+ },
+ "2": {
+  "adapter": "/home/hice1/psunkad3/scratch/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e2",
+  "n": 1000,
+  "val_loss": 0.8376319786394015,
+  "val_acc": 0.689
+ },
+ "3": {
+  "adapter": "/home/hice1/psunkad3/scratch/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e3",
+  "n": 1000,
+  "val_loss": 0.6735935400919989,
+  "val_acc": 0.732
+ },
+ "4": {
+  "adapter": "/home/hice1/psunkad3/scratch/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e4",
+  "n": 1000,
+  "val_loss": 0.4749731265802798,
+  "val_acc": 0.816
+ },
+ "5": {
+  "adapter": "/home/hice1/psunkad3/scratch/vlm_lora_pc_runs/qwen_pc_recipe_e1/final",
+  "n": 1000,
+  "val_loss": 0.5086312060646525,
+  "val_acc": 0.816
+ }
+}
