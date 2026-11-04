@@ -14,9 +14,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import torch
 
-from model_utils import (DTYPES, ScoreTokens, add_lora, candidate_losses, candidate_scores, load_base, param_report,
+from pgmvlm.models import (DTYPES, ScoreTokens, add_lora, candidate_losses, candidate_scores, load_base, param_report,
                          set_train_mode)
-from pgm_vlm_data import CandidateCollator, PGMStream, list_npz
+from pgmvlm.data import CandidateCollator, PGMStream, list_npz
 
 
 def main():

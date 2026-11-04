@@ -19,7 +19,7 @@
 # Both HF models must already be in the offline cache (huggingface-cli download <id> on a login node).
 
 # EDIT THESE
-REPO=${REPO:-/home/hice1/psunkad3/scratch/vlm_lora_pc}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning}
 CONTAINER=${CONTAINER:-/usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif}
 DATA=${DATA:-/home/hice1/psunkad3/scratch/pgm_data}          # expects $DATA/{train_full,val_full,test_full}/<regime>
 RUNS=${RUNS:-/home/hice1/psunkad3/scratch/vlm_lora_pc_runs}
@@ -39,7 +39,7 @@ apptainer exec --nv \
     --env HF_HOME=/home/hice1/psunkad3/.cache/huggingface \
     --env HF_HUB_OFFLINE=1 --env TRANSFORMERS_OFFLINE=1 \
     "$CONTAINER" \
-    python train_lora.py \
+    python lora/train_lora.py \
     --model_id $MODEL_ID \
     --train_dir $DATA/train_full/$REGIME --val_dir $DATA/val_full/$REGIME \
     --file_cache_dir $RUNS/filecache/$REGIME \

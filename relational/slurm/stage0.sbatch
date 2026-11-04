@@ -14,7 +14,7 @@
 #   sbatch --export=ALL,MODEL_ID=Qwen/Qwen3-VL-2B-Instruct,TAG=s0_qwen_pgm slurm/stage0.sbatch
 #   sbatch --export=ALL,MODEL_ID=OpenGVLab/InternVL3_5-1B-HF,TAG=s0_ivl1b_pgm slurm/stage0.sbatch
 #   mixture: TRAIN="--train pgm=matrix:$DATA/train_full/neutral:0.5 --train clevr=jsonl:/path/clevr_art_train.jsonl:0.5"
-REPO=${REPO:-/home/hice1/psunkad3/scratch/relvlm}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning/relational}
 CONTAINER=${CONTAINER:-/usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif}
 DATA=${DATA:-/home/hice1/psunkad3/scratch/pgm_data}
 RUNS=${RUNS:-/home/hice1/psunkad3/scratch/relvlm_runs}

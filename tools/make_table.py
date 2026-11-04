@@ -13,7 +13,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from eval_vlm import merge  # noqa: E402
+from lora.eval_vlm import merge  # noqa: E402
 
 REGIMES = ["neutral", "interpolation", "hoap", "hotp", "hotriples", "holt", "hosc", "extrapolation"]
 HEADERS = ["Neutral", "Intp.", "H.O.A.P.", "H.O.T.P.", "H.O.Triples", "H.O.L-T", "H.O.S-C", "Extp."]

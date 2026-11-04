@@ -7,7 +7,7 @@
 #SBATCH -o /home/hice1/psunkad3/scratch/relvlm_runs/logs/data_%x_%j.log
 
 # Download + convert public datasets (data only):  sbatch --export=ALL,WHAT="vsr whatsup cvbench blink mmvp coco clevr" slurm/data_downloads.sbatch
-REPO=${REPO:-/home/hice1/psunkad3/scratch/relvlm}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning/relational}
 CONTAINER=${CONTAINER:-/usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif}
 export RELVLM_DATA=${RELVLM_DATA:-/home/hice1/psunkad3/scratch/relvlm_data}
 WHAT=${WHAT:-"vsr whatsup cvbench blink mmvp coco clevr"}

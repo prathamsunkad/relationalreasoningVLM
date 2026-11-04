@@ -17,8 +17,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 import torch
 
-from model_utils import DTYPES, ScoreTokens, candidate_scores, load_adapter, load_base, to_model_inputs
-from pgm_vlm_data import PROMPT_TEXT, CandidateCollator, PGMStream, filled_matrices, list_npz
+from pgmvlm.models import DTYPES, ScoreTokens, candidate_scores, load_adapter, load_base, to_model_inputs
+from pgmvlm.data import PROMPT_TEXT, CandidateCollator, PGMStream, filled_matrices, list_npz
 
 
 def main():

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# never commit data, weights or run outputs: they live in $DATA / $RUNS
+*.npz
+*.safetensors
+*.pt
+*.bin
+*.tar.gz
+runs/
+share/build/

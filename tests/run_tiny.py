@@ -9,7 +9,7 @@ sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(ROOT, "tests"))
 import torch
 
-import model_utils
+import pgmvlm.models as model_utils
 import tiny_models as T
 
 FAM = os.environ["TINY_FAMILY"]
@@ -29,6 +29,6 @@ shared, cmd, rest = argv[:cmd_i], argv[cmd_i], argv[cmd_i + 1:]
 sys.argv = [cmd] + rest + shared
 for mod in ("train_lora", "eval_vlm", "preflight"):
     sys.modules.pop(mod, None)
-script = {"train": "train_lora.py", "eval": "eval_vlm.py", "preflight": "tools/preflight.py"}[cmd]
-# the scripts did `from model_utils import load_base`, so import them *after* patching
+script = {"train": "lora/train_lora.py", "eval": "lora/eval_vlm.py", "preflight": "tools/preflight.py"}[cmd]
+# the scripts did `from pgmvlm.models import load_base`, so import them *after* patching
 runpy.run_path(os.path.join(ROOT, script), run_name="__main__")

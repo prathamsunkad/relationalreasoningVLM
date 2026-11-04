@@ -8,7 +8,7 @@
 
 # Generators that run third-party code: SVRT (Fleuret's C++ generator, compiled) and I-RAVEN (official generator,
 # ported from Python 2).   sbatch --export=ALL,WHAT="svrt iraven" slurm/data_generators.sbatch
-REPO=${REPO:-/home/hice1/psunkad3/scratch/relvlm}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning/relational}
 CONTAINER=${CONTAINER:-/usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif}
 export RELVLM_DATA=${RELVLM_DATA:-/home/hice1/psunkad3/scratch/relvlm_data}
 WHAT=${WHAT:-"svrt iraven"}

@@ -7,7 +7,7 @@
 #SBATCH -o /home/hice1/psunkad3/scratch/vlm_lora_pc_runs/logs/tests_%j.log
 
 # CPU test suite (random-weight tiny models, no downloads):  sbatch slurm/tests.sbatch
-REPO=${REPO:-/home/hice1/psunkad3/scratch/vlm_lora_pc}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning}
 CONTAINER=${CONTAINER:-/usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif}
 
 cd $REPO

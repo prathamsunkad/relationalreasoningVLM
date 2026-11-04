@@ -17,7 +17,7 @@ import sys
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from pgm_vlm_data import PROMPT_TEXT, filled_matrices, list_npz, to_panels  # noqa: E402
+from pgmvlm.data import PROMPT_TEXT, filled_matrices, list_npz, to_panels  # noqa: E402
 
 
 def main():
@@ -96,8 +96,8 @@ def main():
     # ---- stage 5: the real processor
     import re
     import torch
-    from model_utils import ScoreTokens, detect_family
-    from pgm_vlm_data import CandidateCollator
+    from pgmvlm.models import ScoreTokens, detect_family
+    from pgmvlm.data import CandidateCollator
     from transformers import AutoProcessor
     fam = detect_family(a.model_id)
     proc = AutoProcessor.from_pretrained(a.model_id)

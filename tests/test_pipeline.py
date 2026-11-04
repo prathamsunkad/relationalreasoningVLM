@@ -23,8 +23,8 @@ sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(ROOT, "tests"))
 
 import tiny_models as T
-from model_utils import ScoreTokens, add_lora, candidate_losses, candidate_scores, to_model_inputs
-from pgm_vlm_data import (CandidateCollator, PGMStream, filled_matrices, list_npz, make_order, panels_to_grid_image,
+from pgmvlm.models import ScoreTokens, add_lora, candidate_losses, candidate_scores, to_model_inputs
+from pgmvlm.data import (CandidateCollator, PGMStream, filled_matrices, list_npz, make_order, panels_to_grid_image,
                           to_panels)
 
 FAMILIES = {"qwen3vl": T.tiny_qwen3vl, "internvl": T.tiny_internvl}
@@ -178,7 +178,7 @@ def _train_steps(fam, fn, steps, d, n_problems=6):
 def test_lora_trains_and_base_is_frozen():
     """Toy where the answer is the matrix whose bottom-right cell is black: LoRA must learn to pick it through the exact
     training code path; base weights stay bit-identical; an adapter reload reproduces the scores."""
-    from model_utils import load_adapter
+    from pgmvlm.models import load_adapter
     d = fake_npz_dir(easy=True)
     for fam, fn in FAMILIES.items():
         base_model, _ = fn(seed=0)
@@ -340,14 +340,14 @@ def test_extending_epochs_keeps_lr_schedule():
 
 
 def test_constant_schedule():
-    from common import lr_at
+    from pgmvlm.common import lr_at
     assert [round(lr_at(s, 1e-4, 20, 15000, schedule="constant"), 12) for s in (0, 9, 19)] == [5e-6, 5e-5, 1e-4]
     assert all(lr_at(s, 1e-4, 20, 15000, schedule="constant") == 1e-4 for s in (20, 7500, 14999, 30000))
     assert lr_at(14999, 1e-4, 20, 15000, schedule="cosine") < 1.1e-5            # cosine still decays to 0.1 x lr
 
 
 def test_cosine_decay_from_a_later_step():
-    from common import lr_at
+    from pgmvlm.common import lr_at
     f = lambda s: lr_at(s, 1e-4, 20, 60000, schedule="cosine", decay_start=45000)
     assert f(30000) == 1e-4 and f(44999) == 1e-4 and f(45000) == 1e-4           # held, then no jump at the start
     assert abs(f(52500) - 5.5e-5) < 1e-12 and abs(f(60000) - 1e-5) < 1e-12     # halfway, floor at the end
@@ -378,7 +378,7 @@ def test_extend_with_decay_start_continues_without_jump():
 
 
 def test_warm_restart_schedule():
-    from common import lr_restart
+    from pgmvlm.common import lr_restart
     f = lambda s: lr_restart(s, 1e-4, 60000, 500, 90000, 1e-5, 1e-5)
     assert abs(f(60000) - (1e-5 + 9e-5 / 500)) < 1e-12                        # starts at the old floor, no jump
     assert abs(f(60499) - 1e-4) < 1e-12 and abs(f(60500) - 1e-4) < 1e-12     # peak after the warmup
@@ -416,7 +416,7 @@ def test_extend_with_warm_restart():
 
 
 def test_frozen_blocks_stay_in_eval_mode():
-    from model_utils import set_train_mode
+    from pgmvlm.models import set_train_mode
     for fam, fn in FAMILIES.items():
         for vision in (False, True):
             model, _ = fn()
@@ -487,7 +487,7 @@ def test_train_fraction_flag_and_table5_and_submit_script():
 
 def test_load_base_from_saved_checkpoint():
     """The real loading path (AutoConfig -> family, AutoModelForImageTextToText, AutoProcessor) on a saved tiny checkpoint."""
-    from model_utils import detect_family, load_base
+    from pgmvlm.models import detect_family, load_base
     for fam, fn in FAMILIES.items():
         model, proc = fn()
         d = tempfile.mkdtemp()

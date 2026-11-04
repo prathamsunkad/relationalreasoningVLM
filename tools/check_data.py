@@ -10,7 +10,7 @@ from collections import Counter
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from pgm_vlm_data import filled_matrices, list_npz, load_pgm_instance, panels_to_grid_image  # noqa: E402
+from pgmvlm.data import filled_matrices, list_npz, load_pgm_instance, panels_to_grid_image  # noqa: E402
 
 
 def main():

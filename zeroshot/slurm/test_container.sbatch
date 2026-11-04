@@ -14,7 +14,7 @@ apptainer exec --nv \
     --env HF_HUB_OFFLINE=1 \
     --env TRANSFORMERS_OFFLINE=1 \
     /usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif \
-    python /home/hice1/psunkad3/scratch/pgm_infer.py \
+    python /home/hice1/psunkad3/scratch/pgm-vlm-reasoning/zeroshot/pgm_infer.py \
     --npz_dir /home/hice1/psunkad3/scratch/pgm_data/test_full/neutral \
     --output_dir /home/hice1/psunkad3/scratch/pgm_data/results_test \
     --model_id Qwen/Qwen3-VL-2B-Instruct \

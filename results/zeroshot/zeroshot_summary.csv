@@ -1,0 +1,11 @@
+task,model,variant,n,accuracy,ci95_halfwidth,invalid_outputs,source_dir
+PGM neutral (200k test),Qwen3-VL-2B,results_v3_fixed (final),187315,0.1248,0.0015,0,Qwen2BInstruct_PGM_test/results_v3_fixed
+PGM neutral (200k test),Qwen3-VL-2B,results_v2 (earlier run),200000,0.1285,0.0015,0,Qwen2BInstruct_PGM_test/results_v2
+PGM neutral (200k test),InternVL3.5-1B,results_v2,200000,0.1375,0.0015,8,InternVL_PGM_test/results_v2
+CLEVR-ART RMTS,Qwen3-VL-2B,generate,10000,0.5095,0.0098,31,Qwen2BInstruct_CLEVRART_test/results_qwen_rmts
+CLEVR-ART RMTS,Qwen3-VL-2B,prefill,10000,0.4861,0.0098,0,Qwen2BInstruct_CLEVRART_test/results_qwen_rmts_prefill
+CLEVR-ART RMTS,InternVL3.5-1B,generate,10000,0.0000,0.0000,10000,InternVL3.51B_CLEVRART_test/results_internvl_rmts
+CLEVR-ART RMTS,InternVL3.5-1B,prefill,10000,0.4909,0.0098,0,InternVL3.51B_CLEVRART_test/results_internvl_rmts_prefill
+CLEVR-ART identity rules,Qwen3-VL-2B,generate,10000,0.0000,0.0000,10000,Qwen2BInstruct_CLEVRART_test/results_qwen_idrules
+CLEVR-ART identity rules,Qwen3-VL-2B,prefill,10000,0.2164,0.0081,0,Qwen2BInstruct_CLEVRART_test/results_qwen_idrules_prefill
+CLEVR-ART identity rules,InternVL3.5-1B,prefill,10000,0.2501,0.0085,0,InternVL3.51B_CLEVRART_test/results_internvl_idrules_prefill

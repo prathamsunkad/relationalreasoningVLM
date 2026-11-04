@@ -17,8 +17,8 @@ import torch
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
-from model_utils import DTYPES, ScoreTokens, candidate_scores, load_adapter, load_base
-from pgm_vlm_data import CandidateCollator, PGMStream
+from pgmvlm.models import DTYPES, ScoreTokens, candidate_scores, load_adapter, load_base
+from pgmvlm.data import CandidateCollator, PGMStream
 
 
 def main():

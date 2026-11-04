@@ -3,7 +3,7 @@ import math
 
 import torch
 
-from model_utils import candidate_scores
+from pgmvlm.models import candidate_scores
 
 
 @torch.no_grad()

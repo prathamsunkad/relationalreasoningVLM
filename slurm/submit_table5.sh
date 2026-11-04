@@ -33,4 +33,4 @@ for FRAC in 0.2 1.0; do
         sbatch --parsable --dependency=afterany:$PREV --job-name=eval_${TAG} --export=ALL $HERE/eval_array.sbatch)
     echo "eval  $TAG -> array job $EV (after $PREV)"
 done
-echo "afterwards: python eval_vlm.py --merge_dir \$RUNS/results/<TAG>_$REGIME --expected_n 200000 ; python tools/make_table.py --table5 --row \"$MODEL_TAG:20=...,100=...\""
+echo "afterwards: python lora/eval_vlm.py --merge_dir \$RUNS/results/<TAG>_$REGIME --expected_n 200000 ; python tools/make_table.py --table5 --row \"$MODEL_TAG:20=...,100=...\""

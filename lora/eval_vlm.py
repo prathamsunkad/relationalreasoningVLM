@@ -1,27 +1,30 @@
 """Sharded evaluation of a (LoRA-adapted or zero-shot) VLM on a PGM split with PER-CANDIDATE scoring, + merge of the shards.
 
   # one shard (Slurm array task i of N), same file sharding as pgm_infer.py:
-  python eval_vlm.py --model_id Qwen/Qwen3-VL-2B-Instruct --adapter runs/qwen_pc_neutral/best \
+  python lora/eval_vlm.py --model_id Qwen/Qwen3-VL-2B-Instruct --adapter runs/qwen_pc_neutral/best \
       --npz_dir .../test_full/neutral --out_dir results/qwen_pc_neutral --shard_idx $i --num_shards 28
   # zero-shot baseline: omit --adapter (the base model scored with the same Yes/No readout)
   # merge all shards -> summary.json and a printed table:
-  python eval_vlm.py --merge_dir results/qwen_pc_neutral
+  python lora/eval_vlm.py --merge_dir results/qwen_pc_neutral
 
 Per problem: the 8 scores logit(Yes) - logit(No), one per completed matrix; the choice is their argmax (always valid).
 Shards resume: re-running a shard skips the problems it already finished.
 """
 import argparse
+import sys
 import glob
 import json
 import os
 import time
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # repo root
+
 import torch
 from torch.utils.data import DataLoader
 
-from evalcore import evaluate_batches, summarize
-from model_utils import DTYPES, ScoreTokens, load_adapter, load_base
-from pgm_vlm_data import CandidateCollator, PGMStream, list_npz, shard_files
+from pgmvlm.evalcore import evaluate_batches, summarize
+from pgmvlm.models import DTYPES, ScoreTokens, load_adapter, load_base
+from pgmvlm.data import CandidateCollator, PGMStream, list_npz, shard_files
 
 
 def merge(merge_dir, expected_n=0):

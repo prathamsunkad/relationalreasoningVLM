@@ -19,7 +19,7 @@ apptainer exec --nv \
     --env HF_HUB_OFFLINE=1 \
     --env TRANSFORMERS_OFFLINE=1 \
     "$CONTAINER" \
-    python /home/hice1/psunkad3/scratch/clevr_art_infer.py \
+    python /home/hice1/psunkad3/scratch/pgm-vlm-reasoning/zeroshot/clevr_art_infer.py \
     --dataset_root /home/hice1/psunkad3/scratch/clevr_art_data/clevr-art-ood-test-seed1-v1 \
     --task rmts \
     --output_dir /home/hice1/psunkad3/scratch/InternVL3.51B_CLEVRART_test/results_internvl_rmts \

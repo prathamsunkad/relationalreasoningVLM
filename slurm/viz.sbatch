@@ -9,7 +9,7 @@
 # Render exactly what the model receives for one PGM problem (8 completed matrices + tokenised input), per model.
 #   sbatch slurm/viz.sbatch                         (problem 0 of val_full/neutral, both models)
 #   sbatch --export=ALL,INDEX=5,PANEL_PX=224 slurm/viz.sbatch
-REPO=${REPO:-/home/hice1/psunkad3/scratch/vlm_lora_pc}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning}
 CONTAINER=${CONTAINER:-/usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif}
 DATA=${DATA:-/home/hice1/psunkad3/scratch/pgm_data}
 RUNS=${RUNS:-/home/hice1/psunkad3/scratch/vlm_lora_pc_runs}

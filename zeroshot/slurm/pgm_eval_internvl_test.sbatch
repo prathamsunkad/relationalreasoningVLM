@@ -19,7 +19,7 @@ apptainer exec --nv \
     --env HF_HUB_OFFLINE=1 \
     --env TRANSFORMERS_OFFLINE=1 \
     "$CONTAINER" \
-    python /home/hice1/psunkad3/scratch/pgm_infer.py \
+    python /home/hice1/psunkad3/scratch/pgm-vlm-reasoning/zeroshot/pgm_infer.py \
     --npz_dir /home/hice1/psunkad3/scratch/pgm_data/test_full/neutral \
     --output_dir /home/hice1/psunkad3/scratch/InternVL_PGM_test/results_v2 \
     --model_id OpenGVLab/InternVL3_5-1B-HF \

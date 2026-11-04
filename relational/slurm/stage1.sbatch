@@ -12,7 +12,7 @@
 # Stage 1 (frozen VLM) or Stage 2 (EXTRA="--lora_r 16 --init_from .../best.pt"). Resumable: resubmit / chain.
 #   sbatch --export=ALL,MODEL_ID=Qwen/Qwen3-VL-2B-Instruct,SLOT=$RUNS/s0_qwen_pgm/best.pt,TAG=s1_qwen_inter,EXTRA="--inject interleave" slurm/stage1.sbatch
 # Chain:  J=$(sbatch --parsable ...); sbatch --dependency=afterany:$J ...
-REPO=${REPO:-/home/hice1/psunkad3/scratch/relvlm}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning/relational}
 CONTAINER=${CONTAINER:-/usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif}
 DATA=${DATA:-/home/hice1/psunkad3/scratch/pgm_data}
 RUNS=${RUNS:-/home/hice1/psunkad3/scratch/relvlm_runs}

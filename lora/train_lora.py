@@ -1,6 +1,6 @@
 """LoRA fine-tuning of a VLM (Qwen3-VL / InternVL3.5-HF) on PGM with PER-CANDIDATE scoring, single GPU, resumable.
 
-  python train_lora.py --model_id Qwen/Qwen3-VL-2B-Instruct --train_dir .../train_full/neutral \
+  python lora/train_lora.py --model_id Qwen/Qwen3-VL-2B-Instruct --train_dir .../train_full/neutral \
       --val_dir .../val_full/neutral --out_dir runs/qwen_pc_neutral --train_samples 100000 --epochs 1
 
 Each problem becomes 8 sequences (the matrix completed with candidate k, "Answer Yes or No"); score(k) = logit(Yes) - logit(No).
@@ -10,21 +10,24 @@ Each problem becomes 8 sequences (the matrix completed with candidate k, "Answer
 --batch_size counts PROBLEMS per micro-batch (8 sequences each).
 """
 import argparse
+import sys
 import json
 import math
 import os
 import time
 from collections import defaultdict
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # repo root
+
 import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-from common import TimeBudget, count_params, log_jsonl, lr_at, lr_restart, save_ckpt, seed_everything
-from evalcore import evaluate_batches, summarize
-from model_utils import (DTYPES, ScoreTokens, add_lora, candidate_losses, candidate_scores, load_adapter, load_base,
+from pgmvlm.common import TimeBudget, count_params, log_jsonl, lr_at, lr_restart, save_ckpt, seed_everything
+from pgmvlm.evalcore import evaluate_batches, summarize
+from pgmvlm.models import (DTYPES, ScoreTokens, add_lora, candidate_losses, candidate_scores, load_adapter, load_base,
                          param_report, set_train_mode)
-from pgm_vlm_data import CandidateCollator, PGMStream, list_npz, make_order, subset_files
+from pgmvlm.data import CandidateCollator, PGMStream, list_npz, make_order, subset_files
 
 
 def parse():
