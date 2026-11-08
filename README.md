@@ -27,7 +27,6 @@ approaches that failed: [`docs/experiments.md`](docs/experiments.md). Tables and
 | `tests/` | CPU tests on tiny random models (`sbatch slurm/tests.sbatch`) |
 | `results/` | result tables, plots, validation-loss JSON (no weights, no data) |
 | `docs/` | experiment log, protocol comparison with the Slot Abstractor paper |
-| `legacy/v1_single_pass/` | the first LoRA approach, kept as the documented negative result |
 | `share/` | building the adapter bundle shared with collaborators |
 
 Data, model weights and run outputs are not in git. `env.sh` holds every path (data, runs, container, HF cache),

@@ -19,7 +19,7 @@ Both models are at chance on all three tasks. (`results_v3_fixed` for Qwen PGM i
 `results_v2`.) Free generation failed to produce parseable answers in two CLEVR-ART configurations (0% = all invalid);
 the prefilled variants are the valid numbers.
 
-## 1. LoRA v1: single-pass format (`legacy/v1_single_pass/`): failed
+## 1. LoRA v1: single-pass format: failed (code removed from this repo; original at `~/scratch/vlm_lora`, also in git history)
 
 Input: matrix image + image of the 8 candidates with number tags; the model outputs `Answer: k`.
 Trained on 703k problems (an incomplete extraction of the 1.2M training set).
