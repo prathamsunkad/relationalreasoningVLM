@@ -6,10 +6,10 @@ branch in progress. Models: `Qwen/Qwen3-VL-2B-Instruct` and `OpenGVLab/InternVL3
 
 ## Results (PGM neutral, 200,000 test problems, chance 12.5%)
 
-| Model | Zero-shot | LoRA, 4 epochs (last with cosine LR decay) | Later epochs (validation only, not yet tested) |
+| Model | Zero-shot | LoRA, 4 epochs (last with cosine LR decay) | After a warm-restart cycle |
 |---|---|---|---|
-| Qwen3-VL-2B | 12.85% | **81.50%** | epoch 5: 81.6% val |
-| InternVL3.5-1B | 13.75% | **57.73%** | epoch 6: 61.2% val |
+| Qwen3-VL-2B | 12.85% | 81.50% | **82.06%** (epoch 5) |
+| InternVL3.5-1B | 13.75% | 57.73% | **60.31%** (epoch 6) |
 
 Slot Abstractor paper with the same 20% of the training data: 71.25%. Full log of every experiment, including the
 approaches that failed: [`docs/experiments.md`](docs/experiments.md). Tables and curves: [`results/`](results/).

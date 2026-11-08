@@ -6,8 +6,8 @@ setup, an installation check and a full test-set evaluation.
 
 | Model | Adapter | PGM neutral test accuracy (200,000 problems, chance 12.5%) |
 |---|---|---|
-| Qwen3-VL-2B-Instruct | `adapters/qwen3vl2b_pgm_ep5` (final) | TEST_QWEN_EP5 (epoch 4: 81.50%) |
-| InternVL3.5-1B | `adapters/internvl35_1b_pgm_ep6` (final) | TEST_INTERNVL_EP6 (epoch 4: 57.73%) |
+| Qwen3-VL-2B-Instruct | `adapters/qwen3vl2b_pgm_ep5` (final) | **82.06%** (epoch 4: 81.50%) |
+| InternVL3.5-1B | `adapters/internvl35_1b_pgm_ep6` (final) | **60.31%** (epoch 4: 57.73%) |
 
 For comparison, the Slot Abstractor paper reports 71.25% with the same 20% of the training data. Every epoch's adapter
 is included; per-epoch accuracies and training curves are in `results/`.

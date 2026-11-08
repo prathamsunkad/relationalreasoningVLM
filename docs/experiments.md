@@ -58,13 +58,14 @@ saved checkpoints: `results/lora/val_loss_*.json` (computed with `tools/val_loss
 | 1 | constant 1e-4 | 55.87% (56.7% / 1.153) | 40.23% (40.1% / 1.536) |
 | 2 | constant 1e-4 | 68.61% (68.9% / 0.838) | 48.53% (49.6% / 1.309) |
 | 3 | constant 1e-4 | 75.33% (73.2% / 0.674) | 52.31% (51.5% / 1.210) |
-| 4 | cosine 1e-4 -> 1e-5 | **81.50%** (81.6% / 0.475) | 57.73% (57.6% / 1.054) |
-| 5 | Qwen: warm restart 1e-5 -> 5e-5 (500 updates), cosine -> 5e-6 | not tested (81.6% / 0.509) | - |
-| 5-6 | InternVL: warm restart 1e-5 -> 1e-4 (500 updates), cosine -> 1e-5 over 2 epochs | - | not tested (**61.2%** / 1.045) |
+| 4 | cosine 1e-4 -> 1e-5 | 81.50% (81.6% / 0.475) | 57.73% (57.6% / 1.054) |
+| 5 | Qwen: warm restart 1e-5 -> 5e-5 (500 updates), cosine -> 5e-6 | **82.06%** (81.6% / 0.509) | - |
+| 5-6 | InternVL: warm restart 1e-5 -> 1e-4 (500 updates), cosine -> 1e-5 over 2 epochs | - | **60.31%** (61.2% / 1.045) |
 
 Convergence: training loss still falls in the last epoch for both models, but validation loss does not: Qwen's rises
-(0.475 -> 0.509) with flat validation accuracy (slight overfitting, epoch 4 is its peak); InternVL's is flat (1.054 ->
-1.045) while validation accuracy still gained 3.6 points.
+(0.475 -> 0.509) with flat validation accuracy, while its test accuracy still gained 0.56 points (81.50% -> 82.06%);
+InternVL's is flat (1.054 -> 1.045) while test accuracy gained 2.58 points (57.73% -> 60.31%). Both are close to the
+limit of this setup.
 
 Reference points (same 240k training set, same 200k test set): Slot Abstractor paper, 20% data: 71.25%; teammate
 LFM2.5-VL-1.6B (single image + letter, 1 epoch): 43.8%; teammate SpatialEvo-3B (0.41 epoch): 30.0%.
