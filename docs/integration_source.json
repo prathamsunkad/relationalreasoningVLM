@@ -1,0 +1,22 @@
+{
+  "repository": "https://github.com/yluo5820/abstractor_VLM",
+  "source_worktree_date": "2026-11-19",
+  "note": "Includes uncommitted source work. SHA256 identifies the actual imported bytes; source HEAD alone is insufficient.",
+  "modules": [
+    {
+      "source": "benchmarks/vlm_bench/relational.py",
+      "source_sha256": "68d28a7e6d02d57384828a0c08153b1caf585c25fba73865dd824c2b8cb176f5",
+      "destination": "pgmvlm/extensions/relational.py"
+    },
+    {
+      "source": "benchmarks/vlm_bench/abstractor_plugin.py",
+      "source_sha256": "4705ef80191d0d70a77638a42522bd14ddc8c0c5f04ad2c79a8ad4bc8b3a3549",
+      "destination": "pgmvlm/extensions/abstractor_plugin.py"
+    },
+    {
+      "source": "benchmarks/vlm_bench/abstractor_memory.py",
+      "source_sha256": "6012065dbb52cef0eb46db43480a2fe8d3759b8353e3626772eeb731b8504432",
+      "destination": "pgmvlm/extensions/abstractor_memory.py"
+    }
+  ]
+}
