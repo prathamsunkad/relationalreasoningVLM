@@ -30,11 +30,20 @@ from pgmvlm.models import (DTYPES, ScoreTokens, add_lora, candidate_losses, cand
 from pgmvlm.data import CandidateCollator, PGMStream, list_npz, make_order, subset_files
 
 
+from pgmvlm.protocols import add_protocol_args, build_protocol
+from pgmvlm.datasets import files_for, select_files, make_stream
+
+
 def parse():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model_id", default="Qwen/Qwen3-VL-2B-Instruct")
     ap.add_argument("--family", default=None, help="qwen3vl | internvl (auto-detected from config)")
-    ap.add_argument("--train_dir", required=True)
+    add_protocol_args(ap)
+    ap.add_argument('--revision', default=None)
+    ap.add_argument('--train_manifest', default=None)
+    ap.add_argument('--val_manifest', default=None)
+    ap.add_argument('--train_list', default=None, help='Exact ordered filename list (.txt, .tsv, or .gz)')
+    ap.add_argument("--train_dir", default=None)
     ap.add_argument("--val_dir", default=None)
     ap.add_argument("--out_dir", required=True)
     ap.add_argument("--file_cache_dir", default=None, help="where to cache the sorted file listing (1.2M files)")
@@ -67,7 +76,7 @@ def parse():
                          "was started with, so extending to more epochs continues at the LR where it stopped, no jump)")
     ap.add_argument("--weight_decay", type=float, default=0.01)
     ap.add_argument("--max_grad_norm", type=float, default=1.0)
-    ap.add_argument("--loss", default="ce8", choices=["ce8", "bce", "both"])
+    ap.add_argument("--loss", default=None, choices=["ce8", "bce", "both", "causal_ce"])
     # LoRA
     ap.add_argument("--lora_r", type=int, default=16)
     ap.add_argument("--lora_alpha", type=int, default=32)
@@ -95,20 +104,21 @@ def parse():
                     help="also measure accuracy on the first N TRAINING problems at every validation (overfit test: "
                          "with --train_samples N this should climb towards 100%%)")
     ap.add_argument("--save_every", type=int, default=500, help="steps")
-    return ap.parse_args()
+    args = ap.parse_args()
+    args.loss = args.loss or ('ce8' if args.protocol == 'candidate' else 'causal_ce')
+    if (args.protocol == 'answer_letter') != (args.loss == 'causal_ce'):
+        ap.error('answer_letter uses causal_ce; candidate uses ce8/bce/both')
+    return args
 
 
 def make_val_loader(args, processor, family):
-    if not args.val_dir or args.val_samples <= 0:
+    if (not args.val_dir and not args.val_manifest) or args.val_samples <= 0:
         return None
-    if args.val_list:
-        files = [l.split("\t")[0].strip() for l in open(args.val_list) if l.strip() and not l.startswith("#")]
-    else:
-        cache = os.path.join(args.file_cache_dir, "val_files.txt") if args.file_cache_dir else None
-        files = subset_files(list_npz(args.val_dir, cache), args.val_samples, seed=1234)
-    ds = PGMStream(args.val_dir, files, seed=args.seed, shuffle_candidates=False)
+    available = files_for(args, 'val')
+    files = select_files(available, args.val_list, 0 if args.val_list else args.val_samples, seed=1234)
+    ds = make_stream(args, 'val', files)
     return DataLoader(ds, batch_size=args.val_batch_size, shuffle=False, num_workers=min(2, args.num_workers),
-                      collate_fn=CandidateCollator(processor, family, args.crop_to_patches, cell_size=args.panel_px))
+                      collate_fn=build_protocol(args, processor, family).collator)
 
 
 def main():
@@ -123,9 +133,9 @@ def main():
 
     # ---------------- data
     cache = os.path.join(args.file_cache_dir, "train_files.txt") if args.file_cache_dir else None
-    all_files = list_npz(args.train_dir, cache)
+    all_files = files_for(args, 'train')
     n_sub = args.train_samples or (int(round(args.train_fraction * len(all_files))) if args.train_fraction > 0 else 0)
-    files = subset_files(all_files, n_sub, seed=args.seed)
+    files = select_files(all_files, args.train_list, n_sub, seed=args.seed)
     print(f"train dir has {len(all_files)} problems; using {len(files)} ({100*len(files)/len(all_files):.1f}%)")
     glob_bs = args.batch_size * args.grad_accum
     max_steps = args.max_steps or max(1, int(math.ceil(args.epochs * len(files) / glob_bs)))
@@ -133,8 +143,9 @@ def main():
     print(f"train problems {len(files)} | global batch {glob_bs} | steps {max_steps} | epochs {max_steps * glob_bs / len(files):.2f}")
 
     # ---------------- model
-    model, processor, family = load_base(args.model_id, args.dtype, args.attn, device, args.family)
-    st = ScoreTokens(processor.tokenizer)
+    model, processor, family = load_base(args.model_id, args.dtype, args.attn, device, args.family,
+                                         **({'revision': args.revision} if args.revision else {}))
+    st = build_protocol(args, processor, family)
     print(f"family={family} | score tokens: {st.describe()}")
     start_step, best_val, resumed = 0, -1.0, False
     if os.path.exists(state_path) and os.path.isdir(last_dir):
@@ -184,17 +195,17 @@ def main():
         json.dump({**vars(args), "family": family, "trainable_params": tr, "total_params": tot,
                    "max_steps": max_steps, "schedule_steps": schedule_steps}, f, indent=1)
 
-    stream = PGMStream(args.train_dir, files, order=order, seed=args.seed, shuffle_candidates=bool(args.shuffle_candidates))
+    stream = make_stream(args, 'train', files, order=order, seed=args.seed, shuffle_candidates=bool(args.shuffle_candidates))
     loader = DataLoader(stream, batch_size=args.batch_size, sampler=range(start_step * glob_bs, len(order)),
                         num_workers=args.num_workers, drop_last=True, pin_memory=device.type == "cuda",
-                        collate_fn=CandidateCollator(processor, family, args.crop_to_patches, cell_size=args.panel_px),
+                        collate_fn=st.collator,
                         prefetch_factor=4 if args.num_workers > 0 else None)
     val_loader = make_val_loader(args, processor, family)
     fit_loader = None
     if args.fit_eval_samples > 0:                      # training problems in their original candidate order
-        fit_loader = DataLoader(PGMStream(args.train_dir, files[:args.fit_eval_samples], seed=args.seed),
+        fit_loader = DataLoader(make_stream(args, 'train', files[:args.fit_eval_samples], seed=args.seed),
                                 batch_size=args.val_batch_size, shuffle=False, num_workers=min(2, args.num_workers),
-                                collate_fn=CandidateCollator(processor, family, args.crop_to_patches, cell_size=args.panel_px))
+                                collate_fn=st.collator)
     budget, it = TimeBudget(args.time_limit_min), iter(loader)
 
     def save_state(step):
@@ -214,8 +225,10 @@ def main():
         s = summarize(list(evaluate_batches(model, val_loader, st, device, dtype)))
         acc, hist = s["scores"]["acc"], s["scores"]["pred_hist"]
         log_jsonl(metrics_path, {"step": step, "val_acc": acc, "val_n": s["n"], "val_pred_hist": hist,
-                                 "val_answer_says_yes": s["scores"]["answer_says_yes"],
-                                 "val_distractor_says_yes": s["scores"]["distractor_says_yes"]})
+                                 **({'val_loss': s['scores']['loss'], 'val_answer_loss': s['scores']['answer_loss']}
+                                    if args.protocol == 'answer_letter' else {
+                                        'val_answer_says_yes': s['scores']['answer_says_yes'],
+                                        'val_distractor_says_yes': s['scores']['distractor_says_yes']})})
         # one position getting nearly every prediction = the model ignores the images and outputs the label prior
         collapsed = "  <- COLLAPSED to one answer" if max(hist) > 0.8 * s["n"] else ""
         print(f"[val] step {step}: acc {acc:.4f} on {s['n']} problems (chance 0.125) "
@@ -235,11 +248,12 @@ def main():
         for _ in range(args.grad_accum):
             batch = next(it)
             targets = batch["targets"].to(device)
-            scores = candidate_scores(model, batch, st, device, dtype)
-            ce8, bce, acc = candidate_losses(scores, targets)
-            loss = {"ce8": ce8, "bce": bce, "both": ce8 + bce}[args.loss]
+            metrics = st.training(model, batch, device, dtype, args.loss)
+            loss = metrics['loss']
+            if not torch.isfinite(loss):
+                raise RuntimeError(f'Nonfinite training loss at step {step}')
             (loss / args.grad_accum).backward()
-            for k, v in (("loss", loss), ("ce8", ce8), ("bce", bce), ("train_acc", acc)):
+            for k, v in metrics.items():
                 agg[k] += float(v) / args.grad_accum
             seen += targets.numel()
         gn = torch.nn.utils.clip_grad_norm_(params, args.max_grad_norm)

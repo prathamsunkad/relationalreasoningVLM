@@ -17,6 +17,8 @@ LLM_LINEARS = "q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj"
 def detect_family(model_id):
     cfg = AutoConfig.from_pretrained(model_id)
     mt = cfg.model_type
+    if mt in ("lfm2_vl", "smolvlm", "qwen2_5_vl"):
+        return {"lfm2_vl": "lfm25", "smolvlm": "smolvlm2", "qwen2_5_vl": "spatialevo"}[mt]
     if mt == "qwen3_vl":
         return "qwen3vl"
     if mt == "internvl":
@@ -28,11 +30,18 @@ def detect_family(model_id):
     return "generic"
 
 
-def load_base(model_id, dtype="bf16", attn="sdpa", device=None, family=None):
+def load_base(model_id, dtype="bf16", attn="sdpa", device=None, family=None, revision=None):
+    # The existing model IDs/defaults are untouched; new aliases pin our archived bases.
+    from pgmvlm.registry import MODEL_REVISIONS
+    if model_id in MODEL_REVISIONS:
+        model_id, pinned = MODEL_REVISIONS[model_id]
+        revision = revision or pinned
     family = family or detect_family(model_id)
     kw = {} if attn == "default" else {"attn_implementation": attn}
+    if revision:
+        kw['revision'] = revision
     model = AutoModelForImageTextToText.from_pretrained(model_id, dtype=DTYPES[dtype], **kw)
-    processor = AutoProcessor.from_pretrained(model_id)
+    processor = AutoProcessor.from_pretrained(model_id, **({'revision': revision} if revision else {}))
     processor.tokenizer.padding_side = "left"
     if device is not None:
         model = model.to(device)
@@ -63,8 +72,16 @@ def add_lora(model, family, r=64, alpha=128, dropout=0.05, lora_vision=False, lo
         p.requires_grad_(False)
     if grad_ckpt:
         model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
-    cfg = LoraConfig(r=r, lora_alpha=alpha, lora_dropout=dropout, bias="none",
-                     target_modules=lora_target_regex(family, lora_vision, lora_projector))
+    targets = lora_target_regex(family, lora_vision, lora_projector)
+    if family in ('lfm25', 'smolvlm2', 'spatialevo'):
+        if lora_vision or lora_projector:
+            raise ValueError('These model recipes support language-only LoRA')
+        targets = [name for name, module in model.named_modules()
+                   if name.startswith(('model.language_model.', 'model.text_model.', 'language_model.'))
+                   and isinstance(module, torch.nn.Linear)]
+        if not targets:
+            raise ValueError('No audited language-model linear targets found')
+    cfg = LoraConfig(r=r, lora_alpha=alpha, lora_dropout=dropout, bias="none", target_modules=targets)
     model = get_peft_model(model, cfg)
     return model
 

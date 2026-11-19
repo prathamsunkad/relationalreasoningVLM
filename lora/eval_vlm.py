@@ -27,6 +27,10 @@ from pgmvlm.models import DTYPES, ScoreTokens, load_adapter, load_base
 from pgmvlm.data import CandidateCollator, PGMStream, list_npz, shard_files
 
 
+from pgmvlm.protocols import add_protocol_args, build_protocol
+from pgmvlm.datasets import files_for, make_stream
+
+
 def merge(merge_dir, expected_n=0):
     recs, shards = [], sorted(glob.glob(os.path.join(merge_dir, "results_shard*.json")))
     for p in shards:
@@ -47,12 +51,16 @@ def merge(merge_dir, expected_n=0):
         d = summ["scores"]
         print(f"  acc {100*d['acc']:.2f}%  (95% CI {100*d['ci95'][0]:.2f}-{100*d['ci95'][1]:.2f})")
         print(f"  predicted-position histogram {d['pred_hist']}")
-        print(f"  answer scored Yes>No {100*d['answer_says_yes']:.1f}% | distractors scored Yes>No {100*d['distractor_says_yes']:.1f}%")
+        if "answer_says_yes" in d:
+            print(f"  answer scored Yes>No {100*d['answer_says_yes']:.1f}% | distractors scored Yes>No {100*d['distractor_says_yes']:.1f}%")
     return summ
 
 
 def main():
     ap = argparse.ArgumentParser()
+    add_protocol_args(ap)
+    ap.add_argument('--revision', default=None)
+    ap.add_argument('--manifest', default=None)
     ap.add_argument("--merge_dir", default=None)
     ap.add_argument("--expected_n", type=int, default=0, help="with --merge_dir: e.g. 200000 for a full PGM test regime")
     ap.add_argument("--model_id", default="Qwen/Qwen3-VL-2B-Instruct")
@@ -79,21 +87,23 @@ def main():
     if args.merge_dir:
         merge(args.merge_dir, args.expected_n)
         return
-    assert args.npz_dir and args.out_dir, "--npz_dir and --out_dir are required"
+    assert (args.npz_dir or args.manifest) and args.out_dir, "data and --out_dir are required"
     os.makedirs(args.out_dir, exist_ok=True)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     dtype = DTYPES[args.dtype]
     out_path = os.path.join(args.out_dir, f"results_shard{args.shard_idx}.json")
 
-    files = shard_files(list_npz(args.npz_dir, os.path.join(args.file_cache_dir, "eval_files.txt") if args.file_cache_dir else None),
-                        args.shard_idx, args.num_shards, args.max_examples)
+    if args.num_shards < 1 or not 0 <= args.shard_idx < args.num_shards:
+        raise ValueError('Invalid shard index/count')
+    files = shard_files(files_for(args, 'eval'), args.shard_idx, args.num_shards, args.max_examples)
     done = json.load(open(out_path)) if os.path.exists(out_path) else []
     done_files = {r["file"] for r in done if "error" not in r}
     todo = [f for f in files if f not in done_files]
     print(f"[shard {args.shard_idx}/{args.num_shards}] {len(files)} problems, {len(done_files)} already done, {len(todo)} to go")
 
-    model, processor, family = load_base(args.model_id, args.dtype, args.attn, device, args.family)
-    st = ScoreTokens(processor.tokenizer)
+    model, processor, family = load_base(args.model_id, args.dtype, args.attn, device, args.family,
+                                         **({'revision': args.revision} if args.revision else {}))
+    st = build_protocol(args, processor, family)
     if args.adapter:
         model = load_adapter(model, args.adapter)
         if args.merge_adapter:
@@ -101,11 +111,11 @@ def main():
     model.eval()
     json.dump({"model_id": args.model_id, "adapter": args.adapter, "family": family, "npz_dir": args.npz_dir,
                "context_mode": args.context_mode, "crop_to_patches": args.crop_to_patches, "panel_px": args.panel_px,
-               "num_shards": args.num_shards}, open(os.path.join(args.out_dir, "eval_config.json"), "w"), indent=1)
+               "num_shards": args.num_shards, "protocol": args.protocol, "answer_loss_scope": args.answer_loss_scope, "manifest": args.manifest}, open(os.path.join(args.out_dir, "eval_config.json"), "w"), indent=1)
 
-    ds = PGMStream(args.npz_dir, todo, seed=0, shuffle_candidates=False, context_mode=args.context_mode)
+    ds = make_stream(args, 'eval', todo, context_mode=args.context_mode)
     loader = DataLoader(ds, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,
-                        collate_fn=CandidateCollator(processor, family, args.crop_to_patches, cell_size=args.panel_px))
+                        collate_fn=st.collator)
     results, t0, nb = list(done), time.time(), 0
 
     def flush():
