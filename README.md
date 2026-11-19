@@ -1,32 +1,52 @@
-# pgm-vlm-reasoning
+# relationalreasoningVLM
 
-Abstract visual reasoning (PGM, CLEVR-ART) with small vision-language models on Georgia Tech PACE ICE:
-zero-shot baselines, LoRA fine-tuning with per-candidate scoring, and a relational (Slot Attention -> Abstractor)
-branch in progress. Models: `Qwen/Qwen3-VL-2B-Instruct` and `OpenGVLab/InternVL3_5-1B-HF`.
+Abstract visual reasoning (PGM, CLEVR-ART) with small vision-language models on Georgia Tech PACE ICE: zero-shot
+baselines, LoRA fine-tuning with per-candidate scoring, and a relational branch (Slot Attention -> Abstractor ->
+connector) feeding the VLM. Models: `Qwen/Qwen3-VL-2B-Instruct` (main) and `OpenGVLab/InternVL3_5-1B-HF`.
 
-## Results (PGM neutral, 200,000 test problems, chance 12.5%)
+**New here? Start with [`00_START_HERE/`](00_START_HERE):** where everything is, every experiment with its runs,
+code and results ([`EXPERIMENTS.md`](00_START_HERE/EXPERIMENTS.md)), current status ([`STATUS.md`](00_START_HERE/STATUS.md))
+and how to reproduce it ([`REPRODUCE.md`](00_START_HERE/REPRODUCE.md)).
+
+## Results (PGM neutral, chance 12.5%)
+
+**Baselines, 200,000 test problems, 240k training puzzles (20% of PGM neutral):**
 
 | Model | Zero-shot | LoRA, 4 epochs (last with cosine LR decay) | After a warm-restart cycle |
 |---|---|---|---|
 | Qwen3-VL-2B | 12.85% | 81.50% | **82.06%** (epoch 5) |
 | InternVL3.5-1B | 13.75% | 57.73% | **60.31%** (epoch 6) |
 
-Slot Abstractor paper with the same 20% of the training data: 71.25%. Full log of every experiment, including the
-approaches that failed: [`docs/experiments.md`](docs/experiments.md). Tables and curves: [`results/`](results/).
+Slot Abstractor paper with the same 20% of the training data: 71.25%.
+
+**Relational branch, Qwen3-VL-2B, 5,000 test problems:**
+
+| Setting | LoRA alone | Best hybrid | Equal-steps control | Notes |
+|---|---|---|---|---|
+| 5% data (60k puzzles) | 52.6% | **56.5%** (LoRA-first, interleave; fusion 56.4%) | 53.2% / 52.9% | +3.3 / +3.5, p < 1e-11; gain mostly on counting ("number" +14.5); ties averaging LoRA alone with the branch |
+| Full data (240k) | 81.6% (val) | 81.3-81.4% (val) | 81.3% (non-relational, val) | No gain |
+| Task mixture (30% PGM) | not run | family score 87.2 | 87.6 (non-relational) | No gain; synthetic tasks saturate at 100% |
+| 5%, branch trained on the 60k only (early checkpoint) | 52.6% | 53.7% | 53.2% | No gain; the model ignores this weaker branch |
+
+Figures: [`results/plots/`](results/plots). Full write-ups: [`docs/relational_deep_dives.md`](docs/relational_deep_dives.md)
+(one section per experiment, H1-H13, A1, A2), [`docs/experiments.md`](docs/experiments.md) (zero-shot and LoRA, including
+the approaches that failed).
 
 ## Layout
 
 | Path | What |
 |---|---|
+| `00_START_HERE/` | the guide: map, experiment index, status, reproduction |
 | `pgmvlm/` | shared core: PGM loading and rendering (`data.py`), model loading, LoRA and Yes/No candidate scoring (`models.py`), evaluation loop (`evalcore.py`), LR schedules (`common.py`) |
 | `lora/` | `train_lora.py` (resumable LoRA training), `eval_vlm.py` (sharded test evaluation + merge) |
-| `tools/` | data preparation, preflight, plots (`plot_curves.py`), validation loss of checkpoints (`val_loss.py`), single-problem demo (`demo_predict.py`), tables |
-| `slurm/` | training, evaluation (`run_test_eval.sh`: 28 shards, retries, merge), tests |
 | `zeroshot/` | zero-shot inference for PGM and CLEVR-ART + their job scripts |
-| `relational/` | relational branch (work in progress; self-contained, run from that folder) |
+| `relational/` | relational branch: slots, Abstractor, interleave / fusion wrapper, Stage 0-2 training, evaluation, dataset builders, Slurm scripts, tests (self-contained; run from that folder) |
+| `experiments/` | the exact launchers, hand-off chains and scoring jobs used for H7-H13, A1, A2 |
+| `tools/` | data preparation, preflight, plots, validation loss of checkpoints, single-problem demo, `rerun_cmd.py` |
+| `slurm/` | baseline training, evaluation (`run_test_eval.sh`: 28 shards, retries, merge), tests, plots |
 | `tests/` | CPU tests on tiny random models (`sbatch slurm/tests.sbatch`) |
-| `results/` | result tables, plots, validation-loss JSON (no weights, no data) |
-| `docs/` | experiment log, protocol comparison with the Slot Abstractor paper |
+| `results/` | every run's settings and training log, per-problem test outputs, tables, figures (no weights, no data) |
+| `docs/` | experiment write-ups, protocol comparison with the Slot Abstractor paper |
 | `share/` | building the adapter bundle shared with collaborators |
 
 Data, model weights and run outputs are not in git. `env.sh` holds every path (data, runs, container, HF cache),
@@ -35,7 +55,7 @@ the pinned base-model revisions and the GPU nodes to avoid.
 ## Quickstart (PACE ICE)
 
 ```bash
-cd ~/scratch/pgm-vlm-reasoning && source env.sh
+cd relationalreasoningVLM && source env.sh
 sbatch slurm/tests.sbatch                                   # 22 CPU tests, ~10 min
 # one test problem through a fine-tuned adapter (prints the 8 candidate scores)
 apptainer exec --nv $CONTAINER python tools/demo_predict.py --npz_dir $DATA/test_full/neutral --seed 7 \

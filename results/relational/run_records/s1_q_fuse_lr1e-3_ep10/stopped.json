@@ -1,0 +1,1 @@
+{"stopped": "2026-11-15 19:35", "why": "stopped by the user before finishing (user: 'Stop all four'); best {'step': 122000, 'llm_acc': 0.256, 'val': 'pgm'}"}

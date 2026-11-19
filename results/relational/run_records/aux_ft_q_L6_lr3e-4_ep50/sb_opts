@@ -1,0 +1,1 @@
+-J aux_ft_q_L6_lr3e-4_ep50 -t 02:00:00 -C gpu-a100|gpu-h100|gpu-h200|gpu-l40s --prefer=gpu-h100|gpu-h200 -p coc-gpu,ice-gpu --exclude=atl1-1-03-004-21-0,atl1-1-03-013-8-0

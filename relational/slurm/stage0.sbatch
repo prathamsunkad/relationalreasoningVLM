@@ -14,7 +14,7 @@
 #   sbatch --export=ALL,MODEL_ID=Qwen/Qwen3-VL-2B-Instruct,TAG=s0_qwen_pgm slurm/stage0.sbatch
 #   sbatch --export=ALL,MODEL_ID=OpenGVLab/InternVL3_5-1B-HF,TAG=s0_ivl1b_pgm slurm/stage0.sbatch
 #   mixture: TRAIN="--train pgm=matrix:$DATA/train_full/neutral:0.5 --train clevr=jsonl:/path/clevr_art_train.jsonl:0.5"
-REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning/relational}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/relvlm}
 CONTAINER=${CONTAINER:-/usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif}
 DATA=${DATA:-/home/hice1/psunkad3/scratch/pgm_data}
 RUNS=${RUNS:-/home/hice1/psunkad3/scratch/relvlm_runs}
@@ -28,4 +28,12 @@ cd $REPO
 apptainer exec --nv --env HF_HOME=/home/hice1/psunkad3/.cache/huggingface --env HF_HUB_OFFLINE=1 \
     --env TRANSFORMERS_OFFLINE=1 "$CONTAINER" \
     python train_stage0.py --model_id $MODEL_ID --out_dir $RUNS/$TAG $TRAIN $VAL \
-    --file_cache_dir $RUNS/filecache --time_limit_min 285 $EXTRA
+    --file_cache_dir $RUNS/filecache --time_limit_min ${TIME_LIMIT_MIN:-285} $EXTRA
+RC=$?
+# With AUTO_RESUBMIT=1 a clean stop resubmits this job (SB_OPTS = its sbatch options) until done.json exists.
+if [ $RC -eq 0 ] && [ -n "${AUTO_RESUBMIT:-}" ] && [ ! -f $RUNS/$TAG/done.json ] && [ "${ATTEMPT:-1}" -lt "${MAX_ATTEMPTS:-60}" ]; then
+    export ATTEMPT=$((${ATTEMPT:-1} + 1))
+    for v in $(compgen -e | grep -E '^(SLURM|SBATCH)_'); do unset "$v"; done
+    sbatch --export=ALL ${SB_OPTS:-} $REPO/slurm/stage0.sbatch
+fi
+exit $RC

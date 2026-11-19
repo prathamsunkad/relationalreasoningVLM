@@ -13,6 +13,8 @@ long time. Judge a run by val MSE AND entropy / slots_used / the mask pictures, 
 Resumes from <out_dir>/last.pt; stops cleanly at --time_limit_min.
 """
 import argparse
+import json
+import math
 import os
 import time
 
@@ -35,6 +37,9 @@ def parse():
     ap.add_argument("--train", action="append", required=True, help="name=type:path[:weight], repeatable")
     ap.add_argument("--val", default=None, help="name=type:path (first --val_samples items)")
     ap.add_argument("--val_samples", type=int, default=200)
+    ap.add_argument("--train_samples", type=int, default=0,
+                    help="0 = every item of the first --train source; else the same nested seeded subset Stage 1 and "
+                         "the LoRA baseline use (data.subset), e.g. 60000 = the 5% PGM problems")
     ap.add_argument("--file_cache_dir", default=None)
     ap.add_argument("--seqs_per_example", type=int, default=1,
                     help="a PGM problem has 8 near-identical sequences; use this many random ones per problem")
@@ -65,6 +70,15 @@ def parse():
                     help="keep step<N>.pt snapshots: pick the Stage 0 checkpoint later by Stage-1a accuracy, not MSE alone")
     ap.add_argument("--time_limit_min", type=float, default=0)
     ap.add_argument("--seed", type=int, default=0)
+    # continue a finished run until convergence: warm up to --restart_lr, hold it until the best val MSE improves by
+    # less than --plateau_rel over --plateau_steps, then cosine to 10% over --anneal_steps and stop (done.json).
+    # --max_steps caps it: the anneal starts by max_steps - anneal_steps at the latest.
+    ap.add_argument("--restart_step", type=int, default=0, help="step the continuation starts at (0 = normal run)")
+    ap.add_argument("--restart_lr", type=float, default=1e-4)
+    ap.add_argument("--restart_warmup", type=int, default=2000)
+    ap.add_argument("--plateau_steps", type=int, default=20000)
+    ap.add_argument("--plateau_rel", type=float, default=0.005)
+    ap.add_argument("--anneal_steps", type=int, default=20000)
     return ap.parse_args()
 
 
@@ -142,6 +156,11 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     dtype = DTYPES[args.dtype]
     log_path = os.path.join(args.out_dir, "log.jsonl")
+    done_path, anneal_path = os.path.join(args.out_dir, "done.json"), os.path.join(args.out_dir, "anneal.json")
+    if os.path.exists(done_path):
+        print(f"[stage0] already finished ({done_path})")
+        return
+    anneal = json.load(open(anneal_path))["start"] if os.path.exists(anneal_path) else None
 
     model, processor, family = load_vlm(args.model_id, args.dtype, args.attn, device)
     model.eval().requires_grad_(False)
@@ -151,6 +170,10 @@ def main():
 
     mix = parse_mix(args.train)
     srcs = build_sources(mix, args.panel_px, args.file_cache_dir)
+    if args.train_samples and hasattr(srcs[0], "files"):
+        n_all = len(srcs[0].files)
+        srcs[0].files = subset(srcs[0].files, args.train_samples, args.seed)
+        print(f"[stage0] training on {len(srcs[0].files)} of {n_all} {mix[0][0]} items (--train_samples, seed {args.seed})")
     for (name, spec, w), s in zip(mix, srcs):
         print(f"[stage0] source {name}: {spec} ({len(s)} items, weight {w})")
     stream = MixtureStream(srcs, [w for *_, w in mix], [n for n, *_ in mix], args.max_steps * args.batch_size, args.seed)
@@ -214,14 +237,39 @@ def main():
         print(f"[stage0] channel stats from {n} positions: std median {float(std.median()):.3f}, largest "
               f"{[round(v, 1) for v in top.values.tolist()]} (channels {top.indices.tolist()})", flush=True)
 
+    def start_anneal(at, reason):
+        nonlocal anneal
+        anneal = at
+        with open(anneal_path, "w") as f:
+            json.dump({"start": at, "reason": reason, "best_val_mse": best}, f)
+        print(f"[stage0] annealing from step {at} for {args.anneal_steps} steps ({reason})", flush=True)
+
+    def lr_now(s):
+        if not args.restart_step:
+            return lr_at(s, args.lr, args.warmup_steps, args.max_steps)
+        if anneal is not None and s >= anneal:
+            p = min(1.0, (s - anneal) / max(1, args.anneal_steps))
+            return args.restart_lr * (0.1 + 0.9 * 0.5 * (1 + math.cos(math.pi * p)))
+        return args.restart_lr * min(1.0, (s - args.restart_step + 1) / max(1, args.restart_warmup))
+
+    def plateaued():
+        """Best val MSE improved by less than plateau_rel over the last plateau_steps (read back from log.jsonl)."""
+        if step - args.restart_step < args.plateau_steps:
+            return False
+        past = [r["best_val_mse"] for r in map(json.loads, open(log_path)) if "best_val_mse" in r
+                and r["step"] <= step - args.plateau_steps]
+        return bool(past) and (past[-1] - best) / past[-1] < args.plateau_rel
+
     budget, t0, run, rn = TimeBudget(args.time_limit_min), time.time(), 0.0, 0
     ae.train()
     for batch in loader:
-        if step >= args.max_steps:
+        if step >= args.max_steps or (anneal is not None and step >= anneal + args.anneal_steps):
             break
+        if args.restart_step and anneal is None and step >= args.max_steps - args.anneal_steps:
+            start_anneal(step, "step cap reached")
         x = feats(batch, device, dtype)
         for g in opt.param_groups:
-            g["lr"] = lr_at(step, args.lr, args.warmup_steps, args.max_steps)
+            g["lr"] = lr_now(step)
         loss, _ = ae(x)
         opt.zero_grad(set_to_none=True)
         loss.backward()
@@ -244,6 +292,8 @@ def main():
             print(rec, flush=True); log_jsonl(log_path, rec)
             if step >= 0.25 * args.max_steps and ent > 0.95 * emax:
                 print("[stage0] WARNING: slot attention is still ~uniform (entropy ~ ln K): slots have not specialised.")
+            if args.restart_step and anneal is None and plateaued():
+                start_anneal(step, f"best val MSE improved < {args.plateau_rel:.1%} over {args.plateau_steps} steps")
             ckpt("last")
         elif step % args.save_every == 0:
             ckpt("last")
@@ -256,7 +306,9 @@ def main():
     ckpt("last")
     if val_loader is None:
         ckpt("best")
-    print("[stage0] done")
+    with open(done_path, "w") as f:
+        json.dump({"step": step, "best_val_mse": best, "anneal_start": anneal}, f)
+    print(f"[stage0] done at step {step}")
 
 
 if __name__ == "__main__":

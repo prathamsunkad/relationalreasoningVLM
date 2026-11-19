@@ -41,15 +41,56 @@ def trainable_lora(model):
     return {n: p for n, p in model.named_parameters() if p.requires_grad and "lora_" in n}
 
 
+def adapter_lora_cfg(adapter_dir):
+    """dict(r, alpha, dropout) of a PEFT adapter saved with save_pretrained (e.g. a vlm_lora_pc run's best/)."""
+    import json
+    import os
+    c = json.load(open(os.path.join(adapter_dir, "adapter_config.json")))
+    return dict(r=int(c["r"]), alpha=float(c["lora_alpha"]), dropout=float(c.get("lora_dropout", 0.0)))
+
+
+def load_peft_adapter(model, adapter_dir, lora_cfg=None):
+    """Copy a PEFT adapter (vlm_lora_pc's save_pretrained format: 'base_model.model.<name>.lora_A.weight') into the
+    LoRA modules add_lora injected ('<name>.lora_A.default.weight'). Every adapter tensor must land on a LoRA
+    parameter of the model and every LoRA parameter must be covered, with matching r and alpha; returns the count."""
+    import os
+    from safetensors.torch import load_file
+    cfg = adapter_lora_cfg(adapter_dir)
+    if lora_cfg and (int(lora_cfg["r"]) != cfg["r"] or float(lora_cfg["alpha"]) != cfg["alpha"]):
+        raise RuntimeError(f"adapter {adapter_dir} has r={cfg['r']} alpha={cfg['alpha']}, the model was built with "
+                           f"r={lora_cfg['r']} alpha={lora_cfg['alpha']}")
+    sd = load_file(os.path.join(adapter_dir, "adapter_model.safetensors"))
+    params = {n: p for n, p in model.named_parameters() if "lora_" in n}
+    seen = set()
+    for k, t in sd.items():
+        n = k[len("base_model.model."):] if k.startswith("base_model.model.") else k
+        for ab in ("lora_A", "lora_B"):
+            n = n.replace(f".{ab}.weight", f".{ab}.default.weight")
+        if n not in params:
+            raise RuntimeError(f"adapter tensor {k} -> {n} has no LoRA parameter in the model")
+        if tuple(params[n].shape) != tuple(t.shape):
+            raise RuntimeError(f"shape mismatch for {n}: model {tuple(params[n].shape)} adapter {tuple(t.shape)}")
+        params[n].data.copy_(t.to(params[n].device, params[n].dtype))
+        seen.add(n)
+    if len(seen) != len(params):
+        raise RuntimeError(f"adapter covers {len(seen)} of {len(params)} LoRA parameters, e.g. "
+                           f"{sorted(set(params) - seen)[:3]}")
+    return len(seen)
+
+
 def checkpoint_payload(rv, bb, meta):
+    keep_slots = getattr(rv, "finetune_slots", False) or getattr(rv, "save_slots", False)   # save_slots: loaded fine-tuned
+    extra = dict(slot_ae=rv.slot_ae.state_dict()) if keep_slots else {}
     return dict(branch=rv.state_dict(), lora={n: p.detach().cpu() for n, p in trainable_lora(bb.model).items()},
-                **meta)
+                **extra, **meta)
 
 
 def restore(rv, bb, ck, strict=True):
     missing, unexpected = rv.load_state_dict(ck["branch"], strict=False)
     if strict and (missing or unexpected):
         raise RuntimeError(f"branch state mismatch: missing {missing} unexpected {unexpected}")
+    if ck.get("slot_ae"):
+        rv.slot_ae.load_state_dict(ck["slot_ae"])
     if ck.get("lora"):
         params = dict(bb.model.named_parameters())
         for n, t in ck["lora"].items():

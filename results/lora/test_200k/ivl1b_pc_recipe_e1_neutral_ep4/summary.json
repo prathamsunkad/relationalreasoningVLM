@@ -1,0 +1,59 @@
+{
+ "n": 200000,
+ "scores": {
+  "acc": 0.577305,
+  "ci95": [
+   0.5751385384900153,
+   0.5794684918181464
+  ],
+  "n": 200000,
+  "pred_hist": [
+   24952,
+   24899,
+   25140,
+   25075,
+   25149,
+   24900,
+   24974,
+   24911
+  ],
+  "target_hist": [
+   24940,
+   24991,
+   25241,
+   25039,
+   24935,
+   24787,
+   25154,
+   24913
+  ],
+  "acc_by_target_position": [
+   0.5777465918203689,
+   0.5770077227802008,
+   0.5769581236876511,
+   0.5769799113383123,
+   0.5776619209945859,
+   0.5778835679993545,
+   0.578118788264292,
+   0.5760847750170593
+  ],
+  "answer_says_yes": 0.561405,
+  "distractor_says_yes": 0.10991214285714286
+ },
+ "shards": 28,
+ "errors": 0,
+ "unique_files": 200000,
+ "duplicates": 0,
+ "expected_n": 200000,
+ "complete": true,
+ "config": {
+  "model_id": "OpenGVLab/InternVL3_5-1B-HF",
+  "adapter": "/home/hice1/psunkad3/scratch/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/final_e4",
+  "family": "internvl",
+  "npz_dir": "/home/hice1/psunkad3/scratch/pgm_data/test_full/neutral",
+  "context_mode": "normal",
+  "crop_to_patches": 1,
+  "panel_px": 160,
+  "num_shards": 28
+ }
+}

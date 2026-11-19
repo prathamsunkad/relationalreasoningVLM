@@ -70,10 +70,14 @@ limit of this setup.
 Reference points (same 240k training set, same 200k test set): Slot Abstractor paper, 20% data: 71.25%; teammate
 LFM2.5-VL-1.6B (single image + letter, 1 epoch): 43.8%; teammate SpatialEvo-3B (0.41 epoch): 30.0%.
 
-## 4. Relational branch (`relational/`): in progress
+## 4. Relational branch (`relational/`, `experiments/`)
 
-Slot Attention -> Abstractor relational branch feeding the frozen VLM (Stage 0 slot pre-training, Stage 1 branch
-training, Stage 2 + LoRA), same backbones and the same per-candidate readout as section 3. Not yet complete.
+Slot Attention -> Abstractor relational branch feeding the VLM (Stage 0 slots, Stage 1a branch alone, alignment,
+Stage 2 with LoRA, LoRA-first), same backbones and the same per-candidate readout as section 3. Best result: at 5%
+data, LoRA-first with the branch reaches 56.5% on 5,000 test puzzles vs 52.6% for LoRA alone (+3.3 to +3.5 over an
+equal-steps control); no gain at full data or on the task mixture. Full write-ups:
+[`relational_deep_dives.md`](relational_deep_dives.md) (H1-H13, A1, A2) and
+[`relational_experiment_log.md`](relational_experiment_log.md); index and status in [`../00_START_HERE/`](../00_START_HERE).
 
 ## Infrastructure notes
 

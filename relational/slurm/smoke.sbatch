@@ -11,7 +11,7 @@
 
 # Real-weight smoke test on SYNTHETIC panels (does not read pgm_data): stage 0 -> stage 1 (interleave, then fuse) -> eval,
 # for both backbones. Prints memory and speed.   sbatch slurm/smoke.sbatch
-REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning/relational}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/relvlm}
 CONTAINER=${CONTAINER:-/usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif}
 RUNS=${RUNS:-/home/hice1/psunkad3/scratch/relvlm_runs}
 S=$RUNS/smoke; rm -rf $S; mkdir -p $S

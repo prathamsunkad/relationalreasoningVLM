@@ -18,7 +18,7 @@ from torch.utils.data import DataLoader
 
 from backbones import DTYPES
 from data import Collator, FixedSet, build_sources, parse_mix
-from factory import build, restore
+from factory import adapter_lora_cfg, build, load_peft_adapter, restore
 from train_stage1 import evaluate
 
 
@@ -70,6 +70,13 @@ def main():
     ap.add_argument("--max_examples", type=int, default=0)
     ap.add_argument("--context_mode", default="normal", choices=["normal", "blank", "shuffle"])
     ap.add_argument("--readout", default="llm", choices=["llm", "aux"])
+    ap.add_argument("--branch_off", action="store_true",
+                    help="ablation: cut the branch's input to the LLM (fusion: lambda = 1; interleave: zero relation "
+                         "token) to see what LoRA learned on its own")
+    ap.add_argument("--lora_from", default=None,
+                    help="score with this PEFT adapter (e.g. a vlm_lora_pc run's best/) as the LoRA; with a fusion "
+                         "checkpoint and --branch_off this is LoRA alone, read through this code")
+    ap.add_argument("--val_list", default=None, help="file of .npz names (first tab column): evaluate only these")
     ap.add_argument("--panel_px", type=int, default=None, help="default: the training value")
     ap.add_argument("--file_cache_dir", default=None)
     ap.add_argument("--batch_size", type=int, default=4)
@@ -85,16 +92,28 @@ def main():
     dtype = DTYPES[args.dtype]
     ck = torch.load(args.ckpt, map_location="cpu", weights_only=False)
     targs = ck.get("args", {})
+    lora_cfg = ck.get("lora_cfg") or (adapter_lora_cfg(args.lora_from) if args.lora_from else None)
     rv, bb, st = build(ck["model_id"], ck["slot_ckpt"], ck["cfg"], device, args.dtype, targs.get("attn", "sdpa"),
-                       ck.get("lora_cfg"))
+                       lora_cfg)
     restore(rv, bb, ck)
+    if args.lora_from:
+        n = load_peft_adapter(bb.model, args.lora_from, lora_cfg)
+        print(f"[eval] LoRA from {args.lora_from} ({n} tensors" + (", replacing the checkpoint's own)" if ck.get("lora") else ")"))
+    if args.branch_off:
+        rv.branch_off = True                         # fusion: native visual tokens; interleave: zero relation token
+        print("[eval] branch off: the LLM gets nothing from the branch")
     panel_px = args.panel_px or targs.get("panel_px", 160)
     (name, spec, _), = parse_mix([args.source])
     src = build_sources([(name, spec, 1)], panel_px, args.file_cache_dir, args.context_mode)[0]
-    idx = list(range(len(src)))[args.shard_idx::args.num_shards]
+    idx = list(range(len(src)))
+    if args.val_list and hasattr(src, "files"):
+        keep = {l.split("\t")[0].strip() for l in open(args.val_list) if l.strip() and not l.startswith("#")}
+        idx = [j for j, f in enumerate(src.files) if f in keep]
+        print(f"[eval] {len(idx)} problems from {args.val_list}")
+    idx = idx[args.shard_idx::args.num_shards]
     if args.max_examples:
         idx = idx[: args.max_examples]
-    collate = Collator(bb.processor, bb.processor_kwargs(), rel_tokens=rv.M if rv.interleave else 0)
+    collate = Collator(bb.processor, bb.processor_kwargs(), **rv.collate_kwargs())
     loader = DataLoader(FixedSet(src, idx, name), batch_size=args.batch_size, num_workers=args.num_workers,
                         collate_fn=collate)
     records = []

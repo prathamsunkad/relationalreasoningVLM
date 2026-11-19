@@ -1,0 +1,22 @@
+{
+  "qwen": {
+    "model": "Qwen3-VL-2B-Instruct",
+    "total": 200000,
+    "errors": 0,
+    "none_predictions": 0,
+    "answered": 200000,
+    "correct": 25699,
+    "accuracy_overall": 0.128495,
+    "accuracy_of_answered": 0.128495
+  },
+  "internvl": {
+    "model": "InternVL3.5-1B-HF",
+    "total": 200000,
+    "errors": 0,
+    "none_predictions": 8,
+    "answered": 199992,
+    "correct": 27494,
+    "accuracy_overall": 0.13747,
+    "accuracy_of_answered": 0.1374754990199608
+  }
+}

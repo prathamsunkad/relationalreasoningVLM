@@ -1,0 +1,10 @@
+{
+ "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+ "adapter": "/home/hice1/psunkad3/scratch/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e1",
+ "family": "qwen3vl",
+ "npz_dir": "/home/hice1/psunkad3/scratch/pgm_data/test_full/neutral",
+ "context_mode": "normal",
+ "crop_to_patches": 1,
+ "panel_px": 160,
+ "num_shards": 28
+}

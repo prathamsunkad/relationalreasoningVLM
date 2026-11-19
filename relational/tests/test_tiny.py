@@ -21,7 +21,9 @@ sys.path.insert(0, os.path.join(ROOT, "tests"))
 import tiny_models as T
 from backbones import Backbone, window_to_raster
 from data import Collator, FixedSet, MatrixSource, grid_layout
-from relvlm import RelationalVLM, ScoreTokens, example_logits, loss_and_acc, roi_sample, token_panel_coords
+from relvlm import (RelationalVLM, ScoreTokens, example_logits, loss_and_acc, roi_sample, shared_slot_noise,
+                    token_panel_coords)
+from abstractor import RelationalAbstractor
 from slots import SlotAutoencoder
 
 CPU = torch.device("cpu")
@@ -55,7 +57,7 @@ def setup(fam, inject="interleave", M=2, **kw):
 
 def batch_for(bb, rv, d, idx=(0, 1)):
     src = MatrixSource(d)
-    col = Collator(bb.processor, bb.processor_kwargs(), rel_tokens=rv.M if rv.interleave else 0)
+    col = Collator(bb.processor, bb.processor_kwargs(), **rv.collate_kwargs())
     return col([FixedSet(src, list(range(len(src))))[i] for i in idx])
 
 
@@ -155,6 +157,30 @@ def test_grads(fam, inject):
     assert (h1 - h2).abs().max() > 1e-4
 
 
+def test_branch_off(fam, inject):
+    """branch_off: fusion gives the plain VLM exactly; interleave zeroes the relation tokens; either way the output no
+    longer depends on the connector, and turning it back on restores the branch's effect."""
+    d = fake_npz_dir(2)
+    rv, bb, st = setup(fam, inject=inject, fuse_lambda=0.5)
+    rv.eval()
+    with torch.no_grad():
+        batch = batch_for(bb, rv, d)
+        on1, _ = rv(batch, CPU, torch.float32)
+        rv.branch_off = True
+        off1, _ = rv(batch, CPU, torch.float32)
+        if rv.fuse:
+            ref = bb.core(**bb.model_inputs(batch, CPU, torch.float32), use_cache=False).last_hidden_state[:, -1]
+            assert torch.allclose(off1, ref.float(), atol=1e-5), (off1 - ref).abs().max()
+        for n, p in rv.named_parameters():
+            if n.startswith(("tok_proj", "fuse_proj")):
+                p.add_(torch.randn_like(p))
+        off2, _ = rv(batch, CPU, torch.float32)
+        rv.branch_off = False
+        on2, _ = rv(batch, CPU, torch.float32)
+    assert torch.allclose(off1, off2, atol=1e-6), "with the branch off the connector must not matter"
+    assert (on1 - off1).abs().max() > 1e-4 and (on1 - on2).abs().max() > 1e-4
+
+
 def test_eval_deterministic(fam, inject):
     d = fake_npz_dir(2)
     rv, bb, st = setup(fam, inject=inject)
@@ -178,6 +204,99 @@ def test_aux_depends_on_candidate(fam):
     loss, _, _ = loss_and_acc(example_logits(None, aux, batch, bb.model, st), "aux")
     loss.backward()
     assert sum(p.grad.abs().sum() for p in rv.abstractor.parameters() if p.grad is not None) > 0
+
+
+def test_shared_slot_noise():
+    n = shared_slot_noise([9, 9, 1], [dict(seq_idx=[0, 1]), dict(seq_idx=[2])], 4, 8, CPU)
+    assert n.shape == (19, 4, 8)
+    assert torch.equal(n[:9], n[9:18]), "the sequences of an example must share their panels' noise"
+    assert not torch.equal(n[0], n[1]) and not torch.equal(n[0], n[18])
+    ae = SlotAutoencoder(16, slot_dim=8, num_slots=4, iters=2, decoder_hidden=16, grid=4).eval()
+    x = torch.randn(1, 16, 16)
+    z_a, m_a, _ = ae.extract(x, noise=n[:1])
+    z_b, m_b, _ = ae.extract(x, noise=n[9:10])
+    z_c, _, _ = ae.extract(x, noise=n[18:])
+    assert torch.equal(z_a, z_b) and torch.equal(m_a, m_b), "same panel + same noise must give the same slots"
+    assert not torch.equal(z_a, z_c)
+
+
+def test_loss_chance_norm():
+    recs = [dict(llm=torch.zeros(8), aux=None, loss="ce", label=0, kind="cand"),
+            dict(llm=torch.zeros(1), aux=None, loss="bce", label=1, kind="binary")]
+    raw, _, _ = loss_and_acc(recs, "llm")
+    norm, _, _ = loss_and_acc(recs, "llm", chance_norm=True)
+    assert abs(float(raw) - (np.log(8) + np.log(2)) / 2) < 1e-5
+    assert abs(float(norm) - 1.0) < 1e-5, "every task scores 1 at chance"
+
+
+def test_selection_score():
+    from train_stage1 import selection_score
+    results = [("pgm", dict(llm_acc=0.2)), ("art_sd", dict(llm_acc=1.0)), ("art_rmts", dict(llm_acc=0.6)), ("vsr", dict())]
+    assert selection_score(results, "llm_acc", "first") == 0.2
+    assert abs(selection_score(results, "llm_acc", "family") - 0.5) < 1e-9, "each family counts once"
+    assert abs(selection_score([("fit", dict(llm_acc=0.9)), ("pgm", dict(llm_acc=0.3))], "llm_acc", "family") - 0.3) < 1e-9
+
+
+def test_no_slots(fam):
+    d = fake_npz_dir(2)
+    rv, bb, st = setup(fam, inject="interleave", no_slots=True)
+    rv.train()
+    batch = batch_for(bb, rv, d)
+    _, aux = rv(batch, CPU, torch.float32, llm=False)
+    assert aux.view(2, 8).std(1).min() > 1e-6, aux
+    loss, _, _ = loss_and_acc(example_logits(None, aux, batch, bb.model, st), "aux")
+    loss.backward()
+    names = {n for n, p in rv.named_parameters() if p.grad is not None and p.grad.abs().sum() > 0}
+    assert any(n.startswith("abstractor.") for n in names) and "cell_proj.weight" in names, names
+    assert all(p.grad is None for p in bb.model.parameters()), "the VLM must stay frozen"
+
+
+def test_rel_modes(fam, mode):
+    d = fake_npz_dir(2)
+    rv, bb, st = setup(fam, inject="interleave", M=1, rel_mode=mode)
+    rv.train()
+    batch = batch_for(bb, rv, d)
+    per_seq = {"panel": 9, "slot": 36}[mode]                                     # tiny slot model: 4 slots per panel
+    assert int((batch["input_ids"] == bb.rel_id).sum()) == 16 * per_seq
+    h, aux = rv(batch, CPU, torch.float32)
+    loss, _, _ = loss_and_acc(example_logits(h, aux, batch, bb.model, st), "llm")
+    loss.backward()
+    names = {n for n, p in rv.named_parameters() if p.grad is not None and p.grad.abs().sum() > 0}
+    assert any(n.startswith("abstractor.") for n in names) and any(n.startswith("tok_proj") for n in names), names
+
+
+def test_no_relational():
+    kw = dict(dim=8, heads=2, head_dim=4, layers=2, mlp_dim=16)
+    a, b = RelationalAbstractor(**kw), RelationalAbstractor(relational=False, **kw)
+    assert sum(p.numel() for p in a.parameters()) == sum(p.numel() for p in b.parameters()), "the control must be the same size"
+    z, m, mask = torch.randn(2, 3, 4, 8), torch.randn(2, 3, 4, 8), torch.ones(2, 3, dtype=torch.bool)
+    assert (b(z, m, mask)[1] - b(torch.randn_like(z), m, mask)[1]).abs().max() > 1e-6, "the control must use appearance"
+
+
+def test_finetune_slots(fam):
+    from factory import checkpoint_payload, restore
+    d = fake_npz_dir(2)
+    for on in (False, True):
+        rv, bb, st = setup(fam, finetune_slots=on)
+        rv.train()
+        batch = batch_for(bb, rv, d)
+        h, aux = rv(batch, CPU, torch.float32)
+        loss, _, _ = loss_and_acc(example_logits(h, aux, batch, bb.model, st), "llm")
+        loss.backward()
+        grads = {n for n, p in rv.slot_ae.named_parameters() if p.grad is not None and p.grad.abs().sum() > 0}
+        assert all(p.grad is None for p in bb.model.parameters()), "the VLM must stay frozen"
+        if not on:
+            assert not grads, f"frozen slots received gradients: {grads}"
+            assert "slot_ae" not in checkpoint_payload(rv, bb, {})
+            continue
+        assert any(n.startswith("slot_attn") for n in grads), grads
+        assert not any(n.startswith(("decoder", "dec_pos")) for n in grads), grads
+        saved = {k: v.clone() for k, v in rv.slot_ae.state_dict().items()}
+        ck = {**checkpoint_payload(rv, bb, {}), "slot_ae": saved}
+        for p in rv.slot_ae.slot_attn.parameters():
+            p.data.add_(1.0)
+        restore(rv, bb, ck)
+        assert all(torch.equal(v, saved[k]) for k, v in rv.slot_ae.state_dict().items()), "slot weights must be restored"
 
 
 def test_abstractor_learns_relation():
@@ -227,6 +346,23 @@ def test_cli(fam):
         "--val_samples", "4", "--grid", "4", "--slot_dim", "8", "--num_slots", "4", "--decoder_hidden", "16",
         "--batch_size", "2", "--max_steps", "4", "--val_every", "2", "--log_every", "2", "--warmup_steps", "1")
     assert os.path.exists(f"{out}/s0/best.pt") and os.path.exists(f"{out}/s0/slots_step2.png")
+    o = run("train_stage0.py", *common, "--out_dir", f"{out}/s0sub", "--train", f"pgm=matrix:{d}", "--val", f"pgm=matrix:{d}",
+            "--train_samples", "4", "--val_samples", "4", "--grid", "4", "--slot_dim", "8", "--num_slots", "4",
+            "--decoder_hidden", "16", "--batch_size", "2", "--max_steps", "2", "--val_every", "2", "--log_every", "1",
+            "--warmup_steps", "1")                    # Stage 0 on a subset: the same nested subset as Stage 1
+    assert "training on 4 of 8 pgm items" in o and "(4 items" in o and os.path.exists(f"{out}/s0sub/best.pt"), o[-800:]
+    import shutil                                    # continue the finished run until it plateaus, then anneal + stop
+    os.makedirs(f"{out}/s0c")
+    for f in ("last.pt", "best.pt", "log.jsonl"):
+        shutil.copy(f"{out}/s0/{f}", f"{out}/s0c/{f}")
+    s0c = [*common, "--out_dir", f"{out}/s0c", "--train", f"pgm=matrix:{d}", "--val", f"pgm=matrix:{d}",
+           "--val_samples", "4", "--grid", "4", "--slot_dim", "8", "--num_slots", "4", "--decoder_hidden", "16",
+           "--batch_size", "2", "--max_steps", "40", "--val_every", "2", "--log_every", "2", "--restart_step", "4",
+           "--restart_warmup", "1", "--plateau_steps", "2", "--plateau_rel", "1.0", "--anneal_steps", "4"]
+    o = run("train_stage0.py", *s0c)
+    done = json.load(open(f"{out}/s0c/done.json"))
+    assert "resumed at step 4" in o and "annealing from step 6" in o and done["step"] == 10, (o[-800:], done)
+    assert "already finished" in run("train_stage0.py", *s0c)
     s1 = [*common, "--slot_ckpt", f"{out}/s0/best.pt", "--train", f"pgm=matrix:{d}", "--val", f"pgm=matrix:{d}",
           "--val_samples", "4", "--layers", "2", "--heads", "2", "--head_dim", "4", "--mlp_dim", "16",
           "--batch_size", "2", "--grad_accum", "1", "--val_every", "2", "--log_every", "1", "--warmup_steps", "1",
@@ -235,10 +371,53 @@ def test_cli(fam):
     assert any(json.loads(l).get("val") == "fit" for l in open(f"{out}/s1/metrics.jsonl"))
     o = run("train_stage1.py", *s1, "--out_dir", f"{out}/s1", "--max_steps", "4")          # resume 2 -> 4
     assert "resumed at step 2" in o
-    run("train_stage1.py", *s1, "--out_dir", f"{out}/s2", "--max_steps", "2", "--lora_r", "4",
-        "--init_from", f"{out}/s1/best.pt")
+    ft = ["--finetune_slots", "--slot_lr", "1e-4"]
+    o = run("train_stage1.py", *s1, *ft, "--out_dir", f"{out}/s1", "--max_steps", "6")     # frozen state -> fine-tuning
+    assert "resumed at step 4" in o and "slot attention group added" in o
+    o = run("train_stage1.py", *s1, *ft, "--out_dir", f"{out}/s1", "--max_steps", "8")     # resume with the slot group
+    assert "resumed at step 6" in o and "slot attention group added" not in o
+    assert torch.load(f"{out}/s1/final.pt", weights_only=False).get("slot_ae"), "fine-tuned slots must be saved"
+    run("eval.py", "--ckpt", f"{out}/s1/final.pt", "--source", f"pgm=matrix:{d}", "--out_json", f"{out}/evft/shard0.json",
+        "--shard_idx", "0", "--num_shards", "1", "--dtype", "fp32", "--num_workers", "0")
+    o = run("train_stage1.py", *s1, "--out_dir", f"{out}/s2", "--max_steps", "4", "--lora_r", "4",
+            "--init_from", f"{out}/s1/best.pt", "--branch_dropout", "0.5")
+    assert "branch dropout 0.5" in o, o[-800:]
+    recs = [json.loads(l) for l in open(f"{out}/s2/metrics.jsonl") if '"llm_acc' in l and '"val"' not in l]
+    assert any("llm_acc_on" in r or "llm_acc_off" in r for r in recs), recs
     ck = torch.load(f"{out}/s2/best.pt", weights_only=False)
     assert ck["lora"], "Stage 2 must save LoRA weights"
+    # LoRA first, then the branch: a PEFT adapter in vlm_lora_pc's save format -> --lora_from, LoRA frozen for 2 steps,
+    # branch always off (the control); then eval.py --lora_from on a checkpoint without LoRA
+    from safetensors.torch import save_file
+    adir, g = tempfile.mkdtemp(), torch.Generator().manual_seed(1)
+    ad = {"base_model.model." + n.replace(".default", ""): torch.randn(t.shape, generator=g) * 0.01
+          for n, t in ck["lora"].items()}
+    save_file(ad, f"{adir}/adapter_model.safetensors")
+    json.dump({"r": 4, "lora_alpha": 32, "lora_dropout": 0.05, "peft_type": "LORA"}, open(f"{adir}/adapter_config.json", "w"))
+    want = {n[len("base_model.model."):].replace(".lora_A.weight", ".lora_A.default.weight")
+            .replace(".lora_B.weight", ".lora_B.default.weight"): t for n, t in ad.items()}
+    s3 = [*s1, "--out_dir", f"{out}/s3", "--lora_r", "4", "--init_from", f"{out}/s1/best.pt", "--lora_from", adir,
+          "--freeze_lora_steps", "2", "--branch_dropout", "1.0"]
+    o = run("train_stage1.py", *s3, "--max_steps", "2")
+    assert "LoRA initialised from" in o and "control: branch always off" in o and "LoRA frozen" in o, o[-800:]
+    l2 = torch.load(f"{out}/s3/final.pt", weights_only=False)["lora"]
+    assert set(l2) == set(want), (sorted(l2)[:2], sorted(want)[:2])
+    assert all(torch.equal(l2[n].float(), want[n].float()) for n in want), "LoRA must stay at the adapter while frozen"
+    o = run("train_stage1.py", *s3, "--max_steps", "4")          # resume past the freeze: LoRA trains, no reload
+    assert "resumed at step 2" in o and "LoRA initialised from" not in o, o[-800:]
+    l4 = torch.load(f"{out}/s3/final.pt", weights_only=False)["lora"]
+    assert any(not torch.equal(l4[n], l2[n]) for n in l2), "LoRA must train after the freeze"
+    bad = tempfile.mkdtemp()                                      # wrong rank must be refused, not silently loaded
+    save_file(ad, f"{bad}/adapter_model.safetensors")
+    json.dump({"r": 8, "lora_alpha": 32}, open(f"{bad}/adapter_config.json", "w"))
+    try:
+        run("train_stage1.py", *s1, "--out_dir", f"{out}/s3bad", "--max_steps", "1", "--lora_r", "4", "--lora_from", bad)
+        raise AssertionError("an adapter with a different r must be refused")
+    except RuntimeError:
+        pass
+    o = run("eval.py", "--ckpt", f"{out}/s1/final.pt", "--lora_from", adir, "--branch_off", "--source", f"pgm=matrix:{d}",
+            "--out_json", f"{out}/evlora/shard0.json", "--dtype", "fp32", "--num_workers", "0")
+    assert "LoRA from" in o and json.load(open(f"{out}/evlora/shard0.json"))["summary"]["n"] == 8, o[-800:]
     for k in range(2):
         run("eval.py", "--ckpt", f"{out}/s2/best.pt", "--source", f"pgm=matrix:{d}", "--out_json",
             f"{out}/ev/shard{k}.json", "--shard_idx", str(k), "--num_shards", "2", "--dtype", "fp32", "--num_workers", "0")
@@ -255,13 +434,20 @@ if __name__ == "__main__":
     only = sys.argv[1:]
     tests = [("window_to_raster", test_window_to_raster, ()), ("roi_and_tokens", test_roi_and_tokens, ()),
              ("abstractor_learns_relation", test_abstractor_learns_relation, ()),
-             ("packed_sources", test_packed_sources, ())]
+             ("packed_sources", test_packed_sources, ()), ("shared_slot_noise", test_shared_slot_noise, ()),
+             ("loss_chance_norm", test_loss_chance_norm, ()),
+             ("selection_score", test_selection_score, ()),
+             ("no_relational", test_no_relational, ())]
     for fam in FAMILIES:
         tests += [(f"fuse_identity[{fam}]", test_fuse_identity, (fam,))]
         tests += [(f"grads[{fam},{inj}]", test_grads, (fam, inj)) for inj in ("interleave", "fuse")]
         tests += [(f"eval_deterministic[{fam},{inj}]", test_eval_deterministic, (fam, inj)) for inj in ("interleave", "fuse")]
+        tests += [(f"branch_off[{fam},{inj}]", test_branch_off, (fam, inj)) for inj in ("interleave", "fuse")]
         tests += [
-                  (f"aux_depends[{fam}]", test_aux_depends_on_candidate, (fam,)), (f"cli[{fam}]", test_cli, (fam,))]
+                  (f"aux_depends[{fam}]", test_aux_depends_on_candidate, (fam,)), (f"no_slots[{fam}]", test_no_slots, (fam,)),
+                  (f"rel_panel[{fam}]", test_rel_modes, (fam, "panel")), (f"rel_slot[{fam}]", test_rel_modes, (fam, "slot")),
+                  (f"finetune_slots[{fam}]", test_finetune_slots, (fam,)),
+                  (f"cli[{fam}]", test_cli, (fam,))]
     failed = 0
     for name, fn, a in tests:
         if only and not any(o in name for o in only):

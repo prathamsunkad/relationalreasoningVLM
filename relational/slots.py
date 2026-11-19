@@ -49,14 +49,16 @@ class SlotAttention(nn.Module):
         self.mlp = nn.Sequential(nn.Linear(dim, 2 * dim), nn.ReLU(inplace=True), nn.Linear(2 * dim, dim))
         self.norm_in, self.norm_slots, self.norm_mlp = nn.LayerNorm(dim), nn.LayerNorm(dim), nn.LayerNorm(dim)
 
-    def forward(self, inputs, generator=None):
+    def forward(self, inputs, generator=None, noise=None):
         """inputs (B, N, D) -> slots (B, K, D), attn_w (B, K, N) (renormalised over N), attn_soft (B, K, N) (softmax
-        over slots = per-position masks). Always fp32 (slot attention is touchy under bf16)."""
+        over slots = per-position masks). Always fp32 (slot attention is touchy under bf16).
+        noise (B, K, D): slot-init noise; drawn here if None."""
         with torch.autocast(device_type=inputs.device.type, enabled=False):
             x = inputs.float()
             B, N, D = x.shape
             mu = self.slots_mu.expand(B, self.num_slots, -1)
-            noise = torch.randn(mu.shape, device=x.device, generator=generator)
+            if noise is None:
+                noise = torch.randn(mu.shape, device=x.device, generator=generator)
             slots = mu + self.slots_logsigma.exp() * noise
             x = self.norm_in(x)
             k, v = self.to_k(x), self.to_v(x)
@@ -124,10 +126,10 @@ class SlotAutoencoder(nn.Module):
         pos = self.pos(self.grid, self.grid, device=feats.device)
         return feat, pos, self.enc_mlp(self.enc_norm(feat + pos))
 
-    def extract(self, feats, generator=None):
+    def extract(self, feats, generator=None, noise=None):
         """feats (n, P*P, in_dim) -> z, m (n, K, D) and attn (n, K, P*P) slot masks (softmax over slots)."""
         feat, pos, inputs = self._embed(feats)
-        _, attn_w, attn_soft = self.slot_attn(inputs, generator)
+        _, attn_w, attn_soft = self.slot_attn(inputs, generator, noise)
         z = torch.einsum("bkn,bnd->bkd", attn_w, feat.float())
         m = torch.einsum("bkn,nd->bkd", attn_w, pos.float())
         return z, m, attn_soft

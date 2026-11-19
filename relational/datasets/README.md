@@ -16,7 +16,7 @@ Panel boxes:
 * BLINK multi-image sheets: one box per image;
 * everything else: the whole image.
 
-All 34 ready splits (table below) were loaded through `data.py` by `verify.py` (report in `_previews/report.json`).
+All ready splits (table below) were loaded through `data.py` by `verify.py` (report in `_previews/report.json`).
 Check any split with `python datasets/verify.py "<glob>"`. It writes preview sheets with panel boxes in red and the
 correct candidate in green to `_previews/`.
 
@@ -33,6 +33,7 @@ correct candidate in green to `_previews/`.
 | CLEVR scenes | `clevr/stage0_train.jsonl` | image | 20,000 | Stage 0 mix |
 | COCO val2017 | `coco/stage0_val2017.jsonl` | image | 5,000 | Stage 0 mix (natural images) |
 | VSR | `vsr/{random,zeroshot}_{train,dev,test}.jsonl` (images in `vsr/images.zip`) | binary | random 7,680 / 1,097 / 2,195; zero-shot 3,489 / 340 / 1,222 | Stage 1 mix + eval |
+| CLEVR-ART train | `clevr_art/{rmts,idrules}_{train,val}.jsonl` | cand ×2 / ×4 | 9,500 / 500 each | Stage 0 + Stage 1 mix |
 | CLEVR-ART OOD test | `clevr_art_ood/{rmts,idrules}_cand.jsonl` | cand ×2 / ×4 | 10,000 each | held-out transfer eval |
 | " (original sheets + prompt) | `clevr_art_ood/{rmts,idrules}_sheet.jsonl` | letter | 10,000 each | comparable with the zero-shot runs |
 | What'sUp | `whatsup/{Controlled_Images_A,Controlled_Images_B,COCO_QA_two_obj,VG_QA_two_obj}.jsonl` | cand ×4 / ×2 | 412 / 408 / 440 / 291 | held-out eval |
@@ -46,7 +47,6 @@ correct candidate in green to `_previews/`.
 |---|---|---|---|
 | SVRT (23 problems) | `datasets/make_svrt.py` via `slurm/data_generators.sbatch` | clones `fleuret.org/git/pysvrt` (GPL-3) and compiles its C++ generator | `svrt/{train,val,test}` 1,000 / 200 / 2,000 per problem, binary |
 | I-RAVEN (7 configurations) | `datasets/make_iraven.py` via `slurm/data_generators.sbatch` | official Python 2 generator (SRAN repo), auto-ported with lib2to3; `--smoke` first | `iraven/{train,val,test}.zip`, 6k/2k/2k per configuration, `raven:` source |
-| CLEVR-ART train | `datasets/make_clevr_art.py setup`, `slurm/clevr_art_render.sbatch`, `… pack` | Blender 2.79b + OCRA render scripts (same commits as the OOD test package), 80 CPU array tasks | `clevr_art/{rmts,idrules}_{train,val}`, 9,500 / 500 problems each, cand |
 
 Not included:
 * V-PROM: images are not public.
@@ -57,19 +57,31 @@ Not included:
 D=~/scratch/relvlm_data; P=~/scratch/pgm_data
 # --- Stage 0 (images only; labelled sources work too, only their images are used)
 S0_PGM="--train pgm=matrix:$P/train_full/neutral"
-S0_MIX="--train pgm=matrix:$P/train_full/neutral:0.35 --train clevr=jsonl:$D/clevr/stage0_train.jsonl:0.2 \
-  --train coco=jsonl:$D/coco/stage0_val2017.jsonl:0.15 --train art=jsonl:$D/art/idrules/train.jsonl:0.15 \
-  --train vsr=jsonl:$D/vsr/random_train.jsonl:0.15"            # + iraven / svrt / clevr_art once generated
+S0_MIX="--train pgm=matrix:$P/train_full/neutral:0.20 --train clevr=jsonl:$D/clevr/stage0_train.jsonl:0.25 \
+  --train coco=jsonl:$D/coco/stage0_val2017.jsonl:0.175 --train art=jsonl:$D/art/idrules/train.jsonl:0.05 \
+  --train vsr=jsonl:$D/vsr/random_train.jsonl:0.175 --train cart_rmts=jsonl:$D/clevr_art/rmts_train.jsonl:0.075 \
+  --train cart_id=jsonl:$D/clevr_art/idrules_train.jsonl:0.075"  # + iraven / svrt once generated
+#   weights count images; a PGM image has 9 panels, so PGM is 63% of the panels slot attention trains on
 # --- Stage 1 / 2
 S1_PGM="--train pgm=matrix:$P/train_full/neutral"
-S1_MIX="--train pgm=matrix:$P/train_full/neutral:0.55 \
+S1_MIX="--train pgm=matrix:$P/train_full/neutral:0.30 \
+  --train art_sd=jsonl:$D/art/sd/train.jsonl:0.02 --train art_rmts=jsonl:$D/art/rmts/train.jsonl:0.02 \
+  --train art_dist3=jsonl:$D/art/dist3/train.jsonl:0.03 --train art_id=jsonl:$D/art/idrules/train.jsonl:0.05 \
+  --train clevr=jsonl:$D/clevr/relational_yesno_train.jsonl:0.30 --train vsr=jsonl:$D/vsr/random_train.jsonl:0.08 \
+  --train cart_rmts=jsonl:$D/clevr_art/rmts_train.jsonl:0.10 --train cart_id=jsonl:$D/clevr_art/idrules_train.jsonl:0.10"
+S1_MIX50="--train pgm=matrix:$P/train_full/neutral:0.50 \
   --train art_sd=jsonl:$D/art/sd/train.jsonl:0.02 --train art_rmts=jsonl:$D/art/rmts/train.jsonl:0.02 \
   --train art_dist3=jsonl:$D/art/dist3/train.jsonl:0.02 --train art_id=jsonl:$D/art/idrules/train.jsonl:0.04 \
-  --train clevr=jsonl:$D/clevr/relational_yesno_train.jsonl:0.15 --train vsr=jsonl:$D/vsr/random_train.jsonl:0.20"
+  --train clevr=jsonl:$D/clevr/relational_yesno_train.jsonl:0.20 --train vsr=jsonl:$D/vsr/random_train.jsonl:0.10 \
+  --train cart_rmts=jsonl:$D/clevr_art/rmts_train.jsonl:0.05 --train cart_id=jsonl:$D/clevr_art/idrules_train.jsonl:0.05"
+#   S1_MIX is the main candidate (30% PGM = 64% of the compute); S1_MIX50 is the PGM-heavy comparison.
+#   Train mixtures with --loss_norm chance --best_on family, and set --max_steps to compare mixtures at equal compute.
 #   once generated, add (and take the weight from pgm/clevr):  iraven=raven:$D/iraven/train.zip:0.15
-#   svrt=jsonl:$D/svrt/train.jsonl:0.05  clevr_art_rmts=jsonl:$D/clevr_art/rmts_train.jsonl:0.05  (+ idrules)
-# --- validation (first --val selects best.pt)
-VAL="--val pgm=matrix:$P/val_full/neutral --val clevr=jsonl:$D/clevr/relational_yesno_val.jsonl --val vsr=jsonl:$D/vsr/random_dev.jsonl"
+#   svrt=jsonl:$D/svrt/train.jsonl:0.05
+# --- validation (--best_on family: mean over pgm, clevr, vsr, art, cart; default: the first --val)
+VAL="--val pgm=matrix:$P/val_full/neutral --val clevr=jsonl:$D/clevr/relational_yesno_val.jsonl --val vsr=jsonl:$D/vsr/random_dev.jsonl \
+  --val art_sd=jsonl:$D/art/sd/val.jsonl --val art_rmts=jsonl:$D/art/rmts/val.jsonl --val art_dist3=jsonl:$D/art/dist3/val.jsonl \
+  --val art_id=jsonl:$D/art/idrules/val.jsonl --val cart_rmts=jsonl:$D/clevr_art/rmts_val.jsonl --val cart_id=jsonl:$D/clevr_art/idrules_val.jsonl"
 # --- held-out eval suite (eval.py --source ...)
 #   neutral=matrix:$P/test_full/neutral
 #   cart_rmts=jsonl:$D/clevr_art_ood/rmts_cand.jsonl      cart_id=jsonl:$D/clevr_art_ood/idrules_cand.jsonl
@@ -82,8 +94,8 @@ VAL="--val pgm=matrix:$P/val_full/neutral --val clevr=jsonl:$D/clevr/relational_
 ## Notes and caveats
 * **Held-out discipline.** Transfer claims rest on datasets never trained on: CLEVR-ART OOD, What'sUp, CV-Bench,
   BLINK, MMVP, and the ART test shapes.
-  * If CLEVR-ART train renders are added to the mixture, CLEVR-ART OOD becomes in-domain. It still tests new
-    colours, shapes and materials, as in the paper, but it is no longer a transfer test.
+  * CLEVR-ART train is in S0_MIX / S1_MIX, so CLEVR-ART OOD is in-domain for mixture models. It still tests new
+    colours, shapes and materials, as in the paper, but it is not a transfer test unless CLEVR-ART is held out.
   * VSR: train on the `random` split, then test on `random_test` (in-domain) and `zeroshot_test`. Concept overlap
     between the two variants means `zeroshot_test` is only partly unseen after training on `random`.
   * COCO val2017 images in Stage 0 may include some VSR/What'sUp COCO images. Stage 0 sees no labels, so this is

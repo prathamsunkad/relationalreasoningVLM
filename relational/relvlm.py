@@ -20,6 +20,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from abstractor import RelationalAbstractor
+from slots import SoftPositionEmbed
 
 
 def roi_sample(fmap, boxes, P):
@@ -50,27 +51,54 @@ def token_panel_coords(boxes, hm, wm):
     return owner, torch.stack([lx, ly], -1)                                     # (T,), (n, T, 2)
 
 
+def shared_slot_noise(counts, examples, K, D, device, generator=None):
+    """Slot-init noise (N, K, D), one draw per (example, panel index): the sequences of an example repeat the same
+    context panels, so those panels start from the same slots in every candidate's sequence."""
+    out = []
+    for ex in examples:
+        idx = ex["seq_idx"]
+        draw = torch.randn(max(counts[i] for i in idx), K, D, device=device, generator=generator)
+        out += [draw[:counts[i]] for i in idx]
+    return torch.cat(out, 0)
+
+
 def _rms(x):
     return x.float().pow(2).mean(-1, keepdim=True).add(1e-6).sqrt()
 
 
 class RelationalVLM(nn.Module):
     def __init__(self, backbone, slot_ae, inject="interleave", rel_tokens=1, abstractor_cfg=None, fuse_lambda=0.9,
-                 learn_lambda=True):
+                 learn_lambda=True, no_slots=False, rel_mode="pool", finetune_slots=False):
         super().__init__()
-        assert inject in ("interleave", "fuse")
+        assert inject in ("interleave", "fuse") and rel_mode in ("pool", "panel", "slot")
         object.__setattr__(self, "bb", backbone)          # not submodules: keeps the HF model / frozen slots out of
         object.__setattr__(self, "slot_ae", slot_ae)      # this module's state_dict (saved separately)
-        self.inject, self.M = inject, rel_tokens
+        self.inject, self.M, self.rel_mode = inject, rel_tokens, rel_mode
         self.interleave, self.fuse = inject == "interleave", inject == "fuse"
+        self.branch_off = False      # True: the LLM gets nothing from the branch (Stage 2 branch dropout, ablations)
         D, d = slot_ae.cfg["slot_dim"], backbone.d_llm
         self.P = slot_ae.cfg["grid"]
         self.cfg = dict(inject=inject, rel_tokens=rel_tokens, abstractor_cfg=abstractor_cfg or {},
-                        fuse_lambda=fuse_lambda, learn_lambda=learn_lambda)
+                        fuse_lambda=fuse_lambda, learn_lambda=learn_lambda, no_slots=no_slots, rel_mode=rel_mode,
+                        finetune_slots=finetune_slots)
         self.abstractor = RelationalAbstractor(dim=D, **(abstractor_cfg or {}))
         self.aux_head = nn.Linear(D, 1)
+        self.no_slots = no_slots
+        self.finetune_slots = finetune_slots
+        if finetune_slots:       # the task loss also trains slot attention; the decoder is only used in Stage 0
+            assert not no_slots, "--finetune_slots needs slots"
+            for n, p in slot_ae.named_parameters():
+                p.requires_grad_(not n.startswith(("decoder", "dec_pos")))
+        if no_slots:             # control (paper Sec. 5.1): a fixed grid of ViT locations replaces the slots
+            assert inject != "fuse", "--no_slots has no slot masks to fuse with: use interleave or --objective aux"
+            self.G = int(math.isqrt(slot_ae.cfg["num_slots"]))
+            assert self.G ** 2 == slot_ae.cfg["num_slots"], "--no_slots needs a square number of objects"
+            self.cell_norm = nn.LayerNorm(slot_ae.cfg["in_dim"])
+            self.cell_proj = nn.Linear(slot_ae.cfg["in_dim"], D)
+            self.cell_pos = SoftPositionEmbed(D)
         if self.interleave:
-            self.tok_proj = nn.Sequential(nn.Linear(D, d), nn.GELU(), nn.Linear(d, rel_tokens * d))
+            self.tok_proj = nn.Sequential(nn.Linear(D, d), nn.GELU(), nn.Linear(d, (rel_tokens if rel_mode == "pool" else 1) * d))
+            self.d = d
             self.tok_gain = nn.Parameter(torch.ones(()))
             emb = backbone.model.get_input_embeddings().weight
             self.register_buffer("emb_rms", _rms(emb.detach()).mean().reshape(()), persistent=False)
@@ -103,13 +131,13 @@ class RelationalVLM(nn.Module):
         if ctx is None:
             return None
         maps = self.bb.feature_maps(out, ctx["grids"])
-        self._res = self.relations(maps, ctx["boxes"])
-        if self.fuse and ctx["llm"] and self.bb.family == "qwen3vl":
+        self._res = self.relations(maps, ctx["boxes"], ctx["examples"])
+        if self.fuse and ctx["llm"] and not self.branch_off and self.bb.family == "qwen3vl":
             return self.bb.replace_merged(out, self._fuse(self.bb.merged_tokens(out, ctx["grids"])))
         return None
 
     def _merged_hook(self, module, args, out):
-        if self._ctx is None or not self._ctx["llm"]:
+        if self._ctx is None or not self._ctx["llm"] or self.branch_off:
             return None
         return self.bb.replace_merged(out, self._fuse(self.bb.merged_tokens(out, self._ctx["grids"])))
 
@@ -119,14 +147,15 @@ class RelationalVLM(nn.Module):
             return None
         e = kwargs["inputs_embeds"]
         mask = ctx["rel_mask"]
-        toks = self.rel_tokens(self._res["r"])                                  # (n_seq, M, d)
-        assert int(mask.sum()) == toks.shape[0] * toks.shape[1], \
-            f"{int(mask.sum())} <|rel|> placeholders for {toks.shape[0]}x{toks.shape[1]} relation tokens"
+        toks = self.relation_tokens(self._res)                                  # (total, d), in placeholder order
+        if self.branch_off:                                                     # placeholders stay, carrying nothing
+            toks = torch.zeros_like(toks)
+        assert int(mask.sum()) == toks.shape[0], f"{int(mask.sum())} <|rel|> placeholders for {toks.shape[0]} relation tokens"
         kwargs["inputs_embeds"] = e.masked_scatter(mask.unsqueeze(-1), toks.to(e.dtype))
         return args, kwargs
 
     # ------------------------------------------------------------------ branch
-    def relations(self, maps, boxes):
+    def relations(self, maps, boxes, examples):
         """maps: per image (h, w, C); boxes: per image (n_p, 4). One image per sequence."""
         P = self.P
         counts = [b.shape[0] for b in boxes]
@@ -135,8 +164,13 @@ class RelationalVLM(nn.Module):
         if not self.training:      # slot init is random (it breaks slot symmetry); fixed seed => reproducible eval
             gen = torch.Generator(device=panels.device)
             gen.manual_seed(0)
-        with torch.no_grad():
-            z, m, attn = self.slot_ae.extract(panels, gen)                              # (N, K, D) x2, (N, K, P*P)
+        if self.no_slots:
+            z, m, attn = self.grid_objects(panels)
+        else:
+            noise = shared_slot_noise(counts, examples, self.slot_ae.cfg["num_slots"], self.slot_ae.cfg["slot_dim"],
+                                      panels.device, gen)
+            with torch.set_grad_enabled(self.finetune_slots and self.training):
+                z, m, attn = self.slot_ae.extract(panels, noise=noise)                  # (N, K, D) x2, (N, K, P*P)
         n, Pmax, K, D = len(maps), max(counts), z.shape[1], z.shape[2]
         Z = z.new_zeros(n, Pmax, K, D)
         Mm = m.new_zeros(n, Pmax, K, D)
@@ -148,9 +182,29 @@ class RelationalVLM(nn.Module):
         s, r = self.abstractor(Z, Mm, mask)
         return dict(s=s, r=r, attn=attn, counts=counts, K=K, panel_mask=mask)
 
-    def rel_tokens(self, r):
-        t = self.tok_proj(r).view(r.shape[0], self.M, -1)
+    def grid_objects(self, panels):
+        """Control without slots: ViT features averaged over a G x G grid of each panel, one object per cell. (N, G*G, D) x2."""
+        n = panels.shape[0]
+        x = self.slot_ae.standardize(panels).transpose(1, 2).reshape(n, -1, self.P, self.P)
+        x = F.adaptive_avg_pool2d(x, self.G).flatten(2).transpose(1, 2)
+        z = self.cell_proj(self.cell_norm(x))
+        return z, self.cell_pos(self.G, self.G, device=z.device)[None].expand(n, -1, -1), None
+
+    def relation_tokens(self, res):
+        """pool: M tokens from r per sequence; panel: one token per panel; slot: one token per slot. (total, d)."""
+        if self.rel_mode == "pool":
+            t = self.tok_proj(res["r"]).reshape(-1, self.d)
+        else:
+            K, D = res["K"], res["s"].shape[-1]
+            parts = [s[:c * K] for s, c in zip(res["s"], res["counts"])]
+            if self.rel_mode == "panel":
+                parts = [p.reshape(-1, K, D).mean(1) for p in parts]
+            t = self.tok_proj(torch.cat(parts, 0))
         return t / _rms(t) * (self.emb_rms * self.tok_gain)                     # on the scale of word embeddings
+
+    def collate_kwargs(self):
+        """Collator arguments that place the matching number of <|rel|> placeholders."""
+        return dict(rel_tokens=self.M if self.interleave else 0, rel_mode=self.rel_mode, num_slots=self.slot_ae.cfg["num_slots"])
 
     def _fuse(self, merged):
         res, grids, boxes = self._res, self._ctx["grids"], self._ctx["boxes"]
@@ -178,7 +232,7 @@ class RelationalVLM(nn.Module):
         bb = self.bb
         inputs = bb.model_inputs(batch, device, dtype)
         boxes = [b.to(device) for b in batch["boxes"]]
-        self._ctx = dict(grids=bb.grids(inputs, len(boxes)), boxes=boxes, llm=llm)
+        self._ctx = dict(grids=bb.grids(inputs, len(boxes)), boxes=boxes, examples=batch["examples"], llm=llm)
         if llm and self.interleave:
             self._ctx["rel_mask"] = inputs["input_ids"] == bb.rel_id
         try:
@@ -236,19 +290,24 @@ def example_logits(h, aux, batch, model, st):
     return out
 
 
-def loss_and_acc(recs, key):
+def loss_and_acc(recs, key, chance_norm=False):
+    """chance_norm: divide each example's loss by its chance-level loss (ln 8 for PGM, ln 2 for yes/no), so tasks with
+    more answer options do not dominate a mixture."""
     losses, correct, n = [], 0, 0
     for r in recs:
         x = r[key]
         if x is None:
             continue
         if r["loss"] == "ce":
-            losses.append(F.cross_entropy(x[None], torch.tensor([r["label"]], device=x.device)))
+            l = F.cross_entropy(x[None], torch.tensor([r["label"]], device=x.device))
+            chance = math.log(x.numel())
             correct += int(int(x.argmax()) == r["label"])
         else:
             y = torch.tensor([float(r["label"])], device=x.device)
-            losses.append(F.binary_cross_entropy_with_logits(x.reshape(1), y))
+            l = F.binary_cross_entropy_with_logits(x.reshape(1), y)
+            chance = math.log(2)
             correct += int((float(x.reshape(())) > 0) == bool(r["label"]))
+        losses.append(l / chance if chance_norm else l)
         n += 1
     if not losses:
         return None, 0.0, 0

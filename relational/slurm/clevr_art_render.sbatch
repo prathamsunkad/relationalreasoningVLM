@@ -11,7 +11,7 @@
 # 80 chunks of 250 problems: chunks 0-39 = RMTS problems [250*c, 250*c+250), chunks 40-79 = identity rules.
 # The QOS allows 50 submitted jobs per user, so each of the 20 array tasks renders 4 chunks in parallel (4 threads each).
 # Idempotent: finished chunks are skipped, so resubmitting (or `--array=<ids>`) only redoes what is missing.
-REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning/relational}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/relvlm}
 export RELVLM_DATA=${RELVLM_DATA:-/home/hice1/psunkad3/scratch/relvlm_data}
 cd $REPO
 # Host python3 (it has numpy), not the container: Blender 2.79b needs libGLU / X11 libraries the container lacks.

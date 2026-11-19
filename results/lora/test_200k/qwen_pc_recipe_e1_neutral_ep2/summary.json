@@ -1,0 +1,59 @@
+{
+ "n": 200000,
+ "scores": {
+  "acc": 0.686055,
+  "ci95": [
+   0.684017459685899,
+   0.6880853929625073
+  ],
+  "n": 200000,
+  "pred_hist": [
+   24903,
+   25073,
+   25109,
+   24974,
+   25063,
+   24827,
+   25145,
+   24906
+  ],
+  "target_hist": [
+   24940,
+   24991,
+   25241,
+   25039,
+   24935,
+   24787,
+   25154,
+   24913
+  ],
+  "acc_by_target_position": [
+   0.6882518043303929,
+   0.6880877115761674,
+   0.6858286121785984,
+   0.6832141858700427,
+   0.6883497092440345,
+   0.6858433856457014,
+   0.6831120298958416,
+   0.6857865371492795
+  ],
+  "answer_says_yes": 0.39625,
+  "distractor_says_yes": 0.04040428571428571
+ },
+ "shards": 28,
+ "errors": 0,
+ "unique_files": 200000,
+ "duplicates": 0,
+ "expected_n": 200000,
+ "complete": true,
+ "config": {
+  "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+  "adapter": "/home/hice1/psunkad3/scratch/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e2",
+  "family": "qwen3vl",
+  "npz_dir": "/home/hice1/psunkad3/scratch/pgm_data/test_full/neutral",
+  "context_mode": "normal",
+  "crop_to_patches": 1,
+  "panel_px": 160,
+  "num_shards": 28
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "model_id": "OpenGVLab/InternVL3_5-1B-HF",
+ "adapter": "/home/hice1/psunkad3/scratch/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/final",
+ "family": "internvl",
+ "npz_dir": "/home/hice1/psunkad3/scratch/pgm_data/test_full/neutral",
+ "context_mode": "normal",
+ "crop_to_patches": 1,
+ "panel_px": 160,
+ "num_shards": 28
+}

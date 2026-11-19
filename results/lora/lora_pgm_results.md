@@ -5,7 +5,7 @@ LoRA r=16 / alpha=32 / dropout 0.05 on all language-model linear layers (vision 
 weight decay 0.01, 16 problems per update, bf16 model + fp32 LoRA and scores, 1 H200.
 Data: shared 20% PGM neutral training set (240,000 problems; 1 epoch = 15,000 updates).
 Validation: the 1,000 shared validation problems, every 1,000 updates. Test: full 200,000-problem neutral test set.
-LR: constant 1e-4 (20 warmup updates) for epochs 1-3; epoch 4 cosine decay 1e-4 -> 1e-5; then a warm restart (500-update warmup, cosine decay): Qwen epoch 5, InternVL epochs 5-6 (one run, so InternVL has no separate epoch-5 row). Chance = 12.5%, random-guess loss = ln 8 = 2.079.
+LR: constant 1e-4 (20 warmup updates) for epochs 1-3; epoch 4 cosine decay 1e-4 -> 1e-5. Chance = 12.5%, random-guess loss = ln 8 = 2.079.
 
 ## Qwen3-VL-2B
 
@@ -15,7 +15,6 @@ LR: constant 1e-4 (20 warmup updates) for epochs 1-3; epoch 4 cosine decay 1e-4 
 | 2 | constant 1e-4 | **68.61%** | 68.40-68.81 | 0.844 | 68.9% | 68.9% (step 30000) | 0.986 | 0.853 | 67.9% |
 | 3 | constant 1e-4 | **75.33%** | 75.14-75.51 | 0.656 | 73.2% | 74.0% (step 44000) | 0.728 | 0.666 | 74.4% |
 | 4 | cosine 1e-4 -> 1e-5 | **81.50%** | 81.33-81.67 | 0.468 | 81.6% | 81.6% (step 60000) | 0.517 | 0.428 | 83.4% |
-| 5 | restart 1e-5 -> 5e-5 -> 5e-6 | **82.06%** | 81.89-82.23 | 0.477 | 81.6% | 82.1% (step 72000) | 0.402 | 0.376 | 84.8% |
 
 Curves: `plots/qwen_curves_ep0-4.png`. Adapters: `qwen_pc_recipe_e1/final_e1` ... `final_e4`.
 
@@ -27,7 +26,6 @@ Curves: `plots/qwen_curves_ep0-4.png`. Adapters: `qwen_pc_recipe_e1/final_e1` ..
 | 2 | constant 1e-4 | **48.53%** | 48.31-48.75 | 1.309 | 49.6% | 50.1% (step 29000) | 1.410 | 1.309 | 49.2% |
 | 3 | constant 1e-4 | **52.31%** | 52.10-52.53 | 1.205 | 51.5% | 53.0% (step 44000) | 1.230 | 1.193 | 52.7% |
 | 4 | cosine 1e-4 -> 1e-5 | **57.73%** | 57.51-57.95 | 1.054 | 57.6% | 57.8% (step 59000) | 1.080 | 1.011 | 59.9% |
-| 6 | restart 1e-5 -> 1e-4 -> 1e-5 (epochs 5-6) | **60.31%** | 60.09-60.52 | 1.039 | 61.2% | 61.2% (step 90000) | 0.886 | 0.858 | 66.8% |
 
 Curves: `plots/internvl_curves_ep0-4.png`. Adapters: `ivl1b_pc_recipe_e1/final_e1` ... `final_e4`.
 

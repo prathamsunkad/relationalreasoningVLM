@@ -7,7 +7,7 @@
 #SBATCH -o /home/hice1/psunkad3/scratch/relvlm_runs/logs/datacpu_%j.log
 
 # Run our own data scripts in the container:  sbatch --export=ALL,CMD="datasets/verify.py 'art/*/*.jsonl'" slurm/data_cpu.sbatch
-REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning/relational}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/relvlm}
 CONTAINER=${CONTAINER:-/usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif}
 export RELVLM_DATA=${RELVLM_DATA:-/home/hice1/psunkad3/scratch/relvlm_data}
 cd $REPO

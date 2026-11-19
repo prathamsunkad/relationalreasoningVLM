@@ -41,10 +41,10 @@ class _Attn(nn.Module):
 
 
 class AbstractorLayer(nn.Module):
-    def __init__(self, dim, heads, head_dim, mlp_dim, dropout=0.0):
+    def __init__(self, dim, heads, head_dim, mlp_dim, dropout=0.0, relational=True):
         super().__init__()
         self.n1, self.n2, self.n3, self.n4 = (nn.LayerNorm(dim) for _ in range(4))
-        self.rca = _Attn(dim, heads, head_dim, dropout, relational=True)
+        self.rca = _Attn(dim, heads, head_dim, dropout, relational=relational)
         self.ff1 = _ff(dim, mlp_dim, dropout)
         self.sa = _Attn(dim, heads, head_dim, dropout, relational=False)
         self.ff2 = _ff(dim, mlp_dim, dropout)
@@ -63,14 +63,15 @@ class RelationalAbstractor(nn.Module):
     Returns s (n_seq, P_max*K, D) and r (n_seq, D) = mean of s over real slots (the paper's pooled embedding).
     """
 
-    def __init__(self, dim=32, heads=8, head_dim=32, layers=24, mlp_dim=512, dropout=0.0, max_panels=16):
+    def __init__(self, dim=32, heads=8, head_dim=32, layers=24, mlp_dim=512, dropout=0.0, max_panels=16, relational=True):
         super().__init__()
         self.cfg = dict(dim=dim, heads=heads, head_dim=head_dim, layers=layers, mlp_dim=mlp_dim, dropout=dropout,
-                        max_panels=max_panels)
+                        max_panels=max_panels, relational=relational)
+        self.relational = relational     # False = same-size control: ordinary attention, appearance enters s directly
         self.z_norm = nn.LayerNorm(dim)
         self.panel_emb = nn.Embedding(max_panels, dim)
         nn.init.normal_(self.panel_emb.weight, std=0.02)
-        self.layers = nn.ModuleList([AbstractorLayer(dim, heads, head_dim, mlp_dim, dropout) for _ in range(layers)])
+        self.layers = nn.ModuleList([AbstractorLayer(dim, heads, head_dim, mlp_dim, dropout, relational) for _ in range(layers)])
         self.out_norm = nn.LayerNorm(dim)
 
     def forward(self, z, m, panel_mask):
@@ -78,6 +79,8 @@ class RelationalAbstractor(nn.Module):
         s = m + self.panel_emb(torch.arange(P, device=z.device))[None, :, None, :]
         z = self.z_norm(z.reshape(n, P * K, D))
         s = s.reshape(n, P * K, D)
+        if not self.relational:
+            s = s + z
         tok_mask = panel_mask[:, :, None].expand(n, P, K).reshape(n, P * K)
         attn_mask = tok_mask[:, None, None, :]                       # keys only; padded queries are ignored below
         for layer in self.layers:

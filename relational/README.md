@@ -67,7 +67,7 @@ Stage 0 is **per backbone**, because Qwen's ViT and InternViT produce different 
 
 ## Run order
 ```bash
-cd ~/scratch/pgm-vlm-reasoning/relational
+cd ~/scratch/relvlm
 sbatch slurm/tests.sbatch                                   # CPU, ~15 min
 R=~/scratch/relvlm_runs; D=~/scratch/pgm_data
 # Stage 0 (per backbone; chain 2-3 jobs; watch attn_entropy and the slots_step*.png pictures)

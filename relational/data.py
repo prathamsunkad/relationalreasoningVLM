@@ -279,15 +279,18 @@ class FixedSet(Dataset):
 # ----------------------------------------------------------------------------- collator
 class Collator:
     """B examples -> all their sequences in one processor call (left padding), plus the per-image panel boxes and the
-    example structure. rel_tokens > 0 inserts that many <|rel|> placeholders right after the image."""
+    example structure. rel_tokens > 0 inserts <|rel|> placeholders right after the image: rel_tokens of them (rel_mode pool),
+    one per panel (panel), or one per slot (slot)."""
 
-    def __init__(self, processor, processor_kwargs=None, rel_tokens=0):
+    def __init__(self, processor, processor_kwargs=None, rel_tokens=0, rel_mode="pool", num_slots=0):
         self.processor, self.kw, self.M = processor, processor_kwargs or {}, rel_tokens
+        self.rel_mode, self.K = rel_mode, num_slots
         processor.tokenizer.padding_side = "left"
 
-    def text(self, prompt):
+    def text(self, prompt, n_panels=1):
         if self.M > 0:
-            prompt = "Relational summary: " + REL_TOKEN * self.M + "\n" + prompt
+            n = {"pool": self.M, "panel": n_panels, "slot": n_panels * self.K}[self.rel_mode]
+            prompt = "Relational summary: " + REL_TOKEN * n + "\n" + prompt
         msgs = [{"role": "user", "content": [{"type": "image"}, {"type": "text", "text": prompt}]}]
         return self.processor.apply_chat_template(msgs, add_generation_prompt=True, tokenize=False)
 
@@ -296,7 +299,7 @@ class Collator:
         for ex in items:
             start = len(images)
             for s in ex["seqs"]:
-                texts.append(self.text(s["prompt"]))
+                texts.append(self.text(s["prompt"], len(s["boxes"])))
                 images.append(s["image"])
                 boxes.append(torch.tensor(s["boxes"], dtype=torch.float32))
             examples.append(dict(kind=ex["kind"], label=ex["label"], choices=ex.get("choices"), id=ex["id"],

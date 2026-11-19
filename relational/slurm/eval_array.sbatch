@@ -13,7 +13,7 @@
 # 28-shard test eval, then:  python eval.py --merge_dir $RUNS/results/<TAG>_<NAME> --expected_n 200000
 #   sbatch --export=ALL,TAG=s1_qwen_inter,SOURCE=neutral=matrix:$DATA/test_full/neutral slurm/eval_array.sbatch
 #   sanity: EXTRA="--context_mode blank --max_examples 100" (should fall to ~12.5%)
-REPO=${REPO:-/home/hice1/psunkad3/scratch/pgm-vlm-reasoning/relational}
+REPO=${REPO:-/home/hice1/psunkad3/scratch/relvlm}
 CONTAINER=${CONTAINER:-/usr/local/pace-apps/manual/packages/ngc-images/pytorch-2.1.0.sif}
 DATA=${DATA:-/home/hice1/psunkad3/scratch/pgm_data}
 RUNS=${RUNS:-/home/hice1/psunkad3/scratch/relvlm_runs}
