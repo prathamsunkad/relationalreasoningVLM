@@ -137,6 +137,7 @@ class Controller:
         self.marker = processor.tokenizer.encode('<|im_start|>assistant\n', add_special_tokens=False)
         self.image_id = base.config.image_token_id
         self.context = None
+        self.enabled = True
         self.handles = []
         self.handles.append(base.register_forward_pre_hook(self.before, with_kwargs=True))
         if probe.variant == 'early':
@@ -145,6 +146,8 @@ class Controller:
             original = base.model.get_image_features
             def features(module, *args, **kwargs):
                 result = original(*args, **kwargs)
+                if not self.enabled:
+                    return result
                 tiles = result.pooler_output
                 lengths = [len(t) for t in tiles]
                 x = torch.cat(tiles, dim=0).unsqueeze(0)
@@ -160,7 +163,13 @@ class Controller:
                 raise ValueError('Pinned LFM layer 2 is expected to be full attention')
             self.handles.append(base.model.language_model.layers[2].register_forward_hook(self.language))
 
+    def set_enabled(self, enabled):
+        self.enabled = bool(enabled)
+        self.context = None
+
     def before(self, module, args, kwargs):
+        if not self.enabled:
+            return
         ids = kwargs.get('input_ids', args[0] if args else None)
         if ids is None or ids.ndim != 2 or ids.shape[0] != 1:
             raise ValueError('Probe supports exactly one example per forward, with input IDs')
@@ -178,6 +187,8 @@ class Controller:
             self.context['prefill'] = False
 
     def vision(self, module, args, kwargs, result):
+        if not self.enabled:
+            return result
         valid = kwargs.get('pixel_attention_mask')
         if valid is None or valid.shape != result.last_hidden_state.shape[:2]:
             raise ValueError('Missing native vision patch mask')
@@ -190,6 +201,8 @@ class Controller:
         return result
 
     def language(self, module, args, result):
+        if not self.enabled:
+            return result
         if self.probe.variant == 'memory':
             if self.context['memory'] is None:
                 raise ValueError('Relational memory was not constructed from the current image')

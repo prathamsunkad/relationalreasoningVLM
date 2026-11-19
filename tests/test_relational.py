@@ -55,6 +55,7 @@ class TestRelational(unittest.TestCase):
 
     def test_joint_excludes_answers_and_decode_is_unchanged(self):
         c = object.__new__(Controller)
+        c.enabled = True
         c.probe = RelationalProbe('joint', text_dim=16, width=8, heads=2, depth=2, symbols=4)
         torch.nn.init.normal_(c.probe.output.weight)
         c.context = {'prefill': True, 'end': 7}
@@ -70,6 +71,7 @@ class TestRelational(unittest.TestCase):
 
     def test_vision_padding_not_read_or_modified(self):
         c = object.__new__(Controller)
+        c.enabled = True
         c.probe = RelationalProbe('early', vision_dim=12, width=8, heads=2, depth=2, symbols=4)
         torch.nn.init.normal_(c.probe.output.weight)
         x = torch.randn(2, 5, 12)

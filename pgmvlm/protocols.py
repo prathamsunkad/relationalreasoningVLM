@@ -29,9 +29,10 @@ def image_question(item):
     return render_pgm(np.concatenate([item['context'], item['candidates']])), PGM_PROMPT, list('ABCDEFGH')
 
 
-def encode_answer(processor, image, prompt, answer, device, dtype):
+def encode_answer(processor, image, prompt, answer, device, dtype, presentation="composite"):
     """Same native template and expanded-image prefix for train and inference."""
-    user = {'role': 'user', 'content': [{'type': 'image', 'image': image}, {'type': 'text', 'text': prompt}]}
+    from .panels import messages
+    user = messages(image, prompt, presentation)[0]
     options = dict(tokenize=True, return_dict=True, return_tensors='pt', truncation=False)
     prefix = processor.apply_chat_template([user], add_generation_prompt=True, **options)
     full = processor.apply_chat_template([user, {'role': 'assistant', 'content': [{'type': 'text', 'text': answer}]}],
@@ -91,6 +92,7 @@ class AnswerLetterProtocol:
         self.collator = LetterCollator()
         self.max_new_tokens = getattr(args, 'max_new_tokens', 16)
         self.loss_scope = getattr(args, 'answer_loss_scope', 'suffix')
+        self.presentation = getattr(args, 'pgm_presentation', 'composite')
     def describe(self):
         return f'greedy answer letter; full-vocabulary {self.loss_scope} CE; {self.max_new_tokens} output tokens'
     def encoded(self, item, model, device, dtype):
@@ -98,7 +100,9 @@ class AnswerLetterProtocol:
         if not 0 <= item['target'] < len(choices):
             raise ValueError('Target is outside the answer vocabulary')
         answer = choices[item['target']]
-        prefix, full, start = encode_answer(self.processor, image, prompt, answer, device, dtype)
+        if self.presentation == 'separate' and choices != list('ABCDEFGH'):
+            raise ValueError('Separate panels apply only to PGM')
+        prefix, full, start = encode_answer(self.processor, image, prompt, answer, device, dtype, self.presentation)
         limits = [getattr(getattr(model.config, 'text_config', model.config), 'max_position_embeddings', None),
                   getattr(self.processor.tokenizer, 'model_max_length', None)]
         limits = [n for n in limits if isinstance(n, int) and 0 < n < 10**9]
@@ -161,12 +165,14 @@ class AnswerLetterProtocol:
             pred = choices.index(letter) if letter is not None else -1
             records.append(dict(file=item['file'], target=item['target'], pred=pred, correct=pred == item['target'],
                                 protocol=self.name, choices=choices, raw_output=raw, invalid=pred < 0,
+                                pgm_presentation=self.presentation, extension_enabled=getattr(base_model(model), '_extension_enabled', None),
                                 loss=float(suffix if self.loss_scope == 'suffix' else answer),
                                 suffix_loss=float(suffix), answer_loss=float(answer)))
         return records
 
 
 def add_protocol_args(parser):
+    parser.add_argument('--pgm_presentation', choices=['composite', 'separate'], default='composite')
     parser.add_argument('--protocol', choices=['candidate', 'answer_letter'], default='candidate')
     parser.add_argument('--answer_loss_scope', choices=['suffix', 'answer'], default='suffix',
                         help='suffix preserves historical LoRA: answer plus chat-ending tokens')
@@ -174,4 +180,7 @@ def add_protocol_args(parser):
 
 
 def build_protocol(args, processor, family):
+    if getattr(args, 'pgm_presentation', 'composite') == 'separate':
+        if args.protocol != 'answer_letter' or getattr(args, 'extension', 'none') != 'none':
+            raise ValueError('Separate-panel audit supports answer-letter LoRA/base models; extension hooks require composite input')
     return (CandidateProtocol if args.protocol == 'candidate' else AnswerLetterProtocol)(processor, family, args)

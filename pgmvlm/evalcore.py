@@ -49,6 +49,9 @@ def summarize(records):
         raise ValueError('Cannot combine different evaluation protocols')
     if len({r.get('readout', 'llm') for r in rs}) != 1:
         raise ValueError('Cannot combine different readouts')
+    for key, default in (('pgm_presentation', 'composite'), ('extension_enabled', None)):
+        if len({r.get(key, default) for r in rs}) != 1:
+            raise ValueError('Cannot combine different ablation conditions')
     if protocols == {'answer_letter'}:
         choice_counts = {len(r['choices']) for r in rs}
         if len(choice_counts) != 1:

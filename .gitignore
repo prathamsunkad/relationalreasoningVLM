@@ -23,3 +23,7 @@ data/
 *.ckpt
 *.parquet
 *.arrow
+
+# Transactional checkpoints and process locks are local run state.
+.checkpoints/
+.run.lock

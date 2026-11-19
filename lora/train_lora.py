@@ -8,11 +8,13 @@ extension training and LoRA plus extensions; torchrun is optional.
 See docs/VLM_INTEGRATION.md and configs/vlm/ for executable recipes.
 """
 import argparse
+from contextlib import ExitStack
 import sys
 import json
 import math
 import os
 import time
+from pathlib import Path
 from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # repo root
@@ -31,9 +33,11 @@ from pgmvlm.protocols import add_protocol_args, build_protocol
 from pgmvlm.datasets import files_for, select_files, make_stream, training_order
 from pgmvlm.extensions import add_extension_args, attach_extension, extension_module, save_model, check_checkpoint_protocol
 from pgmvlm.extensions import set_train_mode as set_shared_train_mode
-from pgmvlm.runtime import run_contract, capture_rng, restore_rng, model_digest
+from pgmvlm.runtime import run_contract, capture_rng, restore_rng, model_digest, preserved_rng
 from pgmvlm.diagnostics import GradientRecorder
 from pgmvlm.distributed import DistributedContext, rank_positions
+from pgmvlm.checkpoints import RunLock, commit, pointer_for, resume_checkpoint, resolve_checkpoint, rewind_logs, checkpoint_reader
+from pgmvlm.shutdown import StopController
 
 
 def parse():
@@ -103,6 +107,7 @@ def parse():
     ap.add_argument('--early_stop_patience', type=int, default=0, help='Completed validation checks without loss improvement; 0 disables')
     ap.add_argument('--early_stop_min_delta', type=float, default=0.)
     ap.add_argument('--deterministic', action='store_true')
+    ap.add_argument('--checkpoint_reserve_seconds', type=float, default=120, help='Time reserved before the Slurm deadline for a committed save')
     ap.add_argument('--check_lustre_quota', action='store_true', help='Check personal and filesystem quota before checkpoints')
     ap.add_argument("--log_every", type=int, default=10)
     ap.add_argument("--val_every", type=int, default=1000, help="steps")
@@ -132,6 +137,10 @@ def parse():
         ap.error('Validation-loss selection/stopping currently requires answer_letter')
     if min(args.batch_size, args.grad_accum, args.val_every, args.save_every, args.log_every) < 1:
         ap.error('Batch sizes and recording intervals must be positive')
+    if args.lr_schedule == 'restart' and args.cycle_start <= 0:
+        ap.error('--lr_schedule restart needs --cycle_start (the step the new cycle begins)')
+    if args.checkpoint_reserve_seconds < 0:
+        ap.error('Checkpoint reserve must be nonnegative')
     return args
 
 
@@ -148,6 +157,14 @@ def make_val_loader(args, processor, family):
 def main():
     args = parse()
     ctx = DistributedContext()
+    try:
+        with RunLock(args.out_dir, ctx.primary), StopController(args.time_limit_min, args.checkpoint_reserve_seconds) as stop, ExitStack() as imports:
+            train(args, ctx, stop, imports)
+    finally:
+        ctx.close()
+
+
+def train(args, ctx, stop, imports):
     args.world_size = ctx.world
     if args.global_batch:
         if args.global_batch % (args.batch_size * ctx.world):
@@ -161,8 +178,12 @@ def main():
     device = ctx.device
     dtype = DTYPES[args.dtype]
     metrics_path = os.path.join(args.out_dir, "metrics.jsonl")
-    state_path = os.path.join(args.out_dir, "state.pt")
-    last_dir, best_dir = os.path.join(args.out_dir, "last"), os.path.join(args.out_dir, "best")
+    if ctx.primary:
+        resume_checkpoint(args.out_dir)  # validate/recover and repair convenience paths under the run lock
+    ctx.barrier()
+    last_dir = str(resolve_checkpoint(os.path.join(args.out_dir, 'last')))
+    state_path = os.path.join(last_dir, 'state.pt') if os.path.exists(os.path.join(last_dir, 'state.pt')) else os.path.join(args.out_dir, 'state.pt')
+    best_dir = os.path.join(args.out_dir, 'best')
 
     # ---------------- data
     all_files = files_for(args, 'train')
@@ -197,6 +218,11 @@ def main():
             model.requires_grad_(False)
         resumed = True
     elif args.init_adapter:
+        args.init_adapter = str(imports.enter_context(checkpoint_reader(args.init_adapter)))
+        if os.path.exists(os.path.join(args.init_adapter, 'extension.json')) and (not args.init_extension or resolve_checkpoint(args.init_extension) != Path(args.init_adapter)):
+            raise ValueError('A joint checkpoint needs both --init_adapter and --init_extension pointing to it')
+        # A joint converted checkpoint can initialize both components explicitly.
+        check_checkpoint_protocol(args.init_adapter, args, allow_new_extension=True)
         model = load_adapter(model, args.init_adapter, trainable=args.train_mode != 'module', grad_ckpt=args.grad_ckpt)
     elif args.train_mode == 'module':
         model.requires_grad_(False)
@@ -204,6 +230,9 @@ def main():
         model = add_lora(model, family, args.lora_r, args.lora_alpha, args.lora_dropout, args.lora_vision,
                          args.lora_projector, args.grad_ckpt)
     if args.init_extension and not resumed:
+        args.init_extension = str(imports.enter_context(checkpoint_reader(args.init_extension)))
+        if os.path.exists(os.path.join(args.init_extension, "adapter_config.json")) and not args.init_adapter:
+            raise ValueError("Joint checkpoint initialization also requires --init_adapter to preserve inherited LoRA")
         check_checkpoint_protocol(args.init_extension, args)
     controller = attach_extension(model, processor, args,
                                   last_dir if resumed and args.extension != 'none' else args.init_extension)
@@ -229,7 +258,12 @@ def main():
         ckpt = torch.load(state_path, map_location="cpu", weights_only=False)
         if ckpt.get('model_sha256') and ckpt['model_sha256'] != model_digest(last_dir):
             raise ValueError('Checkpoint weights and optimizer state do not match')
+        lr_ratios = [group["lr_ratio"] for group in groups]
         opt.load_state_dict(ckpt["opt"])
+        for group, ratio in zip(opt.param_groups, lr_ratios):
+            group["lr_ratio"] = ratio
+        if ctx.primary:
+            rewind_logs(args.out_dir, ckpt['step'])
         start_step, best_val = ckpt["step"], ckpt["best_val"]
         best_loss = ckpt.get('best_loss', float('inf'))
         plateau_loss, stale_checks = ckpt.get('plateau_loss', float('inf')), ckpt.get('stale_checks', 0)
@@ -254,7 +288,11 @@ def main():
               f"{args.cycle_warmup} updates, then cosine decay to {args.min_lr:.3g} at step {max_steps} "
               f"(now at step {start_step}: {lr_for(start_step):.3g})")
     if start_step >= max_steps:
-        print("already finished"); ctx.close(); return
+        if ctx.primary and not os.path.isdir(os.path.join(args.out_dir, 'final')):
+            commit(args.out_dir, 'final', lambda path: save_model(model, path, args))
+        print("already finished"); return
+    if args.early_stop_patience and stale_checks >= args.early_stop_patience:
+        print('already stopped by validation plateau'); return
     if ctx.primary:
         with open(os.path.join(args.out_dir, "args.json"), "w") as f:
             json.dump({**vars(args), "family": family, "trainable_params": tr, "total_params": tot,
@@ -271,7 +309,7 @@ def main():
         fit_loader = DataLoader(make_stream(args, 'train', files[:args.fit_eval_samples], seed=args.seed),
                                 batch_size=args.val_batch_size, shuffle=False, num_workers=min(2, args.num_workers),
                                 collate_fn=st.collator)
-    budget, it = TimeBudget(args.time_limit_min), iter(loader)
+    it = iter(loader)
     if resumed and ckpt.get('rng_by_rank'):
         if len(ckpt['rng_by_rank']) != ctx.world:
             raise ValueError('Exact optimizer continuation requires the same world size')
@@ -284,25 +322,38 @@ def main():
     def save_state(step):
         rngs = ctx.gather(capture_rng())
         if ctx.primary:
-            save_model(model, last_dir, args)
-            save_ckpt(state_path, opt=opt.state_dict(), step=step, best_val=best_val, schedule_steps=schedule_steps,
-                      rng_by_rank=rngs, model_sha256=model_digest(last_dir), best_loss=best_loss,
-                      plateau_loss=plateau_loss, stale_checks=stale_checks)
+            state = dict(opt=opt.state_dict(), step=step, best_val=best_val, schedule_steps=schedule_steps,
+                         rng_by_rank=rngs, best_loss=best_loss, plateau_loss=plateau_loss,
+                         stale_checks=stale_checks, best_checkpoint=pointer_for(args.out_dir, 'best'))
+            commit(args.out_dir, 'last', lambda path: save_model(model, path, args), state=state)
         ctx.barrier()
+
+    def bounded_validation(loader):
+        records = []
+        for batch in loader:
+            if stop.exhausted():
+                return None
+            records.extend(evaluate_batches(model, [batch], st, device, dtype))
+        return summarize(records)
 
     def validate(step):
         nonlocal best_val, best_loss, plateau_loss, stale_checks, stop_training
         if not ctx.primary:
             return
         if fit_loader is not None:
-            fit = summarize(list(evaluate_batches(model, fit_loader, st, device, dtype)))
+            fit = bounded_validation(fit_loader)
+            if fit is None:
+                return
             log_jsonl(metrics_path, {"step": step, "train_fit_acc": fit["scores"]["acc"], "train_fit_n": fit["n"],
                                      "train_fit_pred_hist": fit["scores"]["pred_hist"]})
             print(f"[fit] step {step}: acc on {fit['n']} training problems {fit['scores']['acc']:.4f} "
                   f"| predicted positions {fit['scores']['pred_hist']}")
         if val_loader is None:
             return
-        s = summarize(list(evaluate_batches(model, val_loader, st, device, dtype)))
+        s = bounded_validation(val_loader)
+        if s is None:
+            print('Validation interrupted; partial results excluded from checkpoint selection')
+            return
         acc, hist = s["scores"]["acc"], s["scores"]["pred_hist"]
         log_jsonl(metrics_path, {"step": step, "val_acc": acc, "val_n": s["n"], "val_pred_hist": hist,
                                  **({'val_loss': s['scores']['loss'], 'val_answer_loss': s['scores']['answer_loss']}
@@ -324,14 +375,17 @@ def main():
             stop_training = stale_checks >= args.early_stop_patience
         if better:
             best_val, best_loss = acc, val_loss
-            save_model(model, best_dir, args)
-            with open(os.path.join(args.out_dir, "best.json"), "w") as f:
-                json.dump({"step": step, "val_acc": acc, "val_loss": val_loss if math.isfinite(val_loss) else None, "select_by": args.select_by}, f)
+            selection = dict(step=step, val_acc=acc, val_loss=val_loss if math.isfinite(val_loss) else None, select_by=args.select_by)
+            commit(args.out_dir, 'best', lambda path: save_model(model, path, args), selection=selection)
 
     set_shared_train_mode(model, args)
     recorder = GradientRecorder(model) if args.diagnostics_every else None
     t0, seen, agg, n_agg = time.time(), 0, defaultdict(float), 0
     step = start_step
+    if ctx.any(stop.externally_stopped()):
+        save_state(start_step)
+        print('Stop requested before training; saved initialized/resumed state')
+        return
     for step in range(start_step, max_steps):
         capture = recorder is not None and (step + 1) % args.diagnostics_every == 0
         if capture:
@@ -373,9 +427,12 @@ def main():
             print(" ".join(f"{k} {v:.4g}" if isinstance(v, float) else f"{k} {v}" for k, v in rec.items()), flush=True)
             agg.clear()
             n_agg = 0
-        out_of_time = ctx.any(budget.exhausted())
-        if done % args.val_every == 0 or done == max_steps:
-            validate(done); set_shared_train_mode(model, args)
+        out_of_time = ctx.any(stop.exhausted())
+        if not out_of_time and (done % args.val_every == 0 or done == max_steps):
+            with preserved_rng():
+                validate(done)
+            set_shared_train_mode(model, args)
+        out_of_time = ctx.any(stop.exhausted())
         stop_training = ctx.any(stop_training)
         if done % args.save_every == 0 or done == max_steps or out_of_time or stop_training:
             save_state(done)
@@ -384,12 +441,10 @@ def main():
             break
         if out_of_time and done < max_steps:
             print(f"time budget reached at step {done}; resubmit the same command to continue")
-            ctx.close()
             return
     if ctx.primary:
-        save_model(model, os.path.join(args.out_dir, "final"), args)
+        commit(args.out_dir, 'final', lambda path: save_model(model, path, args))
     ctx.barrier()
-    ctx.close()
     print("finished; adapters: last/ best/ final/")
 
 

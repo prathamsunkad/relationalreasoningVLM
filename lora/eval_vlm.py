@@ -30,8 +30,9 @@ from pgmvlm.data import shard_files
 from pgmvlm.config import parse_configured
 from pgmvlm.protocols import add_protocol_args, build_protocol
 from pgmvlm.datasets import files_for, make_stream
-from pgmvlm.extensions import add_extension_args, attach_extension, check_checkpoint_protocol
+from pgmvlm.extensions import add_extension_args, attach_extension, check_checkpoint_protocol, set_extension_enabled
 from pgmvlm.runtime import eval_contract
+from pgmvlm.checkpoints import checkpoint_reader
 
 
 def merge(merge_dir, expected_n=0):
@@ -63,6 +64,7 @@ def main():
     ap = argparse.ArgumentParser()
     add_protocol_args(ap)
     add_extension_args(ap)
+    ap.add_argument("--disable_extension", action="store_true", help="Paired bypass ablation; retain identical trained LoRA and inputs")
     ap.add_argument('--revision', default=None)
     ap.add_argument('--manifest', default=None)
     ap.add_argument("--merge_dir", default=None)
@@ -91,6 +93,14 @@ def main():
     if args.merge_dir:
         merge(args.merge_dir, args.expected_n)
         return
+    if args.adapter:
+        with checkpoint_reader(args.adapter) as checkpoint:
+            args.adapter = str(checkpoint)
+            return evaluate(args)
+    return evaluate(args)
+
+
+def evaluate(args):
     assert (args.npz_dir or args.manifest) and args.out_dir, "data and --out_dir are required"
     os.makedirs(args.out_dir, exist_ok=True)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -118,11 +128,15 @@ def main():
             model = load_adapter(model, args.adapter)
         if args.merge_adapter and hasattr(model, 'merge_and_unload'):
             model = model.merge_and_unload()
-    attach_extension(model, processor, args, args.adapter if args.extension != 'none' else None)
+    controller = attach_extension(model, processor, args, args.adapter if args.extension != 'none' else None)
+    if controller is not None and args.readout == 'llm':
+        set_extension_enabled(model, controller, not args.disable_extension)
+    elif args.disable_extension:
+        raise ValueError('Bypass requires an LLM-readout extension')
     model.eval()
     json.dump({"model_id": args.model_id, "adapter": args.adapter, "family": family, "npz_dir": args.npz_dir,
                "context_mode": args.context_mode, "crop_to_patches": args.crop_to_patches, "panel_px": args.panel_px,
-               "num_shards": args.num_shards, "protocol": args.protocol, "answer_loss_scope": args.answer_loss_scope, "manifest": args.manifest}, open(os.path.join(args.out_dir, "eval_config.json"), "w"), indent=1)
+               "num_shards": args.num_shards, "protocol": args.protocol, "pgm_presentation": args.pgm_presentation, "disable_extension": args.disable_extension, "answer_loss_scope": args.answer_loss_scope, "manifest": args.manifest}, open(os.path.join(args.out_dir, "eval_config.json"), "w"), indent=1)
 
     ds = make_stream(args, 'eval', todo, context_mode=args.context_mode)
     loader = DataLoader(ds, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,

@@ -136,7 +136,7 @@ def save_model(model, path, args):
                                                        model_id=args.model_id, revision=args.revision), indent=2) + '\n')
 
 
-def check_checkpoint_protocol(path, args):
+def check_checkpoint_protocol(path, args, allow_new_extension=False):
     path = Path(path)
     if (path / 'protocol.json').exists():
         stored = json.loads((path / 'protocol.json').read_text())
@@ -147,7 +147,7 @@ def check_checkpoint_protocol(path, args):
         stored = json.loads((path / 'extension.json').read_text())
         if stored != extension_spec(args):
             raise ValueError('Specify the saved extension configuration when loading this checkpoint')
-    elif args.extension != 'none':
+    elif args.extension != 'none' and not allow_new_extension:
         raise ValueError('Requested an extension but checkpoint contains none')
 
 
@@ -158,3 +158,10 @@ def set_train_mode(model, args):
     else:
         from pgmvlm.models import set_train_mode as original
         original(model)
+
+
+def set_extension_enabled(model, controller, enabled):
+    if controller is None or not hasattr(controller, 'set_enabled'):
+        raise ValueError('Bypass requires an installed LLM-readout extension')
+    controller.set_enabled(enabled)
+    base_model(model)._extension_enabled = bool(enabled)

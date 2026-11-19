@@ -4,6 +4,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import torch
+from PIL import Image
 import torch.nn.functional as F
 
 from pgmvlm.protocols import encode_answer, answer_losses, parse_answer, AnswerLetterProtocol
@@ -29,7 +30,7 @@ class Toy(torch.nn.Module):
 
 class ProtocolTests(unittest.TestCase):
     def test_causal_suffix_ce_and_answer_ce_are_not_ce8(self):
-        prefix, full, start = encode_answer(Processor(), None, 'p', 'A', 'cpu', torch.float32)
+        prefix, full, start = encode_answer(Processor(), Image.new('RGB',(8,8)), 'p', 'A', 'cpu', torch.float32)
         self.assertEqual(start, 2)
         self.assertEqual(prefix['input_ids'].tolist(), [[1, 2]])
         model = Toy()
@@ -49,7 +50,7 @@ class ProtocolTests(unittest.TestCase):
                     out['input_ids'][0, 0] = 9
                 return out
         with self.assertRaisesRegex(ValueError, 'prefix'):
-            encode_answer(Broken(), None, 'p', 'A', 'cpu', torch.float32)
+            encode_answer(Broken(), Image.new('RGB',(8,8)), 'p', 'A', 'cpu', torch.float32)
 
     def test_parser_does_not_extract_letters_from_reasoning(self):
         self.assertEqual(parse_answer('Answer: (B).', list('ABCD')), 'B')
