@@ -18,6 +18,7 @@ explains the recipe. Earlier experiments (H1–H6, Stage 0, branch alone) were l
 | `auto/monitor.sh`, `ptshapes.py` | Progress monitor; parameter count of a checkpoint without torch |
 | `diag_branchoff/diag_branchoff.sbatch` | H8 check: score step-5k checkpoints with the branch on and off |
 | `diag_overlap/diag_overlap.sbatch`, `analyze.py`, `rules.py` | A1: LoRA alone vs branch alone on the 1,000 validation puzzles |
+| `diag_ablate/diag_ablate.sbatch`, `submit_ablate.sh`, `analyze_ablate.py`, `wait_ablate.sh`, `check_200.sbatch` | A3: relation-token ablations of interleave runs (`eval.py --rel_ablate`), one job per run, all conditions on one GPU |
 | `diag_5k/diag_5k.sbatch`, `analyze5k.py`; `diag_5kw/` | A2: 5,000 test puzzles, one `ev <name> <ckpt and flags>` line per model; paired McNemar tests, averaging, per attribute |
 
 Results of these jobs live in `results/relational/` (`test5000/`, `overlap_val1000/`, `branchoff_val1000/`).

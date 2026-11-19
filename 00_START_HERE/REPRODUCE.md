@@ -95,11 +95,15 @@ job log, e.g. `s0_qwen_pgm60k`: `--train_samples 60000 --max_steps 100000`).
 sbatch slurm_portable/experiments/diag_5k/diag_5k.sbatch lf276_int lf276_int_off   # reads checkpoints from $RELVLM_RUNS
 # A1: 1,000 validation puzzles
 sbatch slurm_portable/experiments/diag_overlap/diag_overlap.sbatch
+# A3: relation-token ablations of an interleave run, reading our checkpoint, writing to your $RELVLM_RUNS/diag_ablate
+CKPT_RUNS=$SHARED_ROOT/relvlm_runs bash slurm_portable/experiments/diag_ablate/submit_ablate.sh lora_lf_q_int_ft276k
+python3 experiments/diag_ablate/analyze_ablate.py --dir $RELVLM_RUNS/diag_ablate
 ```
 
 Both call `relational/eval.py`, which writes one record per puzzle (all 8 answer scores). `--branch_off` scores a
 hybrid with its branch switched off (fusion λ = 1, interleave gain = 0); `--readout aux` scores the branch alone;
-`--lora_from <adapter>` scores LoRA alone through the same code.
+`--lora_from <adapter>` scores LoRA alone through the same code; `--rel_ablate {zero,drop,shuffle_cand,shuffle_puzzle,permute}`
+ablates an interleave model's relation tokens (A3).
 
 ## 6. Rebuilding every table and figure from the repo alone
 

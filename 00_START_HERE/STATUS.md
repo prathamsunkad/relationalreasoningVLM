@@ -37,6 +37,18 @@ Pairs are interleave / fusion.
 The 60k-only branches have plateaued: training accuracy keeps rising while validation has been flat since about
 step 75k. Their cosine decay runs from step 135k to the end.
 
+## A3: relation-token ablation (submitted Nov 19, ~5 pm)
+
+Do the interleave models actually use their relation tokens? Each of 14 interleave runs (H4, H7–H12) is scored on
+the 5,000 test puzzles with its tokens left alone, zeroed, removed from the prompt, shuffled across the candidates of
+a puzzle, shuffled across puzzles, and (for the 9- and 144-token H4 runs) put in a random order. All conditions of a
+run share one job and one GPU type. A watcher (`experiments/diag_ablate/wait_ablate.sh`) writes
+`report.md` when all are done, about 2–3 hours per run once a GPU is free.
+
+First check, 200 puzzles, H12 LoRA-first interleave: normal 58.0%; shuffled across candidates 48.5%; across puzzles
+50.0%; removed 52.0%; zeroed 55.0%. So the decoder reads the tokens, and a misplaced token hurts more than a
+missing one.
+
 ## What launches by itself next
 
 `experiments/auto/auto_c60.py` (running on the PACE login node) waits for both 60k-only branches to finish, then:

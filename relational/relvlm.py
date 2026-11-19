@@ -76,6 +76,8 @@ class RelationalVLM(nn.Module):
         self.inject, self.M, self.rel_mode = inject, rel_tokens, rel_mode
         self.interleave, self.fuse = inject == "interleave", inject == "fuse"
         self.branch_off = False      # True: the LLM gets nothing from the branch (Stage 2 branch dropout, ablations)
+        self.rel_ablate = None       # evaluation-only ablation of the interleave relation tokens (eval.py --rel_ablate)
+        self._prev_rel = None        # shuffle_puzzle: the previous batch's tokens, per example
         D, d = slot_ae.cfg["slot_dim"], backbone.d_llm
         self.P = slot_ae.cfg["grid"]
         self.cfg = dict(inject=inject, rel_tokens=rel_tokens, abstractor_cfg=abstractor_cfg or {},
@@ -145,11 +147,15 @@ class RelationalVLM(nn.Module):
         ctx = self._ctx
         if ctx is None or not ctx["llm"]:
             return None
+        if self.rel_ablate == "drop":                                           # no placeholders in the prompt at all
+            return None
         e = kwargs["inputs_embeds"]
         mask = ctx["rel_mask"]
         toks = self.relation_tokens(self._res)                                  # (total, d), in placeholder order
         if self.branch_off:                                                     # placeholders stay, carrying nothing
             toks = torch.zeros_like(toks)
+        elif self.rel_ablate:
+            toks = self._ablate_tokens(toks, ctx["examples"])
         assert int(mask.sum()) == toks.shape[0], f"{int(mask.sum())} <|rel|> placeholders for {toks.shape[0]} relation tokens"
         kwargs["inputs_embeds"] = e.masked_scatter(mask.unsqueeze(-1), toks.to(e.dtype))
         return args, kwargs
@@ -204,7 +210,52 @@ class RelationalVLM(nn.Module):
 
     def collate_kwargs(self):
         """Collator arguments that place the matching number of <|rel|> placeholders."""
-        return dict(rel_tokens=self.M if self.interleave else 0, rel_mode=self.rel_mode, num_slots=self.slot_ae.cfg["num_slots"])
+        m = self.M if self.interleave and self.rel_ablate != "drop" else 0
+        return dict(rel_tokens=m, rel_mode=self.rel_mode, num_slots=self.slot_ae.cfg["num_slots"])
+
+    def _ablate_tokens(self, toks, examples):
+        """Evaluation-only ablations of the interleave relation tokens (does the decoder use them?). toks: (total, d)
+        in placeholder order = sequence by sequence, the same number T per sequence.
+          zero           every token set to 0 (the same as branch_off for interleave)
+          shuffle_cand   each candidate's sequence gets the tokens of the next candidate of the SAME puzzle (a rotation,
+                         so no sequence keeps its own): tests whether the tokens carry which candidate is right
+          shuffle_puzzle each puzzle gets another puzzle's tokens, candidate by candidate (the previous batch's puzzles;
+                         a rotation inside the first batch): tests whether they carry puzzle-specific content
+          permute        the T tokens of each sequence in a fixed random order (T > 1 only: panel / slot modes)
+        ("drop", no placeholders at all, is handled by collate_kwargs and the LM hook.)"""
+        a = self.rel_ablate
+        n_seq = sum(len(e["seq_idx"]) for e in examples)
+        T = toks.shape[0] // n_seq
+        assert T * n_seq == toks.shape[0], "relation-token ablations need the same token count in every sequence"
+        t = toks.reshape(n_seq, T, -1)
+        if a == "zero":
+            return torch.zeros_like(toks)
+        if a == "permute":
+            assert T > 1, "permute needs several relation tokens per sequence (rel_mode panel or slot)"
+            g = torch.Generator()
+            g.manual_seed(0)
+            perm = torch.randperm(T, generator=g)
+            while bool((perm == torch.arange(T)).all()):
+                perm = torch.randperm(T, generator=g)
+            return t[:, perm.to(t.device)].reshape_as(toks)
+        out = t.clone()
+        if a == "shuffle_cand":
+            for e in examples:
+                idx = e["seq_idx"]
+                assert len(idx) > 1, "shuffle_cand needs several candidate sequences per example"
+                out[idx] = t[idx[1:] + idx[:1]]
+            return out.reshape_as(toks)
+        if a == "shuffle_puzzle":
+            cur = [t[e["seq_idx"]] for e in examples]
+            src = self._prev_rel if self._prev_rel else (cur[1:] + cur[:1] if len(cur) > 1 else None)
+            assert src is not None, "shuffle_puzzle needs at least 2 examples in the first batch"
+            for j, e in enumerate(examples):
+                s = src[j % len(src)]
+                assert s.shape == cur[j].shape, "shuffle_puzzle: examples with different sequence counts"
+                out[e["seq_idx"]] = s
+            self._prev_rel = [c.detach() for c in cur]
+            return out.reshape_as(toks)
+        raise ValueError(f"unknown rel_ablate {a!r}")
 
     def _fuse(self, merged):
         res, grids, boxes = self._res, self._ctx["grids"], self._ctx["boxes"]

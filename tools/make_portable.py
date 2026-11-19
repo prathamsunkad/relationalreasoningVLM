@@ -13,7 +13,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = f"{ROOT}/slurm_portable"
 H = "/home/hice1/psunkad3"
 S = f"{H}/scratch"
-SOURCES = ["slurm", "relational/slurm", "zeroshot/slurm", "experiments/auto", "experiments/diag_5k",
+SOURCES = ["slurm", "relational/slurm", "zeroshot/slurm", "experiments/auto", "experiments/diag_5k", "experiments/diag_ablate",
            "experiments/diag_5kw", "experiments/diag_overlap", "experiments/diag_branchoff", "share", "tools"]
 LOADER = ('# portable copy (tools/make_portable.py): every path comes from env.sh; logs go to $REPO_ROOT/logs/\n'
           'source "${REPO_ROOT:-${SLURM_SUBMIT_DIR:-$PWD}}/env.sh" || '
@@ -69,6 +69,16 @@ def convert_shell(text, rel):
         text = text.replace("A=$RELVLM_RUNS/auto", "A=$REPO_ROOT/slurm_portable/experiments/auto").replace("A=$RUNS/auto", "A=$REPO_ROOT/slurm_portable/experiments/auto")
     else:
         text = re.sub(r"(^|\s)slurm/(eval_array|train|tests|overfit|viz)\.sbatch", r"\1$REPO_ROOT/slurm_portable/slurm/\2.sbatch", text, flags=re.M)
+    if rel.startswith("experiments/diag_ablate/"):        # A3: scripts and the analyzer live in the repo, results in RUNS
+        text = text.replace("$D/diag_ablate.sbatch", "$REPO_ROOT/slurm_portable/experiments/diag_ablate/diag_ablate.sbatch")
+        text = text.replace("LIST=$D/test5000.tsv", "LIST=$REPO_ROOT/results/splits/test5000.tsv; mkdir -p $D")
+        text = text.replace("python3 $D/analyze_ablate.py", "python3 $REPO_ROOT/experiments/diag_ablate/analyze_ablate.py")
+        text = text.replace("bash $D/submit_ablate.sh", "bash $REPO_ROOT/slurm_portable/experiments/diag_ablate/submit_ablate.sh")
+        text = text.replace("D=$RUNS/diag_ablate\nTIER", "D=$RUNS/diag_ablate; mkdir -p $D\nTIER")
+        text = text.replace("import json, sys\n", "import json, os, sys\n")
+        # read checkpoints from CKPT_RUNS (e.g. $SHARED_ROOT/relvlm_runs) while writing results to your own RUNS
+        text = text.replace("CKPT=$RUNS/$RUN/best.pt", "CKPT=${CKPT_RUNS:-$RUNS}/$RUN/best.pt")
+        text = text.replace("for f in $(grep", "for f in $(true")
     # python heredocs inside the launchers do not expand $VARS: read the path from the environment
     text = text.replace('p = "$RELVLM_RUNS/priority.json"', 'p = os.environ["RELVLM_RUNS"] + "/priority.json"')
     text = text.replace('import json, sys, shutil, time', 'import json, os, sys, shutil, time')

@@ -430,6 +430,61 @@ def test_cli(fam):
     assert b["summary"]["n"] == 4 and "llm" in b["summary"] and "aux" not in b["summary"]
 
 
+def test_rel_ablate_tokens():
+    """The token-level ablations on hand-made tokens: shuffle_cand rotates within an example, shuffle_puzzle swaps
+    examples (then uses the previous batch), permute reorders within a sequence; nothing keeps its own tokens."""
+    import types
+    ex = [dict(seq_idx=[0, 1, 2]), dict(seq_idx=[3, 4, 5])]
+    toks = torch.arange(12.).reshape(12, 1)                                      # 6 sequences x T=2 tokens
+    seqs = toks.reshape(6, 2, 1)
+    ns = types.SimpleNamespace(rel_ablate="shuffle_cand", _prev_rel=None)
+    out = RelationalVLM._ablate_tokens(ns, toks, ex).reshape(6, 2, 1)
+    assert torch.equal(out[0], seqs[1]) and torch.equal(out[2], seqs[0]) and torch.equal(out[5], seqs[3])
+    ns.rel_ablate = "shuffle_puzzle"
+    out = RelationalVLM._ablate_tokens(ns, toks, ex).reshape(6, 2, 1)           # first batch: the other example
+    assert torch.equal(out[0], seqs[3]) and torch.equal(out[4], seqs[1])
+    out2 = RelationalVLM._ablate_tokens(ns, toks + 100, ex).reshape(6, 2, 1)    # next batch: the previous batch's
+    assert torch.equal(out2[0], seqs[0]) and torch.equal(out2[5], seqs[5])
+    ns.rel_ablate = "permute"
+    out = RelationalVLM._ablate_tokens(ns, toks, ex).reshape(6, 2, 1)
+    assert torch.equal(out[:, 0], seqs[:, 1]) and torch.equal(out[:, 1], seqs[:, 0])
+    ns.rel_ablate = "zero"
+    assert RelationalVLM._ablate_tokens(ns, toks, ex).abs().sum() == 0
+
+
+def test_rel_ablate(fam, mode):
+    """Through the model: zero == branch_off; drop removes every placeholder; the shuffles and permute change the
+    output; switching the ablation off restores it exactly."""
+    d = fake_npz_dir(2)
+    kw = dict(M=2) if mode == "pool" else dict(M=1, rel_mode=mode)
+    rv, bb, st = setup(fam, inject="interleave", **kw)
+    rv.eval()
+    with torch.no_grad():
+        batch = batch_for(bb, rv, d)
+        on, _ = rv(batch, CPU, torch.float32)
+        rv.branch_off = True
+        off, _ = rv(batch, CPU, torch.float32)
+        rv.branch_off = False
+        rv.rel_ablate = "zero"
+        z, _ = rv(batch, CPU, torch.float32)
+        assert torch.allclose(z, off, atol=1e-6), (z - off).abs().max()
+        for a in ("shuffle_cand", "shuffle_puzzle", "permute"):
+            rv.rel_ablate, rv._prev_rel = a, None
+            h, _ = rv(batch, CPU, torch.float32)
+            # an untrained tiny branch makes the 8 candidates' tokens nearly equal (cf. test_aux_depends_on_candidate),
+            # and its puzzles nearly alike, so moving them between candidates or puzzles changes the output only slightly; the exact moves are checked in
+            # test_rel_ablate_tokens
+            assert (h - on).abs().max() > (1e-7 if a.startswith("shuffle") else 1e-4), (a, (h - on).abs().max())
+        rv.rel_ablate = "drop"
+        b2 = batch_for(bb, rv, d)
+        assert int((b2["input_ids"] == bb.rel_id).sum()) == 0
+        dropped, _ = rv(b2, CPU, torch.float32)
+        assert dropped.shape == on.shape
+        rv.rel_ablate = None
+        again, _ = rv(batch, CPU, torch.float32)
+    assert torch.allclose(again, on, atol=1e-6)
+
+
 if __name__ == "__main__":
     only = sys.argv[1:]
     tests = [("window_to_raster", test_window_to_raster, ()), ("roi_and_tokens", test_roi_and_tokens, ()),
@@ -437,12 +492,14 @@ if __name__ == "__main__":
              ("packed_sources", test_packed_sources, ()), ("shared_slot_noise", test_shared_slot_noise, ()),
              ("loss_chance_norm", test_loss_chance_norm, ()),
              ("selection_score", test_selection_score, ()),
-             ("no_relational", test_no_relational, ())]
+             ("no_relational", test_no_relational, ()),
+             ("rel_ablate_tokens", test_rel_ablate_tokens, ())]
     for fam in FAMILIES:
         tests += [(f"fuse_identity[{fam}]", test_fuse_identity, (fam,))]
         tests += [(f"grads[{fam},{inj}]", test_grads, (fam, inj)) for inj in ("interleave", "fuse")]
         tests += [(f"eval_deterministic[{fam},{inj}]", test_eval_deterministic, (fam, inj)) for inj in ("interleave", "fuse")]
         tests += [(f"branch_off[{fam},{inj}]", test_branch_off, (fam, inj)) for inj in ("interleave", "fuse")]
+        tests += [(f"rel_ablate[{fam},{m}]", test_rel_ablate, (fam, m)) for m in ("pool", "slot")]
         tests += [
                   (f"aux_depends[{fam}]", test_aux_depends_on_candidate, (fam,)), (f"no_slots[{fam}]", test_no_slots, (fam,)),
                   (f"rel_panel[{fam}]", test_rel_modes, (fam, "panel")), (f"rel_slot[{fam}]", test_rel_modes, (fam, "slot")),

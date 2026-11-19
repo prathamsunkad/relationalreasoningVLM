@@ -73,6 +73,8 @@ def main():
     ap.add_argument("--branch_off", action="store_true",
                     help="ablation: cut the branch's input to the LLM (fusion: lambda = 1; interleave: zero relation "
                          "token) to see what LoRA learned on its own")
+    ap.add_argument("--rel_ablate", default="none", choices=["none", "zero", "drop", "shuffle_cand", "shuffle_puzzle", "permute"],
+                    help="interleave only: ablate the relation tokens at evaluation (see RelationalVLM._ablate_tokens)")
     ap.add_argument("--lora_from", default=None,
                     help="score with this PEFT adapter (e.g. a vlm_lora_pc run's best/) as the LoRA; with a fusion "
                          "checkpoint and --branch_off this is LoRA alone, read through this code")
@@ -99,6 +101,10 @@ def main():
     if args.lora_from:
         n = load_peft_adapter(bb.model, args.lora_from, lora_cfg)
         print(f"[eval] LoRA from {args.lora_from} ({n} tensors" + (", replacing the checkpoint's own)" if ck.get("lora") else ")"))
+    if args.rel_ablate != "none":
+        assert rv.interleave and not args.branch_off, "--rel_ablate is for interleave checkpoints, without --branch_off"
+        rv.rel_ablate = args.rel_ablate
+        print(f"[eval] relation tokens ablated: {args.rel_ablate}")
     if args.branch_off:
         rv.branch_off = True                         # fusion: native visual tokens; interleave: zero relation token
         print("[eval] branch off: the LLM gets nothing from the branch")
