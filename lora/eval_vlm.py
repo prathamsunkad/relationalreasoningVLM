@@ -23,12 +23,15 @@ import torch
 from torch.utils.data import DataLoader
 
 from pgmvlm.evalcore import evaluate_batches, summarize
-from pgmvlm.models import DTYPES, ScoreTokens, load_adapter, load_base
-from pgmvlm.data import CandidateCollator, PGMStream, list_npz, shard_files
+from pgmvlm.models import DTYPES, load_adapter, load_base
+from pgmvlm.data import shard_files
 
 
+from pgmvlm.config import parse_configured
 from pgmvlm.protocols import add_protocol_args, build_protocol
 from pgmvlm.datasets import files_for, make_stream
+from pgmvlm.extensions import add_extension_args, attach_extension, check_checkpoint_protocol
+from pgmvlm.runtime import eval_contract
 
 
 def merge(merge_dir, expected_n=0):
@@ -41,7 +44,7 @@ def merge(merge_dir, expected_n=0):
     summ = summarize(recs)
     summ.update(shards=len(shards), errors=len(errs), unique_files=len(seen), duplicates=len(recs) - len(seen))
     if expected_n:
-        summ["expected_n"], summ["complete"] = expected_n, len(seen) == expected_n
+        summ["expected_n"], summ["complete"] = expected_n, len(seen) == expected_n and len(recs) == len(seen) and not errs
     meta = os.path.join(merge_dir, "eval_config.json")
     if os.path.exists(meta):
         summ["config"] = json.load(open(meta))
@@ -59,6 +62,7 @@ def merge(merge_dir, expected_n=0):
 def main():
     ap = argparse.ArgumentParser()
     add_protocol_args(ap)
+    add_extension_args(ap)
     ap.add_argument('--revision', default=None)
     ap.add_argument('--manifest', default=None)
     ap.add_argument("--merge_dir", default=None)
@@ -82,7 +86,7 @@ def main():
     ap.add_argument("--merge_adapter", action="store_true", help="fold LoRA into the weights (faster, tiny bf16 rounding)")
     ap.add_argument("--num_workers", type=int, default=4)
     ap.add_argument("--flush_every", type=int, default=10, help="batches")
-    args = ap.parse_args()
+    args = parse_configured(ap)
 
     if args.merge_dir:
         merge(args.merge_dir, args.expected_n)
@@ -96,7 +100,11 @@ def main():
     if args.num_shards < 1 or not 0 <= args.shard_idx < args.num_shards:
         raise ValueError('Invalid shard index/count')
     files = shard_files(files_for(args, 'eval'), args.shard_idx, args.num_shards, args.max_examples)
+    eval_contract(args, files_for(args, 'eval'))
     done = json.load(open(out_path)) if os.path.exists(out_path) else []
+    done_names = [r['file'] for r in done if 'error' not in r]
+    if len(done_names) != len(set(done_names)) or not set(done_names).issubset(files):
+        raise ValueError('Existing predictions have duplicate or out-of-shard IDs')
     done_files = {r["file"] for r in done if "error" not in r}
     todo = [f for f in files if f not in done_files]
     print(f"[shard {args.shard_idx}/{args.num_shards}] {len(files)} problems, {len(done_files)} already done, {len(todo)} to go")
@@ -105,9 +113,12 @@ def main():
                                          **({'revision': args.revision} if args.revision else {}))
     st = build_protocol(args, processor, family)
     if args.adapter:
-        model = load_adapter(model, args.adapter)
-        if args.merge_adapter:
+        check_checkpoint_protocol(args.adapter, args)
+        if os.path.isfile(os.path.join(args.adapter, 'adapter_config.json')):
+            model = load_adapter(model, args.adapter)
+        if args.merge_adapter and hasattr(model, 'merge_and_unload'):
             model = model.merge_and_unload()
+    attach_extension(model, processor, args, args.adapter if args.extension != 'none' else None)
     model.eval()
     json.dump({"model_id": args.model_id, "adapter": args.adapter, "family": family, "npz_dir": args.npz_dir,
                "context_mode": args.context_mode, "crop_to_patches": args.crop_to_patches, "panel_px": args.panel_px,

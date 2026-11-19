@@ -47,6 +47,8 @@ def summarize(records):
     protocols = {r.get('protocol', 'candidate') for r in rs}
     if len(protocols) != 1:
         raise ValueError('Cannot combine different evaluation protocols')
+    if len({r.get('readout', 'llm') for r in rs}) != 1:
+        raise ValueError('Cannot combine different readouts')
     if protocols == {'answer_letter'}:
         choice_counts = {len(r['choices']) for r in rs}
         if len(choice_counts) != 1:

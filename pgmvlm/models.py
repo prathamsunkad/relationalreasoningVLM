@@ -14,8 +14,8 @@ MODEL_KEYS = ("input_ids", "attention_mask", "pixel_values", "image_grid_thw", "
 LLM_LINEARS = "q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj"
 
 
-def detect_family(model_id):
-    cfg = AutoConfig.from_pretrained(model_id)
+def detect_family(model_id, revision=None):
+    cfg = AutoConfig.from_pretrained(model_id, **({'revision': revision} if revision else {}))
     mt = cfg.model_type
     if mt in ("lfm2_vl", "smolvlm", "qwen2_5_vl"):
         return {"lfm2_vl": "lfm25", "smolvlm": "smolvlm2", "qwen2_5_vl": "spatialevo"}[mt]
@@ -36,7 +36,7 @@ def load_base(model_id, dtype="bf16", attn="sdpa", device=None, family=None, rev
     if model_id in MODEL_REVISIONS:
         model_id, pinned = MODEL_REVISIONS[model_id]
         revision = revision or pinned
-    family = family or detect_family(model_id)
+    family = family or detect_family(model_id, revision)
     kw = {} if attn == "default" else {"attn_implementation": attn}
     if revision:
         kw['revision'] = revision

@@ -5,6 +5,7 @@ one contact sheet and masked causal CE over the full vocabulary. These are
 different experimental protocols, not interchangeable checkpoint formats.
 """
 import inspect
+from contextlib import nullcontext
 import re
 
 import numpy as np
@@ -12,7 +13,7 @@ import torch
 import torch.nn.functional as F
 
 from .data import CandidateCollator
-from .models import ScoreTokens, candidate_scores, candidate_losses, autocast_ctx
+from .models import ScoreTokens, candidate_scores, candidate_losses
 from .manifests import render_pgm, PGM_PROMPT
 
 
@@ -94,6 +95,8 @@ class AnswerLetterProtocol:
         return f'greedy answer letter; full-vocabulary {self.loss_scope} CE; {self.max_new_tokens} output tokens'
     def encoded(self, item, model, device, dtype):
         image, prompt, choices = image_question(item)
+        if not 0 <= item['target'] < len(choices):
+            raise ValueError('Target is outside the answer vocabulary')
         answer = choices[item['target']]
         prefix, full, start = encode_answer(self.processor, image, prompt, answer, device, dtype)
         limits = [getattr(getattr(model.config, 'text_config', model.config), 'max_position_embeddings', None),
@@ -104,13 +107,34 @@ class AnswerLetterProtocol:
         if self.loss_scope == 'answer' and len(self.processor.tokenizer.encode(answer, add_special_tokens=False)) != 1:
             raise ValueError('Answer-only CE requires a single answer token')
         return prefix, full, start, choices
+    def classification(self, model, item, device, dtype):
+        from pgmvlm.extensions import base_model
+        base = base_model(model)
+        _, full, _, choices = self.encoded(item, model, device, dtype)
+        if choices != list('ABCDEFGH'):
+            raise ValueError('Classifier diagnostics use the eight-way PGM task')
+        with torch.no_grad():
+            features = base.model.get_image_features(**{k: full[k] for k in
+                         ('pixel_values', 'spatial_shapes', 'pixel_attention_mask')}, return_dict=True).pooler_output
+            features = torch.cat(features, dim=0).unsqueeze(0)
+        scores = base.relation_probe(features)
+        target = torch.tensor([item['target']], device=device)
+        return F.cross_entropy(scores, target), scores, choices
+
     def training(self, model, batch, device, dtype, loss_name):
+        from pgmvlm.extensions import base_model
+        if hasattr(base_model(model), '_extension_readout'):
+            values = [self.classification(model, item, device, dtype) for item in batch['items']]
+            loss = torch.stack([x[0] for x in values]).mean()
+            acc = torch.stack([(x[1].argmax(-1) == item['target']).float().mean()
+                               for x, item in zip(values, batch['items'])]).mean()
+            return dict(loss=loss, classification_loss=loss, train_acc=acc)
         if loss_name != 'causal_ce':
             raise ValueError('answer_letter requires causal_ce (full vocabulary), not candidate ce8')
         values = []
         for item in batch['items']:
             _, full, start, _ = self.encoded(item, model, device, dtype)
-            with autocast_ctx(device, dtype):
+            with nullcontext():
                 suffix, answer, logits = answer_losses(model, full, start)
             acc = (logits.argmax(-1) == full['input_ids'][:, start]).float().mean()
             values.append((suffix, answer, acc))
@@ -120,8 +144,16 @@ class AnswerLetterProtocol:
     def records(self, model, batch, device, dtype):
         records = []
         for item in batch['items']:
+            from pgmvlm.extensions import base_model
+            if hasattr(base_model(model), '_extension_readout'):
+                loss, scores, choices = self.classification(model, item, device, dtype)
+                pred = int(scores.argmax(-1))
+                records.append(dict(file=item['file'], target=item['target'], pred=pred, correct=pred==item['target'],
+                                    choices=choices, protocol=self.name, readout=base_model(model)._extension_readout,
+                                    loss=float(loss), answer_loss=float(loss), scores=scores[0].tolist()))
+                continue
             prefix, full, start, choices = self.encoded(item, model, device, dtype)
-            with autocast_ctx(device, dtype):
+            with nullcontext():
                 suffix, answer, _ = answer_losses(model, full, start)
                 out = model.generate(**prefix, max_new_tokens=self.max_new_tokens, do_sample=False, use_cache=True)
             raw = self.processor.tokenizer.decode(out[0, start:], skip_special_tokens=True).strip()

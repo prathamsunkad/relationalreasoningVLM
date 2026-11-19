@@ -93,3 +93,21 @@ def make_stream(args, split, files, order=None, seed=0, shuffle_candidates=False
         return ManifestStream(manifest, files, order)
     directory = getattr(args, {'train': 'train_dir', 'val': 'val_dir', 'eval': 'npz_dir'}[split])
     return PGMStream(directory, files, order, seed, shuffle_candidates, context_mode)
+
+
+def training_order(n_files, total_positions, seed, policy='position'):
+    if policy == 'position':
+        from .data import make_order
+        return make_order(n_files, total_positions, seed)
+    if policy not in ('python_epoch', 'nested_first'):
+        raise ValueError('Unknown data order')
+    import random
+    result = []
+    epoch = 0
+    while len(result) < total_positions:
+        order = list(range(n_files))
+        if policy == 'python_epoch' or epoch:
+            random.Random(seed + epoch).shuffle(order)
+        result.extend(order)
+        epoch += 1
+    return np.asarray(result[:total_positions])

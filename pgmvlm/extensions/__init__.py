@@ -22,6 +22,7 @@ def add_extension_args(parser, training=False):
     if training:
         parser.add_argument('--train_mode', choices=['lora', 'module', 'lora_module'], default='lora')
         parser.add_argument('--extension_lr', type=float, default=None)
+        parser.add_argument('--init_extension', default=None, help='Initialize new module from a shared-trainer checkpoint; new optimizer')
         parser.add_argument('--init_adapter', default=None, help='Initialize from existing LoRA weights; new optimizer')
 
 
@@ -54,6 +55,8 @@ def extension_spec(args):
 def attach_extension(model, processor, args, checkpoint=None):
     """Called after native device/dtype conversion and optional PEFT wrapping."""
     if args.extension == 'none':
+        if args.readout != 'llm' or args.insertion_layer is not None:
+            raise ValueError('An extension is required for custom readout or insertion')
         return None
     if args.protocol != 'answer_letter':
         raise ValueError('The LFM modules were audited with the serial answer-letter protocol')
@@ -63,6 +66,8 @@ def attach_extension(model, processor, args, checkpoint=None):
     if args.readout != 'llm':
         if args.extension != 'late' or args.insertion_layer is not None:
             raise ValueError('Classifier readout uses the late/projector diagnostic only')
+        if args.extension_heads != 4 or args.extension_depth not in (2, 6):
+            raise ValueError('Historical classifier arms require 4 heads and depth 2 or 6')
         from types import SimpleNamespace
         from .probe_diagnostics import DiagnosticArm
         name = 'classifier_only' if args.readout == 'classifier_only' else f'classifier_d{args.extension_depth}'
