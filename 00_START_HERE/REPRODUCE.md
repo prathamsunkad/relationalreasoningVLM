@@ -18,22 +18,25 @@ pip install --target $HOME/.local/lib/python3.10/site-packages -r requirements.t
 - **Mixture data (H5, B4):** build with `relational/datasets/` (see its README) into `$RELVLM_DATA`.
 - **Login nodes have no torch and no apptainer:** run everything, tests included, through Slurm.
 
-**Paths inside scripts.** `relational/slurm/*.sbatch` read `REPO`, `RUNS`, `DATA`, `VAL_LIST` and `CONTAINER` from the
-environment, with the original PACE paths as defaults; their `#SBATCH -o` log path and `HF_HOME` are written out and
-need editing on another account. The scripts in `experiments/` are kept exactly as they ran (useful as a record);
-change the `RUNS=`, `REPO=` and adapter paths at their top before reusing them.
+**Paths: use `slurm_portable/`.** Every Slurm job and launcher has a path-free copy in `slurm_portable/` (same
+tree as the originals). The copies read every path from `env.sh`, write Slurm logs to `<repo>/logs/`, and chain or
+submit only other portable copies, so a teammate edits nothing but `env.sh` (by default: shared inputs from
+`SHARED_ROOT`, your own outputs under `$HOME/scratch`). Submit them from the repo root after `source env.sh`. The
+originals (`slurm/`, `relational/slurm/`, `zeroshot/slurm/`, `experiments/`) are kept exactly as they ran and use
+Pratham's paths. `python3 tools/make_portable.py` regenerates the copies after an original changes. Cluster-specific
+lines (`#SBATCH -p`, `-C gpu-...`, the node `--exclude` lists) are PACE ICE settings: change them on another cluster.
 
 ## 2. Check the install
 
 ```bash
-sbatch slurm/tests.sbatch                                      # baseline code: 22 CPU tests on tiny random models
-REPO=$RELVLM_REPO sbatch relational/slurm/tests.sbatch          # relational code: CPU tests on tiny random models
+sbatch slurm_portable/slurm/tests.sbatch                        # baseline code: CPU tests on tiny random models
+sbatch slurm_portable/relational/slurm/tests.sbatch             # relational code: CPU tests on tiny random models
 ```
 
 ## 3. Which checkpoints each step needs
 
-Nothing large is in git, so a step can only be re-run once the checkpoint it starts from exists (re-train it, or get
-a copy from `$RELVLM_RUNS` / `$RUNS` on PACE).
+Nothing large is in git, so a step can only be re-run once the checkpoint it starts from exists: re-train it, or use
+ours on PACE ([`CHECKPOINTS.md`](CHECKPOINTS.md) has every path, the access grant and the loading code).
 
 | To run | You need first |
 |---|---|
@@ -61,15 +64,16 @@ Run the printed `python train_stage1.py ...` from `relational/` inside the conta
 flags to the Slurm wrapper, which adds resume and auto-resubmit:
 
 ```bash
-REPO=$RELVLM_REPO RUNS=$RELVLM_RUNS MODEL_ID=Qwen/Qwen3-VL-2B-Instruct SLOT=$RELVLM_RUNS/s0_qwen_pgm/best.pt \
+MODEL_ID=Qwen/Qwen3-VL-2B-Instruct SLOT=$SHARED_ROOT/relvlm_runs/s0_qwen_pgm/best.pt \
   TAG=my_run EPOCHS=4 EXTRA="<flags from the job log>" AUTO_RESUBMIT=1 SB_OPTS="-J my_run -t 02:00:00" \
-  sbatch --export=ALL -J my_run -t 02:00:00 relational/slurm/stage1.sbatch
+  sbatch --export=ALL -J my_run -t 02:00:00 slurm_portable/relational/slurm/stage1.sbatch
 ```
 
-Stage 0 runs use `relational/slurm/stage0.sbatch` the same way (`TAG`, `MODEL_ID`, `EXTRA`; their flags are in the
+Stage 0 runs use `slurm_portable/relational/slurm/stage0.sbatch` the same way (`TAG`, `MODEL_ID`, `EXTRA`; their flags are in the
 job log, e.g. `s0_qwen_pgm60k`: `--train_samples 60000 --max_steps 100000`).
 
-**The recipes as they were launched** (each script's header explains its settings):
+**The recipes as they were launched** (each script's header explains its settings; run the copies in
+`slurm_portable/experiments/auto/`, after `source env.sh`):
 
 | Experiment | Script in `experiments/auto/` |
 |---|---|
@@ -88,9 +92,9 @@ job log, e.g. `s0_qwen_pgm60k`: `--train_samples 60000 --max_steps 100000`).
 
 ```bash
 # A2: 5,000 test puzzles. Names map to checkpoints inside the script (one `ev` line per model)
-sbatch experiments/diag_5k/diag_5k.sbatch lf276_int lf276_int_off
+sbatch slurm_portable/experiments/diag_5k/diag_5k.sbatch lf276_int lf276_int_off   # reads checkpoints from $RELVLM_RUNS
 # A1: 1,000 validation puzzles
-sbatch experiments/diag_overlap/diag_overlap.sbatch
+sbatch slurm_portable/experiments/diag_overlap/diag_overlap.sbatch
 ```
 
 Both call `relational/eval.py`, which writes one record per puzzle (all 8 answer scores). `--branch_off` scores a

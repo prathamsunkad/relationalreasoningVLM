@@ -6,7 +6,8 @@ connector) feeding the VLM. Models: `Qwen/Qwen3-VL-2B-Instruct` (main) and `Open
 
 **New here? Start with [`00_START_HERE/`](00_START_HERE):** where everything is, every experiment with its runs,
 code and results ([`EXPERIMENTS.md`](00_START_HERE/EXPERIMENTS.md)), data ([`DATA.md`](00_START_HERE/DATA.md)), every setting and assumption
-([`CONDITIONS_AND_ASSUMPTIONS.md`](00_START_HERE/CONDITIONS_AND_ASSUMPTIONS.md)), current status ([`STATUS.md`](00_START_HERE/STATUS.md))
+([`CONDITIONS_AND_ASSUMPTIONS.md`](00_START_HERE/CONDITIONS_AND_ASSUMPTIONS.md)), saved models
+([`CHECKPOINTS.md`](00_START_HERE/CHECKPOINTS.md)), current status ([`STATUS.md`](00_START_HERE/STATUS.md))
 and how to reproduce it ([`REPRODUCE.md`](00_START_HERE/REPRODUCE.md)).
 
 ## Results (PGM neutral, chance 12.5%)
@@ -45,6 +46,7 @@ the approaches that failed).
 | `experiments/` | the exact launchers, hand-off chains and scoring jobs used for H7-H13, A1, A2 |
 | `tools/` | data preparation, preflight, plots, validation loss of checkpoints, single-problem demo, `rerun_cmd.py` |
 | `slurm/` | baseline training, evaluation (`run_test_eval.sh`: 28 shards, retries, merge), tests, plots |
+| `slurm_portable/` | path-free copies of every Slurm job and launcher (paths from `env.sh`); use these on any account |
 | `tests/` | CPU tests on tiny random models (`sbatch slurm/tests.sbatch`) |
 | `results/` | every run's settings and training log, per-problem test outputs, tables, figures (no weights, no data) |
 | `docs/` | experiment write-ups, protocol comparison with the Slot Abstractor paper |
@@ -52,21 +54,22 @@ the approaches that failed).
 | `legacy/` | the original LoRA code that produced the LoRA results |
 | `data_manifests/` | manifests of the mixture datasets (no images) |
 
-Data, model weights and run outputs are not in git. `env.sh` holds every path (data, runs, container, HF cache),
-the pinned base-model revisions and the GPU nodes to avoid.
+Data, model weights and run outputs are not in git; every checkpoint's path on PACE and how to load it is in
+[`00_START_HERE/CHECKPOINTS.md`](00_START_HERE/CHECKPOINTS.md). `env.sh` holds every path (shared data and checkpoints,
+your own outputs, container, HF cache), the pinned base-model revisions and the GPU nodes to avoid.
 
 ## Quickstart (PACE ICE)
 
 ```bash
 cd relationalreasoningVLM && source env.sh
-sbatch slurm/tests.sbatch                                   # 22 CPU tests, ~10 min
+sbatch slurm_portable/slurm/tests.sbatch                    # CPU tests, ~10 min (slurm_portable/: path-free copies)
 # one test problem through a fine-tuned adapter (prints the 8 candidate scores)
 apptainer exec --nv $CONTAINER python tools/demo_predict.py --npz_dir $DATA/test_full/neutral --seed 7 \
-    --model "Qwen=Qwen/Qwen3-VL-2B-Instruct@$RUNS/qwen_pc_recipe_e1/final_e4" --out_dir /tmp/demo
+    --model "Qwen=Qwen/Qwen3-VL-2B-Instruct@$SHARED_ROOT/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e4" --out_dir /tmp/demo
 # full 200k test evaluation of an adapter (runs on the login node, submits and waits on Slurm jobs)
-bash slurm/run_test_eval.sh Qwen/Qwen3-VL-2B-Instruct qwen_pc_recipe_e1 final_e4 _check
+bash slurm_portable/slurm/run_test_eval.sh Qwen/Qwen3-VL-2B-Instruct qwen_pc_recipe_e1 final_e4 _check
 # training (resumable; chain jobs with --dependency=afterany)
-sbatch --export=ALL,MODEL_ID=Qwen/Qwen3-VL-2B-Instruct,TAG=my_run,REGIME=neutral,TRAIN_SAMPLES=0,EPOCHS=1 slurm/train.sbatch
+sbatch --export=ALL,MODEL_ID=Qwen/Qwen3-VL-2B-Instruct,TAG=my_run,REGIME=neutral,TRAIN_SAMPLES=0,EPOCHS=1 slurm_portable/slurm/train.sbatch
 ```
 
 Environment: the PACE container `pytorch-2.1.0.sif` plus the packages in `requirements.txt`

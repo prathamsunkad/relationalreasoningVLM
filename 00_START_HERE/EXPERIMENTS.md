@@ -3,7 +3,8 @@
 One row per experiment. "Runs" are folder names under `results/relational/run_records/` (relational) or
 `results/lora/run_records/` (LoRA). Every run's full settings are in its `args.json`; its job id, flags and reason
 are in `results/relational/job_log/night_queue_2026-11-08.txt` (search for the run name), and
-`python3 tools/rerun_cmd.py <run>` prints the exact command. Figures are in `results/plots/`.
+`python3 tools/rerun_cmd.py <run>` prints the exact command. Figures are in `results/plots/`. Every launcher or Slurm script named below has a path-free copy at the same
+path under `slurm_portable/`; use that one on any account.
 The deep dive for each H / A row is the section of the same name in [`docs/relational_deep_dives.md`](../docs/relational_deep_dives.md).
 
 Accuracies: val = 1,000 shared validation puzzles (±3 points); test = 5,000 test puzzles (±1.4) unless marked 200k. Chance = 12.5%.

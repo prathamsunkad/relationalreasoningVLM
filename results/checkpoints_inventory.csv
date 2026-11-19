@@ -1,0 +1,436 @@
+path,group,kind,run,file,step,val,size_mb,what
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft276k_lr3e-4/best.pt,relational,alignment (connector),align_q_fuse_L6ft276k_lr3e-4,best.pt,3000,0.479,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft276k_lr3e-4/final.pt,relational,alignment (connector),align_q_fuse_L6ft276k_lr3e-4,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft276k_lr3e-4/state.pt,relational,alignment (connector),align_q_fuse_L6ft276k_lr3e-4,state.pt,,,55.2,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft50_lr3e-4/best.pt,relational,alignment (connector),align_q_fuse_L6ft50_lr3e-4,best.pt,4000,0.403,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft50_lr3e-4/final.pt,relational,alignment (connector),align_q_fuse_L6ft50_lr3e-4,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft50_lr3e-4/state.pt,relational,alignment (connector),align_q_fuse_L6ft50_lr3e-4,state.pt,,,55.2,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft_lr1e-3/best.pt,relational,alignment (connector),align_q_fuse_L6ft_lr1e-3,best.pt,4000,0.374,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft_lr1e-3/final.pt,relational,alignment (connector),align_q_fuse_L6ft_lr1e-3,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft_lr1e-3/state.pt,relational,alignment (connector),align_q_fuse_L6ft_lr1e-3,state.pt,,,55.2,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft_lr3e-4/best.pt,relational,alignment (connector),align_q_fuse_L6ft_lr3e-4,best.pt,7000,0.364,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft_lr3e-4/final.pt,relational,alignment (connector),align_q_fuse_L6ft_lr3e-4,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ft_lr3e-4/state.pt,relational,alignment (connector),align_q_fuse_L6ft_lr3e-4,state.pt,,,55.2,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ftc60e_lr3e-4/best.pt,relational,alignment (connector),align_q_fuse_L6ftc60e_lr3e-4,best.pt,7000,0.281,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ftc60e_lr3e-4/final.pt,relational,alignment (connector),align_q_fuse_L6ftc60e_lr3e-4,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_fuse_L6ftc60e_lr3e-4/state.pt,relational,alignment (connector),align_q_fuse_L6ftc60e_lr3e-4,state.pt,,,55.2,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft276k_lr3e-4/best.pt,relational,alignment (connector),align_q_int_L6ft276k_lr3e-4,best.pt,10000,0.481,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft276k_lr3e-4/final.pt,relational,alignment (connector),align_q_int_L6ft276k_lr3e-4,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft276k_lr3e-4/state.pt,relational,alignment (connector),align_q_int_L6ft276k_lr3e-4,state.pt,,,55.2,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft50_lr3e-4/best.pt,relational,alignment (connector),align_q_int_L6ft50_lr3e-4,best.pt,1000,0.406,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft50_lr3e-4/final.pt,relational,alignment (connector),align_q_int_L6ft50_lr3e-4,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft50_lr3e-4/state.pt,relational,alignment (connector),align_q_int_L6ft50_lr3e-4,state.pt,,,55.2,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft_lr1e-3/best.pt,relational,alignment (connector),align_q_int_L6ft_lr1e-3,best.pt,8000,0.375,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft_lr1e-3/final.pt,relational,alignment (connector),align_q_int_L6ft_lr1e-3,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft_lr1e-3/state.pt,relational,alignment (connector),align_q_int_L6ft_lr1e-3,state.pt,,,55.2,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft_lr3e-4/best.pt,relational,alignment (connector),align_q_int_L6ft_lr3e-4,best.pt,1000,0.375,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft_lr3e-4/final.pt,relational,alignment (connector),align_q_int_L6ft_lr3e-4,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ft_lr3e-4/state.pt,relational,alignment (connector),align_q_int_L6ft_lr3e-4,state.pt,,,55.2,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ftc60e_lr3e-4/best.pt,relational,alignment (connector),align_q_int_L6ftc60e_lr3e-4,best.pt,9000,0.291,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ftc60e_lr3e-4/final.pt,relational,alignment (connector),align_q_int_L6ftc60e_lr3e-4,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/align_q_int_L6ftc60e_lr3e-4/state.pt,relational,alignment (connector),align_q_int_L6ftc60e_lr3e-4,state.pt,,,55.2,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L24_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L24_lr1e-3,best.pt,15000,0.162,450.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L24_lr1e-3/final.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L24_lr1e-3,final.pt,,,450.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L24_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L24_lr1e-3,state.pt,,,1315.9,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L24_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L24_lr3e-4,best.pt,15000,0.222,450.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L24_lr3e-4/final.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L24_lr3e-4,final.pt,,,450.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L24_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L24_lr3e-4,state.pt,,,1315.9,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L6_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L6_lr1e-3,best.pt,7000,0.159,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L6_lr1e-3/final.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L6_lr1e-3,final.pt,,,126.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L6_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L6_lr1e-3,state.pt,,,342.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L6_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L6_lr3e-4,best.pt,12000,0.218,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L6_lr3e-4/final.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L6_lr3e-4,final.pt,,,126.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d256_L6_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_60k4_q_d256_L6_lr3e-4,state.pt,,,342.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L24_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L24_lr1e-3,best.pt,15000,0.207,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L24_lr1e-3/final.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L24_lr1e-3,final.pt,,,28.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L24_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L24_lr1e-3,state.pt,,,53.4,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L24_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L24_lr3e-4,best.pt,13000,0.2,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L24_lr3e-4/final.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L24_lr3e-4,final.pt,,,28.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L24_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L24_lr3e-4,state.pt,,,53.4,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L6_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L6_lr1e-3,best.pt,13000,0.221,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L6_lr1e-3/final.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L6_lr1e-3,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L6_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L6_lr1e-3,state.pt,,,25.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L6_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L6_lr3e-4,best.pt,15000,0.209,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L6_lr3e-4/final.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L6_lr3e-4,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_d32_L6_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_60k4_q_d32_L6_lr3e-4,state.pt,,,25.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_noslots_L6_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_60k4_q_noslots_L6_lr1e-3,best.pt,15000,0.228,19.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_noslots_L6_lr1e-3/final.pt,relational,branch alone (Stage 1a),aux_60k4_q_noslots_L6_lr1e-3,final.pt,,,19.5,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k4_q_noslots_L6_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_60k4_q_noslots_L6_lr1e-3,state.pt,,,26.0,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k_qwen_L6_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_60k_qwen_L6_lr1e-3,best.pt,3500,0.154,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k_qwen_L6_lr1e-3/final.pt,relational,branch alone (Stage 1a),aux_60k_qwen_L6_lr1e-3,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k_qwen_L6_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_60k_qwen_L6_lr1e-3,state.pt,,,25.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k_qwen_L6_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_60k_qwen_L6_lr3e-4,best.pt,2500,0.153,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k_qwen_L6_lr3e-4/final.pt,relational,branch alone (Stage 1a),aux_60k_qwen_L6_lr3e-4,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_60k_qwen_L6_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_60k_qwen_L6_lr3e-4,state.pt,,,25.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft60k_q_L6_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_ft60k_q_L6_lr1e-3,best.pt,71000,0.308,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft60k_q_L6_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_ft60k_q_L6_lr1e-3,state.pt,,,29.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft60k_q_L6_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_ft60k_q_L6_lr3e-4,best.pt,101000,0.294,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft60k_q_L6_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_ft60k_q_L6_lr3e-4,state.pt,,,29.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L24_lr8e-5_ep10/best.pt,relational,branch alone (Stage 1a),aux_ft_q_L24_lr8e-5_ep10,best.pt,139000,0.369,31.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L24_lr8e-5_ep10/final.pt,relational,branch alone (Stage 1a),aux_ft_q_L24_lr8e-5_ep10,final.pt,,,31.9,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L24_lr8e-5_ep10/state.pt,relational,branch alone (Stage 1a),aux_ft_q_L24_lr8e-5_ep10,state.pt,,,57.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L24_lr8e-5_ep50/best.pt,relational,branch alone (Stage 1a),aux_ft_q_L24_lr8e-5_ep50,best.pt,366000,0.484,31.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L24_lr8e-5_ep50/state.pt,relational,branch alone (Stage 1a),aux_ft_q_L24_lr8e-5_ep50,state.pt,,,57.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L6_lr3e-4_ep10/best.pt,relational,branch alone (Stage 1a),aux_ft_q_L6_lr3e-4_ep10,best.pt,145000,0.371,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L6_lr3e-4_ep10/final.pt,relational,branch alone (Stage 1a),aux_ft_q_L6_lr3e-4_ep10,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L6_lr3e-4_ep10/state.pt,relational,branch alone (Stage 1a),aux_ft_q_L6_lr3e-4_ep10,state.pt,,,29.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L6_lr3e-4_ep50/best.pt,relational,branch alone (Stage 1a),aux_ft_q_L6_lr3e-4_ep50,best.pt,442000,0.517,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L6_lr3e-4_ep50/state.pt,relational,branch alone (Stage 1a),aux_ft_q_L6_lr3e-4_ep50,state.pt,,,29.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L6_lr3e-4_settle/best.pt,relational,branch alone (Stage 1a),aux_ft_q_L6_lr3e-4_settle,best.pt,238000,0.448,22.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L6_lr3e-4_settle/final.pt,relational,branch alone (Stage 1a),aux_ft_q_L6_lr3e-4_settle,final.pt,,,22.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ft_q_L6_lr3e-4_settle/state.pt,relational,branch alone (Stage 1a),aux_ft_q_L6_lr3e-4_settle,state.pt,,,29.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full10_q_d256_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_full10_q_d256_lr1e-3,best.pt,140000,0.23,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full10_q_d256_lr1e-3/final.pt,relational,branch alone (Stage 1a),aux_full10_q_d256_lr1e-3,final.pt,,,126.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full10_q_d256_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_full10_q_d256_lr1e-3,state.pt,,,342.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_ivl1b/best.pt,relational,branch alone (Stage 1a),aux_full_ivl1b,best.pt,1000,0.145,16.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_ivl1b/state.pt,relational,branch alone (Stage 1a),aux_full_ivl1b,state.pt,,,41.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_ivl1b_L6_lr3e-4_ep4/best.pt,relational,branch alone (Stage 1a),aux_full_ivl1b_L6_lr3e-4_ep4,best.pt,59000,0.247,7.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_ivl1b_L6_lr3e-4_ep4/final.pt,relational,branch alone (Stage 1a),aux_full_ivl1b_L6_lr3e-4_ep4,final.pt,,,7.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_ivl1b_L6_lr3e-4_ep4/state.pt,relational,branch alone (Stage 1a),aux_full_ivl1b_L6_lr3e-4_ep4,state.pt,,,13.4,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_qwen/best.pt,relational,branch alone (Stage 1a),aux_full_qwen,best.pt,4000,0.142,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_qwen/state.pt,relational,branch alone (Stage 1a),aux_full_qwen,state.pt,,,53.4,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_qwen_L24_lr8e-5_ep10/best.pt,relational,branch alone (Stage 1a),aux_full_qwen_L24_lr8e-5_ep10,best.pt,147000,0.283,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_qwen_L24_lr8e-5_ep10/final.pt,relational,branch alone (Stage 1a),aux_full_qwen_L24_lr8e-5_ep10,final.pt,,,28.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_qwen_L24_lr8e-5_ep10/state.pt,relational,branch alone (Stage 1a),aux_full_qwen_L24_lr8e-5_ep10,state.pt,,,53.4,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_qwen_L6_lr3e-4_ep10/best.pt,relational,branch alone (Stage 1a),aux_full_qwen_L6_lr3e-4_ep10,best.pt,139000,0.302,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_qwen_L6_lr3e-4_ep10/final.pt,relational,branch alone (Stage 1a),aux_full_qwen_L6_lr3e-4_ep10,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_qwen_L6_lr3e-4_ep10/state.pt,relational,branch alone (Stage 1a),aux_full_qwen_L6_lr3e-4_ep10,state.pt,,,25.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_qwen_L6_lr3e-4_ep4/best.pt,relational,branch alone (Stage 1a),aux_full_qwen_L6_lr3e-4_ep4,best.pt,55000,0.244,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_qwen_L6_lr3e-4_ep4/final.pt,relational,branch alone (Stage 1a),aux_full_qwen_L6_lr3e-4_ep4,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_full_qwen_L6_lr3e-4_ep4/state.pt,relational,branch alone (Stage 1a),aux_full_qwen_L6_lr3e-4_ep4,state.pt,,,25.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix30_noCART_q/best.pt,relational,branch alone (Stage 1a),aux_mix30_noCART_q,best.pt,38000,0.4790434027777778,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix30_noCART_q/final.pt,relational,branch alone (Stage 1a),aux_mix30_noCART_q,final.pt,,,126.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix30_noCART_q/state.pt,relational,branch alone (Stage 1a),aux_mix30_noCART_q,state.pt,,,342.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix30_q/best.pt,relational,branch alone (Stage 1a),aux_mix30_q,best.pt,39000,0.5706763888888889,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix30_q/final.pt,relational,branch alone (Stage 1a),aux_mix30_q,final.pt,,,126.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix30_q/state.pt,relational,branch alone (Stage 1a),aux_mix30_q,state.pt,,,342.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix30_q_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_mix30_q_lr3e-4,best.pt,39000,0.6426611111111111,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix30_q_lr3e-4/final.pt,relational,branch alone (Stage 1a),aux_mix30_q_lr3e-4,final.pt,,,126.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix30_q_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_mix30_q_lr3e-4,state.pt,,,342.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix50_q/best.pt,relational,branch alone (Stage 1a),aux_mix50_q,best.pt,28000,0.44124722222222224,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix50_q/final.pt,relational,branch alone (Stage 1a),aux_mix50_q,final.pt,,,126.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_mix50_q/state.pt,relational,branch alone (Stage 1a),aux_mix50_q,state.pt,,,342.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_ivl1b/best.pt,relational,branch alone (Stage 1a),aux_overfit_ivl1b,best.pt,3125,0.32,16.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_ivl1b/final.pt,relational,branch alone (Stage 1a),aux_overfit_ivl1b,final.pt,,,16.5,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_ivl1b/state.pt,relational,branch alone (Stage 1a),aux_overfit_ivl1b,state.pt,,,41.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_ivl1b_L6_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_overfit_ivl1b_L6_lr3e-4,best.pt,3125,0.838,7.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_ivl1b_L6_lr3e-4/final.pt,relational,branch alone (Stage 1a),aux_overfit_ivl1b_L6_lr3e-4,final.pt,,,7.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_ivl1b_L6_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_overfit_ivl1b_L6_lr3e-4,state.pt,,,13.4,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen/best.pt,relational,branch alone (Stage 1a),aux_overfit_qwen,best.pt,3125,0.276,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen/final.pt,relational,branch alone (Stage 1a),aux_overfit_qwen,final.pt,,,28.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen/state.pt,relational,branch alone (Stage 1a),aux_overfit_qwen,state.pt,,,53.4,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L24_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L24_lr3e-4,best.pt,3000,0.56,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L24_lr3e-4/final.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L24_lr3e-4,final.pt,,,28.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L24_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L24_lr3e-4,state.pt,,,53.4,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr1e-3,best.pt,3000,0.824,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr1e-3/final.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr1e-3,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr1e-3,state.pt,,,25.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr1e-4/best.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr1e-4,best.pt,3125,0.364,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr1e-4/final.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr1e-4,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr1e-4/state.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr1e-4,state.pt,,,25.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr3e-4,best.pt,6250,0.946,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr3e-4/final.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr3e-4,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr3e-4,state.pt,,,25.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr6e-4/best.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr6e-4,best.pt,3125,0.672,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr6e-4/final.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr6e-4,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_overfit_qwen_L6_lr6e-4/state.pt,relational,branch alone (Stage 1a),aux_overfit_qwen_L6_lr6e-4,state.pt,,,25.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_d256_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_ovf_q_d256_lr1e-3,best.pt,2750,0.968,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_d256_lr1e-3/final.pt,relational,branch alone (Stage 1a),aux_ovf_q_d256_lr1e-3,final.pt,,,126.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_d256_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_ovf_q_d256_lr1e-3,state.pt,,,342.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_d256_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_ovf_q_d256_lr3e-4,best.pt,1750,0.998,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_d256_lr3e-4/final.pt,relational,branch alone (Stage 1a),aux_ovf_q_d256_lr3e-4,final.pt,,,126.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_d256_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_ovf_q_d256_lr3e-4,state.pt,,,342.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_noslots_d256_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_ovf_q_noslots_d256_lr1e-3,best.pt,3000,0.978,127.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_noslots_d256_lr1e-3/final.pt,relational,branch alone (Stage 1a),aux_ovf_q_noslots_d256_lr1e-3,final.pt,,,127.2,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_noslots_d256_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_ovf_q_noslots_d256_lr1e-3,state.pt,,,345.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_noslots_lr1e-3/best.pt,relational,branch alone (Stage 1a),aux_ovf_q_noslots_lr1e-3,best.pt,2250,1.0,19.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_noslots_lr1e-3/final.pt,relational,branch alone (Stage 1a),aux_ovf_q_noslots_lr1e-3,final.pt,,,19.5,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_noslots_lr1e-3/state.pt,relational,branch alone (Stage 1a),aux_ovf_q_noslots_lr1e-3,state.pt,,,26.0,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_noslots_lr3e-4/best.pt,relational,branch alone (Stage 1a),aux_ovf_q_noslots_lr3e-4,best.pt,2250,1.0,19.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_noslots_lr3e-4/final.pt,relational,branch alone (Stage 1a),aux_ovf_q_noslots_lr3e-4,final.pt,,,19.5,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/aux_ovf_q_noslots_lr3e-4/state.pt,relational,branch alone (Stage 1a),aux_ovf_q_noslots_lr3e-4,state.pt,,,26.0,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/diag_branchoff/lora_w5_q_fuse_L6ft_state.pt,relational,other,diag_branchoff,lora_w5_q_fuse_L6ft_state.pt,,,261.3,checkpoint
+/storage/ice1/4/7/psunkad3/relvlm_runs/diag_branchoff/lora_w5_q_int_L6ft_state.pt,relational,other,diag_branchoff,lora_w5_q_int_L6ft_state.pt,,,261.3,checkpoint
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_fuse_lr1e-3/best.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_fuse_lr1e-3,best.pt,2250,1.0,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_fuse_lr1e-3/final.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_fuse_lr1e-3,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_fuse_lr1e-3/state.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_fuse_lr1e-3,state.pt,,,58.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_fuse_lr3e-4/best.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_fuse_lr3e-4,best.pt,1000,0.246,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_fuse_lr3e-4/final.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_fuse_lr3e-4,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_fuse_lr3e-4/state.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_fuse_lr3e-4,state.pt,,,58.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_int_lr1e-3/best.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_int_lr1e-3,best.pt,3000,0.594,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_int_lr1e-3/final.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_int_lr1e-3,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_int_lr1e-3/state.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_int_lr1e-3,state.pt,,,58.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_int_lr3e-4/best.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_int_lr3e-4,best.pt,3125,0.85,19.4,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_int_lr3e-4/final.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_int_lr3e-4,final.pt,,,19.4,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/llm_ovf_q_int_lr3e-4/state.pt,relational,frozen-LLM memorisation (H3),llm_ovf_q_int_lr3e-4,state.pt,,,58.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_c60e/best.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_c60e,best.pt,3500,0.527,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_c60e/final.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_c60e,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_c60e/init_align_q_fuse_L6ftc60e_lr3e-4_step2000.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_c60e,init_align_q_fuse_L6ftc60e_lr3e-4_step2000.pt,2000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_c60e/state.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_c60e,state.pt,,,255.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft276k/best.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft276k,best.pt,3000,0.578,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft276k/final.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft276k,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft276k/init_align_q_fuse_L6ft276k_lr3e-4_step3000.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft276k,init_align_q_fuse_L6ft276k_lr3e-4_step3000.pt,3000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft276k/state.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft276k,state.pt,,,255.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft50/best.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft50,best.pt,2500,0.56,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft50/final.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft50,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft50/init_align_q_fuse_L6ft50_lr3e-4_step3000.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft50,init_align_q_fuse_L6ft50_lr3e-4_step3000.pt,3000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft50/state.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft50,state.pt,,,255.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft50_ctrl/best.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft50_ctrl,best.pt,2500,0.529,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft50_ctrl/final.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft50_ctrl,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft50_ctrl/init_align_q_fuse_L6ft50_lr3e-4_step3000.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft50_ctrl,init_align_q_fuse_L6ft50_lr3e-4_step3000.pt,3000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_fuse_ft50_ctrl/state.pt,relational,LoRA-first hybrid,lora_lf_q_fuse_ft50_ctrl,state.pt,,,222.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_c60e/best.pt,relational,LoRA-first hybrid,lora_lf_q_int_c60e,best.pt,3000,0.541,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_c60e/final.pt,relational,LoRA-first hybrid,lora_lf_q_int_c60e,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_c60e/init_align_q_int_L6ftc60e_lr3e-4_step2000.pt,relational,LoRA-first hybrid,lora_lf_q_int_c60e,init_align_q_int_L6ftc60e_lr3e-4_step2000.pt,2000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_c60e/state.pt,relational,LoRA-first hybrid,lora_lf_q_int_c60e,state.pt,,,255.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft276k/best.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft276k,best.pt,2000,0.569,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft276k/final.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft276k,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft276k/init_align_q_int_L6ft276k_lr3e-4_step3000.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft276k,init_align_q_int_L6ft276k_lr3e-4_step3000.pt,3000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft276k/state.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft276k,state.pt,,,255.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft50/best.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft50,best.pt,3000,0.551,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft50/final.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft50,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft50/init_align_q_int_L6ft50_lr3e-4_step1000.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft50,init_align_q_int_L6ft50_lr3e-4_step1000.pt,1000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft50/state.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft50,state.pt,,,255.1,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft50_ctrl/best.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft50_ctrl,best.pt,3500,0.534,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft50_ctrl/final.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft50_ctrl,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft50_ctrl/init_align_q_int_L6ft50_lr3e-4_step1000.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft50_ctrl,init_align_q_int_L6ft50_lr3e-4_step1000.pt,1000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_lf_q_int_ft50_ctrl/state.pt,relational,LoRA-first hybrid,lora_lf_q_int_ft50_ctrl,state.pt,,,222.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_mix30_q_fuse/best.pt,relational,mixture hybrid (H5),lora_mix30_q_fuse,best.pt,39000,0.8722,192.8,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_mix30_q_fuse/final.pt,relational,mixture hybrid (H5),lora_mix30_q_fuse,final.pt,,,192.8,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_mix30_q_fuse/state.pt,relational,mixture hybrid (H5),lora_mix30_q_fuse,state.pt,,,578.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_mix30_q_int_slot/best.pt,relational,mixture hybrid (H5),lora_mix30_q_int_slot,best.pt,39000,0.8724000000000001,192.8,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_mix30_q_int_slot/final.pt,relational,mixture hybrid (H5),lora_mix30_q_int_slot,final.pt,,,192.8,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_mix30_q_int_slot/state.pt,relational,mixture hybrid (H5),lora_mix30_q_int_slot,state.pt,,,578.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_mix30_q_int_slot_control/best.pt,relational,mixture hybrid (H5),lora_mix30_q_int_slot_control,best.pt,39000,0.8762000000000001,192.8,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_mix30_q_int_slot_control/final.pt,relational,mixture hybrid (H5),lora_mix30_q_int_slot_control,final.pt,,,192.8,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_mix30_q_int_slot_control/state.pt,relational,mixture hybrid (H5),lora_mix30_q_int_slot_control,state.pt,,,578.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_fuse_lr1e-3/best.pt,relational,full-data hybrid (H4),lora_q_fuse_lr1e-3,best.pt,58000,0.805,192.8,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_fuse_lr1e-3/final.pt,relational,full-data hybrid (H4),lora_q_fuse_lr1e-3,final.pt,,,192.8,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_fuse_lr1e-3/state.pt,relational,full-data hybrid (H4),lora_q_fuse_lr1e-3,state.pt,,,578.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_fuse_lr3e-4/best.pt,relational,full-data hybrid (H4),lora_q_fuse_lr3e-4,best.pt,57000,0.814,192.8,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_fuse_lr3e-4/final.pt,relational,full-data hybrid (H4),lora_q_fuse_lr3e-4,final.pt,,,192.8,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_fuse_lr3e-4/state.pt,relational,full-data hybrid (H4),lora_q_fuse_lr3e-4,state.pt,,,578.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_panel_lr3e-4/best.pt,relational,full-data hybrid (H4),lora_q_int_panel_lr3e-4,best.pt,59000,0.806,192.8,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_panel_lr3e-4/final.pt,relational,full-data hybrid (H4),lora_q_int_panel_lr3e-4,final.pt,,,192.8,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_panel_lr3e-4/state.pt,relational,full-data hybrid (H4),lora_q_int_panel_lr3e-4,state.pt,,,578.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_pool_lr3e-4/best.pt,relational,full-data hybrid (H4),lora_q_int_pool_lr3e-4,best.pt,57000,0.796,192.8,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_pool_lr3e-4/final.pt,relational,full-data hybrid (H4),lora_q_int_pool_lr3e-4,final.pt,,,192.8,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_pool_lr3e-4/state.pt,relational,full-data hybrid (H4),lora_q_int_pool_lr3e-4,state.pt,,,578.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_slot_control_lr3e-4/best.pt,relational,full-data hybrid (H4),lora_q_int_slot_control_lr3e-4,best.pt,59000,0.813,192.8,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_slot_control_lr3e-4/state.pt,relational,full-data hybrid (H4),lora_q_int_slot_control_lr3e-4,state.pt,,,578.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_slot_lr1e-3/best.pt,relational,full-data hybrid (H4),lora_q_int_slot_lr1e-3,best.pt,56000,0.795,192.8,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_slot_lr1e-3/state.pt,relational,full-data hybrid (H4),lora_q_int_slot_lr1e-3,state.pt,,,578.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_slot_lr3e-4/best.pt,relational,full-data hybrid (H4),lora_q_int_slot_lr3e-4,best.pt,60000,0.813,192.8,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_slot_lr3e-4/final.pt,relational,full-data hybrid (H4),lora_q_int_slot_lr3e-4,final.pt,,,192.8,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_q_int_slot_lr3e-4/state.pt,relational,full-data hybrid (H4),lora_q_int_slot_lr3e-4,state.pt,,,578.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_fuse_L6ft/best.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_fuse_L6ft,best.pt,8000,0.387,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_fuse_L6ft/final.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_fuse_L6ft,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_fuse_L6ft/init_align_q_fuse_L6ft_lr3e-4_step3000.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_fuse_L6ft,init_align_q_fuse_L6ft_lr3e-4_step3000.pt,3000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_fuse_L6ft/state.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_fuse_L6ft,state.pt,,,261.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_fuse_c60e/best.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_fuse_c60e,best.pt,15000,0.515,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_fuse_c60e/final.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_fuse_c60e,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_fuse_c60e/init_align_q_fuse_L6ftc60e_lr3e-4_step2000.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_fuse_c60e,init_align_q_fuse_L6ftc60e_lr3e-4_step2000.pt,2000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_fuse_c60e/state.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_fuse_c60e,state.pt,,,261.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_int_L6ft/best.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_int_L6ft,best.pt,14000,0.497,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_int_L6ft/final.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_int_L6ft,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_int_L6ft/init_align_q_int_L6ft_lr3e-4_step1000.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_int_L6ft,init_align_q_int_L6ft_lr3e-4_step1000.pt,1000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_int_L6ft/state.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_int_L6ft,state.pt,,,261.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_int_c60e/best.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_int_c60e,best.pt,15000,0.517,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_int_c60e/final.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_int_c60e,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_int_c60e/init_align_q_int_L6ftc60e_lr3e-4_step2000.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_int_c60e,init_align_q_int_L6ftc60e_lr3e-4_step2000.pt,2000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5_q_int_c60e/state.pt,relational,"Stage 2 hybrid, no dropout",lora_w5_q_int_c60e,state.pt,,,261.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_L6ft/best.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_L6ft,best.pt,15000,0.561,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_L6ft/final.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_L6ft,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_L6ft/init_align_q_fuse_L6ft_lr3e-4_step3000.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_L6ft,init_align_q_fuse_L6ft_lr3e-4_step3000.pt,3000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_L6ft/state.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_L6ft,state.pt,,,261.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_L6ft50/best.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_L6ft50,best.pt,15000,0.558,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_L6ft50/final.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_L6ft50,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_L6ft50/init_align_q_fuse_L6ft50_lr3e-4_step3000.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_L6ft50,init_align_q_fuse_L6ft50_lr3e-4_step3000.pt,3000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_L6ft50/state.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_L6ft50,state.pt,,,261.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_c60e/best.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_c60e,best.pt,15000,0.527,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_c60e/final.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_c60e,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_c60e/init_align_q_fuse_L6ftc60e_lr3e-4_step2000.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_c60e,init_align_q_fuse_L6ftc60e_lr3e-4_step2000.pt,2000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_fuse_c60e/state.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_fuse_c60e,state.pt,,,261.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_L6ft/best.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_L6ft,best.pt,15000,0.552,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_L6ft/final.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_L6ft,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_L6ft/init_align_q_int_L6ft_lr3e-4_step1000.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_L6ft,init_align_q_int_L6ft_lr3e-4_step1000.pt,1000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_L6ft/state.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_L6ft,state.pt,,,261.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_L6ft50/best.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_L6ft50,best.pt,15000,0.547,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_L6ft50/final.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_L6ft50,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_L6ft50/init_align_q_int_L6ft50_lr3e-4_step1000.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_L6ft50,init_align_q_int_L6ft50_lr3e-4_step1000.pt,1000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_L6ft50/state.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_L6ft50,state.pt,,,261.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_c60e/best.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_c60e,best.pt,15000,0.549,89.3,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_c60e/final.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_c60e,final.pt,,,89.3,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_c60e/init_align_q_int_L6ftc60e_lr3e-4_step2000.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_c60e,init_align_q_int_L6ftc60e_lr3e-4_step2000.pt,2000,,22.6,copy of the aligned checkpoint this run started from
+/storage/ice1/4/7/psunkad3/relvlm_runs/lora_w5d_q_int_c60e/state.pt,relational,"Stage 2 hybrid, dropout 0.5",lora_w5d_q_int_c60e,state.pt,,,261.3,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit2_ivl1b_fuse/state.pt,relational,frozen-LLM memorisation (H1),overfit2_ivl1b_fuse,state.pt,,,49.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit2_ivl1b_interleave/best.pt,relational,frozen-LLM memorisation (H1),overfit2_ivl1b_interleave,best.pt,1250,0.306,16.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit2_ivl1b_interleave/final.pt,relational,frozen-LLM memorisation (H1),overfit2_ivl1b_interleave,final.pt,,,16.5,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit2_ivl1b_interleave/state.pt,relational,frozen-LLM memorisation (H1),overfit2_ivl1b_interleave,state.pt,,,49.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit2_qwen_fuse/best.pt,relational,frozen-LLM memorisation (H1),overfit2_qwen_fuse,best.pt,1000,0.158,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit2_qwen_fuse/final.pt,relational,frozen-LLM memorisation (H1),overfit2_qwen_fuse,final.pt,,,28.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit2_qwen_fuse/state.pt,relational,frozen-LLM memorisation (H1),overfit2_qwen_fuse,state.pt,,,85.9,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit2_qwen_interleave/best.pt,relational,frozen-LLM memorisation (H1),overfit2_qwen_interleave,best.pt,1250,0.222,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit2_qwen_interleave/final.pt,relational,frozen-LLM memorisation (H1),overfit2_qwen_interleave,final.pt,,,28.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit2_qwen_interleave/state.pt,relational,frozen-LLM memorisation (H1),overfit2_qwen_interleave,state.pt,,,85.9,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_ivl1b_fuse/best.pt,relational,frozen-LLM memorisation (H1),overfit_ivl1b_fuse,best.pt,625,0.186,16.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_ivl1b_fuse/final.pt,relational,frozen-LLM memorisation (H1),overfit_ivl1b_fuse,final.pt,,,16.5,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_ivl1b_fuse/state.pt,relational,frozen-LLM memorisation (H1),overfit_ivl1b_fuse,state.pt,,,49.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_ivl1b_interleave/best.pt,relational,frozen-LLM memorisation (H1),overfit_ivl1b_interleave,best.pt,500,0.328,16.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_ivl1b_interleave/final.pt,relational,frozen-LLM memorisation (H1),overfit_ivl1b_interleave,final.pt,,,16.5,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_ivl1b_interleave/state.pt,relational,frozen-LLM memorisation (H1),overfit_ivl1b_interleave,state.pt,,,49.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_qwen_fuse/best.pt,relational,frozen-LLM memorisation (H1),overfit_qwen_fuse,best.pt,625,0.29,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_qwen_fuse/final.pt,relational,frozen-LLM memorisation (H1),overfit_qwen_fuse,final.pt,,,28.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_qwen_fuse/state.pt,relational,frozen-LLM memorisation (H1),overfit_qwen_fuse,state.pt,,,85.9,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_qwen_interleave/best.pt,relational,frozen-LLM memorisation (H1),overfit_qwen_interleave,best.pt,625,0.268,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_qwen_interleave/final.pt,relational,frozen-LLM memorisation (H1),overfit_qwen_interleave,final.pt,,,28.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/overfit_qwen_interleave/state.pt,relational,frozen-LLM memorisation (H1),overfit_qwen_interleave,state.pt,,,85.9,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_mix20/best.pt,relational,Stage 0 slot attention,s0_ivl1b_mix20,best.pt,,,9.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_mix20/last.pt,relational,Stage 0 slot attention,s0_ivl1b_mix20,last.pt,,,9.9,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_mix20/step100000.pt,relational,Stage 0 slot attention,s0_ivl1b_mix20,step100000.pt,100000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_mix20/step25000.pt,relational,Stage 0 slot attention,s0_ivl1b_mix20,step25000.pt,25000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_mix20/step50000.pt,relational,Stage 0 slot attention,s0_ivl1b_mix20,step50000.pt,50000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_mix20/step75000.pt,relational,Stage 0 slot attention,s0_ivl1b_mix20,step75000.pt,75000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_mix20_long/best.pt,relational,Stage 0 slot attention,s0_ivl1b_mix20_long,best.pt,,,9.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_mix20_long/last.pt,relational,Stage 0 slot attention,s0_ivl1b_mix20_long,last.pt,,,9.9,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_pgm/best.pt,relational,Stage 0 slot attention,s0_ivl1b_pgm,best.pt,,,9.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_pgm/last.pt,relational,Stage 0 slot attention,s0_ivl1b_pgm,last.pt,,,9.9,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_pgm/step100000.pt,relational,Stage 0 slot attention,s0_ivl1b_pgm,step100000.pt,100000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_pgm/step25000.pt,relational,Stage 0 slot attention,s0_ivl1b_pgm,step25000.pt,25000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_pgm/step50000.pt,relational,Stage 0 slot attention,s0_ivl1b_pgm,step50000.pt,50000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_pgm/step75000.pt,relational,Stage 0 slot attention,s0_ivl1b_pgm,step75000.pt,75000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_pgm_long/best.pt,relational,Stage 0 slot attention,s0_ivl1b_pgm_long,best.pt,,,9.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_pgm_long/last.pt,relational,Stage 0 slot attention,s0_ivl1b_pgm_long,last.pt,,,9.9,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_pgm_long/step150000.pt,relational,Stage 0 slot attention,s0_ivl1b_pgm_long,step150000.pt,150000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_ivl1b_pgm_long/step200000.pt,relational,Stage 0 slot attention,s0_ivl1b_pgm_long,step200000.pt,200000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20/best.pt,relational,Stage 0 slot attention,s0_qwen_mix20,best.pt,,,9.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20/last.pt,relational,Stage 0 slot attention,s0_qwen_mix20,last.pt,,,9.9,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20/step100000.pt,relational,Stage 0 slot attention,s0_qwen_mix20,step100000.pt,100000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20/step25000.pt,relational,Stage 0 slot attention,s0_qwen_mix20,step25000.pt,25000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20/step50000.pt,relational,Stage 0 slot attention,s0_qwen_mix20,step50000.pt,50000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20/step75000.pt,relational,Stage 0 slot attention,s0_qwen_mix20,step75000.pt,75000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_d256/best.pt,relational,Stage 0 slot attention,s0_qwen_mix20_d256,best.pt,,,92.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_d256/last.pt,relational,Stage 0 slot attention,s0_qwen_mix20_d256,last.pt,,,92.5,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_d256/step100000.pt,relational,Stage 0 slot attention,s0_qwen_mix20_d256,step100000.pt,100000,,92.5,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_d256/step25000.pt,relational,Stage 0 slot attention,s0_qwen_mix20_d256,step25000.pt,25000,,92.5,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_d256/step50000.pt,relational,Stage 0 slot attention,s0_qwen_mix20_d256,step50000.pt,50000,,92.5,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_d256/step75000.pt,relational,Stage 0 slot attention,s0_qwen_mix20_d256,step75000.pt,75000,,92.5,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_d256_long/best.pt,relational,Stage 0 slot attention,s0_qwen_mix20_d256_long,best.pt,,,92.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_d256_long/last.pt,relational,Stage 0 slot attention,s0_qwen_mix20_d256_long,last.pt,,,92.5,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_long/best.pt,relational,Stage 0 slot attention,s0_qwen_mix20_long,best.pt,,,9.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_long/last.pt,relational,Stage 0 slot attention,s0_qwen_mix20_long,last.pt,,,9.9,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_long/step150000.pt,relational,Stage 0 slot attention,s0_qwen_mix20_long,step150000.pt,150000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_long/step200000.pt,relational,Stage 0 slot attention,s0_qwen_mix20_long,step200000.pt,200000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_mix20_long/step250000.pt,relational,Stage 0 slot attention,s0_qwen_mix20_long,step250000.pt,250000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm/best.pt,relational,Stage 0 slot attention,s0_qwen_pgm,best.pt,,,9.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm/last.pt,relational,Stage 0 slot attention,s0_qwen_pgm,last.pt,,,9.9,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm/step100000.pt,relational,Stage 0 slot attention,s0_qwen_pgm,step100000.pt,100000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm/step25000.pt,relational,Stage 0 slot attention,s0_qwen_pgm,step25000.pt,25000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm/step50000.pt,relational,Stage 0 slot attention,s0_qwen_pgm,step50000.pt,50000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm/step75000.pt,relational,Stage 0 slot attention,s0_qwen_pgm,step75000.pt,75000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm60k/best.pt,relational,Stage 0 slot attention,s0_qwen_pgm60k,best.pt,,,9.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm60k/last.pt,relational,Stage 0 slot attention,s0_qwen_pgm60k,last.pt,,,9.9,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm60k/step100000.pt,relational,Stage 0 slot attention,s0_qwen_pgm60k,step100000.pt,100000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm60k/step25000.pt,relational,Stage 0 slot attention,s0_qwen_pgm60k,step25000.pt,25000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm60k/step50000.pt,relational,Stage 0 slot attention,s0_qwen_pgm60k,step50000.pt,50000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm60k/step75000.pt,relational,Stage 0 slot attention,s0_qwen_pgm60k,step75000.pt,75000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_d256/best.pt,relational,Stage 0 slot attention,s0_qwen_pgm_d256,best.pt,,,92.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_d256/last.pt,relational,Stage 0 slot attention,s0_qwen_pgm_d256,last.pt,,,92.5,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_d256/step100000.pt,relational,Stage 0 slot attention,s0_qwen_pgm_d256,step100000.pt,100000,,92.5,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_d256/step25000.pt,relational,Stage 0 slot attention,s0_qwen_pgm_d256,step25000.pt,25000,,92.5,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_d256/step50000.pt,relational,Stage 0 slot attention,s0_qwen_pgm_d256,step50000.pt,50000,,92.5,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_d256/step75000.pt,relational,Stage 0 slot attention,s0_qwen_pgm_d256,step75000.pt,75000,,92.5,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_d256_long/best.pt,relational,Stage 0 slot attention,s0_qwen_pgm_d256_long,best.pt,,,92.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_d256_long/last.pt,relational,Stage 0 slot attention,s0_qwen_pgm_d256_long,last.pt,,,92.5,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_long/best.pt,relational,Stage 0 slot attention,s0_qwen_pgm_long,best.pt,,,9.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_long/last.pt,relational,Stage 0 slot attention,s0_qwen_pgm_long,last.pt,,,9.9,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_long/step150000.pt,relational,Stage 0 slot attention,s0_qwen_pgm_long,step150000.pt,150000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_long/step200000.pt,relational,Stage 0 slot attention,s0_qwen_pgm_long,step200000.pt,200000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_pgm_long/step250000.pt,relational,Stage 0 slot attention,s0_qwen_pgm_long,step250000.pt,250000,,9.9,snapshot
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_sanity/best.pt,relational,Stage 0 slot attention,s0_qwen_sanity,best.pt,,,9.9,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s0_qwen_sanity/last.pt,relational,Stage 0 slot attention,s0_qwen_sanity,last.pt,,,9.9,latest (Stage 0 resume point)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_ivl1b_fuse/best.pt,relational,frozen-LLM Stage 1,s1_ivl1b_fuse,best.pt,13000,0.164,16.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_ivl1b_fuse/final.pt,relational,frozen-LLM Stage 1,s1_ivl1b_fuse,final.pt,,,16.5,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_ivl1b_fuse/state.pt,relational,frozen-LLM Stage 1,s1_ivl1b_fuse,state.pt,,,49.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_ivl1b_interleave/best.pt,relational,frozen-LLM Stage 1,s1_ivl1b_interleave,best.pt,11000,0.179,16.5,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_ivl1b_interleave/final.pt,relational,frozen-LLM Stage 1,s1_ivl1b_interleave,final.pt,,,16.5,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_ivl1b_interleave/state.pt,relational,frozen-LLM Stage 1,s1_ivl1b_interleave,state.pt,,,49.5,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_q_fuse_lr1e-3_ep10/best.pt,relational,frozen-LLM Stage 1,s1_q_fuse_lr1e-3_ep10,best.pt,122000,0.256,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_q_fuse_lr1e-3_ep10/state.pt,relational,frozen-LLM Stage 1,s1_q_fuse_lr1e-3_ep10,state.pt,,,378.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_q_fuse_lr3e-4_ep10/best.pt,relational,frozen-LLM Stage 1,s1_q_fuse_lr3e-4_ep10,best.pt,104000,0.272,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_q_fuse_lr3e-4_ep10/state.pt,relational,frozen-LLM Stage 1,s1_q_fuse_lr3e-4_ep10,state.pt,,,378.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_q_int_pool_lr1e-3_ep10/best.pt,relational,frozen-LLM Stage 1,s1_q_int_pool_lr1e-3_ep10,best.pt,98000,0.226,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_q_int_pool_lr1e-3_ep10/state.pt,relational,frozen-LLM Stage 1,s1_q_int_pool_lr1e-3_ep10,state.pt,,,378.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_q_int_pool_lr3e-4_ep10/best.pt,relational,frozen-LLM Stage 1,s1_q_int_pool_lr3e-4_ep10,best.pt,100000,0.242,126.2,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_q_int_pool_lr3e-4_ep10/state.pt,relational,frozen-LLM Stage 1,s1_q_int_pool_lr3e-4_ep10,state.pt,,,378.6,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_qwen_fuse/best.pt,relational,frozen-LLM Stage 1,s1_qwen_fuse,best.pt,15000,0.18,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_qwen_fuse/final.pt,relational,frozen-LLM Stage 1,s1_qwen_fuse,final.pt,,,28.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_qwen_fuse/state.pt,relational,frozen-LLM Stage 1,s1_qwen_fuse,state.pt,,,85.9,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_qwen_interleave/best.pt,relational,frozen-LLM Stage 1,s1_qwen_interleave,best.pt,12000,0.191,28.6,best validation checkpoint (use this)
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_qwen_interleave/final.pt,relational,frozen-LLM Stage 1,s1_qwen_interleave,final.pt,,,28.6,end of training
+/storage/ice1/4/7/psunkad3/relvlm_runs/s1_qwen_interleave/state.pt,relational,frozen-LLM Stage 1,s1_qwen_interleave,state.pt,,,85.9,resume state incl. optimizer (large; only to continue training)
+/storage/ice1/4/7/psunkad3/relvlm_runs/snapshots/aux_ft60k_q_L6_lr3e-4_step43000.pt,relational,branch snapshot,aux_ft60k_q_L6_lr3e-4,aux_ft60k_q_L6_lr3e-4_step43000.pt,43000,,22.6,frozen copy used to start later runs
+/storage/ice1/4/7/psunkad3/relvlm_runs/snapshots/aux_ft_q_L6_lr3e-4_ep50_step204000.pt,relational,branch snapshot,aux_ft_q_L6_lr3e-4_ep50,aux_ft_q_L6_lr3e-4_ep50_step204000.pt,204000,,22.6,frozen copy used to start later runs
+/storage/ice1/4/7/psunkad3/relvlm_runs/snapshots/aux_ft_q_L6_lr3e-4_ep50_step210000.pt,relational,branch snapshot,aux_ft_q_L6_lr3e-4_ep50,aux_ft_q_L6_lr3e-4_ep50_step210000.pt,210000,,22.6,frozen copy used to start later runs
+/storage/ice1/4/7/psunkad3/relvlm_runs/snapshots/aux_ft_q_L6_lr3e-4_ep50_step276000.pt,relational,branch snapshot,aux_ft_q_L6_lr3e-4_ep50,aux_ft_q_L6_lr3e-4_ep50_step276000.pt,276000,,22.6,frozen copy used to start later runs
+/storage/ice1/4/7/psunkad3/relvlm_runs/auto/snap/init_align_q_fuse_L6ft276k_lr3e-4_step3000.pt,relational,alignment snapshot (passed on),align_q_fuse_L6ft276k_lr3e-4,init_align_q_fuse_L6ft276k_lr3e-4_step3000.pt,3000,,22.6,frozen copy used to start later runs
+/storage/ice1/4/7/psunkad3/relvlm_runs/auto/snap/init_align_q_fuse_L6ft50_lr3e-4_step3000.pt,relational,alignment snapshot (passed on),align_q_fuse_L6ft50_lr3e-4,init_align_q_fuse_L6ft50_lr3e-4_step3000.pt,3000,,22.6,frozen copy used to start later runs
+/storage/ice1/4/7/psunkad3/relvlm_runs/auto/snap/init_align_q_fuse_L6ftc60e_lr3e-4_step2000.pt,relational,alignment snapshot (passed on),align_q_fuse_L6ftc60e_lr3e-4,init_align_q_fuse_L6ftc60e_lr3e-4_step2000.pt,2000,,22.6,frozen copy used to start later runs
+/storage/ice1/4/7/psunkad3/relvlm_runs/auto/snap/init_align_q_int_L6ft276k_lr3e-4_step3000.pt,relational,alignment snapshot (passed on),align_q_int_L6ft276k_lr3e-4,init_align_q_int_L6ft276k_lr3e-4_step3000.pt,3000,,22.6,frozen copy used to start later runs
+/storage/ice1/4/7/psunkad3/relvlm_runs/auto/snap/init_align_q_int_L6ft50_lr3e-4_step1000.pt,relational,alignment snapshot (passed on),align_q_int_L6ft50_lr3e-4,init_align_q_int_L6ft50_lr3e-4_step1000.pt,1000,,22.6,frozen copy used to start later runs
+/storage/ice1/4/7/psunkad3/relvlm_runs/auto/snap/init_align_q_int_L6ftc60e_lr3e-4_step2000.pt,relational,alignment snapshot (passed on),align_q_int_L6ftc60e_lr3e-4,init_align_q_int_L6ftc60e_lr3e-4_step2000.pt,2000,,22.6,frozen copy used to start later runs
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_neutral1pct_recipe/best,lora,LoRA adapter (PEFT),ivl1b_pc_neutral1pct_recipe,best,1500,0.228,38.6,best validation adapter
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_neutral1pct_recipe/final,lora,LoRA adapter (PEFT),ivl1b_pc_neutral1pct_recipe,final,,,38.6,end of training
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_neutral1pct_recipe/last,lora,LoRA adapter (PEFT),ivl1b_pc_neutral1pct_recipe,last,,,38.6,latest
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_neutral20_e1/best,lora,LoRA adapter (PEFT),ivl1b_pc_neutral20_e1,best,15000,0.203,154.1,best validation adapter
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_neutral20_e1/best_e1,lora,LoRA adapter (PEFT),ivl1b_pc_neutral20_e1,best_e1,1500,0.197,154.1,best adapter of epoch 1
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_neutral20_e1/final,lora,LoRA adapter (PEFT),ivl1b_pc_neutral20_e1,final,,,154.1,end of training
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_neutral20_e1/final_e1,lora,LoRA adapter (PEFT),ivl1b_pc_neutral20_e1,final_e1,,,154.1,adapter at the end of epoch 1
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_neutral20_e1/last,lora,LoRA adapter (PEFT),ivl1b_pc_neutral20_e1,last,,,154.1,latest
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_neutral5pct_recipe/best,lora,LoRA adapter (PEFT),ivl1b_pc_neutral5pct_recipe,best,15000,0.377,38.6,best validation adapter
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_neutral5pct_recipe/final,lora,LoRA adapter (PEFT),ivl1b_pc_neutral5pct_recipe,final,,,38.6,end of training
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_neutral5pct_recipe/last,lora,LoRA adapter (PEFT),ivl1b_pc_neutral5pct_recipe,last,,,38.6,latest
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/best,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,best,90000,0.612,38.6,best validation adapter
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/best_e1,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,best_e1,15000,0.401,38.6,best adapter of epoch 1
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/best_e2,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,best_e2,29000,0.501,38.6,best adapter of epoch 2
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/best_e3,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,best_e3,44000,0.53,38.6,best adapter of epoch 3
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/best_e4,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,best_e4,59000,0.578,38.6,best adapter of epoch 4
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/best_e6,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,best_e6,90000,0.612,38.6,best adapter of epoch 6
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/final,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,final,,,38.6,end of training
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/final_e1,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,final_e1,,,38.6,adapter at the end of epoch 1
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/final_e2,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,final_e2,,,38.6,adapter at the end of epoch 2
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/final_e3,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,final_e3,,,38.6,adapter at the end of epoch 3
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/final_e4,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,final_e4,,,38.6,adapter at the end of epoch 4
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/final_e6,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,final_e6,,,38.6,adapter at the end of epoch 6
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/ivl1b_pc_recipe_e1/last,lora,LoRA adapter (PEFT),ivl1b_pc_recipe_e1,last,,,38.6,latest
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/overfit_pc_ivl1b/best,lora,LoRA adapter (PEFT),overfit_pc_ivl1b,best,50,0.176,154.1,best validation adapter
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/overfit_pc_ivl1b/final,lora,LoRA adapter (PEFT),overfit_pc_ivl1b,final,,,154.1,end of training
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/overfit_pc_ivl1b/last,lora,LoRA adapter (PEFT),overfit_pc_ivl1b,last,,,154.1,latest
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/overfit_pc_qwen/best,lora,LoRA adapter (PEFT),overfit_pc_qwen,best,25,0.166,266.1,best validation adapter
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/overfit_pc_qwen/last,lora,LoRA adapter (PEFT),overfit_pc_qwen,last,,,266.1,latest
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_neutral1pct_recipe/best,lora,LoRA adapter (PEFT),qwen_pc_neutral1pct_recipe,best,2750,0.244,66.6,best validation adapter
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_neutral1pct_recipe/final,lora,LoRA adapter (PEFT),qwen_pc_neutral1pct_recipe,final,,,66.6,end of training
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_neutral1pct_recipe/last,lora,LoRA adapter (PEFT),qwen_pc_neutral1pct_recipe,last,,,66.6,latest
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_neutral20_e1/best,lora,LoRA adapter (PEFT),qwen_pc_neutral20_e1,best,2000,0.209,266.1,best validation adapter
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_neutral20_e1/final,lora,LoRA adapter (PEFT),qwen_pc_neutral20_e1,final,,,266.1,end of training
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_neutral20_e1/last,lora,LoRA adapter (PEFT),qwen_pc_neutral20_e1,last,,,266.1,latest
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_neutral5pct_recipe/best,lora,LoRA adapter (PEFT),qwen_pc_neutral5pct_recipe,best,14000,0.534,66.6,best validation adapter
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_neutral5pct_recipe/final,lora,LoRA adapter (PEFT),qwen_pc_neutral5pct_recipe,final,,,66.6,end of training
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_neutral5pct_recipe/last,lora,LoRA adapter (PEFT),qwen_pc_neutral5pct_recipe,last,,,66.6,latest
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/best,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,best,72000,0.821,66.6,best validation adapter
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/best_e1,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,best_e1,15000,0.567,66.6,best adapter of epoch 1
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/best_e2,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,best_e2,30000,0.689,66.6,best adapter of epoch 2
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/best_e3,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,best_e3,44000,0.74,66.6,best adapter of epoch 3
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/best_e4,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,best_e4,60000,0.816,66.6,best adapter of epoch 4
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/best_e5,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,best_e5,72000,0.821,66.6,best adapter of epoch 5
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/final,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,final,,,66.6,end of training
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e1,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,final_e1,,,66.6,adapter at the end of epoch 1
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e2,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,final_e2,,,66.6,adapter at the end of epoch 2
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e3,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,final_e3,,,66.6,adapter at the end of epoch 3
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e4,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,final_e4,,,66.6,adapter at the end of epoch 4
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/final_e5,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,final_e5,,,66.6,adapter at the end of epoch 5
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/qwen_pc_recipe_e1/last,lora,LoRA adapter (PEFT),qwen_pc_recipe_e1,last,,,66.6,latest
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/speedtest_h200_ivl1b/final,lora,LoRA adapter (PEFT),speedtest_h200_ivl1b,final,,,154.1,end of training
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/speedtest_h200_ivl1b/last,lora,LoRA adapter (PEFT),speedtest_h200_ivl1b,last,,,154.1,latest
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/speedtest_h200_qwen/final,lora,LoRA adapter (PEFT),speedtest_h200_qwen,final,,,266.1,end of training
+/storage/ice1/4/7/psunkad3/vlm_lora_pc_runs/speedtest_h200_qwen/last,lora,LoRA adapter (PEFT),speedtest_h200_qwen,last,,,266.1,latest

@@ -1,5 +1,7 @@
 # relvlm: a relational-bottleneck branch (Slot Attention → Abstractor) feeding a frozen VLM
 
+> In this repo: run from this folder; the commands below use the original PACE paths. Path-free Slurm copies are in `../slurm_portable/relational/slurm/`; checkpoints are listed in `../00_START_HERE/CHECKPOINTS.md`.
+
 Built from scratch after the "Implementation & Working Pipeline 2" diagram. Backbones: `Qwen/Qwen3-VL-2B-Instruct`
 and `OpenGVLab/InternVL3_5-1B-HF` (the same two models as the `vlm_lora_pc` LoRA baseline). Runs go to
 `~/scratch/relvlm_runs`. Nothing here is committed anywhere.
