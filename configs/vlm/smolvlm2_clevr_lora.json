@@ -1,0 +1,10 @@
+{
+  "extends": "_pgm_base.json",
+  "model_id": "smolvlm2",
+  "epochs": 10,
+  "data_order": "python_epoch",
+  "val_every": 200,
+  "train_mode": "lora",
+  "train_list": null,
+  "val_list": null
+}

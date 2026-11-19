@@ -1,0 +1,6 @@
+{
+  "extends": "_4k_base.json",
+  "train_mode": "module",
+  "extension": "rca_plugin",
+  "correction_scale": 0.01
+}

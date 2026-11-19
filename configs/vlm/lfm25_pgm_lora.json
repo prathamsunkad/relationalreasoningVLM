@@ -1,0 +1,4 @@
+{
+  "extends": "_pgm_base.json",
+  "train_mode": "lora"
+}

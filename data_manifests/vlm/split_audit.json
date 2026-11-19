@@ -1,0 +1,10 @@
+{
+  "train240k_count": 240000,
+  "original_order_verified": true,
+  "train4096_count": 4096,
+  "train4096_labels_match_shared240k": true,
+  "validation1000_ids_match_existing_shared_split": true,
+  "source_selection_sha256": "98ad5453243df19420c77aadad38a5da451fe831ada995d4dd0fa1c911e1b611",
+  "shared_train_list_sha256": "fa7896af29d58c536a25823619418feb2492dd95bbff86b10e2aeb8c8af5f959",
+  "note": "The shared 240k list identifies itself as exported from our train.jsonl; original_order is contiguous. The locally available 4096 subset labels and all 1000 validation IDs were independently matched. Full 240k manifest/image parity still requires external dataset files."
+}

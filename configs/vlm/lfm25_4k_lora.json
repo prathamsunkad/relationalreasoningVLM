@@ -1,0 +1,6 @@
+{
+  "extends": "_4k_base.json",
+  "train_mode": "lora",
+  "extension": "none",
+  "correction_scale": 1.0
+}
