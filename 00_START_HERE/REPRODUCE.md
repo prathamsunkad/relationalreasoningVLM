@@ -125,3 +125,7 @@ Zero-shot, LoRA training and the 200k-test evaluation are described in the front
 bash slurm/run_test_eval.sh Qwen/Qwen3-VL-2B-Instruct qwen_pc_recipe_e1 final_e4 _check    # 28 shards + merge
 sbatch --export=ALL,MODEL_ID=Qwen/Qwen3-VL-2B-Instruct,TAG=my_run,REGIME=neutral,TRAIN_SAMPLES=60000,EPOCHS=4 slurm/train.sbatch
 ```
+
+## LFM / SmolVLM / SpatialEvo and additional architectures
+
+See [VLM_INTEGRATION.md](../docs/VLM_INTEGRATION.md) for the shared protocol switch, exact split lists, checkpoint rules, frozen/joint module modes and portable launchers. Existing commands above keep their candidate-scoring defaults.

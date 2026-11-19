@@ -17,6 +17,24 @@
       "source": "benchmarks/vlm_bench/abstractor_memory.py",
       "source_sha256": "6012065dbb52cef0eb46db43480a2fe8d3759b8353e3626772eeb731b8504432",
       "destination": "pgmvlm/extensions/abstractor_memory.py"
+    },
+    {
+      "source": "benchmarks/vlm_bench/data.py",
+      "source_sha256": "3ae594eed68a6f6984e9c5543b9cba1eef2c882e7f99006f0b4930cd286c8d65",
+      "destination": "pgmvlm/manifests.py",
+      "notes": "Portable preparation/rendering and prompt logic, with package-local imports."
+    },
+    {
+      "source": "benchmarks/cluster/storage_guard.py",
+      "source_sha256": "935f728443f34ec6ce4d30cf07730da81ac69b92d59a41f95f320b5ebd61c5e4",
+      "destination": "pgmvlm/storage.py",
+      "notes": "Quota reporting/headroom checks only; deletion/pruning excluded."
+    },
+    {
+      "source": "benchmarks/vlm_bench/abstractor_diagnostic.py",
+      "source_sha256": "8c883b143b145b162e78d220c915f5974ca549c3d172af7df2437f328bd21717",
+      "destination": "pgmvlm/extensions/probe_diagnostics.py",
+      "notes": "Reusable depth/readout kernels; original campaign orchestration excluded."
     }
   ]
 }

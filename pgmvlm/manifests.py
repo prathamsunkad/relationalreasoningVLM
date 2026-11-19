@@ -1,7 +1,7 @@
 """Convert the official PGM and rendered OCRA CLEVR-ART formats to JSONL.
 
 This module never downloads data, renders 3D scenes, or passes symbolic labels to
-the model. See docs/DATASETS.md for acquisition and protocol details.
+the model. See docs/VLM_INTEGRATION.md for external-data and protocol details.
 """
 
 from __future__ import annotations

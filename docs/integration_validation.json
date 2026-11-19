@@ -1,0 +1,117 @@
+{
+  "date": "2026-11-19",
+  "target_base": "e256309bd30abfafd97e4c161a6cf970780e2433",
+  "device": "CPU",
+  "torch": "2.5.1",
+  "python": "3.12.2",
+  "scope": "Tiny randomly initialized native models and synthetic inputs; no pretrained weights or question images downloaded.",
+  "known_environment_difference": "The original slot suite has one import failure under Transformers 5.1.0 (vision_utils). The final branch passes all 39 slot cases with target Transformers 5.17.0 / PEFT 0.21.2. The expected adapter-rank rejection tracebacks in the slot CLI tests are negative tests. Neither environment used the exact production CUDA/PyTorch stack.",
+  "covered_behaviors": [
+    "original Qwen3/InternVL candidate layouts, scores, gradients and CLI",
+    "native LFM answer loss, prompt masking and cached generation",
+    "SmolVLM/Qwen2.5-VL language LoRA gradients, frozen base and adapter reload",
+    "original five LFM probes, RCA plugin and RCA memory",
+    "frozen module and joint LoRA/module train-resume-evaluate",
+    "stage transition initializes learned module while adding fresh LoRA",
+    "bitwise checkpoint replay including dropout and two CPU ranks",
+    "distributed gradients/Adam equivalence to a single global batch",
+    "CLEVR choice vocabularies, manifest image checksums and safe paths",
+    "recipe inheritance and CLI overrides",
+    "evaluation resume rejects changed protocol/settings"
+  ],
+  "not_verified": [
+    "Full pretrained-model accuracy through the refactored runner",
+    "Full real processor/tokenizer behavior for every downloaded model revision",
+    "NCCL/H200 throughput and production CUDA dependency stacks",
+    "Full external 240k data/image parity beyond the recorded split-list audit",
+    "Historical optimizer/checkpoint container conversion (not implemented)",
+    "PACE quota commands against live storage (transferred, not executed during integration)"
+  ],
+  "tested_code_commit": "b9dbd036b173fe9638869783725bcda95dec8744",
+  "compatibility_checks": [
+    {
+      "name": "original_lora_pipeline",
+      "command": "python tests/test_pipeline.py",
+      "passed": 22,
+      "transformers": "5.1.0",
+      "peft": "0.18.1",
+      "log_sha256": "7dbd21c302e54138eac700a71136797046fa6ae66e7d7af71fc0b541dab3c946"
+    },
+    {
+      "name": "original_slot_pipeline",
+      "command": "cd relational && python tests/test_tiny.py",
+      "passed": 34,
+      "transformers": "5.17.0",
+      "peft": "0.21.2",
+      "log_sha256": "97d8d496f77395e170c0fd8492c44e8b058ba01cadd0dd24944760261e196496"
+    },
+    {
+      "name": "integration_suite",
+      "command": "python -m unittest discover -s tests -v",
+      "passed": 46,
+      "transformers": "5.1.0",
+      "peft": "0.18.1",
+      "log_sha256": "6ee8add4703bde003764d4d3902dce1d96cb6b90dad0be22b3cf0d0602cf6064"
+    },
+    {
+      "name": "additional_native_families",
+      "command": "python -m unittest discover -s tests -p test_native_families.py -v",
+      "passed": 1,
+      "transformers": "5.1.0",
+      "peft": "0.18.1",
+      "log_sha256": "59c93c885238a9b515522bc4274dd073dc9f808b6351344202f92ab443c6249f"
+    },
+    {
+      "name": "integration_newer_libraries",
+      "command": "python -m unittest discover -s tests -v",
+      "passed": 43,
+      "transformers": "5.17.0",
+      "peft": "0.21.2",
+      "log_sha256": "7230045bcd29cbb11c5aab276cb4ba9db3c07f595a56ecba6089f8994a6b284a"
+    },
+    {
+      "name": "distributed_newer_libraries",
+      "command": "python -m unittest discover -s tests -p test_distributed_cli.py -v",
+      "passed": 1,
+      "transformers": "5.17.0",
+      "peft": "0.21.2",
+      "log_sha256": "7abe99e8bbf28d863a0c07f30fe57816d1fd918bfc608a322edce9f080578f1a"
+    }
+  ],
+  "checks": [
+    {
+      "name": "original_lora_pipeline",
+      "command": "python tests/test_pipeline.py",
+      "passed": 22,
+      "transformers": "5.17.0",
+      "peft": "0.21.2",
+      "log_sha256": "f3a786598ce307f8bc7d89dc1f3dd1665c42770d5a8d1efea8450936bf8e19d7"
+    },
+    {
+      "name": "original_slot_pipeline",
+      "command": "cd relational && python tests/test_tiny.py",
+      "passed": 39,
+      "transformers": "5.17.0",
+      "peft": "0.21.2",
+      "log_sha256": "d95ae7fe0a474d09037473d5b310421a5c11a8160fd7d038009deb4d66e001ca"
+    },
+    {
+      "name": "integration_suite",
+      "command": "python -m unittest discover -s tests -v",
+      "passed": 47,
+      "transformers": "5.17.0",
+      "peft": "0.21.2",
+      "log_sha256": "75f3ce7fdc9e88012bfdd79f07516a0a7ca9d4adfe6220e29bbd4e044367b23e"
+    }
+  ],
+  "final_checks_passed": 108,
+  "additional_checks": [
+    "All recipe inheritance chains resolve",
+    "All changed Python files parse",
+    "Both portable shell launchers pass bash -n",
+    "git diff --check clean",
+    "No integration changes under relational/",
+    "No changed file over 1 MiB",
+    "No CodeGraph files or credential patterns in the integration diff"
+  ]
+}
