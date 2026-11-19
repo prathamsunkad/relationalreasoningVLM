@@ -1,0 +1,13 @@
+{
+ "split": "idrules_cand",
+ "rows": 10000,
+ "images": 40000,
+ "kinds": {
+  "cand": 10000
+ },
+ "source": "/home/hice1/psunkad3/scratch/clevr_art_data/clevr-art-ood-test-seed1-v1/clevr-art-idrules-test-full.jsonl",
+ "scene_size": [
+  320,
+  240
+ ]
+}

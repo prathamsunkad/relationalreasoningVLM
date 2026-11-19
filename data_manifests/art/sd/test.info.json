@@ -1,0 +1,12 @@
+{
+ "split": "test",
+ "rows": 10000,
+ "images": 10000,
+ "kinds": {
+  "binary": 10000
+ },
+ "task": "sd",
+ "trials": 10000,
+ "copies": 1,
+ "scale": 2
+}

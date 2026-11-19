@@ -5,7 +5,8 @@ baselines, LoRA fine-tuning with per-candidate scoring, and a relational branch 
 connector) feeding the VLM. Models: `Qwen/Qwen3-VL-2B-Instruct` (main) and `OpenGVLab/InternVL3_5-1B-HF`.
 
 **New here? Start with [`00_START_HERE/`](00_START_HERE):** where everything is, every experiment with its runs,
-code and results ([`EXPERIMENTS.md`](00_START_HERE/EXPERIMENTS.md)), current status ([`STATUS.md`](00_START_HERE/STATUS.md))
+code and results ([`EXPERIMENTS.md`](00_START_HERE/EXPERIMENTS.md)), data ([`DATA.md`](00_START_HERE/DATA.md)), every setting and assumption
+([`CONDITIONS_AND_ASSUMPTIONS.md`](00_START_HERE/CONDITIONS_AND_ASSUMPTIONS.md)), current status ([`STATUS.md`](00_START_HERE/STATUS.md))
 and how to reproduce it ([`REPRODUCE.md`](00_START_HERE/REPRODUCE.md)).
 
 ## Results (PGM neutral, chance 12.5%)
@@ -36,7 +37,7 @@ the approaches that failed).
 
 | Path | What |
 |---|---|
-| `00_START_HERE/` | the guide: map, experiment index, status, reproduction |
+| `00_START_HERE/` | the guide: map, experiment index, data, conditions and assumptions, status, reproduction |
 | `pgmvlm/` | shared core: PGM loading and rendering (`data.py`), model loading, LoRA and Yes/No candidate scoring (`models.py`), evaluation loop (`evalcore.py`), LR schedules (`common.py`) |
 | `lora/` | `train_lora.py` (resumable LoRA training), `eval_vlm.py` (sharded test evaluation + merge) |
 | `zeroshot/` | zero-shot inference for PGM and CLEVR-ART + their job scripts |
@@ -48,6 +49,8 @@ the approaches that failed).
 | `results/` | every run's settings and training log, per-problem test outputs, tables, figures (no weights, no data) |
 | `docs/` | experiment write-ups, protocol comparison with the Slot Abstractor paper |
 | `share/` | building the adapter bundle shared with collaborators |
+| `legacy/` | the original LoRA code that produced the LoRA results |
+| `data_manifests/` | manifests of the mixture datasets (no images) |
 
 Data, model weights and run outputs are not in git. `env.sh` holds every path (data, runs, container, HF cache),
 the pinned base-model revisions and the GPU nodes to avoid.

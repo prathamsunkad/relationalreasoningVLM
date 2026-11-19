@@ -1,0 +1,10 @@
+{
+ "split": "VG_QA_two_obj",
+ "rows": 291,
+ "images": 291,
+ "kinds": {
+  "cand": 291
+ },
+ "source": "ServiceNow/whatsup_all",
+ "note": "caption_options[0] is correct; order shuffled"
+}

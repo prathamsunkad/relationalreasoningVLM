@@ -1,0 +1,10 @@
+{
+ "split": "Controlled_Images_B",
+ "rows": 408,
+ "images": 408,
+ "kinds": {
+  "cand": 408
+ },
+ "source": "ServiceNow/whatsup_all",
+ "note": "caption_options[0] is correct; order shuffled"
+}

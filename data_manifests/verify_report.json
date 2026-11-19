@@ -1,0 +1,70 @@
+{
+ "clevr_art/idrules_train.jsonl": {
+  "rows": 9500,
+  "kinds": {
+   "cand": 9500
+  },
+  "seqs_per_example": {
+   "4": 9500
+  },
+  "answers": {
+   "2": 2386,
+   "1": 2378,
+   "0": 2377,
+   "3": 2359
+  },
+  "image_sizes": {
+   "(320, 240)": 24
+  }
+ },
+ "clevr_art/idrules_val.jsonl": {
+  "rows": 500,
+  "kinds": {
+   "cand": 500
+  },
+  "seqs_per_example": {
+   "4": 500
+  },
+  "answers": {
+   "1": 136,
+   "2": 128,
+   "3": 127,
+   "0": 109
+  },
+  "image_sizes": {
+   "(320, 240)": 24
+  }
+ },
+ "clevr_art/rmts_train.jsonl": {
+  "rows": 9500,
+  "kinds": {
+   "cand": 9500
+  },
+  "seqs_per_example": {
+   "2": 9500
+  },
+  "answers": {
+   "1": 4792,
+   "0": 4708
+  },
+  "image_sizes": {
+   "(320, 240)": 12
+  }
+ },
+ "clevr_art/rmts_val.jsonl": {
+  "rows": 500,
+  "kinds": {
+   "cand": 500
+  },
+  "seqs_per_example": {
+   "2": 500
+  },
+  "answers": {
+   "0": 258,
+   "1": 242
+  },
+  "image_sizes": {
+   "(320, 240)": 12
+  }
+ }
+}

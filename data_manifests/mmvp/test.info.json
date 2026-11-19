@@ -1,0 +1,10 @@
+{
+ "split": "test",
+ "rows": 300,
+ "images": 300,
+ "kinds": {
+  "letter": 300
+ },
+ "source": "MMVP/MMVP",
+ "note": "report pair accuracy too (both questions of a pair right)"
+}

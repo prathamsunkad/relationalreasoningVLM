@@ -1,0 +1,12 @@
+{
+ "split": "train",
+ "rows": 8640,
+ "images": 34560,
+ "kinds": {
+  "cand": 8640
+ },
+ "task": "idrules",
+ "trials": 8640,
+ "copies": 1,
+ "scale": 2
+}

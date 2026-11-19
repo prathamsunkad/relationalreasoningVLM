@@ -1,0 +1,9 @@
+{
+ "split": "val (test answers are hidden)",
+ "rows": 1901,
+ "images": 1901,
+ "kinds": {
+  "letter": 1901
+ },
+ "source": "BLINK-Benchmark/BLINK"
+}

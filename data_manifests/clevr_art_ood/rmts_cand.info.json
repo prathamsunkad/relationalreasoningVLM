@@ -1,0 +1,13 @@
+{
+ "split": "rmts_cand",
+ "rows": 10000,
+ "images": 20000,
+ "kinds": {
+  "cand": 10000
+ },
+ "source": "/home/hice1/psunkad3/scratch/clevr_art_data/clevr-art-ood-test-seed1-v1/clevr-art-rmts-test-full.jsonl",
+ "scene_size": [
+  320,
+  240
+ ]
+}

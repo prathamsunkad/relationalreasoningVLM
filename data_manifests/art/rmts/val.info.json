@@ -1,0 +1,12 @@
+{
+ "split": "val",
+ "rows": 480,
+ "images": 960,
+ "kinds": {
+  "cand": 480
+ },
+ "task": "rmts",
+ "trials": 480,
+ "copies": 1,
+ "scale": 2
+}

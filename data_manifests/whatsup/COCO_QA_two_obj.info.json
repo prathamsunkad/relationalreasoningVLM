@@ -1,0 +1,10 @@
+{
+ "split": "COCO_QA_two_obj",
+ "rows": 440,
+ "images": 440,
+ "kinds": {
+  "cand": 440
+ },
+ "source": "ServiceNow/whatsup_all",
+ "note": "caption_options[0] is correct; order shuffled"
+}

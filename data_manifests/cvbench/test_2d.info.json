@@ -1,0 +1,9 @@
+{
+ "split": "test_2d",
+ "rows": 1438,
+ "images": 1438,
+ "kinds": {
+  "letter": 1438
+ },
+ "source": "nyu-visionx/CV-Bench"
+}

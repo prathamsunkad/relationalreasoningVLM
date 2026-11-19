@@ -6,6 +6,8 @@ This folder is the map of the repo. Read this page first, then:
 |---|---|
 | [`EXPERIMENTS.md`](EXPERIMENTS.md) | Every experiment we ran (zero-shot, LoRA baselines, Stage 0, branch alone, H1–H13, A1, A2): its runs, the code and launcher, where its results and figure are, and its headline number |
 | [`STATUS.md`](STATUS.md) | What is finished, what is still training, what launches by itself next, and the open decisions (as of Nov 19, 2026) |
+| [`DATA.md`](DATA.md) | Every dataset (PGM and the mixture), the exact splits and subsets, the mixture weights, and how the code loads them |
+| [`CONDITIONS_AND_ASSUMPTIONS.md`](CONDITIONS_AND_ASSUMPTIONS.md) | Every recipe's hyperparameters, how results were measured, the assumptions and untested choices, and the caveats |
 | [`REPRODUCE.md`](REPRODUCE.md) | Setup on PACE, data, which checkpoints each step needs, the exact command for any run, and how to rebuild every table and figure |
 
 The full write-ups are in [`../docs/`](../docs): [`relational_deep_dives.md`](../docs/relational_deep_dives.md)
@@ -37,6 +39,8 @@ and [`experiments.md`](../docs/experiments.md) (zero-shot and LoRA baselines).
 | `tools/` | Data prep, plots (`plot_curves.py` for LoRA, `plot_relational.py` for the branch), `rerun_cmd.py` (exact command of any relational run), `unpack_results.sh` |
 | `tests/` | CPU tests for the baseline code on tiny random models |
 | `share/` | Builder for the adapter bundle shared with collaborators |
+| `legacy/vlm_lora_pc/` | The original LoRA code that produced every LoRA result (since reorganised into `pgmvlm/` + `lora/`) |
+| `data_manifests/` | Gzipped manifests of every mixture dataset (prompts, answers, image references, panel boxes) and the loader check report; images are not included |
 | **Results (no weights, no data)** | |
 | `results/zeroshot/` | Zero-shot summary (`zeroshot_summary.csv`) and per-problem outputs for every PGM and CLEVR-ART run (`per_problem/*.json.gz`) |
 | `results/lora/` | LoRA results table (`lora_pgm_results.md`), curves, validation-loss JSON; `run_records/<run>/` (config + training log for every LoRA run, including 1% and 5% data); `test_200k/<eval>/` (summary + config of every test evaluation; per-problem records for the final adapters) |
@@ -46,7 +50,7 @@ and [`experiments.md`](../docs/experiments.md) (zero-shot and LoRA baselines).
 | `results/relational/branchoff_val1000/` | The H8 branch-off check |
 | `results/relational/job_log/` | `night_queue_2026-11-08.txt`: every Slurm submission (job id, run, all flags, why); `priority.json` (scheduling tiers); run inventory |
 | `results/relational/snapshots/` | Provenance of each branch snapshot (which run and step it came from) |
-| `results/splits/` | The 1,000 shared validation puzzles |
+| `results/splits/` | Exact PGM file lists: the shared 240k selection, the 60k and 12k subsets, validation, the 200k test list, the 1,000 validation and 5,000 test puzzles |
 | `results/plots/` | All figures (listed in `EXPERIMENTS.md`) |
 | `docs/` | Write-ups (above) and the protocol comparison with the Slot Abstractor paper |
 

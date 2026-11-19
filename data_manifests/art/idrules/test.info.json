@@ -1,0 +1,12 @@
+{
+ "split": "test",
+ "rows": 10000,
+ "images": 40000,
+ "kinds": {
+  "cand": 10000
+ },
+ "task": "idrules",
+ "trials": 10000,
+ "copies": 1,
+ "scale": 2
+}

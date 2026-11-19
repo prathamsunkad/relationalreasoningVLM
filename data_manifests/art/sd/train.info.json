@@ -1,0 +1,12 @@
+{
+ "split": "train",
+ "rows": 4000,
+ "images": 4000,
+ "kinds": {
+  "binary": 4000
+ },
+ "task": "sd",
+ "trials": 40,
+ "copies": 100,
+ "scale": 2
+}

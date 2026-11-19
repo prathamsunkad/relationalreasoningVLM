@@ -1,0 +1,12 @@
+{
+ "split": "val",
+ "rows": 360,
+ "images": 1440,
+ "kinds": {
+  "cand": 360
+ },
+ "task": "dist3",
+ "trials": 360,
+ "copies": 1,
+ "scale": 2
+}
