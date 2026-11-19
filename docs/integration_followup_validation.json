@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-19T23:22:14.381384+00:00",
+  "branch": "merged-yiran",
+  "device": "CPU",
+  "base_integration_commit": "0d30c4d94cb93ae8862a7d87a781b92731ce9615",
+  "primary_runtime": {
+    "python": "3.12.2",
+    "torch": "2.5.1",
+    "transformers": "5.17.0",
+    "peft": "0.21.2"
+  },
+  "historical_runtime": {
+    "transformers": "5.1.0",
+    "peft": "0.18.1"
+  },
+  "primary_checks_passed": 123,
+  "checks": [
+    {
+      "name": "expanded_integration_suite",
+      "command": "python -m unittest discover -s tests -v",
+      "passed": 61,
+      "log_sha256": "23af42a2834b15e0525bd87db6d86f773547622afad4034a2ca2ee2276528f26"
+    },
+    {
+      "name": "matched_initialization",
+      "command": "python -m unittest discover -s tests -p test_matched_initialization.py -v",
+      "passed": 1,
+      "log_sha256": "5b19d43158cb4e7afd6232a14f4ae7145eb60f7feeb06b83ae724c85f913c072"
+    },
+    {
+      "name": "original_lora_pipeline",
+      "command": "python tests/test_pipeline.py",
+      "passed": 22,
+      "log_sha256": "dcbb11b4cdd16aa072f0276e3a2ef5497b1b6dafe36ea020e9f185ffc1715cb1"
+    },
+    {
+      "name": "original_slot_pipeline",
+      "command": "cd relational && python tests/test_tiny.py",
+      "passed": 39,
+      "log_sha256": "44bc7d793f4bc369bc4c38585f3c46a3405f2dea0f94bee29f8e7d6bd8f01116"
+    },
+    {
+      "name": "resume_recheck_after_schedule_compatibility",
+      "command": "python -m unittest test_distributed_cli test_signal_resume -v",
+      "passed": 2,
+      "log_sha256": "7240d1a4aa5476285d32623adfda66436d8ecfe80a9b7f1b3cf24c283b0623d5"
+    },
+    {
+      "name": "final_checkpoint_boundary_checks",
+      "command": "python -m unittest test_legacy_checkpoints test_checkpoint_recovery -v",
+      "passed": 10,
+      "log_sha256": "349771d29eb9c73c7a7823255b65eefcc248493d4ee1d7c1526f92a86b5d86ac"
+    },
+    {
+      "name": "historical_library_checkpoint_compatibility",
+      "command": "python -m unittest test_legacy_checkpoints test_checkpoint_recovery -v",
+      "passed": 10,
+      "log_sha256": "e8fd91512ba3e340306941ac5914277bd153639f0ca9888fef74222402c44834"
+    }
+  ],
+  "source_sha256": {
+    "lora/eval_vlm.py": "86132541a31c13c4365018709402a9e417e77730d831d5f4f7db6424cd25f09e",
+    "lora/train_lora.py": "37cf38949a49bfd1ddb006c52eeb96989ad15da42cf5bd21c4400fb29c5c518e",
+    "pgmvlm/checkpoints.py": "af25164f69d3c9a7852b231a9e9de780a813339b8835880b75204d22eae03c7c",
+    "pgmvlm/evalcore.py": "390eb4815e8fdba1efd59b1368cdc3a535b5db123e4deb22e8019a11d2a9df84",
+    "pgmvlm/extensions/__init__.py": "08022bd18bff189e1e6d2473a4cbbfe02175bcc400a6ef56500dad68cc6863f1",
+    "pgmvlm/extensions/locations.py": "d22ea746c420d72abe0e08cd3bdee7ab74e531c51fe528873ddcb2f9d8657ee9",
+    "pgmvlm/extensions/relational.py": "3786f59058ccc7c042354e4aa0437a96df0e36d396e731eeae52358a0e1fab06",
+    "pgmvlm/legacy_checkpoints.py": "2f8a66c515e296f2628da3116ff7a09273218f325a5037c381b75d6309a1fc5f",
+    "pgmvlm/panels.py": "4913ad033d45756ed8a2ac463ea26259c5b0ef5c632e74f656b412622363498d",
+    "pgmvlm/protocols.py": "7db03d3b3ac146e31830591db9ba8c9207b9bb01959d962def8c587228ecba73",
+    "pgmvlm/runtime.py": "f48bb515be9a1b03e8c26b3d4e8016a69b515e04c6e5750b88f0271689c6cf0e",
+    "pgmvlm/shutdown.py": "4334bc60012e83d5b43447e0f51c6c59ae571f3b25190329fa126fce8235796f",
+    "slurm_portable/slurm/vlm_train.sbatch": "f957bdffcba5a2b4c628f359b89e78221e6e59ca8549d5466ec5b6420c157670",
+    "tests/test_ablation_controls.py": "b3e4c11578764973e600fbb2ff60961e629cca2a04c9b5f542a255033d7ac8da",
+    "tests/test_checkpoint_recovery.py": "6b67b88579731fb6356d00b1b2eadcb9c35db983a5b62eeabf8ffdfd99a546d4",
+    "tests/test_legacy_checkpoints.py": "4ed62036de1c0eb6590362ffeb75ea88eafd6dc23c33293f4f6dd15aa158f941",
+    "tests/test_matched_initialization.py": "58999c880743192fd2488ce0e01727e92596be3aabfb47ce16ac51fc9e4b62f0",
+    "tests/test_protocols.py": "262b7fe2bfa01a50966f9a83fcaf2f18ac115045304c7dd1873a1c714575b62a",
+    "tests/test_relational.py": "20bed5d5a61326fa53f6bcdf041091520b5c13f842d9f5d723e6bf37e8e105b2",
+    "tests/test_signal_resume.py": "97663ef9349088e1bdd41cd9b9a96f2b195b4896ca42ccf72067c08a55982663",
+    "tools/convert_vlm_checkpoint.py": "090c97d4656a2c500c27e41d96962c5cf615ac8bb7bcfb4f2f3c3e97f5e957aa",
+    "tools/init_matched_probes.py": "8ab2e5277052cef2493b26cb47cd51c2bd72c0bae4bb404ab6eec571615f346f"
+  },
+  "coverage": [
+    "Historical weights convert without loading the pretrained backbone; native tiny-model logits preserved",
+    "Original five probes plus plugin and memory bypass restore native logits/cached generation",
+    "Separate panels preserve all 16 native PGM panel bytes/order",
+    "Interrupted/corrupt checkpoints recover the previous committed state and rewind logs/best selection",
+    "SIGUSR1 continuation and two-rank resume match uninterrupted trainable weights exactly",
+    "Readers protect in-use generations from retention; concurrent writers are excluded",
+    "Original explicit learning-rate restarts still work",
+    "Matched depth/readout/location initialization shares common tensors"
+  ],
+  "limitations": [
+    "Historical campaign optimizer/RNG conversion is not implemented; imported weights start a new optimizer stage",
+    "Tests use tiny native models and synthetic inputs; full pretrained accuracy is not re-established",
+    "The queued H200 job 7179298 uses the earlier 0d30c4d snapshot and does not validate these follow-up commits",
+    "The shared diagnostic runner recomputes features rather than using the old cached-feature execution path"
+  ]
+}

@@ -66,11 +66,11 @@ python lora/eval_vlm.py --protocol answer_letter --model_id lfm25 \
   --out_dir "$RUNS/lfm25-rmts-test"
 ```
 
-`best/`, `last/`, and `final/` contain trainable weights, not another copy of the VLM. `state.pt` holds optimizer/RNG state. `contract.json` identifies the data order, exact ID lists, model and objective; resuming with a different contract fails. `metrics.jsonl`, `best.json`, and `args.json` explain training progress and selection. Checkpoint hashes detect a mismatch between latest weights and optimizer state. An interrupted save is reported rather than silently resumed with mismatched state; retain recovery copies for important long runs.
+`best/`, `last/`, and `final/` contain trainable weights, not another copy of the VLM. `state.pt` holds optimizer/RNG state. `contract.json` identifies the data order, exact ID lists, model and objective; resuming with a different contract fails. `metrics.jsonl`, `best.json`, and `args.json` explain training progress and selection. Checkpoints now commit weights and optimizer/RNG state together, retaining a verified previous generation for recovery. See [checkpoint import and recovery](CHECKPOINTS_AND_RECOVERY.md).
 
 `--select_by accuracy_loss` chooses highest validation accuracy, breaking ties by lower validation loss; `--select_by loss` chooses lowest loss. `--early_stop_patience N` stops after N completed validation checks without the configured loss improvement. It is disabled by default. An epoch is one pass over the chosen subset; repeated epochs do not increase unique-data coverage. `position`, `python_epoch`, and `nested_first` data-order settings preserve the existing NumPy schedule, the diagnostic Python shuffle, and the original PGM first-pass ordering respectively.
 
-Historical LoRA `adapter/` directories can be evaluated with the matching base/protocol or supplied through `--init_adapter` for a new training run. The old campaign-specific optimizer files and relational checkpoint containers are **not interchangeable** with this trainer's `state.pt`/extension format. Module implementation and state-dictionary keys are retained, but historical container conversion is deferred along with checkpoint distribution.
+Historical LoRA `adapter/` directories can be evaluated with the matching base/protocol or supplied through `--init_adapter` for a new training run. The offline converter imports old relational/plugin containers for evaluation or a new optimizer stage. Campaign-specific optimizer state remains **not interchangeable** with this trainer's resume format; see [supported formats and commands](CHECKPOINTS_AND_RECOVERY.md).
 
 ## Architectural experiments
 
@@ -103,7 +103,7 @@ For extension evaluation pass the **same extension settings** used in training (
 
 The depth/readout recipes compare 2 versus 6 layers through the frozen LLM, direct classifier heads, and a classifier-only control. Location recipes modify visual tokens after blocks 2/8/12, requiring downstream attention. Correction-cap recipes bound per-question RMS correction relative to native features. `--diagnostics_every N` records activation RMS, activation gradients and trainable-parameter gradients in `gradients.jsonl`; these are pre-clipping measurements. Frozen upstream tensors can have no gradient by design. A nonzero gradient is not evidence of useful learning.
 
-The common diagnostic runner recomputes native features, unlike the old overnight diagnostic's cached-feature implementation. Individual recipes also do not automatically share the same initialized tensors across depth/readout arms; `pgmvlm/extensions/probe_diagnostics.py:make_arms` retains that historical matched-initialization helper for controlled studies. Use these distinctions when reproducing timing or attributing small differences.
+The common diagnostic runner recomputes native features, unlike the old overnight diagnostic's cached-feature implementation. Individual recipes use their own initialization unless `--init_extension` is provided. Use `tools/init_matched_probes.py` to export the original matched depth/readout and insertion-point initializations; commands are in [the recovery guide](CHECKPOINTS_AND_RECOVERY.md). Use these distinctions when reproducing timing or attributing small differences.
 
 ## PACE and parallel execution
 
@@ -143,3 +143,13 @@ python -m unittest discover -s tests -v            # new protocols, architecture
 ```
 
 `docs/integration_source.json` records imported source hashes, including files that were not committed in the original working tree. `results/vlm/` indexes historical findings and explicitly distinguishes them from validation of this refactor. No images, pretrained weights, adapters, credentials, local CodeGraph index, or bulk prediction archives are included.
+
+## Integration follow-up: checkpoint import, recovery, and ablations
+
+See [CHECKPOINTS_AND_RECOVERY.md](CHECKPOINTS_AND_RECOVERY.md) for offline historical-weight conversion, transactional resume generations, rollback, and Slurm shutdown handling. Historical optimizer conversion is intentionally not claimed.
+
+For a paired architectural bypass, rerun the same evaluation command with `--disable_extension` and a **different** output directory. The checkpoint, learned LoRA weights, inputs and all architecture settings stay identical; the added module is bypassed. This works for all five original LLM-readout probes and both RCA alternatives. Classifier-only/readout experiments have no equivalent VLM path to bypass and are rejected. Results record the bypass condition, and merging mixed conditions is rejected.
+
+For the input-format audit, add `--pgm_presentation separate` to both training and evaluation of an answer-letter base/LoRA model. The original 16 panels are cropped losslessly from the canonical PGM contact sheet and supplied as separate images with row/column and option labels. The instruction and answer supervision remain unchanged. Composite remains the default. Separate input changes tokenization and compute; it is a distinct experimental condition, not a way to reproduce our composite-input scores. It is not enabled for CLEVR or architecture hooks whose multiple-image behavior has not been validated.
+
+The follow-up validation record is [integration_followup_validation.json](integration_followup_validation.json): 123 primary CPU checks passed, plus targeted rechecks and historical-library compatibility. The previously queued GPU snapshot predates these follow-up changes.

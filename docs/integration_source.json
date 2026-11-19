@@ -35,6 +35,12 @@
       "source_sha256": "8c883b143b145b162e78d220c915f5974ca549c3d172af7df2437f328bd21717",
       "destination": "pgmvlm/extensions/probe_diagnostics.py",
       "notes": "Reusable depth/readout kernels; original campaign orchestration excluded."
+    },
+    {
+      "source": "benchmarks/vlm_bench/pgm_panel_inputs.py",
+      "source_sha256": "4913ad033d45756ed8a2ac463ea26259c5b0ef5c632e74f656b412622363498d",
+      "destination": "pgmvlm/panels.py",
+      "notes": "Lossless canonical PGM panel splitting and labeled multi-image messages."
     }
   ]
 }
