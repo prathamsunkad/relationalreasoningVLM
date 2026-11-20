@@ -1,6 +1,6 @@
-"""CPU test of exp2/sa_builder.py against the ORIGINAL Slot Abstractor scoring (slot_abstractor/run_pgm_jsonl.py).
+"""CPU test of sa_builder.py against the ORIGINAL Slot Abstractor scoring (slot_abstractor/run_pgm_jsonl.py).
 Random weights in the real checkpoint formats, a 2-layer Abstractor so it runs on a CPU (~1 min):
-    python gap_hybrid_probes/exp2/test_sa_builder.py
+    python experiments/exp2_sa_interleave/test_sa_builder.py
 Checks:
   1. the builder loads checkpoints saved the way run_pgm_jsonl.py / pretrain_slot_ae_pgm.py save them
   2. its per-candidate scores equal the original 16-panel scoring of the same puzzles (torchvision transform,
@@ -12,6 +12,8 @@ The slot initialisation noise is switched off (sigma = 0) so the two code paths 
 import os
 import sys
 import tempfile
+
+os.environ["CUDA_VISIBLE_DEVICES"] = ""   # CPU tests: hide the GPU (SLURM sets this variable on GPU nodes)
 from types import SimpleNamespace
 
 import numpy as np

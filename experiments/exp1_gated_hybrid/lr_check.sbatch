@@ -4,7 +4,7 @@
 # are ranked together at the end.
 #   cnn_fix_lr5e5   learning rate 5e-5
 #   cnn_fix_lr3e5   learning rate 3e-5
-# usage (from gap_hybrid_probes/):  mkdir -p logs && sbatch lr_check.sbatch
+# usage (from experiments/exp1_gated_hybrid/):  mkdir -p logs && sbatch lr_check.sbatch
 #SBATCH -J lr_check                           # Job name
 #SBATCH -N1 --ntasks-per-node=1               # Number of nodes and tasks
 #SBATCH --cpus-per-task=16                    # CPU cores
@@ -15,7 +15,7 @@
 #SBATCH --mail-type=END,FAIL                  # Mail preferences
 
 cd $SLURM_SUBMIT_DIR
-source ./env_local.sh || { echo "run sbatch from the gap_hybrid_probes folder (env_local.sh not found)"; exit 1; }
+source ../../env_local.sh || { echo "run sbatch from experiments/exp1_gated_hybrid (../../env_local.sh not found)"; exit 1; }
 module load anaconda3
 eval "$(conda shell.bash hook)"
 conda activate "$CONDA_ENV"

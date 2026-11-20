@@ -17,9 +17,9 @@
 #   bash run_stage0_ablation.sh            # all three steps; finished runs are skipped
 #   bash run_stage0_ablation.sh choose     # only re-print the table / re-pick
 #
-# Run from the folder holding the scripts and layout.json.
+# Run from experiments/exp1_gated_hybrid/ (pgm_gap.py and layout.json come from probes/ via ../../env_local.sh).
 # ---------------- settings ----------------
-source "${SLURM_SUBMIT_DIR:-$(cd "$(dirname "$0")" && pwd)}/env_local.sh"
+source "${SLURM_SUBMIT_DIR:-$(cd "$(dirname "$0")" && pwd)}/../../env_local.sh"
 DATA="$SHEET_DATA"                     # set in env_local.sh
 MODEL="OpenGVLab/InternVL3_5-1B-HF"
 VARIANTS="vit:0 vit:6 vit:12 vit:18 vit:-1 cnn resnet"   # vit:L = InternViT layer L (-1 = last); cnn; resnet
@@ -31,14 +31,14 @@ SEED=0
 set -euo pipefail
 STEP=${1:-all}
 OUT=ckpt/ablation
-for f in train_hybrid.py relational_fusion.py pgm_gap.py layout.json; do
-  [ -f "$f" ] || { echo "$f not found: run from the folder that holds the scripts and layout.json"; exit 1; }
+for f in train_hybrid.py relational_fusion.py "$PROBES/pgm_gap.py" "$LAYOUT"; do
+  [ -f "$f" ] || { echo "$f not found: run from experiments/exp1_gated_hybrid (layout.json belongs in probes/)"; exit 1; }
 done
 [ -f "$DATA/train.jsonl" ] || { echo "No train.jsonl in DATA=$DATA: edit the settings at the top"; exit 1; }
 
 if [[ $STEP == all || $STEP == probe ]]; then
   echo "== probe: InternViT layers"
-  python pgm_gap.py probe --data "$DATA" --layout layout.json --model "$MODEL" --split validation \
+  python "$PROBES/pgm_gap.py" probe --data "$DATA" --layout "$LAYOUT" --model "$MODEL" --split validation \
     --out runs/full --probe_layers 0,6,12,18,24 --probe_train 1000
 fi
 

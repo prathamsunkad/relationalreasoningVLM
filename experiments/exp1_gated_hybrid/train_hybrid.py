@@ -56,7 +56,10 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(os.path.dirname(HERE))
+sys.path.insert(0, os.environ.get("PROBES") or os.path.join(REPO, "probes"))   # pgm_gap.py lives in probes/
+sys.path.insert(0, HERE)
 import pgm_gap as G                      # noqa: E402  data loading, layout, prompt pieces
 import relational_fusion as RF           # noqa: E402
 
@@ -738,7 +741,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("mode", choices=["stage0", "stage1", "stage2", "baseline", "eval", "cache"])
     ap.add_argument("--data", default=os.environ.get("DATA"), help="dataset root (default $DATA)")
-    ap.add_argument("--layout", default="layout.json")
+    ap.add_argument("--layout", default=os.environ.get("LAYOUT") or os.path.join(REPO, "probes", "layout.json"),
+                    help="panel boxes (default: $LAYOUT, else probes/layout.json)")
     ap.add_argument("--model", default="OpenGVLab/InternVL3_5-1B-HF")
     ap.add_argument("--out", default=None, help="checkpoint folder for this run")
     ap.add_argument("--init", help="checkpoint folder (or .pt) to start from / to evaluate")

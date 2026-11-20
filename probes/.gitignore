@@ -1,0 +1,8 @@
+# outputs of the probes (never committed)
+runs/
+attr_probe/
+real_probe/
+pvr/
+logs/
+layout_check.png
+*.log

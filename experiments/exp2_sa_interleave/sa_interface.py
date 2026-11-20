@@ -27,13 +27,13 @@ import torch.nn.functional as F
 
 def load_builder(path):
     if not path or not os.path.exists(path):
-        raise SystemExit(f"SA builder {path!r} not found: copy exp2/sa_builder_template.py, fill it in, pass --sa_builder")
+        raise SystemExit(f"SA builder {path!r} not found: pass --sa_builder (ours: sa_builder.py)")
     spec = importlib.util.spec_from_file_location("sa_builder", path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     for fn in ("build", "encode"):
         if not hasattr(mod, fn):
-            raise SystemExit(f"{path} must define {fn}() (see exp2/sa_interface.py)")
+            raise SystemExit(f"{path} must define {fn}() (see sa_interface.py)")
     return mod
 
 
@@ -89,7 +89,7 @@ class Capture:
         cap = Capture(model, {"slots": "slot_attention", "rel": "abstractor"})
         with cap:  score = model(x)
         slots, rel = cap["slots"], cap["rel"]
-    Find the module names with:  python exp2/exp2_sa_interleave.py inspect --list_modules ..."""
+    Find the module names with:  python exp2_sa_interleave.py inspect --list_modules ..."""
 
     def __init__(self, model, names, pick=None):
         self.model, self.names, self.pick = model, names, pick or {}

@@ -34,7 +34,7 @@ Stages
   eval        sharded scoring in the repo's results_shard*.json format, with --ablate none | zero |
               shuffle_cand | shuffle_puzzle; merge with  python lora/eval_vlm.py --merge_dir <out>
 
-Run from gap_hybrid_probes/ (or anywhere): the script finds the repo root two levels up.
+Run from experiments/exp2_sa_interleave/ (or anywhere): the script finds the repo root two levels up.
 """
 import argparse
 import json

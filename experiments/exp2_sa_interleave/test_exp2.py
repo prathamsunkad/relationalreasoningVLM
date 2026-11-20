@@ -1,5 +1,5 @@
 """CPU tests for Exp2 on the repo's random-weight tiny InternVL + a random stand-in SA (no downloads, ~1-2 min).
-    python gap_hybrid_probes/exp2/test_exp2.py
+    python experiments/exp2_sa_interleave/test_exp2.py
 Checks:
   1. every sequence has exactly as many <|sa|> placeholders as the connectors make tokens
   2. the hook writes the connector tokens at exactly those positions (and nowhere else)
@@ -14,6 +14,8 @@ import json
 import os
 import sys
 import tempfile
+
+os.environ["CUDA_VISIBLE_DEVICES"] = ""   # CPU tests: hide the GPU (SLURM sets this variable on GPU nodes)
 
 import numpy as np
 import torch

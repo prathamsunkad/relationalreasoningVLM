@@ -4,7 +4,7 @@
 240k set; the fine-tuned InternVL3.5-1B reaches 60.31% on test. Can InternVL use what the SA has learned, if the SA's
 object and relation embeddings are put into its prompt?
 
-Unlike the rest of `gap_hybrid_probes/`, Exp2 is built on the **repo's own InternVL fine-tuning**
+Unlike the probes and Exp1 (which use the contact sheets), Exp2 is built on the **repo's own InternVL fine-tuning**
 (`lora/train_lora.py`, `pgmvlm/`). It uses the same `.npz` data, the same 8 sequences per problem (the matrix
 completed with candidate k), the same Yes/No score, the same 8-way cross-entropy and the same adapter
 (`ivl1b_pc_recipe_e1/final_e6`). Its results are therefore directly comparable with the repo's 57.73% / 60.31% and
@@ -48,29 +48,29 @@ It is logged both with real tokens and with zero tokens (`val_acc_none`, `val_ac
 ## Setup (once)
 
 1. **Data and adapter.** The repo's `env.sh` sets `DATA` = the `.npz` folders (`$SHARED_ROOT/pgm_data`, read access via
-   `00_START_HERE/CHECKPOINTS.md`). `IVL_ADAPTER` in `../env_local.sh` = `ivl1b_pc_recipe_e1/final_e6`.
+   `00_START_HERE/CHECKPOINTS.md`). `IVL_ADAPTER` in the repo root's `env_local.sh` = `ivl1b_pc_recipe_e1/final_e6`.
    If you exported `DATA` for the contact sheets, `unset DATA` or `export NPZ_DATA=...` first.
-2. **The Slot Abstractor.** `exp2/sa_builder.py` loads our run from `slot_abstractor/`. Set `SA_WEIGHTS` in
-   `../env_local.sh` to the folder with `slot_ae_pgm20.pth.tar` and `slot_abstractor_pgm_pgm20_1gpu_d24_lr8e-05_run0_best.pth.tar`
+2. **The Slot Abstractor.** `sa_builder.py` loads our run from `slot_abstractor/`. Set `SA_WEIGHTS` in
+   the root `env_local.sh` to the folder with `slot_ae_pgm20.pth.tar` and `slot_abstractor_pgm_pgm20_1gpu_d24_lr8e-05_run0_best.pth.tar`
    (your `slotabstractor/pgm/weights`). The SA code needs `pip install einops colorlog` in `$CONDA_ENV`.
    Set `SA_ANTIALIAS=0` if the `slotabs` env has torchvision older than 0.17; this changes how panels are resized.
    (`sa_builder_template.py` is only for connecting a different Slot Abstractor.)
 3. **Check** (CPU, tiny random models, a few minutes):
-   - `python exp2/test_exp2.py`: the Exp2 pipeline;
-   - `python exp2/test_sa_builder.py`: the builder's scores equal the original `run_pgm_jsonl.py` scoring.
+   - `python test_exp2.py`: the Exp2 pipeline;
+   - `python test_sa_builder.py`: the builder's scores equal the original `run_pgm_jsonl.py` scoring.
 
-## Run (from `gap_hybrid_probes/`)
+## Run (from `experiments/exp2_sa_interleave/`)
 
 ```bash
 mkdir -p logs
-sbatch -J e2_inspect exp2/exp2.sbatch inspect          # must give ~62.8% (±1.5 with the random slot init)
-sbatch -J e2_comp    exp2/exp2.sbatch complement       # exp2_runs/complement_{val1000,test5000}/report.md
-sbatch -J e2_a       exp2/exp2.sbatch train_a
-sbatch -J e2_a_ctrl  exp2/exp2.sbatch train_a_ctrl
+sbatch -J e2_inspect exp2.sbatch inspect          # must give ~62.8% (±1.5 with the random slot init)
+sbatch -J e2_comp    exp2.sbatch complement       # exp2_runs/complement_{val1000,test5000}/report.md
+sbatch -J e2_a       exp2.sbatch train_a
+sbatch -J e2_a_ctrl  exp2.sbatch train_a_ctrl
 # when exp2a has a best.pt:
-sbatch -J e2_b       exp2/exp2.sbatch train_b          # 1 epoch = 15k steps; resubmit after each time-out
-sbatch -J e2_b_ctrl  exp2/exp2.sbatch train_b_ctrl
-for a in none zero shuffle_cand shuffle_puzzle; do sbatch -J e2_ev_$a exp2/exp2.sbatch eval exp2a $a; done
+sbatch -J e2_b       exp2.sbatch train_b          # 1 epoch = 15k steps; resubmit after each time-out
+sbatch -J e2_b_ctrl  exp2.sbatch train_b_ctrl
+for a in none zero shuffle_cand shuffle_puzzle; do sbatch -J e2_ev_$a exp2.sbatch eval exp2a $a; done
 ```
 
 Outputs: `exp2_runs/<run>/` contains `metrics.jsonl`, `best.pt` (connectors + settings), `best_lora/` (stage b),

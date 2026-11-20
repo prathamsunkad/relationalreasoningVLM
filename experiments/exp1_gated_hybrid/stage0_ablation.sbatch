@@ -1,7 +1,7 @@
 #!/bin/bash
 # Stage-0 slot-source ablation on PGM 20%: one job per slot source, 1 H200 each, 6 h.
 # Submit again after a time-out; unfinished variants resume from their last checkpoint, finished ones exit.
-# usage (from the folder with train_hybrid.py, relational_fusion.py, pgm_gap.py, layout.json):
+# usage (from experiments/exp1_gated_hybrid/; pgm_gap.py and layout.json come from probes/ via ../../env_local.sh):
 #   mkdir -p logs
 #   sbatch -J s0_vit_L12 stage0_ablation.sbatch 2                  # one variant as its own job
 #   for i in 0 1 2 3 4 5 6; do sbatch -J s0_$i stage0_ablation.sbatch $i; done   # all 7 as separate jobs
@@ -16,7 +16,7 @@
 #SBATCH --mail-type=BEGIN,END,FAIL            # Mail preferences
 
 cd $SLURM_SUBMIT_DIR
-source ./env_local.sh || { echo "run sbatch from the gap_hybrid_probes folder (env_local.sh not found)"; exit 1; }
+source ../../env_local.sh || { echo "run sbatch from experiments/exp1_gated_hybrid (../../env_local.sh not found)"; exit 1; }
 module load anaconda3
 eval "$(conda shell.bash hook)"
 conda activate "$CONDA_ENV"   # the env with transformers + peft
@@ -43,7 +43,7 @@ LAYER=${LAYER:--1}
 NAME=${NAMES[$i]}
 OUT=ckpt/ablation/$NAME
 
-for f in train_hybrid.py relational_fusion.py pgm_gap.py layout.json; do
+for f in train_hybrid.py relational_fusion.py "$PROBES/pgm_gap.py" "$LAYOUT"; do
   [ -f "$f" ] || { echo "$f not found in $PWD"; exit 1; }
 done
 [ -f "$DATA/train.jsonl" ] || { echo "No train.jsonl in DATA=$DATA"; exit 1; }

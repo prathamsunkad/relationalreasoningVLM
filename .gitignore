@@ -14,3 +14,12 @@ results/relational/test5000/*.json
 results/relational/overlap_val1000/*.json
 results/relational/branchoff_val1000/*.json
 logs/
+# weights, caches and run outputs anywhere in the repo
+*.pth
+*.pth.tar
+*.ckpt
+*.npy
+weights/
+ckpt/
+*_cache/
+exp2_runs/

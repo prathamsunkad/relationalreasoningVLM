@@ -14,7 +14,7 @@
 #   sbatch run_gap.sh full    # same, as a SLURM job
 #
 # ---------------- settings: edit these three lines ----------------
-source "${SLURM_SUBMIT_DIR:-$(cd "$(dirname "$0")" && pwd)}/env_local.sh"
+source "${SLURM_SUBMIT_DIR:-$(cd "$(dirname "$0")" && pwd)}/../env_local.sh"
 DATA="$SHEET_DATA"                     # set in env_local.sh
 QWEN="Qwen/Qwen3-VL-2B-Instruct"         # base model, or the path to your fine-tuned checkpoint
 INTERNVL="OpenGVLab/InternVL3_5-1B-HF"   # base model, or the path to your fine-tuned checkpoint (HF format)

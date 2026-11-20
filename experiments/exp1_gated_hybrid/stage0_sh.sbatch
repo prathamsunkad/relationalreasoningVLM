@@ -2,7 +2,7 @@
 # Stage-0 architecture search by successive halving: one job = one slot source trained up to MAX_STEPS.
 # The learning rate is flat after warmup, so the next rung simply re-runs the same variant with a larger
 # MAX_STEPS and it continues from its checkpoint. Also resubmit the same command after a time-out.
-# usage (from the folder with train_hybrid.py, relational_fusion.py, pgm_gap.py, layout.json):
+# usage (from experiments/exp1_gated_hybrid/; pgm_gap.py and layout.json come from probes/ via ../../env_local.sh):
 #   sbatch -J sh_vit_L6 stage0_sh.sbatch 1 20000        # variant 1 (vit_L6) up to 20,000 steps, seed 0
 #   for i in 0 1 2 3 4 5 6; do sbatch -J sh_$i stage0_sh.sbatch $i 20000; done      # rung 1: all variants
 #   sbatch -J sh_vit_L6_s1 stage0_sh.sbatch 1 60000 1   # a second seed (own folder ckpt/sh/seed1/)
@@ -19,7 +19,7 @@
 #SBATCH --mail-type=END,FAIL                  # Mail preferences
 
 cd $SLURM_SUBMIT_DIR
-source ./env_local.sh || { echo "run sbatch from the gap_hybrid_probes folder (env_local.sh not found)"; exit 1; }
+source ../../env_local.sh || { echo "run sbatch from experiments/exp1_gated_hybrid (../../env_local.sh not found)"; exit 1; }
 module load anaconda3
 eval "$(conda shell.bash hook)"
 conda activate "$CONDA_ENV"
@@ -51,7 +51,7 @@ read -r SRC LAYER <<< "${VARIANTS[$i]}"
 LAYER=${LAYER:--1}
 NAME=${NAMES[$i]}
 OUT=ckpt/sh_$TAG/seed$SEED/$NAME
-for f in train_hybrid.py relational_fusion.py pgm_gap.py layout.json; do
+for f in train_hybrid.py relational_fusion.py "$PROBES/pgm_gap.py" "$LAYOUT"; do
   [ -f "$f" ] || { echo "$f not found in $PWD"; exit 1; }
 done
 CACHE_FLAG=""

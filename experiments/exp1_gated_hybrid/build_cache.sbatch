@@ -1,7 +1,7 @@
 #!/bin/bash
 # Build the panel cache once (CPU only): crops every puzzle's 16 panels into uint8 arrays so training
 # skips PNG decoding / cropping / resizing. Prints the size first and stops if the disk is too small.
-# usage (from the folder with train_hybrid.py, pgm_gap.py, layout.json):  mkdir -p logs && sbatch build_cache.sbatch
+# usage (from experiments/exp1_gated_hybrid/):  mkdir -p logs && sbatch build_cache.sbatch
 #SBATCH -J build_cache                        # Job name
 #SBATCH -N1 --ntasks-per-node=1               # Number of nodes and tasks
 #SBATCH --cpus-per-task=16                    # CPU cores
@@ -11,7 +11,7 @@
 #SBATCH --mail-type=END,FAIL                  # Mail preferences
 
 cd $SLURM_SUBMIT_DIR
-source ./env_local.sh || { echo "run sbatch from the gap_hybrid_probes folder (env_local.sh not found)"; exit 1; }
+source ../../env_local.sh || { echo "run sbatch from experiments/exp1_gated_hybrid (../../env_local.sh not found)"; exit 1; }
 module load anaconda3
 eval "$(conda shell.bash hook)"
 conda activate "$CONDA_ENV"

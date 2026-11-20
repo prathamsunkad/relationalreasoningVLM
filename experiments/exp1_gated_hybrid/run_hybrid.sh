@@ -7,7 +7,7 @@
 #SBATCH --output=pgm_hybrid_%j.log
 #
 # Hybrid (InternVL + gated relational module) and its matched LoRA baseline.
-# Run from the folder holding run_hybrid.sh, train_hybrid.py, relational_fusion.py, pgm_gap.py, layout.json:
+# Run from experiments/exp1_gated_hybrid/ (pgm_gap.py and layout.json come from probes/ via ../../env_local.sh):
 #
 # Run run_stage0_ablation.sh first: it writes stage0_choice.txt (where the slots get their features),
 # which stage 0 here uses. Without it, stage 0 uses the defaults (last ViT layer, no reconstruction).
@@ -17,7 +17,7 @@
 #   sbatch run_hybrid.sh all      # resubmit the same command after a time-out: it resumes
 #
 # ---------------- settings ----------------
-source "${SLURM_SUBMIT_DIR:-$(cd "$(dirname "$0")" && pwd)}/env_local.sh"
+source "${SLURM_SUBMIT_DIR:-$(cd "$(dirname "$0")" && pwd)}/../../env_local.sh"
 DATA="$SHEET_DATA"                     # set in env_local.sh
 MODEL="OpenGVLab/InternVL3_5-1B-HF"
 SEED=0
@@ -27,8 +27,8 @@ EXTRA=""        # extra flags for every training stage, e.g. "--lora_r 16 --lora
 set -euo pipefail
 STEP=${1:-all}
 OUT=ckpt/seed$SEED
-for f in train_hybrid.py relational_fusion.py pgm_gap.py layout.json; do
-  [ -f "$f" ] || { echo "$f not found: run from the folder that holds the scripts and layout.json"; exit 1; }
+for f in train_hybrid.py relational_fusion.py "$PROBES/pgm_gap.py" "$LAYOUT"; do
+  [ -f "$f" ] || { echo "$f not found: run from experiments/exp1_gated_hybrid (layout.json belongs in probes/)"; exit 1; }
 done
 [ -f "$DATA/train.jsonl" ] || { echo "No train.jsonl in DATA=$DATA: edit the settings at the top"; exit 1; }
 

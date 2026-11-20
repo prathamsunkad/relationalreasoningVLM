@@ -1,9 +1,9 @@
-"""TEMPLATE for a Slot Abstractor other than ours. For our run (slot_abstractor/ in this repo) use exp2/sa_builder.py.
+"""TEMPLATE for a Slot Abstractor other than ours. For our run (slot_abstractor/ in this repo) use sa_builder.py.
 Connects Exp2 to a pretrained Slot Abstractor. Copy it, fill in the three TODOs, then check it:
 
-    cp exp2/sa_builder_template.py exp2/my_sa_builder.py   # edit this copy (exp2/sa_builder.py is ours)
-    python exp2/exp2_sa_interleave.py inspect --list_modules --sa_builder exp2/my_sa_builder.py --sa_ckpt $SA_CKPT
-    python exp2/exp2_sa_interleave.py inspect --sa_builder exp2/my_sa_builder.py --sa_ckpt $SA_CKPT --n 300
+    cp sa_builder_template.py my_sa_builder.py   # edit this copy (sa_builder.py is ours)
+    python exp2_sa_interleave.py inspect --list_modules --sa_builder my_sa_builder.py --sa_ckpt $SA_CKPT
+    python exp2_sa_interleave.py inspect --sa_builder my_sa_builder.py --sa_ckpt $SA_CKPT --n 300
 
 The second command scores 300 validation problems with the SA alone. It must reproduce the SA's own validation
 accuracy. If it is near 12.5%, the preprocessing below does not match what
