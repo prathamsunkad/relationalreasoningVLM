@@ -153,3 +153,7 @@ For a paired architectural bypass, rerun the same evaluation command with `--dis
 For the input-format audit, add `--pgm_presentation separate` to both training and evaluation of an answer-letter base/LoRA model. The original 16 panels are cropped losslessly from the canonical PGM contact sheet and supplied as separate images with row/column and option labels. The instruction and answer supervision remain unchanged. Composite remains the default. Separate input changes tokenization and compute; it is a distinct experimental condition, not a way to reproduce our composite-input scores. It is not enabled for CLEVR or architecture hooks whose multiple-image behavior has not been validated.
 
 The follow-up validation record is [integration_followup_validation.json](integration_followup_validation.json): 123 primary CPU checks passed, plus targeted rechecks and historical-library compatibility. The previously queued GPU snapshot predates these follow-up changes.
+
+## Input representation screen
+
+The bounded [frozen-feature input pilot](INPUT_REPRESENTATION_PILOT.md) compares whole-sheet pooling, separate panels, spatial cells, and context normalization on the same 4,096 questions. It uses a direct classifier to isolate representation from LLM writeback; it does not claim a reproduced benchmark score.
