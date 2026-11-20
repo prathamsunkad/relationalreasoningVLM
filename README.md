@@ -23,6 +23,9 @@ and how to reproduce it ([`REPRODUCE.md`](00_START_HERE/REPRODUCE.md)).
 
 Slot Abstractor paper with the same 20% of the training data: 71.25%.
 
+Zero-shot CLEVR-ART (out-of-distribution test, 10,000 puzzles each, reply prefilled with "Answer:"): RMTS 48.6% (Qwen) /
+49.1% (InternVL), chance 50%; identity rules 21.6% / 25.0%, chance 25%. Both models are at chance.
+
 **Relational branch, Qwen3-VL-2B, 5,000 test problems:**
 
 | Setting | LoRA alone | Best hybrid | Equal-steps control | Notes |
@@ -31,6 +34,10 @@ Slot Abstractor paper with the same 20% of the training data: 71.25%.
 | Full data (240k) | 81.6% (val) | 81.3-81.4% (val) | 81.3% (non-relational, val) | No gain |
 | Task mixture (30% PGM) | not run | family score 87.2 | 87.6 (non-relational) | No gain; synthetic tasks saturate at 100% |
 | 5%, branch trained on the 60k only (early checkpoint) | 52.6% | 53.7% | 53.2% | No gain; the model ignores this weaker branch |
+
+**Do the hybrids use the relation tokens? (A3, 5,000 test problems)** Zeroing them costs the best hybrid 3.9 points and
+shuffling them across candidates 8.8 (56.4% → 52.5% / 47.6%, p < 1e-15); full-data hybrids are unaffected (±0.7, they
+ignore the branch); frozen-LLM models fall to 14.6%. [`report.md`](results/relational/ablation_test5000/report.md)
 
 **Answer-letter LoRA, LFM2.5 / SmolVLM2 / SpatialEvo** (one contact-sheet image per puzzle; details and records in
 [`results/vlm/README.md`](results/vlm/README.md)):
@@ -42,7 +49,8 @@ Slot Abstractor paper with the same 20% of the training data: 71.25%.
 | SpatialEvo | 100.00% | 95.79% | 61.87% (6 epochs) |
 
 LFM relational probes (five insertion points, RCA plugin), frozen LLM or with LoRA: 12.1-13.6% on PGM validation, i.e.
-at chance ([`docs/VLM_INTEGRATION.md`](docs/VLM_INTEGRATION.md)).
+at chance; follow-up diagnostics (depth, readout, gradients) are in [`results/vlm/`](results/vlm/README.md) and
+[`docs/VLM_INTEGRATION.md`](docs/VLM_INTEGRATION.md).
 
 **Other baselines and transfer:**
 
@@ -50,6 +58,10 @@ at chance ([`docs/VLM_INTEGRATION.md`](docs/VLM_INTEGRATION.md)).
 |---|---|---|
 | Slot Abstractor trained from scratch on the same 240k puzzles | 62.8% PGM validation (epoch 64); test not run yet; paper 71.25% | [`slot_abstractor/`](slot_abstractor) |
 | LFM2.5 PGM adapter evaluated zero-shot on I-RAVEN (14,000 puzzles) | 23.1% (chance 12.5%) | [`iraven_eval/`](iraven_eval) |
+| Letter-answer LoRA from one contact-sheet image, 240k, 3 epochs | Qwen3-VL-2B 75.33%, InternVL3.5-1B 52.31% (200k test) | [`probes/README.md`](probes/README.md) |
+| Perception pilot: find the answer panel among the 8 choices, no rule needed (Qwen, zero-shot, 50 puzzles) | 78% from separate panels vs 10% from the contact sheet | [`probes/`](probes) |
+| Exp1: gated relational branch at InternVL's projector, branch alone (stage 0, 7 slot sources) | 20.4–21.6% on 10,000 held-out puzzles; InternViT layer 18 best by loss | [`experiments/exp1_gated_hybrid/`](experiments/exp1_gated_hybrid) |
+| Exp2: the Slot Abstractor's tokens interleaved into fine-tuned InternVL | not run yet | [`experiments/exp2_sa_interleave/`](experiments/exp2_sa_interleave) |
 
 Figures: [`results/plots/`](results/plots). Full write-ups: [`docs/relational_deep_dives.md`](docs/relational_deep_dives.md)
 (one section per experiment, H1-H13, A1, A2), [`docs/experiments.md`](docs/experiments.md) (zero-shot and LoRA, including

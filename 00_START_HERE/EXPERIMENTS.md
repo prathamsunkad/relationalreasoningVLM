@@ -59,6 +59,20 @@ Accuracies: val = 1,000 shared validation puzzles (±3 points); test = 5,000 tes
 | A2 | 5,000-puzzle test scoring of every model (8 jobs, 3 GPU types) | `experiments/diag_5k/diag_5k.sbatch`, `diag_5kw/`, `analyze5k.py`, `experiments/auto/wait_5k.sh` | `results/relational/test5000/report.md` | All test numbers above; figure `A2_test5000.png` |
 | A3 | Relation-token ablation (interleave runs of H4, H7–H12): score each model with its tokens zeroed, removed, shuffled across candidates, shuffled across puzzles, and reordered (multi-token runs) | `experiments/diag_ablate/diag_ablate.sbatch`, `submit_ablate.sh`, `analyze_ablate.py`; `relational/eval.py --rel_ablate` | `results/relational/ablation_test5000/report.md` | H12 LoRA-first: 56.4% → 52.5% zeroed, 47.6% shuffled (p < 1e-15); H4 full data: within ±0.7 (tokens ignored); frozen-LLM alignments: 14.6% zeroed |
 
+## Teammates' experiments
+
+Each folder's README has the commands, settings and full results.
+
+| # | Who | Experiment | Code | Results | Headline |
+|---|---|---|---|---|---|
+| T1 | Yiran | Answer-letter LoRA: LFM2.5, SmolVLM2, SpatialEvo on CLEVR-ART and PGM | `lora/` (answer-letter protocol), `configs/vlm/` | `results/vlm/README.md`, `results/vlm/run_records/` | PGM 200k test: LFM2.5 76.69%, SpatialEvo 61.87%; CLEVR-ART 89–100% |
+| T2 | Yiran | LFM relational probes (5 insertion points), RCA plugin, relational memory; diagnostics | `pgmvlm/extensions/`, `docs/VLM_INTEGRATION.md` | `results/vlm/` | 12.1–13.6% PGM val: at chance |
+| T3 | Pranav | Slot Abstractor from scratch on the same 240k puzzles | `slot_abstractor/` | `slot_abstractor/results/` | 62.8% val (epoch 64); paper 71.25% test; test not run |
+| T4 | Pranav | Letter-answer LoRA from the contact sheet; perception-vs-reasoning probes | `probes/` | `probes/README.md` | Qwen 75.33%, InternVL 52.31% (200k test); pilot: answer found 78% from panels vs 10% from the sheet |
+| T5 | Pranav | Exp1: gated relational hybrid at InternVL's projector | `experiments/exp1_gated_hybrid/` | its README | Stage 0 branch alone 20.4–21.6% held-out |
+| T6 | Pranav | Exp2: Slot Abstractor tokens interleaved into fine-tuned InternVL | `experiments/exp2_sa_interleave/` | its README | Not run yet |
+| T7 | Kun-Lin | I-RAVEN transfer of the PGM-trained LFM2.5 adapter | `iraven_eval/` | `iraven_eval/results/` | 23.1% over 14,000 puzzles (chance 12.5%); 19.5–26.0% per configuration |
+
 ## Figures in `results/plots/`
 
 | File | Shows |
