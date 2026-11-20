@@ -1,0 +1,12 @@
+{
+  "accuracy": 0.128,
+  "answer_loss": 2.083644729018211,
+  "ending_loss": 5.959090921123789e-06,
+  "greedy_accuracy": 0.128,
+  "loss": 0.6945521904826164,
+  "n": 1000,
+  "phase": "joint-selected",
+  "phase_update": 0,
+  "presentations": 32768,
+  "total_update": 2048
+}

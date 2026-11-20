@@ -1,0 +1,18 @@
+{
+  "effective_epochs": 0.5266,
+  "fraction_official_train": 0.10532,
+  "job_id": "6200223",
+  "seen": 126384,
+  "selected_checkpoint": {
+    "directory": "checkpoint-007899-8a4e612d",
+    "seen": 126384,
+    "step": 7899
+  },
+  "source_sha256": "864f15861509b83bca702bb0ec9b69a0fd8144312f57c6ede764a72a16714066",
+  "status": "checkpointed-awaiting-next-segment",
+  "step": 7899,
+  "test_evaluated": false,
+  "training_seconds": 12868.5390355587,
+  "unique_examples": 126384,
+  "validation": null
+}

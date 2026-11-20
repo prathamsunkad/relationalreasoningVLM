@@ -1,0 +1,47 @@
+{
+  "lfm25": {
+    "unique_trained": 158768,
+    "fraction_official_train": 0.13230666666666666,
+    "selected_checkpoint": {
+      "directory": "checkpoint-009000-0b1e3d82",
+      "seen": 144000,
+      "step": 9000
+    },
+    "full_validation_n": 1000,
+    "full_validation_correct": 313,
+    "matched_validation_n": 1000,
+    "previous_matched_correct": 141,
+    "new_matched_correct": 313,
+    "test_evaluated": false
+  },
+  "smolvlm2": {
+    "unique_trained": 82880,
+    "fraction_official_train": 0.06906666666666667,
+    "selected_checkpoint": {
+      "directory": "checkpoint-005180-7f0e4fd1",
+      "seen": 82880,
+      "step": 5180
+    },
+    "full_validation_n": 1000,
+    "full_validation_correct": 125,
+    "matched_validation_n": 948,
+    "previous_matched_correct": 110,
+    "new_matched_correct": 121,
+    "test_evaluated": false
+  },
+  "spatialevo": {
+    "unique_trained": 98672,
+    "fraction_official_train": 0.08222666666666667,
+    "selected_checkpoint": {
+      "directory": "checkpoint-006167-98d35613",
+      "seen": 98672,
+      "step": 6167
+    },
+    "full_validation_n": 1000,
+    "full_validation_correct": 301,
+    "matched_validation_n": 1000,
+    "previous_matched_correct": 145,
+    "new_matched_correct": 301,
+    "test_evaluated": false
+  }
+}

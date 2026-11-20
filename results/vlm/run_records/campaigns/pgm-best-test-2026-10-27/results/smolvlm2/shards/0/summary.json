@@ -1,0 +1,37 @@
+{
+  "complete": false,
+  "evaluated": 58048,
+  "groups": [
+    {
+      "accuracy": 0.1576970782800441,
+      "chance_accuracy": 0.125,
+      "correct": 9154,
+      "dataset": "pgm",
+      "evaluated": 58048,
+      "invalid_outputs": 0,
+      "invalid_rate": 0.0,
+      "mean_latency_seconds": 0.25193617716965966,
+      "planned": 200000,
+      "regime": "neutral",
+      "split": "test",
+      "task": "matrix-completion",
+      "wilson_95_interval": [
+        0.15475490664985703,
+        0.16068455226567568
+      ]
+    }
+  ],
+  "interval_note": "Wilson binomial intervals; correlated examples may violate independence.",
+  "planned": 200000,
+  "runtime": {
+    "completed_this_session": 58048,
+    "end_to_end_examples_per_second": 2.497437441144791,
+    "estimate_basis": "Current-session evaluation-loop rate, including image reads, inference, durable writes, summaries and logging; excludes startup, future queueing and restarts. This is a projection, not a guarantee.",
+    "estimated_remaining_seconds": 41315.99297473546,
+    "evaluation_elapsed_seconds": 16895.223457206972,
+    "evaluation_examples_per_second": 3.4357639688534896,
+    "remaining_examples": 141952,
+    "session_elapsed_seconds": 23243.02464745287,
+    "startup_seconds": 6347.801190245897
+  }
+}

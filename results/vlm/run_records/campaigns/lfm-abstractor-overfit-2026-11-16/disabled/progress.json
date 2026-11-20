@@ -1,0 +1,13 @@
+{
+  "answer_loss": 1.3634546416341209e-06,
+  "ending_loss": 1.2293454187961572e-07,
+  "gradient_norms": {
+    "lora": 3.990060213254765e-05
+  },
+  "loss": 5.364412509756278e-07,
+  "plugin_diagnostics": null,
+  "presentations": 3200,
+  "seconds": 3.8355718289967626,
+  "unique_questions": 16,
+  "update": 200
+}

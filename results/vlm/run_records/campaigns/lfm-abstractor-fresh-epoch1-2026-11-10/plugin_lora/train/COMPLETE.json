@@ -1,0 +1,117 @@
+{
+  "best_selection": {
+    "accuracy": 0.137,
+    "loss": 0.6939666456580162,
+    "phase": "plugin_lora",
+    "pointer": {
+      "directory": "checkpoint-4130f8bde9c344d38e95af33d86a168f",
+      "manifest_sha256": "604c3ba048ec332bdbed2972e43e6d2d3a31e66ee49aecfc2d1973cda9bf77ef",
+      "schema_version": 1,
+      "seen": 192000
+    },
+    "questions": 1000,
+    "root": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-abstractor-fresh-epoch1-2026-11-10/plugin_lora/train",
+    "seen": 192000
+  },
+  "complete": true,
+  "epoch": 1.0,
+  "final_bypass_complete": true,
+  "identity": {
+    "arm": "plugin_lora",
+    "ids_sha256": "0200a0c6e39cd79289f40d88dde14b7f48506b25b2957cde2972fbfd9a9b9f56",
+    "plan": {
+      "arms": [
+        "plugin_lora",
+        "lora"
+      ],
+      "bypass_diagnostic_questions": 128,
+      "campaign": "lfm-abstractor-fresh-epoch1-2026-11-10",
+      "checkpoint_every_updates": 500,
+      "checkpoint_selection": "Lowest complete scheduled 1000-question validation loss, including update zero; identical example-count schedule across arms; no wall-time checkpoint selection",
+      "data_efficiency_scope": "One-pass learning curves at matched exposure counts, including 1%,5%,20% official-train coverage; not independently converged subset experiments",
+      "data_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-coverage-20pct-2026-10-08",
+      "diagnostics_every_updates": 100,
+      "estimated_active_hours_per_arm": [
+        17,
+        20
+      ],
+      "global_batch": 16,
+      "image_storage_roots": {
+        "validation": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-adaptation-2026-10-07/images/validation"
+      },
+      "initialization": "Fresh LoRA initialized identically before optional fresh plugin; zero-output plugin; reset training RNG equally after construction",
+      "input_protocol": "unchanged PGM RGB composite, native LFM processor, greedy max16 answer tokens",
+      "kind": "matched-fresh-pretrained-plugin-comparison",
+      "lora": {
+        "lora_alpha": 32,
+        "lora_dropout": 0.05,
+        "r": 16
+      },
+      "lora_lr": 0.0001,
+      "lora_seed": 20261110,
+      "manifest_sha256": {
+        "train.jsonl": "9bc5ce2bd5b829b95c3079d4e8b16270ee5b2d7f4d10de227495b8bf3d2c3710",
+        "validation.jsonl": "d3f685f7400d5bda50cb6077fd06e2b6054a295c0757aa64127f6e88937876c6"
+      },
+      "maximum_total_allocated_gpu_hours": 40,
+      "micro_batch": 1,
+      "model": "lfm25",
+      "official_train_questions": 1200000,
+      "plugin": {
+        "depth": 2,
+        "heads": 4,
+        "layer_index": 2,
+        "width": 256
+      },
+      "plugin_lr": 0.0001,
+      "plugin_seed": 20261111,
+      "resources": {
+        "account": "coc",
+        "cpus_per_task": 4,
+        "gres": "gpu:h200:1",
+        "memory": "48G",
+        "partition": "ice-gpu",
+        "qos": "coc-ice",
+        "segment_seconds": [
+          57600,
+          14400
+        ]
+      },
+      "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+      "scope": "Two fresh-pretrained arms, one identical 240k pass each; original VLM frozen; no inherited PGM adapter or external alignment data; no benchmark test",
+      "seed": 20261109,
+      "separate_gradient_clip_norm": 1.0,
+      "target_examples": 240000,
+      "training_seed": 20261112,
+      "training_selection": "Identical SHA256(seed/ID) order of the fixed 240k subset; one pass without repeated training questions",
+      "validation_every_updates": 1000,
+      "validation_milestones_examples": [
+        12000,
+        60000
+      ],
+      "validation_questions": 1000,
+      "validation_reserve_seconds": 1200,
+      "warmup_updates": 20,
+      "weight_decay": 0.01
+    },
+    "source_sha256": "4705941bfb54e05ab4c698df7da2f6f358897d7936e386f6efca26a3aec49e77"
+  },
+  "latest_checkpoint": {
+    "directory": "checkpoint-74b5d91498d0472ab30fe156128ca1ac",
+    "manifest_sha256": "2fe83ecc6849acc8a1efe65b17c0cdd9a90e361fea9d96a3fcbbd83ad7b38e90",
+    "schema_version": 1,
+    "seen": 240000
+  },
+  "max_update_seconds": 15.682273808983155,
+  "official_train_fraction": 0.2,
+  "remaining_examples": 0,
+  "seen": 240000,
+  "status": "completed",
+  "target_examples": 240000,
+  "training_seconds": 61669.936686860514,
+  "unique_training_examples": 240000,
+  "update": 15000,
+  "validated_update": 15000,
+  "validation_not_test": true,
+  "validation_seconds": 360.06021328503266
+}

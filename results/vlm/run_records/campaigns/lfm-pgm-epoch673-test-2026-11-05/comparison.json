@@ -1,0 +1,35 @@
+{
+  "external_paper": {
+    "note": "Published results, not reproduced; equal training fraction does not match compute, epochs, input representation, or exact subset.",
+    "slot_abstractor_20pct": 0.7125,
+    "slot_abstractor_full": 0.915,
+    "source": "https://arxiv.org/html/2403.03458v2"
+  },
+  "models": {
+    "lfm25": {
+      "accuracy": 0.766865,
+      "comparisons": [
+        {
+          "difference_percentage_points": 1.1515000000000053,
+          "earlier_accuracy": 0.75535,
+          "earlier_evaluated": 200000,
+          "earlier_predictions_sha256": "796dbcce6a0cdbaaa3ebcfe6cdbc1f1e8702ebe4cc7d131c7a704a619b8c9c42",
+          "label": "Six-epoch checkpoint",
+          "matched_count": 200000,
+          "new_accuracy": 0.766865,
+          "predictions": "/home/hice1/yluo432/vlm-continuations/pgm-six-epoch-test-2026-11-01/lfm25/test/predictions.jsonl"
+        }
+      ],
+      "complete": true,
+      "evaluated": 200000,
+      "predictions_sha256": "bf6688d451d7e896efbb95ace73929dc6543909ecbd6818b67b96c62a3043030",
+      "selected_checkpoint": {
+        "directory": "checkpoint-101000-ecb566b9",
+        "seen": 1616000,
+        "step": 101000
+      }
+    }
+  },
+  "test_count": 200000,
+  "test_split": "PGM neutral"
+}

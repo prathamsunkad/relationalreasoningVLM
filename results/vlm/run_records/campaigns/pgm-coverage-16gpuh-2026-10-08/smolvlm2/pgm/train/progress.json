@@ -1,0 +1,12 @@
+{
+  "best_accuracy": 0.125,
+  "best_loss": 0.7603201738093048,
+  "elapsed_seconds": 12892.208457708359,
+  "fraction_official_train": 0.06906666666666667,
+  "gradient_norm": 0.18699932098388672,
+  "loss": 0.6981180906295776,
+  "seen": 82880,
+  "step": 5180,
+  "training_seconds": 12521.329316854477,
+  "unique_examples": 82880
+}

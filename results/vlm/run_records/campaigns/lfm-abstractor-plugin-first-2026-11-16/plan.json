@@ -1,0 +1,78 @@
+{
+  "data_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-coverage-20pct-2026-10-08",
+  "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+  "seed": 20261109,
+  "lora_seed": 20261110,
+  "plugin_seed": 20261111,
+  "training_seed": 20261112,
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05
+  },
+  "plugin": {
+    "depth": 2,
+    "heads": 4,
+    "layer_index": 2,
+    "width": 256
+  },
+  "manifest_sha256": {
+    "train.jsonl": "9bc5ce2bd5b829b95c3079d4e8b16270ee5b2d7f4d10de227495b8bf3d2c3710",
+    "validation.jsonl": "d3f685f7400d5bda50cb6077fd06e2b6054a295c0757aa64127f6e88937876c6"
+  },
+  "lora_lr": 0.0001,
+  "plugin_lr": 0.0001,
+  "warmup_updates": 20,
+  "weight_decay": 0.01,
+  "separate_gradient_clip_norm": 1.0,
+  "campaign": "lfm-abstractor-plugin-first-2026-11-16",
+  "global_batch": 16,
+  "evaluate_every": 20,
+  "plugin_output_scale": 0.01,
+  "starting_point": "original pretrained LFM2.5; fresh plugin; zero-effect fresh LoRA frozen throughout plugin-only stage",
+  "objective": "unchanged full-suffix CE; separately report answer and ending CE; stopping and selection use answer CE",
+  "selection": "nested balanced sets by seed/ID hash from the unchanged 240k official train pool; disjoint fixed 64 official-validation questions; select lowest held-out answer CE among trained plugin states",
+  "scope": "capacity/optimization audit, not benchmark accuracy; expand nested size only after 100% train answer accuracy and answer CE <= 0.1; no claims of capacity limit or convergence from budget exhaustion",
+  "resources": {
+    "gres": "gpu:h200:1",
+    "cpus_per_task": 4,
+    "memory": "48G",
+    "wall_seconds": 3600
+  },
+  "maximum_gpu_hours": 1,
+  "train_sizes": [
+    16,
+    64,
+    256
+  ],
+  "validation_questions": 64,
+  "validation_seed": 20261116,
+  "image_storage_roots": {
+    "validation": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-adaptation-2026-10-07/images/validation"
+  },
+  "max_updates_per_size": 1000,
+  "plugin_seconds": 2400,
+  "joint_seconds": 600,
+  "final_reserve_seconds": 240,
+  "joint_max_updates": 100,
+  "joint_update_divisor": 4,
+  "joint_lr": 1e-05,
+  "stop": {
+    "min_updates": 80,
+    "memorized_loss": 0.1,
+    "plateau_checks": 4,
+    "min_delta": 0.01,
+    "relative_delta": 0.01,
+    "overfit_relative_rise": 0.1
+  },
+  "joint_stop": {
+    "min_updates": 20,
+    "memorized_loss": 0.1,
+    "plateau_checks": 4,
+    "min_delta": 0.01,
+    "relative_delta": 0.01,
+    "overfit_relative_rise": 0.1
+  },
+  "training_policy": "main stage plugin-only up to 40 minutes; then fresh AdamW at 1e-5 jointly updates plugin and LoRA for at most 10 minutes and one quarter as many updates; original VLM stays frozen throughout",
+  "stop_policy": "check every 20 updates; after >=80 plugin updates, stop if both train and validation answer CE fail to improve by max(0.01,1%) across 4 checks, or validation CE stays >10% worse than earlier best for 4 checks while train CE improves; these are diagnostic thresholds, not proof of convergence"
+}

@@ -1,0 +1,17 @@
+{
+  "adapter_sha256": {
+    "README.md": "2af44948afd80bc65ee2960286a25dfa83a7b332183db98d9b730434379df703",
+    "adapter_config.json": "7e53e7568ad3132e6ebe70947aae345a3d700ef5a87a2c4017836f6c044ca56f",
+    "adapter_model.safetensors": "bc78828363d187434743def83c930e3098ce7ffb0c4e141225d3171b332b89bb"
+  },
+  "checkpoint": {
+    "directory": "checkpoint-054000-e734efb1",
+    "seen": 864000,
+    "step": 54000
+  },
+  "revision": "5fd684324a3d7e759c948b42f4a51b9b016c8d5f",
+  "selected_validation_sha256": "b45654418a611c54864029367165be71b0399990ea0b55de30f0fa9197d3af21",
+  "train": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train",
+  "training_config_sha256": "9ff5db6baa211a475688f004a48c1a56fc92f386b814f0020f6a897bd7c02625",
+  "validation_accuracy": 0.602
+}

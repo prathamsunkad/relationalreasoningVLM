@@ -1,0 +1,89 @@
+{
+  "data_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-coverage-20pct-2026-10-08",
+  "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+  "seed": 20261109,
+  "lora_seed": 20261110,
+  "plugin_seed": 20261111,
+  "training_seed": 20261112,
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05
+  },
+  "plugin": {
+    "depth": 2,
+    "heads": 4,
+    "layer_index": 2,
+    "width": 256
+  },
+  "manifest_sha256": {
+    "train.jsonl": "9bc5ce2bd5b829b95c3079d4e8b16270ee5b2d7f4d10de227495b8bf3d2c3710",
+    "validation.jsonl": "d3f685f7400d5bda50cb6077fd06e2b6054a295c0757aa64127f6e88937876c6"
+  },
+  "lora_lr": 0.0001,
+  "plugin_lr": 0.0001,
+  "warmup_updates": 20,
+  "weight_decay": 0.01,
+  "separate_gradient_clip_norm": 1.0,
+  "campaign": "lfm-abstractor-plugin-4k-2026-11-17",
+  "global_batch": 16,
+  "evaluate_every": 256,
+  "plugin_output_scale": 0.01,
+  "starting_point": "original pretrained LFM2.5; newly initialized plugin and zero-effect LoRA; no tiny-batch or task-finetuned checkpoint loaded",
+  "objective": "unchanged full-suffix CE; separately report answer and ending CE; stopping and selection use answer CE",
+  "selection": "4096 balanced questions by unchanged seed/ID hash from the same 240k official-train pool, including prior 256 diagnostic IDs; use all unchanged 1000 official-validation questions with natural class frequencies; select lowest full-validation answer CE among trained plugin states",
+  "scope": "small-data training experiment: 4096 unique questions, 1.7067% of the fixed 240k pool or 0.3413% of the official 1.2M train split; repeated shuffled epochs; full 1000-question validation, not benchmark test",
+  "resources": {
+    "gres": "gpu:h200:1",
+    "cpus_per_task": 4,
+    "memory": "48G",
+    "wall_seconds": 14400
+  },
+  "maximum_gpu_hours": 4,
+  "train_sizes": [
+    4096
+  ],
+  "validation_questions": 1000,
+  "validation_seed": 20261116,
+  "image_storage_roots": {
+    "validation": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-adaptation-2026-10-07/images/validation"
+  },
+  "max_updates_per_size": 3072,
+  "plugin_seconds": 10800,
+  "joint_seconds": 1800,
+  "final_reserve_seconds": 1200,
+  "joint_max_updates": 256,
+  "joint_update_divisor": 4,
+  "joint_lr": 1e-05,
+  "stop": {
+    "mode": "validation_patience",
+    "min_updates": 768,
+    "plateau_checks": 4,
+    "min_delta": 0.01,
+    "relative_delta": 0.005
+  },
+  "joint_stop": {
+    "mode": "validation_patience",
+    "min_updates": 128,
+    "plateau_checks": 2,
+    "min_delta": 0.01,
+    "relative_delta": 0.005
+  },
+  "training_policy": "plugin only up to 12 epochs or 3 hours, with validation-based early stopping; restore best trained plugin, then jointly train plugin and LoRA at 1e-5 for at most 1 epoch, 30 minutes and one quarter as many updates; original VLM frozen throughout",
+  "stop_policy": "full validation once per plugin epoch; after at least 3 epochs, stop after 4 consecutive checks without meaningful answer-CE improvement > max(0.01,0.5%) against last meaningful best; joint checks every half epoch with patience 2; exact lowest answer CE selects checkpoints independently of the stopping threshold; budget or epoch caps are not convergence claims",
+  "validation_selection": "full",
+  "training_evaluation_questions": 512,
+  "training_monitor_seed": 20261117,
+  "encoded_cache_questions": 64,
+  "save_stage_endpoints": true,
+  "joint_evaluate_every": 128,
+  "phase_evaluation_reserve_seconds": 300,
+  "training_curve_scope": "fixed 512-question monitor from training set; training still uses all 4096 questions each epoch; report its metrics separately from full 1000-question validation",
+  "runtime_estimate": {
+    "prior_steady_plugin_examples_per_second": 8.808600914623584,
+    "prior_steady_joint_examples_per_second": 7.1670443414509855,
+    "estimated_training_seconds_per_epoch": 465.0000652430549,
+    "expected_active_hours": "about 1-3, depending on early stopping and preprocessing; hard allocation cap 4",
+    "caveat": "prior throughput came from cached tiny batches; larger bounded-cache run may be slower; queue wait excluded"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "effective_epochs": 1.0,
+  "fraction_official_train": 0.2,
+  "frozen_vlm_bitwise_unchanged": true,
+  "frozen_vlm_sha256_after": "7349532a0914c569bc6a1484817e94b32dd53c0b04af215ca40718b70d45a701",
+  "frozen_vlm_sha256_before": "7349532a0914c569bc6a1484817e94b32dd53c0b04af215ca40718b70d45a701",
+  "job_id": "6268415",
+  "seen": 240000,
+  "selected_checkpoint": {
+    "directory": "checkpoint-015000-50d82baf",
+    "seen": 240000,
+    "step": 15000
+  },
+  "source_sha256": "8d261517e8bad69e6a47a0cb621c3fe8707105e4ab049179a4405b201fa87c60",
+  "status": "one-pass",
+  "step": 15000,
+  "test_evaluated": false,
+  "training_seconds": 15398.148534297943,
+  "unique_examples": 240000,
+  "validation": {
+    "accuracy": 0.129,
+    "complete": true,
+    "correct": 129,
+    "evaluated": 1000,
+    "invalid": 0,
+    "loss": 0.693943205833435,
+    "phase": "selected-validation",
+    "planned": 1000,
+    "wilson_95": [
+      0.10963544529450506,
+      0.1512040095017769
+    ]
+  }
+}

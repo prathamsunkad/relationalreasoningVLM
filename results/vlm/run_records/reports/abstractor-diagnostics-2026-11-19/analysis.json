@@ -1,0 +1,509 @@
+{
+  "retrieval_manifest": "/Users/yluo/Downloads/Projects/VLM/benchmarks/.local/progress-checks/2026-11-19-abstractor-diagnostics/retrieval-manifest.json",
+  "campaigns": {
+    "lfm-abstractor-depth-readout-2026-11-18": {
+      "status": "completed",
+      "base_unchanged": true,
+      "arms": [
+        {
+          "arm": "classifier_d2",
+          "label": "2 layers \u2192 classifier",
+          "updates": 2560,
+          "epochs": 10.0,
+          "presentations": 40960,
+          "best_validation": {
+            "accuracy": 0.143,
+            "answer_ce": 2.0791832938194275,
+            "arm": "classifier_d2",
+            "candidate_accuracy": 0.143,
+            "candidate_ce": 2.0791832938194275,
+            "complete": true,
+            "count": 1000,
+            "epoch": 5.0,
+            "planned": 1000,
+            "seconds": 6.398145788116381,
+            "split": "validation",
+            "updates": 1280
+          },
+          "best_prediction_histogram": {
+            "7": 1000
+          },
+          "final_validation": {
+            "arm": "classifier_d2",
+            "split": "validation",
+            "updates": 2560,
+            "epoch": 10.0,
+            "count": 1000,
+            "planned": 1000,
+            "complete": true,
+            "accuracy": 0.132,
+            "answer_ce": 2.0793087463378908,
+            "candidate_ce": 2.0793087463378908,
+            "candidate_accuracy": 0.132,
+            "seconds": 6.353695789119229
+          },
+          "final_training_monitor": {
+            "arm": "classifier_d2",
+            "split": "train-monitor",
+            "updates": 2560,
+            "epoch": 10.0,
+            "count": 512,
+            "planned": 512,
+            "complete": true,
+            "accuracy": 0.125,
+            "answer_ce": 2.079738788306713,
+            "candidate_ce": 2.079738788306713,
+            "candidate_accuracy": 0.125,
+            "seconds": 3.2437854290474206
+          },
+          "final_Q_gradient_rms_median": 1.9439007736821168e-07,
+          "actual_parameter_updates_nonzero": true
+        },
+        {
+          "arm": "classifier_d6",
+          "label": "6 layers \u2192 classifier",
+          "updates": 2560,
+          "epochs": 10.0,
+          "presentations": 40960,
+          "best_validation": {
+            "accuracy": 0.132,
+            "answer_ce": 2.0793033902645113,
+            "arm": "classifier_d6",
+            "candidate_accuracy": 0.132,
+            "candidate_ce": 2.0793033902645113,
+            "complete": true,
+            "count": 1000,
+            "epoch": 5.0,
+            "planned": 1000,
+            "seconds": 12.7721136379987,
+            "split": "validation",
+            "updates": 1280
+          },
+          "best_prediction_histogram": {
+            "2": 1000
+          },
+          "final_validation": {
+            "arm": "classifier_d6",
+            "split": "validation",
+            "updates": 2560,
+            "epoch": 10.0,
+            "count": 1000,
+            "planned": 1000,
+            "complete": true,
+            "accuracy": 0.119,
+            "answer_ce": 2.0793688893318176,
+            "candidate_ce": 2.0793688893318176,
+            "candidate_accuracy": 0.119,
+            "seconds": 12.636223991168663
+          },
+          "final_training_monitor": {
+            "arm": "classifier_d6",
+            "split": "train-monitor",
+            "updates": 2560,
+            "epoch": 10.0,
+            "count": 512,
+            "planned": 512,
+            "complete": true,
+            "accuracy": 0.125,
+            "answer_ce": 2.079829534050077,
+            "candidate_ce": 2.079829534050077,
+            "candidate_accuracy": 0.125,
+            "seconds": 6.487153651891276
+          },
+          "final_Q_gradient_rms_median": 2.1160658780772224e-09,
+          "actual_parameter_updates_nonzero": true
+        },
+        {
+          "arm": "classifier_only",
+          "label": "Classifier only",
+          "updates": 2560,
+          "epochs": 10.0,
+          "presentations": 40960,
+          "best_validation": {
+            "accuracy": 0.143,
+            "answer_ce": 2.0792094140052795,
+            "arm": "classifier_only",
+            "candidate_accuracy": 0.143,
+            "candidate_ce": 2.0792094140052795,
+            "complete": true,
+            "count": 1000,
+            "epoch": 5.0,
+            "planned": 1000,
+            "seconds": 2.9958238669205457,
+            "split": "validation",
+            "updates": 1280
+          },
+          "best_prediction_histogram": {
+            "7": 1000
+          },
+          "final_validation": {
+            "arm": "classifier_only",
+            "split": "validation",
+            "updates": 2560,
+            "epoch": 10.0,
+            "count": 1000,
+            "planned": 1000,
+            "complete": true,
+            "accuracy": 0.121,
+            "answer_ce": 2.079662711858749,
+            "candidate_ce": 2.079662711858749,
+            "candidate_accuracy": 0.121,
+            "seconds": 3.0171573718544096
+          },
+          "final_training_monitor": {
+            "arm": "classifier_only",
+            "split": "train-monitor",
+            "updates": 2560,
+            "epoch": 10.0,
+            "count": 512,
+            "planned": 512,
+            "complete": true,
+            "accuracy": 0.130859375,
+            "answer_ce": 2.078400125261396,
+            "candidate_ce": 2.078400125261396,
+            "candidate_accuracy": 0.130859375,
+            "seconds": 1.5429368219338357
+          },
+          "final_Q_gradient_rms_median": null,
+          "actual_parameter_updates_nonzero": true
+        },
+        {
+          "arm": "llm_d2",
+          "label": "2 layers \u2192 frozen LLM",
+          "updates": 2560,
+          "epochs": 10.0,
+          "presentations": 40960,
+          "best_validation": {
+            "accuracy": 0.129,
+            "answer_ce": 2.082517393231392,
+            "arm": "llm_d2",
+            "candidate_accuracy": 0.129,
+            "candidate_ce": 2.081298072695732,
+            "complete": true,
+            "count": 1000,
+            "epoch": 5.0,
+            "planned": 1000,
+            "seconds": 20.86461126897484,
+            "split": "validation",
+            "updates": 1280
+          },
+          "best_prediction_histogram": {
+            "546": 1000
+          },
+          "final_validation": {
+            "arm": "llm_d2",
+            "split": "validation",
+            "updates": 2560,
+            "epoch": 10.0,
+            "count": 1000,
+            "planned": 1000,
+            "complete": true,
+            "accuracy": 0.132,
+            "answer_ce": 2.082947294473648,
+            "candidate_ce": 2.081766370654106,
+            "candidate_accuracy": 0.132,
+            "seconds": 20.601906002033502
+          },
+          "final_training_monitor": {
+            "arm": "llm_d2",
+            "split": "train-monitor",
+            "updates": 2560,
+            "epoch": 10.0,
+            "count": 512,
+            "planned": 512,
+            "complete": true,
+            "accuracy": 0.134765625,
+            "answer_ce": 2.084221787750721,
+            "candidate_ce": 2.0830403524450958,
+            "candidate_accuracy": 0.134765625,
+            "seconds": 10.808214479824528
+          },
+          "final_Q_gradient_rms_median": 2.604925661842117e-07,
+          "actual_parameter_updates_nonzero": true
+        },
+        {
+          "arm": "llm_d6",
+          "label": "6 layers \u2192 frozen LLM",
+          "updates": 2560,
+          "epochs": 10.0,
+          "presentations": 40960,
+          "best_validation": {
+            "accuracy": 0.133,
+            "answer_ce": 2.082200877547264,
+            "arm": "llm_d6",
+            "candidate_accuracy": 0.133,
+            "candidate_ce": 2.080537459731102,
+            "complete": true,
+            "count": 1000,
+            "epoch": 5.0,
+            "planned": 1000,
+            "seconds": 27.17208602814935,
+            "split": "validation",
+            "updates": 1280
+          },
+          "best_prediction_histogram": {
+            "548": 626,
+            "546": 256,
+            "547": 72,
+            "545": 46
+          },
+          "final_validation": {
+            "arm": "llm_d6",
+            "split": "validation",
+            "updates": 2560,
+            "epoch": 10.0,
+            "count": 1000,
+            "planned": 1000,
+            "complete": true,
+            "accuracy": 0.11,
+            "answer_ce": 2.0824571989774703,
+            "candidate_ce": 2.0814086203575135,
+            "candidate_accuracy": 0.11,
+            "seconds": 26.97694285120815
+          },
+          "final_training_monitor": {
+            "arm": "llm_d6",
+            "split": "train-monitor",
+            "updates": 2560,
+            "epoch": 10.0,
+            "count": 512,
+            "planned": 512,
+            "complete": true,
+            "accuracy": 0.140625,
+            "answer_ce": 2.083875594427809,
+            "candidate_ce": 2.0828253254294395,
+            "candidate_accuracy": 0.140625,
+            "seconds": 13.769900704966858
+          },
+          "final_Q_gradient_rms_median": 5.124654589572231e-10,
+          "actual_parameter_updates_nonzero": true
+        }
+      ]
+    },
+    "lfm-abstractor-locations-2026-11-18": {
+      "status": "completed",
+      "base_unchanged": true,
+      "arms": [
+        {
+          "arm": "early_block2",
+          "label": "After block 3",
+          "updates": 256,
+          "epochs": 1.0,
+          "presentations": 4096,
+          "best_validation": {
+            "accuracy": 0.113,
+            "answer_ce": 2.128295607805252,
+            "arm": "early_block2",
+            "candidate_accuracy": 0.113,
+            "candidate_ce": 2.1266343303918838,
+            "complete": true,
+            "count": 1000,
+            "epoch": 1.0,
+            "planned": 1000,
+            "split": "validation",
+            "updates": 256
+          },
+          "best_prediction_histogram": {
+            "543": 713,
+            "547": 279,
+            "542": 8
+          },
+          "final_validation": {
+            "arm": "early_block2",
+            "split": "validation",
+            "updates": 256,
+            "epoch": 1.0,
+            "count": 1000,
+            "planned": 1000,
+            "complete": true,
+            "accuracy": 0.113,
+            "answer_ce": 2.128295607805252,
+            "candidate_accuracy": 0.113,
+            "candidate_ce": 2.1266343303918838
+          },
+          "final_training_monitor": {
+            "arm": "early_block2",
+            "split": "train-monitor",
+            "updates": 256,
+            "epoch": 1.0,
+            "count": 512,
+            "planned": 512,
+            "complete": true,
+            "accuracy": 0.142578125,
+            "answer_ce": 2.1131373518146574,
+            "candidate_accuracy": 0.142578125,
+            "candidate_ce": 2.1114798604976386
+          },
+          "final_Q_gradient_rms_median": 3.6861425769529887e-06,
+          "actual_parameter_updates_nonzero": true
+        },
+        {
+          "arm": "late_block12",
+          "label": "After block 13",
+          "updates": 256,
+          "epochs": 1.0,
+          "presentations": 4096,
+          "best_validation": {
+            "accuracy": 0.126,
+            "answer_ce": 2.088564081430435,
+            "arm": "late_block12",
+            "candidate_accuracy": 0.126,
+            "candidate_ce": 2.0869642943143845,
+            "complete": true,
+            "count": 1000,
+            "epoch": 0.5,
+            "planned": 1000,
+            "split": "validation",
+            "updates": 128
+          },
+          "best_prediction_histogram": {
+            "546": 651,
+            "545": 98,
+            "542": 29,
+            "548": 76,
+            "543": 125,
+            "549": 21
+          },
+          "final_validation": {
+            "arm": "late_block12",
+            "split": "validation",
+            "updates": 256,
+            "epoch": 1.0,
+            "count": 1000,
+            "planned": 1000,
+            "complete": true,
+            "accuracy": 0.126,
+            "answer_ce": 2.110961392879486,
+            "candidate_accuracy": 0.126,
+            "candidate_ce": 2.10921728682518
+          },
+          "final_training_monitor": {
+            "arm": "late_block12",
+            "split": "train-monitor",
+            "updates": 256,
+            "epoch": 1.0,
+            "count": 512,
+            "planned": 512,
+            "complete": true,
+            "accuracy": 0.1328125,
+            "answer_ce": 2.1008186819963157,
+            "candidate_accuracy": 0.1328125,
+            "candidate_ce": 2.099078822415322
+          },
+          "final_Q_gradient_rms_median": 3.978833206019772e-06,
+          "actual_parameter_updates_nonzero": true
+        },
+        {
+          "arm": "middle_block8",
+          "label": "After block 9",
+          "updates": 256,
+          "epochs": 1.0,
+          "presentations": 4096,
+          "best_validation": {
+            "accuracy": 0.125,
+            "answer_ce": 2.1009309297800063,
+            "arm": "middle_block8",
+            "candidate_accuracy": 0.125,
+            "candidate_ce": 2.0972535165548325,
+            "complete": true,
+            "count": 1000,
+            "epoch": 0.5,
+            "planned": 1000,
+            "split": "validation",
+            "updates": 128
+          },
+          "best_prediction_histogram": {
+            "545": 15,
+            "547": 133,
+            "548": 717,
+            "549": 104,
+            "543": 28,
+            "546": 3
+          },
+          "final_validation": {
+            "arm": "middle_block8",
+            "split": "validation",
+            "updates": 256,
+            "epoch": 1.0,
+            "count": 1000,
+            "planned": 1000,
+            "complete": true,
+            "accuracy": 0.126,
+            "answer_ce": 2.135563579082489,
+            "candidate_accuracy": 0.126,
+            "candidate_ce": 2.1343972421884536
+          },
+          "final_training_monitor": {
+            "arm": "middle_block8",
+            "split": "train-monitor",
+            "updates": 256,
+            "epoch": 1.0,
+            "count": 512,
+            "planned": 512,
+            "complete": true,
+            "accuracy": 0.119140625,
+            "answer_ce": 2.122050942387432,
+            "candidate_accuracy": 0.119140625,
+            "candidate_ce": 2.1208926422987133
+          },
+          "final_Q_gradient_rms_median": 1.2408117697759735e-05,
+          "actual_parameter_updates_nonzero": true
+        },
+        {
+          "arm": "projector",
+          "label": "After projector",
+          "updates": 256,
+          "epochs": 1.0,
+          "presentations": 4096,
+          "best_validation": {
+            "accuracy": 0.125,
+            "answer_ce": 2.0895237983465194,
+            "arm": "projector",
+            "candidate_accuracy": 0.125,
+            "candidate_ce": 2.0853049387931826,
+            "complete": true,
+            "count": 1000,
+            "epoch": 0.5,
+            "planned": 1000,
+            "split": "validation",
+            "updates": 128
+          },
+          "best_prediction_histogram": {
+            "546": 901,
+            "543": 98,
+            "548": 1
+          },
+          "final_validation": {
+            "arm": "projector",
+            "split": "validation",
+            "updates": 256,
+            "epoch": 1.0,
+            "count": 1000,
+            "planned": 1000,
+            "complete": true,
+            "accuracy": 0.123,
+            "answer_ce": 2.1151642966270447,
+            "candidate_accuracy": 0.123,
+            "candidate_ce": 2.112910995721817
+          },
+          "final_training_monitor": {
+            "arm": "projector",
+            "split": "train-monitor",
+            "updates": 256,
+            "epoch": 1.0,
+            "count": 512,
+            "planned": 512,
+            "complete": true,
+            "accuracy": 0.115234375,
+            "answer_ce": 2.1064343426842242,
+            "candidate_accuracy": 0.115234375,
+            "candidate_ce": 2.104172750841826
+          },
+          "final_Q_gradient_rms_median": 1.9390703641875007e-05,
+          "actual_parameter_updates_nonzero": true
+        }
+      ]
+    }
+  },
+  "post_projector_one_epoch_cross_campaign_predictions_and_losses_exact": true
+}

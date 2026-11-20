@@ -1,0 +1,17 @@
+{
+  "adapter_sha256": {
+    "README.md": "695e7c53703528428a3571d028565fb5c490af0a9e1489a623d1488f83dfdcc1",
+    "adapter_config.json": "b61bf5c4ef1d51ce44cf749ff2b65552a212c917c6a05c080b0639954ab678f1",
+    "adapter_model.safetensors": "5517bf91e5b0264e8379a8f3c1b1b61d59dd2ef9fc077f3c662136c556df035b"
+  },
+  "checkpoint": {
+    "directory": "checkpoint-029000-6a20b99b",
+    "seen": 464000,
+    "step": 29000
+  },
+  "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+  "selected_validation_sha256": "91d806e577be56629c32690da1258c1bfb32de1d21766fdc2e8c9b2b6f873c56",
+  "train": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train",
+  "training_config_sha256": "e802d7eeb960f920f49e289ec30b742d8b93fd00a480bdb5fd20d781ce60b04d",
+  "validation_accuracy": 0.167
+}

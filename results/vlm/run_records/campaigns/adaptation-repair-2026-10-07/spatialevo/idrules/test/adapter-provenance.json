@@ -1,0 +1,17 @@
+{
+  "adapter_sha256": {
+    "README.md": "2af44948afd80bc65ee2960286a25dfa83a7b332183db98d9b730434379df703",
+    "adapter_config.json": "a877a4e3903d39c1c2f5f05f1d1fe66471623a29e1c0b12f68cc521deff7073b",
+    "adapter_model.safetensors": "883178cf324a03231771d6466dcce3f2614387732ad142909ff25fa13635df62"
+  },
+  "checkpoint": {
+    "directory": "checkpoint-000676-e4ed02bf",
+    "seen": 10808,
+    "step": 676
+  },
+  "evaluator_sha256": "d688d7af9c00b02e1bc6da61b3e50c543c348fb49c56aec6dbcdc03afc85c437",
+  "model": "spatialevo",
+  "protocol": "validation-selected-lora-ood-test-v1",
+  "task": "idrules",
+  "training_config_sha256": "fd753aec14aa60313b36ec9a68fcdfa4e821ad55c522b77c5a39feff30839303"
+}

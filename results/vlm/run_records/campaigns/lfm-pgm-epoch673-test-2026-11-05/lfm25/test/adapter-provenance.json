@@ -1,0 +1,19 @@
+{
+  "adapter_sha256": {
+    "README.md": "9deee44dfd0542d2e95375aed7a500f3aaeacf88b78406a32cb41f3327edc128",
+    "adapter_config.json": "bd4af2ef98c4367f54cdd31788cc2f9f7aa1c3149754f532f5ca46d72fe4614f",
+    "adapter_model.safetensors": "b7c369ff0ffbf996f6c38a6bc093e2c2201eaa48b262e4a0191d409478ed88c7"
+  },
+  "checkpoint": {
+    "directory": "checkpoint-101000-ecb566b9",
+    "seen": 1616000,
+    "step": 101000
+  },
+  "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+  "selected_epochs": 6.733333333333333,
+  "selected_validation_sha256": "6e99ec59f02404831362ae84ecaae658cd96d39be9bff8e2bf208b61d6597e5a",
+  "train": "/home/hice1/yluo432/vlm-continuations/lfm-pgm-seven-epochs-2026-11-02/lfm25/segment-01/train",
+  "training_config_sha256": "f55c4e96da329aab1a1123ae5cd2a8aaec2386828732a3dc75e5d8921d666df4",
+  "validation_accuracy": 0.773,
+  "validation_loss": 0.21010814362875932
+}

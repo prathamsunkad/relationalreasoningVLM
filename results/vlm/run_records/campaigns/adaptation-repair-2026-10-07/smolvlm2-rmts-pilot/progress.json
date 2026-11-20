@@ -1,0 +1,16 @@
+{
+  "best_accuracy": 0.625,
+  "best_loss": 0.22344021871685982,
+  "effective_epochs": 2.0,
+  "epoch": 2,
+  "grad_norm": 0.13128867745399475,
+  "last_monitor_step": 0,
+  "lr": 4e-05,
+  "offset": 0,
+  "peak_gpu_gib": 8.116268634796143,
+  "seen": 128,
+  "step": 8,
+  "step_seconds": 6.571526903993799,
+  "train_loss": 0.23625384271144867,
+  "training_seconds": 53.55228760000318
+}

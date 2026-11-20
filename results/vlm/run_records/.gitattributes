@@ -1,0 +1,5 @@
+# Keep hashed evidence bytes unchanged across Git platforms.
+*.json -text
+*.gz -text
+*.png -text
+*.csv -text whitespace=cr-at-eol

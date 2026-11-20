@@ -1,0 +1,17 @@
+{
+  "adapter_sha256": {
+    "README.md": "9deee44dfd0542d2e95375aed7a500f3aaeacf88b78406a32cb41f3327edc128",
+    "adapter_config.json": "8fd95676ca8dd46f487026ef05eb70d8bc32642d95b381779ceee13db1c915ac",
+    "adapter_model.safetensors": "de23e80aa09491b5c68fc5d9834b8451a64157864fa4a5e600fe2d16992b8c83"
+  },
+  "checkpoint": {
+    "directory": "checkpoint-015000-38a97826",
+    "seen": 240000,
+    "step": 15000
+  },
+  "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+  "selected_validation_sha256": "b015e8c488c3e3736ed091624dc01f48be043fae1ce163fc8cc56134b1d9e0ea",
+  "selection_policy": "fixed-20pct-endpoint",
+  "train": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train",
+  "training_config_sha256": "bb15cf0df4576ef8064b795d21a7109ec1cd52aad45e15cda6b97f29e690b389"
+}

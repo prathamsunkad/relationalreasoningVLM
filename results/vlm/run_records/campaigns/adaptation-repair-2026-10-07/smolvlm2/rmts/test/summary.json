@@ -1,0 +1,37 @@
+{
+  "complete": true,
+  "evaluated": 10000,
+  "groups": [
+    {
+      "accuracy": 0.8905,
+      "chance_accuracy": 0.5,
+      "correct": 8905,
+      "dataset": "clevr-art",
+      "evaluated": 10000,
+      "invalid_outputs": 0,
+      "invalid_rate": 0.0,
+      "mean_latency_seconds": 0.17605307825791824,
+      "planned": 10000,
+      "regime": "ood",
+      "split": "test",
+      "task": "rmts",
+      "wilson_95_interval": [
+        0.884229095235303,
+        0.8964710020371983
+      ]
+    }
+  ],
+  "interval_note": "Wilson binomial intervals; correlated examples may violate independence.",
+  "planned": 10000,
+  "runtime": {
+    "completed_this_session": 10000,
+    "end_to_end_examples_per_second": 4.769647952827664,
+    "estimate_basis": "Current-session evaluation-loop rate, including image reads, inference, durable writes, summaries and logging; excludes startup, future queueing and restarts. This is a projection, not a guarantee.",
+    "estimated_remaining_seconds": 0.0,
+    "evaluation_elapsed_seconds": 1868.367659689,
+    "evaluation_examples_per_second": 5.352265625098946,
+    "remaining_examples": 0,
+    "session_elapsed_seconds": 2096.5907964070066,
+    "startup_seconds": 228.22313671800657
+  }
+}

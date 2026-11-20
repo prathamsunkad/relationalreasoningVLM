@@ -1,0 +1,58 @@
+{
+  "external_paper": {
+    "note": "Published results, not reproduced; equal training fraction does not match compute, epochs, input representation, or exact subset.",
+    "slot_abstractor_20pct": 0.7125,
+    "slot_abstractor_full": 0.915,
+    "source": "https://arxiv.org/html/2403.03458v2"
+  },
+  "models": {
+    "lfm25": {
+      "accuracy": 0.75535,
+      "comparisons": [
+        {
+          "difference_percentage_points": 5.9365000000000006,
+          "earlier_accuracy": 0.695985,
+          "earlier_evaluated": 200000,
+          "earlier_predictions_sha256": "bd7b6ff884e115c2bc0fd31c32789e85e163d65210162324d385283abd74b0d7",
+          "label": "Best checkpoint from four-epoch training",
+          "matched_count": 200000,
+          "new_accuracy": 0.75535,
+          "predictions": "/home/hice1/yluo432/vlm-continuations/pgm-best-test-2026-10-27/lfm25/test/predictions.jsonl"
+        }
+      ],
+      "complete": true,
+      "evaluated": 200000,
+      "predictions_sha256": "796dbcce6a0cdbaaa3ebcfe6cdbc1f1e8702ebe4cc7d131c7a704a619b8c9c42",
+      "selected_checkpoint": {
+        "directory": "checkpoint-090000-d5621243",
+        "seen": 1440000,
+        "step": 90000
+      }
+    },
+    "spatialevo": {
+      "accuracy": 0.618735,
+      "comparisons": [
+        {
+          "difference_percentage_points": 3.6820000000000075,
+          "earlier_accuracy": 0.581915,
+          "earlier_evaluated": 200000,
+          "earlier_predictions_sha256": "2a791dd81142d203aceac5cd4df1b33c4d91734163b58f3fa46119556f350ac3",
+          "label": "Best checkpoint from four-epoch training",
+          "matched_count": 200000,
+          "new_accuracy": 0.618735,
+          "predictions": "/home/hice1/yluo432/vlm-continuations/pgm-best-test-2026-10-27/spatialevo/test/predictions.jsonl"
+        }
+      ],
+      "complete": true,
+      "evaluated": 200000,
+      "predictions_sha256": "355da16f75b0486ccf91b9103a4e418f9af38de7d46c8a41054d331720190860",
+      "selected_checkpoint": {
+        "directory": "checkpoint-076000-02e9c405",
+        "seen": 1216000,
+        "step": 76000
+      }
+    }
+  },
+  "test_count": 200000,
+  "test_split": "PGM neutral"
+}

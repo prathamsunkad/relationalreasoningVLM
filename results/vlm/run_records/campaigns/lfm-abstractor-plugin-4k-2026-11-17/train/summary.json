@@ -1,0 +1,228 @@
+{
+  "all_sizes_reached": true,
+  "capacity_claim": "Only observed memorized sizes are established; failure under a cap is not a capacity limit.",
+  "elapsed_seconds": 11378.483037948608,
+  "encoded_cache": {
+    "high_watermark": 64,
+    "hits": 42295,
+    "limit": 64,
+    "misses": 53906
+  },
+  "interrupted": false,
+  "joint_best": {
+    "evaluation": {
+      "phase": "joint",
+      "phase_update": 256,
+      "train": {
+        "accuracy": 0.1796875,
+        "answer_loss": 2.0622163098305464,
+        "ending_loss": 6.188103086168795e-06,
+        "loss": 0.6874095406383276,
+        "n": 512,
+        "phase": "joint",
+        "phase_update": 256,
+        "presentations": 32768,
+        "total_update": 2048
+      },
+      "train_size": 4096,
+      "validation": {
+        "accuracy": 0.128,
+        "answer_loss": 2.083644729018211,
+        "ending_loss": 5.959090921123789e-06,
+        "loss": 0.6945521904826164,
+        "n": 1000,
+        "phase": "joint",
+        "phase_update": 256,
+        "presentations": 32768,
+        "total_update": 2048
+      }
+    },
+    "pointer": {
+      "directory": "checkpoint-abadc77a03714dd784b475fc970d589e",
+      "manifest_sha256": "73e3a4297308b664ea6e1d4e21342660d58fc8a2ebf49911de490ad1ff52019c",
+      "schema_version": 1,
+      "seen": 32768,
+      "step": 2048
+    },
+    "root": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-abstractor-plugin-4k-2026-11-17/train/best-joint"
+  },
+  "joint_presentations": 4096,
+  "joint_stop_reason": "validation_plateau",
+  "joint_updates": 256,
+  "lora_frozen_during_plugin_stage": true,
+  "plugin_best": {
+    "evaluation": {
+      "phase": "plugin-4096",
+      "phase_update": 1024,
+      "train": {
+        "accuracy": 0.1796875,
+        "answer_loss": 2.067537433002144,
+        "ending_loss": 7.5539637467425536e-06,
+        "loss": 0.6891841584583744,
+        "n": 512,
+        "phase": "plugin-4096",
+        "phase_update": 1024,
+        "presentations": 16384,
+        "total_update": 1024
+      },
+      "train_size": 4096,
+      "validation": {
+        "accuracy": 0.136,
+        "answer_loss": 2.0848513699769975,
+        "ending_loss": 7.2844816888277815e-06,
+        "loss": 0.6949552870392799,
+        "n": 1000,
+        "phase": "plugin-4096",
+        "phase_update": 1024,
+        "presentations": 16384,
+        "total_update": 1024
+      }
+    },
+    "pointer": {
+      "directory": "checkpoint-9cf9d56850754d95b6670241ee6da8cb",
+      "manifest_sha256": "f666b49d1c829cfcd87226a682666e063767afe858779379970b5fa6a04ec691",
+      "schema_version": 1,
+      "seen": 16384,
+      "step": 1024
+    },
+    "root": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-abstractor-plugin-4k-2026-11-17/train/best-plugin"
+  },
+  "plugin_phases": [
+    {
+      "final": {
+        "phase": "plugin-4096",
+        "phase_update": 1792,
+        "train": {
+          "accuracy": 0.18359375,
+          "answer_loss": 2.0491186266299337,
+          "ending_loss": 8.766870077892008e-06,
+          "loss": 0.6830453684669919,
+          "n": 512,
+          "phase": "plugin-4096",
+          "phase_update": 1792,
+          "presentations": 28672,
+          "total_update": 1792
+        },
+        "train_size": 4096,
+        "validation": {
+          "accuracy": 0.135,
+          "answer_loss": 2.0893665529489516,
+          "ending_loss": 8.359253803234879e-06,
+          "loss": 0.6964610659182072,
+          "n": 1000,
+          "phase": "plugin-4096",
+          "phase_update": 1792,
+          "presentations": 28672,
+          "total_update": 1792
+        }
+      },
+      "interpret_as_converged": false,
+      "phase": "plugin-4096",
+      "stop_reason": "validation_plateau",
+      "train_size": 4096,
+      "updates": 1792
+    }
+  ],
+  "plugin_presentations": 28672,
+  "plugin_updates": 1792,
+  "presentations": 32768,
+  "selected_checks": {
+    "joint_selected": {
+      "accuracy": 0.128,
+      "answer_loss": 2.083644729018211,
+      "ending_loss": 5.959090921123789e-06,
+      "greedy_accuracy": 0.128,
+      "loss": 0.6945521904826164,
+      "n": 1000,
+      "phase": "joint-selected",
+      "phase_update": 0,
+      "presentations": 32768,
+      "total_update": 2048
+    },
+    "joint_selected_bypass": {
+      "accuracy": 0.124,
+      "answer_loss": 2.35962284630537,
+      "ending_loss": 1.7231649727449395e-06,
+      "greedy_accuracy": 0.124,
+      "loss": 0.7865420801341534,
+      "n": 1000,
+      "phase": "joint-selected-bypass",
+      "phase_update": 0,
+      "presentations": 32768,
+      "total_update": 2048
+    },
+    "plugin_selected": {
+      "accuracy": 0.136,
+      "answer_loss": 2.0848513699769975,
+      "ending_loss": 7.2844816888277815e-06,
+      "greedy_accuracy": 0.136,
+      "loss": 0.6949552870392799,
+      "n": 1000,
+      "phase": "plugin-selected",
+      "phase_update": 0,
+      "presentations": 28672,
+      "total_update": 1792
+    },
+    "plugin_selected_bypass": {
+      "accuracy": 0.125,
+      "answer_loss": 2.3309188017845153,
+      "ending_loss": 2.0519418783209174e-06,
+      "loss": 0.776974283605814,
+      "n": 1000,
+      "phase": "plugin-selected-bypass",
+      "phase_update": 0,
+      "presentations": 28672,
+      "total_update": 1792
+    },
+    "plugin_selected_train": {
+      "accuracy": 0.1796875,
+      "answer_loss": 2.067537433002144,
+      "ending_loss": 7.5539637467425536e-06,
+      "loss": 0.6891841584583744,
+      "n": 512,
+      "phase": "plugin-selected",
+      "phase_update": 0,
+      "presentations": 28672,
+      "total_update": 1792
+    }
+  },
+  "stage_endpoints": {
+    "last-joint": {
+      "pointer": {
+        "directory": "checkpoint-e0579f63af44458d8d8859125570113d",
+        "manifest_sha256": "7f5f120edea5b990d5cdfe278b986491b89f0cacb1d888a1283b780689d8408b",
+        "schema_version": 1,
+        "seen": 32768,
+        "step": 2048
+      },
+      "root": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-abstractor-plugin-4k-2026-11-17/train/last-joint"
+    },
+    "last-plugin": {
+      "pointer": {
+        "directory": "checkpoint-368409112b7c4bcf8eba51c27b6e5298",
+        "manifest_sha256": "1ed26847c1615a048c31eaa11a877eb4678dc5cc5a92a03589890fac2f0a4326",
+        "schema_version": 1,
+        "seen": 28672,
+        "step": 1792
+      },
+      "root": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-abstractor-plugin-4k-2026-11-17/train/last-plugin"
+    }
+  },
+  "status": "finished_bounded_audit",
+  "timing": {
+    "joint": {
+      "examples_per_second": 3.866489882438094,
+      "steady_examples_per_second": 3.8681823279220686,
+      "training_seconds": 1059.3587787735742,
+      "updates": 256
+    },
+    "plugin_only": {
+      "examples_per_second": 4.58334422722126,
+      "steady_examples_per_second": 4.586476160549019,
+      "training_seconds": 6255.694222073071,
+      "updates": 1792
+    }
+  },
+  "unique_training_questions_seen": 4096,
+  "validation_scope": "1000 fixed official-validation questions; repeatedly used for stopping/selection; not benchmark test"
+}

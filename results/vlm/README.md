@@ -10,6 +10,8 @@ These are **archived results produced before this code integration**, not new be
 
 The initial PGM adapters used only 9,000 sampled official training questions and a separate 1,000-question official validation set. CLEVR test scores are OOD scores on held-out visual properties. PGM neutral test scores are not OOD. Partial PGM results are not full 200k benchmarks; compare baseline predictions on matching IDs when evaluating improvements. `initial_lora_summary.json` contains source-summary hashes.
 
+The historical training curves, run configurations, validation summaries, checkpoint-selection records, and completed diagnostic figures are now in [run_records/](run_records/README.md). Its index and SHA256 manifest identify the original files, deduplicate copies, and distinguish available snapshots from complete runs. Verify the bundle with `python3 results/vlm/run_records/verify.py`; weights and full prediction archives remain external.
+
 The later PGM runs used the fixed 240,000-question pool for repeated epochs:
 
 - [Four-epoch campaign](pgm_four_epochs.md).

@@ -1,0 +1,18 @@
+{
+  "dtype": "bfloat16",
+  "images_sha256": "d1eb83484b325eec9a2fdb992f233f8b2c84298a3799e7331b9e43b9c1f49443",
+  "manifest_sha256": "c413d475a0191e2a4e23d1aeda5814e61c433e7b29ec2f04ab14818e289bc340",
+  "max_new_tokens": 16,
+  "model": "smolvlm2",
+  "parser": "strict-letter-v1",
+  "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+  "seed": 0,
+  "shards": [
+    {
+      "count": 200000,
+      "images_sha256": "d1eb83484b325eec9a2fdb992f233f8b2c84298a3799e7331b9e43b9c1f49443",
+      "manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/full-lfm25-2026-09-24/pgm-neutral-full.jsonl",
+      "manifest_sha256": "c413d475a0191e2a4e23d1aeda5814e61c433e7b29ec2f04ab14818e289bc340"
+    }
+  ]
+}

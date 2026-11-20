@@ -1,0 +1,105 @@
+{
+  "campaign": "lfm-relational-frozen-2026-10-14",
+  "variants": [
+    "early",
+    "late",
+    "joint",
+    "memory",
+    "dual"
+  ],
+  "policy": "New relational module only; original pretrained VLM entirely frozen; no LoRA parameters or updates",
+  "train_count": 240000,
+  "official_train_count": 1200000,
+  "passes": 1,
+  "test_count": 200000,
+  "initialization": "Original pretrained LFM2.5; new module initialization RNG matched to prior module-plus-LoRA runs",
+  "pilot_resources": {
+    "gpus": 4,
+    "gpu": "h200",
+    "minutes": 20,
+    "cpus": 8,
+    "memory_gib": 64
+  },
+  "production": {
+    "train_segments_hours": [
+      4,
+      4
+    ],
+    "eval_hours": 3,
+    "gpus_per_job": 4,
+    "cpus_per_job": 8,
+    "memory_gib": 64,
+    "max_gpu_hours_per_job": 16,
+    "max_gpu_hours_per_variant_excluding_pilot": 44,
+    "max_gpu_hours_five_variants_excluding_pilots": 220,
+    "pilot_gpu_hours_cap_total": 6.666666666666666,
+    "early_exit": true,
+    "resume": "automatic next segment restores module, Adam, per-rank RNG and next unseen index",
+    "retention": "last two complete module-only checkpoints in each new run only",
+    "evaluation_gate": "240000 unique train questions and completed 1000-question validation",
+    "timing_estimate": "Pending measured module-only GPU pilots; job time limits are caps, not duration estimates."
+  },
+  "monitoring": false,
+  "architecture": {
+    "width": 256,
+    "heads": 4,
+    "depth": 2,
+    "symbols": 128,
+    "content_pool": "fixed contiguous native-token-order bins; no object slot encoder",
+    "relation_attention": "Q,K from content; V from learned symbols",
+    "native_path": "preserved via residual; output projection zero initialized",
+    "joint_safety": "input prefix only, excludes supplied answer; generation cache checked",
+    "dual_fusion": "shared initial symbol bank; separate stream layers; concatenate and MLP-fuse symbols"
+  },
+  "variant_parameters": {
+    "early": 2997760,
+    "late": 3458304,
+    "joint": 3458304,
+    "memory": 3986945,
+    "dual": 6228736
+  },
+  "baseline": {
+    "name": "LFM2.5 plus LoRA, 240k one-pass endpoint",
+    "full_test_count": 200000,
+    "correct": 87530,
+    "accuracy": 0.43765,
+    "active_training_gpu_hours": 19.533,
+    "evaluation_gpu_hours": 8.592
+  },
+  "limits": [
+    "One seed per variant; exploratory screen, not statistical proof",
+    "Different insertion/fusion choices and parameter counts are confounded; no matched ordinary-attention control yet",
+    "PGM instruction is constant; this does not establish cross-modal generalization",
+    "Slurm queue delay unknown; production runs depend on passing real-weight GPU pilots",
+    "Partial coverage or partial test must never be reported as full 20%-coverage results",
+    "Original VLM frozen means backward activation gradients still pass through downstream VLM layers. Speedup must be measured.",
+    "Old LoRA-plus-module campaign is not modified."
+  ],
+  "pilot_checks": [
+    "original logits unchanged at initialization",
+    "no LoRA parameters",
+    "only new module parameters trainable",
+    "nonzero deep relation gradients",
+    "frozen VLM parameters bitwise unchanged",
+    "replica agreement",
+    "exact next-update checkpoint replay",
+    "no answer leakage",
+    "cached/uncached generation agreement"
+  ],
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_updates": 20,
+    "global_batch": 16,
+    "clip_grad_norm": 1.0,
+    "module_dtype": "float32",
+    "base_dtype": "bfloat16"
+  },
+  "analysis_policy": "Same fixed 240k training endpoint; validation plateaus are retrospective diagnostics, not an early-stopping rule. No selection on test data.",
+  "starting_checkpoint": {
+    "repo": "LiquidAI/LFM2.5-VL-1.6B",
+    "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+    "pgm_finetuning": false
+  }
+}

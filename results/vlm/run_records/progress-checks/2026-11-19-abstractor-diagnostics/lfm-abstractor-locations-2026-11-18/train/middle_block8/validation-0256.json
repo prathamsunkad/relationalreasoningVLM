@@ -1,0 +1,13 @@
+{
+  "accuracy": 0.126,
+  "answer_ce": 2.135563579082489,
+  "arm": "middle_block8",
+  "candidate_accuracy": 0.126,
+  "candidate_ce": 2.1343972421884536,
+  "complete": true,
+  "count": 1000,
+  "epoch": 1.0,
+  "planned": 1000,
+  "split": "validation",
+  "updates": 256
+}

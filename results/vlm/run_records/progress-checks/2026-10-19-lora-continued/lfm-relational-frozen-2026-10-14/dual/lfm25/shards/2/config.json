@@ -1,0 +1,16 @@
+{
+  "cpu_threads": 2,
+  "dtype": "bfloat16",
+  "images_sha256": "bd91ebacbdf550dc4bdb42e86bf9db35e99bc37399183e8969dfd4707aab84df",
+  "interop_threads": 1,
+  "manifest_sha256": "4f2cfc177cc1fed72f967535171a8a4644ec7aff8fe3fcf15604469b4656517b",
+  "max_new_tokens": 16,
+  "max_samples": 0,
+  "model": "lfm25",
+  "parser": "strict-letter-v1",
+  "protocol": "frozen-zero-shot-single-contact-sheet-v1",
+  "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+  "seed": 0,
+  "source_sha256": "ba06f131f119222d5564661cc87dc22251b94c9a6b0d9dc8d4614b080fcafa95",
+  "tokenizers_parallelism": false
+}

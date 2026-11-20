@@ -1,0 +1,49 @@
+{
+  "data_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-coverage-20pct-2026-10-08",
+  "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+  "seed": 20261109,
+  "lora_seed": 20261110,
+  "plugin_seed": 20261111,
+  "training_seed": 20261112,
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05
+  },
+  "plugin": {
+    "depth": 2,
+    "heads": 4,
+    "layer_index": 2,
+    "width": 256
+  },
+  "manifest_sha256": {
+    "train.jsonl": "9bc5ce2bd5b829b95c3079d4e8b16270ee5b2d7f4d10de227495b8bf3d2c3710",
+    "validation.jsonl": "d3f685f7400d5bda50cb6077fd06e2b6054a295c0757aa64127f6e88937876c6"
+  },
+  "lora_lr": 0.0001,
+  "plugin_lr": 0.0001,
+  "warmup_updates": 20,
+  "weight_decay": 0.01,
+  "separate_gradient_clip_norm": 1.0,
+  "campaign": "lfm-abstractor-overfit-2026-11-16",
+  "per_answer": 2,
+  "global_batch": 16,
+  "updates": 200,
+  "evaluate_every": 20,
+  "plugin_output_scale": 0.01,
+  "arms": [
+    "disabled",
+    "scaled"
+  ],
+  "starting_point": "original pretrained LFM2.5; identical fresh LoRA and plugin initializations",
+  "objective": "unchanged full supervised suffix CE; separate answer-letter and ending-token metrics",
+  "selection": "two questions per answer A-H by deterministic seed/ID hash from the same fixed 240k train subset",
+  "scope": "repeat the same 16 training questions; memorization diagnostic only, no held-out evaluation or full baseline rerun",
+  "resources": {
+    "gres": "gpu:h200:1",
+    "cpus_per_task": 4,
+    "memory": "48G",
+    "wall_seconds": 3600
+  },
+  "maximum_gpu_hours": 1
+}

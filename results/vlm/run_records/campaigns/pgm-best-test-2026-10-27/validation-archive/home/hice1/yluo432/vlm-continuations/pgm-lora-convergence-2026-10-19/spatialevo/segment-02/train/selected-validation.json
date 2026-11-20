@@ -1,0 +1,14 @@
+{
+  "accuracy": 0.455,
+  "complete": true,
+  "correct": 455,
+  "evaluated": 1000,
+  "invalid": 0,
+  "loss": 0.45980095840785906,
+  "phase": "selected-validation",
+  "planned": 1000,
+  "wilson_95": [
+    0.42436684599858754,
+    0.48597756226511246
+  ]
+}

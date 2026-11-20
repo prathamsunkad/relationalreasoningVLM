@@ -1,0 +1,16 @@
+{
+  "cpu_threads": 2,
+  "dtype": "bfloat16",
+  "images_sha256": "4b17f2fef43cbf5a6d32b7a61e074ba3e91d0d1fd1fbe6560e45349045a234ca",
+  "interop_threads": 1,
+  "manifest_sha256": "320142264ae614c3660a1960cd2b0bef891e38a99faa49b52dcfc0a2c58339fc",
+  "max_new_tokens": 16,
+  "max_samples": 0,
+  "model": "spatialevo",
+  "parser": "strict-letter-v1",
+  "protocol": "frozen-zero-shot-single-contact-sheet-v1",
+  "revision": "5fd684324a3d7e759c948b42f4a51b9b016c8d5f",
+  "seed": 0,
+  "source_sha256": "cac3a28f24144fe71edb285b0161b969d3f0085e2b5081c24ad9a4cef1eeabd6",
+  "tokenizers_parallelism": false
+}

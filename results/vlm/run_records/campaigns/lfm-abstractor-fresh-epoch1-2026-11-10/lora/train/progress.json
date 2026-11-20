@@ -1,0 +1,40 @@
+{
+  "best_selection": {
+    "accuracy": 0.118,
+    "loss": 0.7038548225164414,
+    "phase": "lora",
+    "pointer": {
+      "directory": "checkpoint-d5da8aa68b9a4da293e5e490d402b0c2",
+      "manifest_sha256": "255a10c462f497d6855deee265bcf700c8e557b1b72c67dc0e8d5741e3432f16",
+      "schema_version": 1,
+      "seen": 12000
+    },
+    "questions": 1000,
+    "root": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-abstractor-fresh-epoch1-2026-11-10/lora/train",
+    "seen": 12000
+  },
+  "epoch": 0.06666666666666667,
+  "final_bypass_complete": true,
+  "last_update": {
+    "examples_per_second": 4.206058769662476,
+    "gradient_norm_before_clip": {
+      "lora": 0.7103534936904907
+    },
+    "learning_rates": [
+      0.0001
+    ],
+    "loss": 0.6819850020110607,
+    "peak_cuda_allocated_bytes": 8869679616,
+    "plugin_diagnostics": null,
+    "seconds": 3.804036243003793,
+    "seen": 16000,
+    "stage": "lora",
+    "update": 1000
+  },
+  "max_update_seconds": 9.576759272022173,
+  "seen": 16000,
+  "training_seconds": 3868.2401290641865,
+  "update": 1000,
+  "validated_update": 750,
+  "validation_seconds": 308.6294004629599
+}

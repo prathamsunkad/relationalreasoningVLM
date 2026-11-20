@@ -1,0 +1,17 @@
+{
+  "adapter_sha256": {
+    "README.md": "9deee44dfd0542d2e95375aed7a500f3aaeacf88b78406a32cb41f3327edc128",
+    "adapter_config.json": "150e5ec02558995b6db405230af584c968dc2821aa0b845c7fc6b0a38b47c78a",
+    "adapter_model.safetensors": "e56f154dfffcca5cfbe6cf4b83cd62f217e263e77b84314f0d3aa0507ef96a2a"
+  },
+  "checkpoint": {
+    "directory": "checkpoint-003464-5f049c4f",
+    "seen": 55376,
+    "step": 3464
+  },
+  "evaluator_sha256": "d688d7af9c00b02e1bc6da61b3e50c543c348fb49c56aec6dbcdc03afc85c437",
+  "model": "lfm25",
+  "protocol": "validation-selected-lora-ood-test-v1",
+  "task": "rmts",
+  "training_config_sha256": "1682cfc6c5b02ee007e3b61951d4c195e3136e1896aa56ffece4d7f9c5edd060"
+}

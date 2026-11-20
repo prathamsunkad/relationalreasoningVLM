@@ -1,0 +1,607 @@
+{
+  "date": "2026-11-18",
+  "scope": "Historical evidence only; no model execution or new jobs",
+  "frozen_original_probes": {
+    "early": {
+      "architecture": {
+        "depth": 2,
+        "heads": 4,
+        "symbols": 128,
+        "text_dim": 2048,
+        "variant": "early",
+        "vision_dim": 1152,
+        "width": 256
+      },
+      "parameters": 2997760,
+      "no_lora": true,
+      "frozen_vlm_bitwise_unchanged": true,
+      "deep_relation_gradient_nonzero_in_pilot": true,
+      "first_128": {
+        "updates": 128,
+        "median": 1.299415111541748,
+        "maximum": 3.972424030303955,
+        "p10": 0.711480176448822,
+        "p90": 2.610462164878845,
+        "zero_count": 0,
+        "clipping_fraction": 0.6953125,
+        "mean_full_suffix_loss": 0.7109432704746723
+      },
+      "last_1000": {
+        "updates": 1000,
+        "median": 0.09762737527489662,
+        "maximum": 0.23831374943256378,
+        "p10": 0.06383412256836891,
+        "p90": 0.14328362047672272,
+        "zero_count": 0,
+        "clipping_fraction": 0.0,
+        "mean_full_suffix_loss": 0.6941280836462974
+      },
+      "all": {
+        "updates": 15000,
+        "median": 0.15076620876789093,
+        "maximum": 30.392784118652344,
+        "p10": 0.08500920757651328,
+        "p90": 0.3533519446849823,
+        "zero_count": 0,
+        "clipping_fraction": 0.011066666666666667,
+        "mean_full_suffix_loss": 0.6953719769597053
+      },
+      "validation": {
+        "accuracy": 0.129,
+        "complete": true,
+        "correct": 129,
+        "evaluated": 1000,
+        "invalid": 0,
+        "loss": 0.693943205833435,
+        "phase": "selected-validation",
+        "planned": 1000,
+        "wilson_95": [
+          0.10963544529450506,
+          0.1512040095017769
+        ]
+      },
+      "checkpoint": {
+        "directory": "checkpoint-015000-50d82baf",
+        "seen": 240000,
+        "step": 15000
+      },
+      "gradient_scope": "Global module-parameter L2 norm before clipping; includes readout/projection; full-suffix objective",
+      "layers_not_recorded": "No per-backbone-layer activation gradients or answer-only gradients in this historical trace"
+    },
+    "late": {
+      "architecture": {
+        "depth": 2,
+        "heads": 4,
+        "symbols": 128,
+        "text_dim": 2048,
+        "variant": "late",
+        "vision_dim": 1152,
+        "width": 256
+      },
+      "parameters": 3458304,
+      "no_lora": true,
+      "frozen_vlm_bitwise_unchanged": true,
+      "deep_relation_gradient_nonzero_in_pilot": true,
+      "first_128": {
+        "updates": 128,
+        "median": 1.951709806919098,
+        "maximum": 13.447611808776855,
+        "p10": 0.9958862006664276,
+        "p90": 5.214437627792358,
+        "zero_count": 0,
+        "clipping_fraction": 0.8984375,
+        "mean_full_suffix_loss": 0.7133698482066393
+      },
+      "last_1000": {
+        "updates": 1000,
+        "median": 0.0702056922018528,
+        "maximum": 0.1795487254858017,
+        "p10": 0.047047296166419984,
+        "p90": 0.10301232784986497,
+        "zero_count": 0,
+        "clipping_fraction": 0.0,
+        "mean_full_suffix_loss": 0.6941561383008957
+      },
+      "all": {
+        "updates": 15000,
+        "median": 0.13334937393665314,
+        "maximum": 13.447611808776855,
+        "p10": 0.06503706276416779,
+        "p90": 0.36050245761871347,
+        "zero_count": 0,
+        "clipping_fraction": 0.015066666666666667,
+        "mean_full_suffix_loss": 0.6952583979765574
+      },
+      "validation": {
+        "accuracy": 0.129,
+        "complete": true,
+        "correct": 129,
+        "evaluated": 1000,
+        "invalid": 0,
+        "loss": 0.6941100369691848,
+        "phase": "selected-validation",
+        "planned": 1000,
+        "wilson_95": [
+          0.10963544529450506,
+          0.1512040095017769
+        ]
+      },
+      "checkpoint": {
+        "directory": "checkpoint-015000-d2dbcb05",
+        "seen": 240000,
+        "step": 15000
+      },
+      "gradient_scope": "Global module-parameter L2 norm before clipping; includes readout/projection; full-suffix objective",
+      "layers_not_recorded": "No per-backbone-layer activation gradients or answer-only gradients in this historical trace"
+    },
+    "joint": {
+      "architecture": {
+        "depth": 2,
+        "heads": 4,
+        "symbols": 128,
+        "text_dim": 2048,
+        "variant": "joint",
+        "vision_dim": 1152,
+        "width": 256
+      },
+      "parameters": 3458304,
+      "no_lora": true,
+      "frozen_vlm_bitwise_unchanged": true,
+      "deep_relation_gradient_nonzero_in_pilot": true,
+      "first_128": {
+        "updates": 128,
+        "median": 6.6015825271606445,
+        "maximum": 1326.9530029296875,
+        "p10": 2.7712981939315795,
+        "p90": 23.2512990951538,
+        "zero_count": 0,
+        "clipping_fraction": 1.0,
+        "mean_full_suffix_loss": 0.7832824713550508
+      },
+      "last_1000": {
+        "updates": 1000,
+        "median": 0.12649549543857574,
+        "maximum": 0.5612431764602661,
+        "p10": 0.08497889563441277,
+        "p90": 0.18334670662879943,
+        "zero_count": 0,
+        "clipping_fraction": 0.0,
+        "mean_full_suffix_loss": 0.6944238299131393
+      },
+      "all": {
+        "updates": 15000,
+        "median": 0.19639616459608078,
+        "maximum": 1326.9530029296875,
+        "p10": 0.11035067513585091,
+        "p90": 0.469580015540123,
+        "zero_count": 0,
+        "clipping_fraction": 0.035,
+        "mean_full_suffix_loss": 0.701202409740289
+      },
+      "validation": {
+        "accuracy": 0.136,
+        "complete": true,
+        "correct": 136,
+        "evaluated": 1000,
+        "invalid": 0,
+        "loss": 0.6947537056207657,
+        "phase": "selected-validation",
+        "planned": 1000,
+        "wilson_95": [
+          0.1161420645496615,
+          0.15864381562782268
+        ]
+      },
+      "checkpoint": {
+        "directory": "checkpoint-015000-635a023d",
+        "seen": 240000,
+        "step": 15000
+      },
+      "gradient_scope": "Global module-parameter L2 norm before clipping; includes readout/projection; full-suffix objective",
+      "layers_not_recorded": "No per-backbone-layer activation gradients or answer-only gradients in this historical trace"
+    },
+    "dual": {
+      "architecture": {
+        "depth": 2,
+        "heads": 4,
+        "symbols": 128,
+        "text_dim": 2048,
+        "variant": "dual",
+        "vision_dim": 1152,
+        "width": 256
+      },
+      "parameters": 6228736,
+      "no_lora": true,
+      "frozen_vlm_bitwise_unchanged": true,
+      "deep_relation_gradient_nonzero_in_pilot": true,
+      "first_128": {
+        "updates": 128,
+        "median": 1.0720171332359314,
+        "maximum": 7.264587879180908,
+        "p10": 0.5441326260566711,
+        "p90": 2.9047597169876096,
+        "zero_count": 0,
+        "clipping_fraction": 0.5390625,
+        "mean_full_suffix_loss": 0.7092013866640627
+      },
+      "last_1000": {
+        "updates": 1000,
+        "median": 0.0664907731115818,
+        "maximum": 0.9547898769378662,
+        "p10": 0.04592315852642059,
+        "p90": 0.09544302150607109,
+        "zero_count": 0,
+        "clipping_fraction": 0.0,
+        "mean_full_suffix_loss": 0.6938857748508453
+      },
+      "all": {
+        "updates": 15000,
+        "median": 0.09081148356199265,
+        "maximum": 7.264587879180908,
+        "p10": 0.05532537326216698,
+        "p90": 0.21649402529001238,
+        "zero_count": 0,
+        "clipping_fraction": 0.0051333333333333335,
+        "mean_full_suffix_loss": 0.6944697010874749
+      },
+      "validation": {
+        "accuracy": 0.13,
+        "complete": true,
+        "correct": 130,
+        "evaluated": 1000,
+        "invalid": 0,
+        "loss": 0.6940664071440696,
+        "phase": "selected-validation",
+        "planned": 1000,
+        "wilson_95": [
+          0.11056377462484193,
+          0.1522680266544689
+        ]
+      },
+      "checkpoint": {
+        "directory": "checkpoint-015000-6f25c322",
+        "seen": 240000,
+        "step": 15000
+      },
+      "gradient_scope": "Global module-parameter L2 norm before clipping; includes readout/projection; full-suffix objective",
+      "layers_not_recorded": "No per-backbone-layer activation gradients or answer-only gradients in this historical trace"
+    },
+    "memory": {
+      "status": "pilot_failed_before_training",
+      "job": "6268408",
+      "reason": "NCCL/CUDA failure at initial distributed barrier",
+      "qualified_statement": "No completed frozen memory training found in its campaign; do not report a frozen near-chance accuracy"
+    }
+  },
+  "plugin_only_evidence": {
+    "lfm-abstractor-plugin-first-2026-11-16": {
+      "trainable_parameters": 2143489,
+      "original_vlm_frozen": true,
+      "lora_frozen": true,
+      "updates": 320,
+      "phases": [
+        {
+          "final": {
+            "phase": "plugin-016",
+            "phase_update": 80,
+            "train": {
+              "accuracy": 1.0,
+              "answer_loss": 0.028204241709318012,
+              "ending_loss": 8.717167854221941e-07,
+              "loss": 0.009401995324878953,
+              "n": 16,
+              "phase": "plugin-016",
+              "phase_update": 80,
+              "presentations": 1280,
+              "total_update": 80
+            },
+            "train_size": 16,
+            "validation": {
+              "accuracy": 0.09375,
+              "answer_loss": 2.8444337202236056,
+              "ending_loss": 4.586675673490248e-06,
+              "loss": 0.9481476221699268,
+              "n": 64,
+              "phase": "plugin-016",
+              "phase_update": 80,
+              "presentations": 1280,
+              "total_update": 80
+            }
+          },
+          "interpret_as_converged": false,
+          "phase": "plugin-016",
+          "stop_reason": "memorized",
+          "train_size": 16,
+          "updates": 80
+        },
+        {
+          "final": {
+            "phase": "plugin-064",
+            "phase_update": 80,
+            "train": {
+              "accuracy": 1.0,
+              "answer_loss": 0.02913279942185909,
+              "ending_loss": 9.592602918662152e-07,
+              "loss": 0.00971157288449831,
+              "n": 64,
+              "phase": "plugin-064",
+              "phase_update": 80,
+              "presentations": 2560,
+              "total_update": 160
+            },
+            "train_size": 64,
+            "validation": {
+              "accuracy": 0.09375,
+              "answer_loss": 4.388500448316336,
+              "ending_loss": 1.594755454426e-05,
+              "loss": 1.4628441000822932,
+              "n": 64,
+              "phase": "plugin-064",
+              "phase_update": 80,
+              "presentations": 2560,
+              "total_update": 160
+            }
+          },
+          "interpret_as_converged": false,
+          "phase": "plugin-064",
+          "stop_reason": "memorized",
+          "train_size": 64,
+          "updates": 80
+        },
+        {
+          "final": {
+            "phase": "plugin-256",
+            "phase_update": 160,
+            "train": {
+              "accuracy": 0.80078125,
+              "answer_loss": 0.5446515342100611,
+              "ending_loss": 1.8684571516103254e-06,
+              "loss": 0.18155175887113728,
+              "n": 256,
+              "phase": "plugin-256",
+              "phase_update": 160,
+              "presentations": 5120,
+              "total_update": 320
+            },
+            "train_size": 256,
+            "validation": {
+              "accuracy": 0.171875,
+              "answer_loss": 3.4957470525987446,
+              "ending_loss": 1.4735297516832446e-05,
+              "loss": 1.165258836816065,
+              "n": 64,
+              "phase": "plugin-256",
+              "phase_update": 160,
+              "presentations": 5120,
+              "total_update": 320
+            }
+          },
+          "interpret_as_converged": false,
+          "phase": "plugin-256",
+          "stop_reason": "overfitting_signal",
+          "train_size": 256,
+          "updates": 160
+        }
+      ],
+      "selected": {
+        "phase": "plugin-016",
+        "phase_update": 40,
+        "train": {
+          "accuracy": 0.5625,
+          "answer_loss": 1.6763637140393257,
+          "ending_loss": 1.5981445251611603e-06,
+          "loss": 0.5587889738380909,
+          "n": 16,
+          "phase": "plugin-016",
+          "phase_update": 40,
+          "presentations": 640,
+          "total_update": 40
+        },
+        "train_size": 16,
+        "validation": {
+          "accuracy": 0.125,
+          "answer_loss": 2.182462165132165,
+          "ending_loss": 2.278935940847049e-06,
+          "loss": 0.7274888949468732,
+          "n": 64,
+          "phase": "plugin-016",
+          "phase_update": 40,
+          "presentations": 640,
+          "total_update": 40
+        }
+      },
+      "parameter_gradient_norms": {
+        "output.weight": {
+          "zero_updates": 0,
+          "first_nonzero_update": 1,
+          "last_256_median": 0.075800321996212
+        },
+        "content_in.1.weight": {
+          "zero_updates": 1,
+          "first_nonzero_update": 2,
+          "last_256_median": 0.8354353606700897
+        },
+        "layers.0.relation.q.weight": {
+          "zero_updates": 1,
+          "first_nonzero_update": 2,
+          "last_256_median": 0.17196065187454224
+        },
+        "layers.0.relation.k.weight": {
+          "zero_updates": 1,
+          "first_nonzero_update": 2,
+          "last_256_median": 0.16521166265010834
+        },
+        "layers.1.relation.q.weight": {
+          "zero_updates": 1,
+          "first_nonzero_update": 2,
+          "last_256_median": 0.013490441255271435
+        },
+        "layers.1.relation.k.weight": {
+          "zero_updates": 1,
+          "first_nonzero_update": 2,
+          "last_256_median": 0.01227215863764286
+        }
+      },
+      "norm_scope": "Individual parameter L2 norms AFTER group clipping; full-suffix objective",
+      "median_effective_correction_rms_ratio_last256": 0.11626301288604737
+    },
+    "lfm-abstractor-plugin-4k-2026-11-17": {
+      "trainable_parameters": 2143489,
+      "original_vlm_frozen": true,
+      "lora_frozen": true,
+      "updates": 1792,
+      "phases": [
+        {
+          "final": {
+            "phase": "plugin-4096",
+            "phase_update": 1792,
+            "train": {
+              "accuracy": 0.18359375,
+              "answer_loss": 2.0491186266299337,
+              "ending_loss": 8.766870077892008e-06,
+              "loss": 0.6830453684669919,
+              "n": 512,
+              "phase": "plugin-4096",
+              "phase_update": 1792,
+              "presentations": 28672,
+              "total_update": 1792
+            },
+            "train_size": 4096,
+            "validation": {
+              "accuracy": 0.135,
+              "answer_loss": 2.0893665529489516,
+              "ending_loss": 8.359253803234879e-06,
+              "loss": 0.6964610659182072,
+              "n": 1000,
+              "phase": "plugin-4096",
+              "phase_update": 1792,
+              "presentations": 28672,
+              "total_update": 1792
+            }
+          },
+          "interpret_as_converged": false,
+          "phase": "plugin-4096",
+          "stop_reason": "validation_plateau",
+          "train_size": 4096,
+          "updates": 1792
+        }
+      ],
+      "selected": {
+        "phase": "plugin-4096",
+        "phase_update": 1024,
+        "train": {
+          "accuracy": 0.1796875,
+          "answer_loss": 2.067537433002144,
+          "ending_loss": 7.5539637467425536e-06,
+          "loss": 0.6891841584583744,
+          "n": 512,
+          "phase": "plugin-4096",
+          "phase_update": 1024,
+          "presentations": 16384,
+          "total_update": 1024
+        },
+        "train_size": 4096,
+        "validation": {
+          "accuracy": 0.136,
+          "answer_loss": 2.0848513699769975,
+          "ending_loss": 7.2844816888277815e-06,
+          "loss": 0.6949552870392799,
+          "n": 1000,
+          "phase": "plugin-4096",
+          "phase_update": 1024,
+          "presentations": 16384,
+          "total_update": 1024
+        }
+      },
+      "parameter_gradient_norms": {
+        "output.weight": {
+          "zero_updates": 0,
+          "first_nonzero_update": 1,
+          "last_256_median": 0.098886638879776
+        },
+        "content_in.1.weight": {
+          "zero_updates": 1,
+          "first_nonzero_update": 2,
+          "last_256_median": 0.08114307001233101
+        },
+        "layers.0.relation.q.weight": {
+          "zero_updates": 1,
+          "first_nonzero_update": 2,
+          "last_256_median": 0.011711374390870333
+        },
+        "layers.0.relation.k.weight": {
+          "zero_updates": 1,
+          "first_nonzero_update": 2,
+          "last_256_median": 0.011568641755729914
+        },
+        "layers.1.relation.q.weight": {
+          "zero_updates": 1,
+          "first_nonzero_update": 2,
+          "last_256_median": 0.009308815002441406
+        },
+        "layers.1.relation.k.weight": {
+          "zero_updates": 1,
+          "first_nonzero_update": 2,
+          "last_256_median": 0.0067235606256872416
+        }
+      },
+      "norm_scope": "Individual parameter L2 norms AFTER group clipping; full-suffix objective",
+      "median_effective_correction_rms_ratio_last256": 0.1815811634063721
+    }
+  },
+  "sources": {
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/retrieval-manifest.json": "019c64b5869e8342f5de452f776fef16aae0deea8399cd88b184c19c04ee83df",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/early/train/config.json": "b12d57f6f2803c0ad15cb68b225aca54504c4b1bc3fb756632c7fda933d24fa9",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/early/train/summary.json": "d9039c1a40296a522d28cfc580c83cb3fd1be541fbccf81fcb9da9cf1015c927",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/early/pilot-result.json": "021714d57eabb765025145293b94185c386c8a176e3a75913e66fb5f31b838db",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/early/train/learning-curve.jsonl": "6717ff9f60a7e192144a97c270d4db6dca78da213ac03ef770b0409cd4acbb84",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/late/train/config.json": "c33665d529a166a9a56abc56a10817d3c994e1fa6b528a1101cbc4a4ce67e829",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/late/train/summary.json": "19a93669ebbcd8bbb43d4333bb36a537f434de5f6fcd9ad0bd5ace64ad37712f",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/late/pilot-result.json": "b08404171384ede7ed4d03c3ec83dd824ee3958b5cc1e1fce536528792b348ee",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/late/train/learning-curve.jsonl": "8f162c1ada4a40ce9ceb4cb9269e10168f3b999e6b0f22bd7a1dfae441da2964",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/joint/train/config.json": "6f3573f53bf1a3fe58a6e9792c9b56291d4fb37997a94258eabc69976a1360cb",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/joint/train/summary.json": "bef84632cfaa2e1d2744fb9e3f78c4a47b789669018bce202432f46eed6256c9",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/joint/pilot-result.json": "f748f76a0b6c8d3d142d9c14c74d0d3af90c12953c6f818eafabcf07e15984db",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/joint/train/learning-curve.jsonl": "c702ee38c2eeae6b6229624516d9384f727c75d9e33e122cc4e99cae2a1f6fbe",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/dual/train/config.json": "4df8eb4b48ccd49e64f5f04a0f97998822e46c3736279fec2685c12cfb4d0d58",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/dual/train/summary.json": "6339b92c6c1ee3225115e39b8884532120db070dd7bdb463dd81f5aacfef9b79",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/dual/pilot-result.json": "ec3d68bb67fd50e8ad3521b5b2ced610f9c340002c46fe204212aea5ca2077cf",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/dual/train/learning-curve.jsonl": "479425fe159699c5332d872747f563ebfd267f5935651c70e44955e247f65716",
+    ".local/campaigns/lfm-relational-frozen-2026-10-14/audit-2026-11-18/memory-investigation.json": "3eeafbc02892ae226a7f8ed22a0999d446c445b08e4a7366af4329a8ea1fb076",
+    ".local/campaigns/lfm-abstractor-plugin-first-2026-11-16/audit/summary.json": "66a3709f79dc32c3ef9423c5ede7c4850d49a800f23a0487c588bec0415fcd3d",
+    ".local/campaigns/lfm-abstractor-plugin-first-2026-11-16/audit/config.json": "920ea0a8eb159db7529ee7d56a53d5295875e7912ec2bac02319772fcdbf5d33",
+    ".local/campaigns/lfm-abstractor-plugin-first-2026-11-16/audit/learning-curve.jsonl": "ed1d0d534e1fa1051c965f970806b4cc99cc55cce24649dd4a669934496cf73f",
+    ".local/campaigns/lfm-abstractor-plugin-4k-2026-11-17/train/summary.json": "bea66bd57b89eca7ba3bf011e70c7b1c086f693d5315dd8ac40c0ab21a54f4e0",
+    ".local/campaigns/lfm-abstractor-plugin-4k-2026-11-17/train/config.json": "0ba992f5efc0b3b69480325b9ca2a1b9f9aa7b3148183216c29dc31a5af09522",
+    ".local/campaigns/lfm-abstractor-plugin-4k-2026-11-17/train/learning-curve.jsonl": "c8f14b25e7ff5c62b3d4cfec9cb6284c644ac134ef7dab25083df493743fe2c4",
+    ".local/campaigns/slot-abstractor-2026-10-07/pilot.json": "1167ab77056fab4a9cebcf2e1915e49d57c12f650758cd73ed798936dd5550a6"
+  },
+  "capacity": {
+    "paper_url": "https://arxiv.org/html/2403.03458v2#A1.T14",
+    "paper_layers": {
+      "ART": 6,
+      "CLEVR_ART": 24,
+      "PGM": 24
+    },
+    "original_probe_layers": 2,
+    "original_probe_width": 256,
+    "original_probe_heads": 4,
+    "original_probe_parameters": {
+      "early": 2997760,
+      "late": 3458304,
+      "joint": 3458304,
+      "memory": 3986945,
+      "dual": 6228736
+    },
+    "native_pgm_head_parameters": 2378817,
+    "native_pgm_encoder_parameters": 169506,
+    "interpretation": "Our probes are shallower, but not uniformly smaller in parameter count. No controlled depth comparison exists."
+  },
+  "provenance_caution": "The older lfm-relational-frozen-2026-10-14/convergence folder contains module-plus-LoRA comparison records, as identified by its config policy and job IDs. It is excluded from frozen-only evidence. This report uses newly retrieved, hash-verified per-variant train/ records.",
+  "missing_measurements": [
+    "Matched 2-versus-6-layer capacity/training experiment",
+    "Answer-loss activation gradients at each backbone layer and intervention point",
+    "Per-example gradient agreement/cancellation and optimizer update-to-weight ratios",
+    "A frozen-only memorization ladder for each of the original five variants"
+  ]
+}

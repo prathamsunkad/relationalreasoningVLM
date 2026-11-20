@@ -1,0 +1,36 @@
+{
+  "dtype": "bfloat16",
+  "images_sha256": "d1eb83484b325eec9a2fdb992f233f8b2c84298a3799e7331b9e43b9c1f49443",
+  "manifest_sha256": "c413d475a0191e2a4e23d1aeda5814e61c433e7b29ec2f04ab14818e289bc340",
+  "max_new_tokens": 16,
+  "model": "lfm25",
+  "parser": "strict-letter-v1",
+  "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+  "seed": 0,
+  "shards": [
+    {
+      "count": 50000,
+      "images_sha256": "f54c0f3cfe87b9e20e30e1d4c176a1b9774d53ecb3b9dec8cfcad337271f8266",
+      "manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/full-lfm25-2026-09-24/pgm-coverage-eval-2026-10-09-shard-0.jsonl",
+      "manifest_sha256": "aebd5541b0a4e129dfe62b1ddb3708fee18b6fc3893527b942b3d85f0068d076"
+    },
+    {
+      "count": 50000,
+      "images_sha256": "3bbc877a14196dbb8369c808f86f088143bf04aff06f5d5bcde428ad114a410b",
+      "manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/full-lfm25-2026-09-24/pgm-coverage-eval-2026-10-09-shard-1.jsonl",
+      "manifest_sha256": "dbff0638d7d807a44e1410e093c30113b66e9401daa3219e59472287dfafbfbb"
+    },
+    {
+      "count": 50000,
+      "images_sha256": "bd91ebacbdf550dc4bdb42e86bf9db35e99bc37399183e8969dfd4707aab84df",
+      "manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/full-lfm25-2026-09-24/pgm-coverage-eval-2026-10-09-shard-2.jsonl",
+      "manifest_sha256": "4f2cfc177cc1fed72f967535171a8a4644ec7aff8fe3fcf15604469b4656517b"
+    },
+    {
+      "count": 50000,
+      "images_sha256": "03a34ee86aaf98e6ec557911032e1a782020341f5f515a180aefb15e61ac0b5a",
+      "manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/full-lfm25-2026-09-24/pgm-coverage-eval-2026-10-09-shard-3.jsonl",
+      "manifest_sha256": "75939bed1715f3f5c6ca1c4ecad83eec3c2cf8a80b03d4234bf08dfeccadd6cf"
+    }
+  ]
+}
