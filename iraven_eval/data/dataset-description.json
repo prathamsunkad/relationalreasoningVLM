@@ -1,0 +1,28 @@
+{
+  "dataset": "i-raven",
+  "split": "test",
+  "counts": {
+    "center_single": 2000,
+    "distribute_four": 2000,
+    "distribute_nine": 2000,
+    "in_center_single_out_center_single": 2000,
+    "in_distribute_four_out_center_single": 2000,
+    "left_center_single_right_center_single": 2000,
+    "up_center_single_down_center_single": 2000
+  },
+  "total": 14000,
+  "archives": [
+    "test-center_single.tar",
+    "test-distribute_four.tar",
+    "test-distribute_nine.tar",
+    "test-in_center_single_out_center_single.tar",
+    "test-in_distribute_four_out_center_single.tar",
+    "test-left_center_single_right_center_single.tar",
+    "test-up_center_single_down_center_single.tar"
+  ],
+  "presentation": "matrix-3x3-options-2x4-v1",
+  "generator": "https://github.com/husheng12345/SRAN (I-RAVEN/)",
+  "generator_commit": "9530ad6190ae00bf708460e76a965af87df8ecaa",
+  "generator_seed": 1234,
+  "split_rule": "generator default 6:2:2 by index (index % 10 in {8, 9} is test)"
+}
