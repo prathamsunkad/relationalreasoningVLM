@@ -1,0 +1,5 @@
+# I-RAVEN test split as PGM-style contact sheets
+
+14000 test puzzles (center_single: 2000, distribute_four: 2000, distribute_nine: 2000, in_center_single_out_center_single: 2000, in_distribute_four_out_center_single: 2000, left_center_single_right_center_single: 2000, up_center_single_down_center_single: 2000), generated with the I-RAVEN authors' unmodified generator (husheng12345/SRAN, commit 9530ad6190ae00bf708460e76a965af87df8ecaa) under Python 2.7 with its pinned requirements and default settings (seed 1234, 10,000 puzzles per configuration, 6:2:2 split; only the test split is kept).
+
+Each puzzle is one 700x1016 grayscale PNG in the same presentation as the PGM contact sheets (3x3 matrix with a missing cell, eight choices A-H); the template is a real PGM sheet with the panels replaced. Load with PIL.Image.open(...).convert('RGB'). test.jsonl uses the PGM manifest schema; `regime` holds the I-RAVEN configuration. PNGs are stored in one tar per configuration because the scratch file-count quota is full; `tar -xf test-<config>.tar` in this folder makes the manifest paths resolve directly, and eval_adapter.py also reads them straight from the tars.

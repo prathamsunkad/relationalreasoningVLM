@@ -1,0 +1,53 @@
+{
+  "key": "lfm25-pgm-best",
+  "base_model": "LiquidAI/LFM2.5-VL-1.6B",
+  "base_revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+  "manifest": "pgm-neutral-test-first1000",
+  "chance_accuracy": 0.125,
+  "overall": {
+    "evaluated": 1000,
+    "correct": 772,
+    "accuracy": 0.772,
+    "wilson_95_interval": [
+      0.7449850163320579,
+      0.7969332270518001
+    ],
+    "invalid_outputs": 0,
+    "invalid_rate": 0.0
+  },
+  "by_regime": {
+    "neutral": {
+      "evaluated": 1000,
+      "correct": 772,
+      "accuracy": 0.772,
+      "wilson_95_interval": [
+        0.7449850163320579,
+        0.7969332270518001
+      ],
+      "invalid_outputs": 0,
+      "invalid_rate": 0.0
+    }
+  },
+  "prediction_histogram": {
+    "A": 109,
+    "B": 121,
+    "C": 120,
+    "D": 116,
+    "E": 117,
+    "F": 178,
+    "G": 128,
+    "H": 111
+  },
+  "answer_histogram": {
+    "A": 117,
+    "B": 128,
+    "C": 123,
+    "D": 119,
+    "E": 121,
+    "F": 127,
+    "G": 135,
+    "H": 130
+  },
+  "mean_latency_seconds": 1.418800761604216,
+  "wall_seconds_this_run": 0.000953668961301446
+}
