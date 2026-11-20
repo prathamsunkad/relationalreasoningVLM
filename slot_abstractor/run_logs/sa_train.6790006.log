@@ -1,0 +1,100 @@
+---------------------------------------
+Begin Slurm Prolog: Nov-03-2026 16:33:39
+Job ID:    6790006
+User ID:   skomaragiri8
+Account:   ece
+Job name:  sa_train
+Partition: ice-gpu
+QOS:       coc-ice
+---------------------------------------
+[16:33:59] world_size=1 device=cuda:0 args={'mode': 'train', 'jsonl_root': '/home/hice1/skomaragiri8/scratch/datasets/pgm-neutral-train20pct-seed20261007-v1/pgm-neutral-train20pct-seed20261007-v1', 'layout': 'layout.json', 'train_file': 'train.jsonl', 'val_file': 'validation.jsonl', 'test_file': 'test.jsonl', 'n_train': 0, 'n_val': 0, 'n_test': 0, 'test_offset': 0, 'skip_val': False, 'slot_checkpoint': 'weights/slot_ae_pgm20.pth.tar', 'model_checkpoint': None, 'save_path': 'weights/', 'tag': 'pgm20_1gpu', 'resume': True, 'max_hours': 5.9, 'margin_min': 5, 'snapshot_every': 5, 'img_size': 80, 'batch_size': 96, 'depth': 24, 'heads': 8, 'mlp_dim': 512, 'num_slots': 16, 'num_iterations': 3, 'hid_dim': 32, 'learning_rate': 8e-05, 'num_epochs': 50, 'apply_context_norm': True, 'log_interval': 100, 'num_workers': 14, 'seed': 0, 'image_key': 'images', 'answer_key': 'answer', 'tf32': False}
+[16:34:04] train 240000 questions (2500 batches/GPU, global batch 96), validation 1000
+[16:34:04] resumed from weights/slot_abstractor_pgm_pgm20_1gpu_d24_lr8e-05_run0_last.pth.tar: epoch 47, batch 360, best val 59.20
+[16:34:55] epoch 47 batch 400/2500 loss 0.9961 [0.8 min in this job]
+[16:36:43] epoch 47 batch 500/2500 loss 1.2333 [2.6 min in this job]
+[16:38:29] epoch 47 batch 600/2500 loss 1.1273 [4.4 min in this job]
+[16:40:17] epoch 47 batch 700/2500 loss 1.1241 [6.2 min in this job]
+[16:42:04] epoch 47 batch 800/2500 loss 1.1209 [8.0 min in this job]
+[16:43:51] epoch 47 batch 900/2500 loss 0.9261 [9.8 min in this job]
+[16:45:39] epoch 47 batch 1000/2500 loss 1.0197 [11.6 min in this job]
+[16:47:26] epoch 47 batch 1100/2500 loss 0.9925 [13.4 min in this job]
+[16:49:13] epoch 47 batch 1200/2500 loss 0.9002 [15.1 min in this job]
+[16:51:01] epoch 47 batch 1300/2500 loss 0.9844 [16.9 min in this job]
+[16:52:48] epoch 47 batch 1400/2500 loss 0.9484 [18.7 min in this job]
+[16:54:35] epoch 47 batch 1500/2500 loss 1.1280 [20.5 min in this job]
+[16:56:23] epoch 47 batch 1600/2500 loss 1.0109 [22.3 min in this job]
+[16:58:10] epoch 47 batch 1700/2500 loss 1.1132 [24.1 min in this job]
+[16:59:57] epoch 47 batch 1800/2500 loss 1.1085 [25.9 min in this job]
+[17:01:44] epoch 47 batch 1900/2500 loss 1.0360 [27.7 min in this job]
+[17:03:31] epoch 47 batch 2000/2500 loss 0.9118 [29.4 min in this job]
+[17:05:19] epoch 47 batch 2100/2500 loss 1.0363 [31.2 min in this job]
+[17:07:06] epoch 47 batch 2200/2500 loss 1.0434 [33.0 min in this job]
+[17:08:53] epoch 47 batch 2300/2500 loss 1.2335 [34.8 min in this job]
+[17:10:40] epoch 47 batch 2400/2500 loss 1.0381 [36.6 min in this job]
+[17:12:37] epoch 47: train acc 62.82  val acc 59.10  best 59.20  [25106s]
+[17:12:41] epoch 48 batch 0/2500 loss 0.9795 [38.6 min in this job]
+[17:14:29] epoch 48 batch 100/2500 loss 0.9234 [40.4 min in this job]
+[17:16:16] epoch 48 batch 200/2500 loss 0.9508 [42.2 min in this job]
+[17:18:03] epoch 48 batch 300/2500 loss 1.0805 [44.0 min in this job]
+[17:19:50] epoch 48 batch 400/2500 loss 1.2610 [45.8 min in this job]
+[17:21:38] epoch 48 batch 500/2500 loss 1.0059 [47.6 min in this job]
+[17:23:25] epoch 48 batch 600/2500 loss 0.9539 [49.3 min in this job]
+[17:25:12] epoch 48 batch 700/2500 loss 1.0961 [51.1 min in this job]
+[17:26:59] epoch 48 batch 800/2500 loss 0.9220 [52.9 min in this job]
+[17:28:46] epoch 48 batch 900/2500 loss 1.0870 [54.7 min in this job]
+[17:30:34] epoch 48 batch 1000/2500 loss 1.0188 [56.5 min in this job]
+[17:32:21] epoch 48 batch 1100/2500 loss 0.9104 [58.3 min in this job]
+[17:34:08] epoch 48 batch 1200/2500 loss 1.0197 [60.1 min in this job]
+[17:35:55] epoch 48 batch 1300/2500 loss 0.8887 [61.8 min in this job]
+[17:37:42] epoch 48 batch 1400/2500 loss 1.0094 [63.6 min in this job]
+[17:39:29] epoch 48 batch 1500/2500 loss 0.7853 [65.4 min in this job]
+[17:41:17] epoch 48 batch 1600/2500 loss 1.2256 [67.2 min in this job]
+[17:43:04] epoch 48 batch 1700/2500 loss 1.1487 [69.0 min in this job]
+[17:44:51] epoch 48 batch 1800/2500 loss 1.0775 [70.8 min in this job]
+[17:46:38] epoch 48 batch 1900/2500 loss 0.9657 [72.6 min in this job]
+[17:48:24] epoch 48 batch 2000/2500 loss 0.8577 [74.3 min in this job]
+[17:50:11] epoch 48 batch 2100/2500 loss 1.0100 [76.1 min in this job]
+[17:51:58] epoch 48 batch 2200/2500 loss 1.0240 [77.9 min in this job]
+[17:53:45] epoch 48 batch 2300/2500 loss 0.9438 [79.7 min in this job]
+[17:55:32] epoch 48 batch 2400/2500 loss 0.7502 [81.5 min in this job]
+[17:57:28] epoch 48: train acc 63.35  val acc 58.60  best 59.20  [25485s]
+[17:57:32] epoch 49 batch 0/2500 loss 0.9717 [83.5 min in this job]
+[17:59:19] epoch 49 batch 100/2500 loss 1.1369 [85.2 min in this job]
+[18:01:06] epoch 49 batch 200/2500 loss 0.9210 [87.0 min in this job]
+[18:02:53] epoch 49 batch 300/2500 loss 0.9733 [88.8 min in this job]
+[18:04:40] epoch 49 batch 400/2500 loss 0.9316 [90.6 min in this job]
+[18:06:28] epoch 49 batch 500/2500 loss 1.0019 [92.4 min in this job]
+[18:08:15] epoch 49 batch 600/2500 loss 1.0018 [94.2 min in this job]
+[18:10:02] epoch 49 batch 700/2500 loss 0.9327 [96.0 min in this job]
+[18:11:49] epoch 49 batch 800/2500 loss 0.9239 [97.7 min in this job]
+[18:13:36] epoch 49 batch 900/2500 loss 0.9749 [99.5 min in this job]
+[18:15:23] epoch 49 batch 1000/2500 loss 0.7168 [101.3 min in this job]
+[18:17:10] epoch 49 batch 1100/2500 loss 0.8145 [103.1 min in this job]
+[18:18:57] epoch 49 batch 1200/2500 loss 1.0625 [104.9 min in this job]
+[18:20:44] epoch 49 batch 1300/2500 loss 0.9600 [106.7 min in this job]
+[18:22:31] epoch 49 batch 1400/2500 loss 0.9031 [108.4 min in this job]
+[18:24:18] epoch 49 batch 1500/2500 loss 1.1108 [110.2 min in this job]
+[18:26:06] epoch 49 batch 1600/2500 loss 1.0929 [112.0 min in this job]
+[18:27:53] epoch 49 batch 1700/2500 loss 0.8515 [113.8 min in this job]
+[18:29:40] epoch 49 batch 1800/2500 loss 0.8407 [115.6 min in this job]
+[18:31:27] epoch 49 batch 1900/2500 loss 0.8496 [117.4 min in this job]
+[18:33:14] epoch 49 batch 2000/2500 loss 0.9352 [119.2 min in this job]
+[18:35:01] epoch 49 batch 2100/2500 loss 0.9530 [120.9 min in this job]
+[18:36:48] epoch 49 batch 2200/2500 loss 1.1275 [122.7 min in this job]
+[18:38:36] epoch 49 batch 2300/2500 loss 1.0409 [124.5 min in this job]
+[18:40:24] epoch 49 batch 2400/2500 loss 0.9679 [126.3 min in this job]
+[18:42:22] snapshot after 50 epochs -> weights/slot_abstractor_pgm_pgm20_1gpu_d24_lr8e-05_run0_ep50.pth.tar
+[18:42:22] epoch 49: train acc 63.93  val acc 58.10  best 59.20  [25487s]
+[18:42:22] finished: 50 epochs, best validation accuracy 59.20
+---------------------------------------
+Begin Slurm Epilog: Nov-03-2026 18:42:25
+Job ID:        6790006
+User ID:       skomaragiri8
+Account:       ece
+Job name:      sa_train
+Resources:     cpu=16,gres/gpu:h200=1,mem=224G,node=1
+Rsrc Used:     cput=1-10:20:32,vmem=0,walltime=02:08:47,mem=10204972K,energy_used=0
+Partition:     ice-gpu
+QOS:           coc-ice
+Nodes:         atl1-1-03-017-23-0
+---------------------------------------

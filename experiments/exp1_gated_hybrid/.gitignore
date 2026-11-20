@@ -1,0 +1,7 @@
+# outputs of Exp1 (never committed)
+ckpt/
+pgm_panel_cache/
+*_cache/
+stage0_choice.txt
+logs/
+*.log

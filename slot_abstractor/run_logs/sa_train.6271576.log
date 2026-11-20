@@ -1,0 +1,29 @@
+---------------------------------------
+Begin Slurm Prolog: Oct-14-2026 17:24:32
+Job ID:    6271576
+User ID:   skomaragiri8
+Account:   ece
+Job name:  sa_train
+Partition: coc-gpu
+QOS:       coc-ice
+---------------------------------------
+[17:24:51] world_size=1 device=cuda:0 args={'mode': 'train', 'jsonl_root': '/home/hice1/skomaragiri8/scratch/datasets/pgm-neutral-train20pct-seed20261007-v1/pgm-neutral-train20pct-seed20261007-v1', 'layout': 'layout.json', 'train_file': 'train.jsonl', 'val_file': 'validation.jsonl', 'test_file': 'test.jsonl', 'n_train': 0, 'n_val': 0, 'n_test': 0, 'test_offset': 0, 'skip_val': False, 'slot_checkpoint': 'weights/slot_ae_pgm20.pth.tar', 'model_checkpoint': None, 'save_path': 'weights/', 'tag': 'pgm20_1gpu', 'resume': True, 'max_hours': 5.9, 'margin_min': 5, 'snapshot_every': 5, 'img_size': 80, 'batch_size': 96, 'depth': 24, 'heads': 8, 'mlp_dim': 512, 'num_slots': 16, 'num_iterations': 3, 'hid_dim': 32, 'learning_rate': 8e-05, 'num_epochs': 50, 'apply_context_norm': True, 'log_interval': 100, 'num_workers': 14, 'seed': 0, 'image_key': 'images', 'answer_key': 'answer', 'tf32': False}
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/storage/ice1/7/9/skomaragiri8/slotabstractor/pgm/run_pgm_jsonl.py", line 212, in <module>
+[rank0]:     train_ds, val_ds = make(opt.train_file, opt.n_train), make(opt.val_file, opt.n_val)
+[rank0]:   File "/storage/ice1/7/9/skomaragiri8/slotabstractor/pgm/run_pgm_jsonl.py", line 113, in make
+[rank0]:     return JsonlPGM(opt.jsonl_root, split_file, opt.layout, opt.img_size, n=n, offset=offset,
+[rank0]: TypeError: __init__() got an unexpected keyword argument 'offset'
+[rank0]:[W1014 17:24:52.920270316 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+---------------------------------------
+Begin Slurm Epilog: Oct-14-2026 17:24:55
+Job ID:        6271576
+User ID:       skomaragiri8
+Account:       ece
+Job name:      sa_train
+Resources:     cpu=16,gres/gpu:a100=1,mem=224G,node=1
+Rsrc Used:     cput=00:06:24,vmem=0,walltime=00:00:24,mem=1255684K,energy_used=0
+Partition:     coc-gpu
+QOS:           coc-ice
+Nodes:         atl1-1-01-005-15-0
+---------------------------------------

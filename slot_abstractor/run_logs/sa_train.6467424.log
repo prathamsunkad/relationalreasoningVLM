@@ -1,0 +1,107 @@
+---------------------------------------
+Begin Slurm Prolog: Oct-22-2026 02:06:56
+Job ID:    6467424
+User ID:   skomaragiri8
+Account:   ece
+Job name:  sa_train
+Partition: ice-gpu
+QOS:       coc-ice
+---------------------------------------
+[02:07:21] world_size=1 device=cuda:0 args={'mode': 'train', 'jsonl_root': '/home/hice1/skomaragiri8/scratch/datasets/pgm-neutral-train20pct-seed20261007-v1/pgm-neutral-train20pct-seed20261007-v1', 'layout': 'layout.json', 'train_file': 'train.jsonl', 'val_file': 'validation.jsonl', 'test_file': 'test.jsonl', 'n_train': 0, 'n_val': 0, 'n_test': 0, 'test_offset': 0, 'skip_val': False, 'slot_checkpoint': 'weights/slot_ae_pgm20.pth.tar', 'model_checkpoint': None, 'save_path': 'weights/', 'tag': 'pgm20_1gpu', 'resume': True, 'max_hours': 5.9, 'margin_min': 5, 'snapshot_every': 5, 'img_size': 80, 'batch_size': 96, 'depth': 24, 'heads': 8, 'mlp_dim': 512, 'num_slots': 16, 'num_iterations': 3, 'hid_dim': 32, 'learning_rate': 8e-05, 'num_epochs': 50, 'apply_context_norm': True, 'log_interval': 100, 'num_workers': 14, 'seed': 0, 'image_key': 'images', 'answer_key': 'answer', 'tf32': False}
+[02:07:27] train 240000 questions (2500 batches/GPU, global batch 96), validation 1000
+[02:07:27] resumed from weights/slot_abstractor_pgm_pgm20_1gpu_d24_lr8e-05_run0_last.pth.tar: epoch 28, batch 1600, best val 49.70
+[02:07:35] epoch 28 batch 1600/2500 loss 1.1690 [0.1 min in this job]
+[02:11:48] epoch 28 batch 1700/2500 loss 1.4134 [4.3 min in this job]
+[02:16:27] epoch 28 batch 1800/2500 loss 1.3459 [9.0 min in this job]
+[02:21:09] epoch 28 batch 1900/2500 loss 1.0695 [13.7 min in this job]
+[02:25:50] epoch 28 batch 2000/2500 loss 1.1835 [18.4 min in this job]
+[02:30:33] epoch 28 batch 2100/2500 loss 1.1943 [23.1 min in this job]
+[02:35:16] epoch 28 batch 2200/2500 loss 1.5282 [27.8 min in this job]
+[02:40:00] epoch 28 batch 2300/2500 loss 1.2527 [32.6 min in this job]
+[02:44:49] epoch 28 batch 2400/2500 loss 1.2189 [37.4 min in this job]
+[02:49:59] epoch 28: train acc 51.40  val acc 49.60  best 49.70  [19636s]
+[02:50:04] epoch 29 batch 0/2500 loss 1.2454 [42.6 min in this job]
+[02:54:54] epoch 29 batch 100/2500 loss 1.3757 [47.4 min in this job]
+[02:59:41] epoch 29 batch 200/2500 loss 1.2440 [52.2 min in this job]
+[03:04:27] epoch 29 batch 300/2500 loss 1.4162 [57.0 min in this job]
+[03:09:15] epoch 29 batch 400/2500 loss 1.3762 [61.8 min in this job]
+[03:13:56] epoch 29 batch 500/2500 loss 1.2482 [66.5 min in this job]
+[03:18:42] epoch 29 batch 600/2500 loss 1.2204 [71.2 min in this job]
+[03:23:30] epoch 29 batch 700/2500 loss 1.3875 [76.0 min in this job]
+[03:28:16] epoch 29 batch 800/2500 loss 1.2365 [80.8 min in this job]
+[03:33:03] epoch 29 batch 900/2500 loss 1.1461 [85.6 min in this job]
+[03:37:50] epoch 29 batch 1000/2500 loss 1.2192 [90.4 min in this job]
+[03:42:36] epoch 29 batch 1100/2500 loss 1.1694 [95.2 min in this job]
+[03:47:22] epoch 29 batch 1200/2500 loss 1.1559 [99.9 min in this job]
+[03:52:07] epoch 29 batch 1300/2500 loss 1.1391 [104.7 min in this job]
+[03:56:53] epoch 29 batch 1400/2500 loss 1.1884 [109.4 min in this job]
+[04:01:38] epoch 29 batch 1500/2500 loss 1.2930 [114.2 min in this job]
+[04:06:22] epoch 29 batch 1600/2500 loss 1.2903 [118.9 min in this job]
+[04:11:06] epoch 29 batch 1700/2500 loss 1.1930 [123.6 min in this job]
+[04:15:50] epoch 29 batch 1800/2500 loss 1.2955 [128.4 min in this job]
+[04:20:37] epoch 29 batch 1900/2500 loss 1.2492 [133.2 min in this job]
+[04:25:24] epoch 29 batch 2000/2500 loss 1.1748 [137.9 min in this job]
+[04:30:09] epoch 29 batch 2100/2500 loss 1.3551 [142.7 min in this job]
+[04:34:52] epoch 29 batch 2200/2500 loss 1.4022 [147.4 min in this job]
+[04:39:29] epoch 29 batch 2300/2500 loss 1.1478 [152.0 min in this job]
+[04:44:00] epoch 29 batch 2400/2500 loss 1.3567 [156.5 min in this job]
+[04:48:50] snapshot after 30 epochs -> weights/slot_abstractor_pgm_pgm20_1gpu_d24_lr8e-05_run0_ep30.pth.tar
+[04:48:50] epoch 29: train acc 52.05  val acc 51.20  best 51.20  (saved best)  [24215s]
+[04:48:55] epoch 30 batch 0/2500 loss 1.0195 [161.5 min in this job]
+[04:53:25] epoch 30 batch 100/2500 loss 1.2622 [166.0 min in this job]
+[04:57:57] epoch 30 batch 200/2500 loss 1.1282 [170.5 min in this job]
+[05:02:28] epoch 30 batch 300/2500 loss 1.1655 [175.0 min in this job]
+[05:06:59] epoch 30 batch 400/2500 loss 1.3807 [179.5 min in this job]
+[05:11:36] epoch 30 batch 500/2500 loss 1.0910 [184.1 min in this job]
+[05:16:13] epoch 30 batch 600/2500 loss 1.2802 [188.8 min in this job]
+[05:20:52] epoch 30 batch 700/2500 loss 1.0868 [193.4 min in this job]
+[05:25:31] epoch 30 batch 800/2500 loss 1.3800 [198.1 min in this job]
+[05:30:09] epoch 30 batch 900/2500 loss 1.2748 [202.7 min in this job]
+[05:34:47] epoch 30 batch 1000/2500 loss 1.2973 [207.3 min in this job]
+[05:39:25] epoch 30 batch 1100/2500 loss 1.2017 [212.0 min in this job]
+[05:44:02] epoch 30 batch 1200/2500 loss 1.1297 [216.6 min in this job]
+[05:48:39] epoch 30 batch 1300/2500 loss 1.2239 [221.2 min in this job]
+[05:53:17] epoch 30 batch 1400/2500 loss 1.1307 [225.8 min in this job]
+[05:57:54] epoch 30 batch 1500/2500 loss 1.2855 [230.5 min in this job]
+[06:02:31] epoch 30 batch 1600/2500 loss 1.1260 [235.1 min in this job]
+[06:07:11] epoch 30 batch 1700/2500 loss 1.1025 [239.7 min in this job]
+[06:11:45] epoch 30 batch 1800/2500 loss 1.1575 [244.3 min in this job]
+[06:16:26] epoch 30 batch 1900/2500 loss 1.0923 [249.0 min in this job]
+[06:21:11] epoch 30 batch 2000/2500 loss 1.1989 [253.7 min in this job]
+[06:25:56] epoch 30 batch 2100/2500 loss 1.0981 [258.5 min in this job]
+[06:30:30] epoch 30 batch 2200/2500 loss 1.2899 [263.0 min in this job]
+[06:34:59] epoch 30 batch 2300/2500 loss 1.2636 [267.5 min in this job]
+[06:39:28] epoch 30 batch 2400/2500 loss 1.3157 [272.0 min in this job]
+[06:44:19] epoch 30: train acc 52.82  val acc 52.30  best 52.30  (saved best)  [24012s]
+[06:44:25] epoch 31 batch 0/2500 loss 1.4546 [277.0 min in this job]
+[06:48:53] epoch 31 batch 100/2500 loss 1.2484 [281.4 min in this job]
+[06:53:21] epoch 31 batch 200/2500 loss 1.2326 [285.9 min in this job]
+[06:57:51] epoch 31 batch 300/2500 loss 1.3495 [290.4 min in this job]
+[07:02:24] epoch 31 batch 400/2500 loss 1.4033 [294.9 min in this job]
+[07:06:59] epoch 31 batch 500/2500 loss 1.1370 [299.5 min in this job]
+[07:11:25] epoch 31 batch 600/2500 loss 1.4007 [304.0 min in this job]
+[07:15:43] epoch 31 batch 700/2500 loss 1.2593 [308.3 min in this job]
+[07:19:59] epoch 31 batch 800/2500 loss 1.2867 [312.5 min in this job]
+[07:24:12] epoch 31 batch 900/2500 loss 1.0923 [316.7 min in this job]
+[07:28:27] epoch 31 batch 1000/2500 loss 1.2619 [321.0 min in this job]
+[07:32:50] epoch 31 batch 1100/2500 loss 1.2170 [325.4 min in this job]
+[07:37:25] epoch 31 batch 1200/2500 loss 1.2327 [330.0 min in this job]
+[07:41:59] epoch 31 batch 1300/2500 loss 1.3902 [334.5 min in this job]
+[07:46:33] epoch 31 batch 1400/2500 loss 1.2725 [339.1 min in this job]
+[07:51:07] epoch 31 batch 1500/2500 loss 1.1817 [343.7 min in this job]
+[07:55:41] epoch 31 batch 1600/2500 loss 1.1542 [348.2 min in this job]
+/home/hice1/skomaragiri8/.conda/envs/slotabs/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py:4807: UserWarning: No device id is provided via `init_process_group` or `barrier `. Using the current device set by the user. 
+  warnings.warn(  # warn only once
+[07:56:33] time budget reached in epoch 31 at batch 1620/2500: saved; rerun with --resume to continue from there
+---------------------------------------
+Begin Slurm Epilog: Oct-22-2026 07:56:36
+Job ID:        6467424
+User ID:       skomaragiri8
+Account:       ece
+Job name:      sa_train
+Resources:     cpu=16,gres/gpu:h200=1,mem=224G,node=1
+Rsrc Used:     cput=3-21:14:56,vmem=0,walltime=05:49:41,mem=9173992K,energy_used=0
+Partition:     ice-gpu
+QOS:           coc-ice
+Nodes:         atl1-1-03-017-2-0
+---------------------------------------

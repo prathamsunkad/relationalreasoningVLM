@@ -1,0 +1,31 @@
+---------------------------------------
+Begin Slurm Prolog: Oct-14-2026 15:12:23
+Job ID:    6270039
+User ID:   skomaragiri8
+Account:   ece
+Job name:  sa_train
+Partition: ice-gpu
+QOS:       coc-ice
+---------------------------------------
+Traceback (most recent call last):
+  File "/storage/ice1/7/9/skomaragiri8/slotabstractor/pgm/run_pgm_jsonl.py", line 97, in <module>
+    torch.cuda.set_device(local_rank)
+  File "/home/hice1/skomaragiri8/.conda/envs/slotabs/lib/python3.9/site-packages/torch/cuda/__init__.py", line 569, in set_device
+    torch._C._cuda_setDevice(device)
+torch.AcceleratorError: CUDA error: CUDA-capable device(s) is/are busy or unavailable
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+---------------------------------------
+Begin Slurm Epilog: Oct-14-2026 15:12:32
+Job ID:        6270039
+User ID:       skomaragiri8
+Account:       ece
+Job name:      sa_train
+Resources:     cpu=16,gres/gpu:h100=1,mem=224G,node=1
+Rsrc Used:     cput=00:02:40,vmem=0,walltime=00:00:10,mem=406792K,energy_used=0
+Partition:     ice-gpu
+QOS:           coc-ice
+Nodes:         atl1-1-03-013-3-0
+---------------------------------------
