@@ -37,6 +37,11 @@ and [`experiments.md`](../docs/experiments.md) (zero-shot and LoRA baselines).
 | `lora/` | LoRA training (`train_lora.py`, resumable) and sharded 200k test evaluation (`eval_vlm.py`) |
 | `relational/` | The relational branch: slot attention (`slots.py`), Abstractor (`abstractor.py`), the VLM wrapper with interleave / fusion (`relvlm.py`), training (`train_stage0.py`, `train_stage1.py`), evaluation (`eval.py`), dataset builders (`datasets/`), Slurm scripts (`slurm/`), CPU tests (`tests/`). Its own [`README.md`](../relational/README.md) explains the stages and flags |
 | `experiments/` | The exact launchers and chains that ran H7–H13 (`auto/`), and the scoring jobs and analyzers for A1, A2 and the branch-off check (`diag_*`). Kept verbatim, with the original PACE paths |
+| `experiments/exp1_gated_hybrid/`, `experiments/exp2_sa_interleave/` | Pranav: Exp1, a gated relational hybrid at InternVL's projector; Exp2, the pretrained Slot Abstractor's tokens interleaved into InternVL. Each has its own README |
+| `slot_abstractor/` | Pranav: the standalone Slot Abstractor baseline on the same 240k PGM puzzles (62.8% val so far; paper 71.25% test) |
+| `probes/` | Pranav: perception-vs-reasoning probes (attribute reading, rule identification, matching vs reasoning on the same puzzle) |
+| `configs/vlm/`, `results/vlm/`, `docs/VLM_INTEGRATION.md` | Yiran: answer-letter LoRA for LFM2.5, SmolVLM2, SpatialEvo; the LFM relational probes and RCA plugin; their run records |
+| `iraven_eval/` | Kun-Lin: I-RAVEN test build and evaluation of the PGM-trained LFM2.5 adapter (23.1%, chance 12.5%) |
 | `slurm/` | Baseline Slurm jobs (training, 200k test evaluation, tests) and `plots.sbatch` (redraws the figures) |
 | `slurm_portable/` | **Path-free copies of every Slurm job and launcher** (same tree: `slurm_portable/relational/slurm/stage1.sbatch`, ...). All paths come from `env.sh`; logs go to `logs/`. Use these on any account; the originals are kept as they ran |
 | `tools/` | Data prep, plots (`plot_curves.py` for LoRA, `plot_relational.py` for the branch), `rerun_cmd.py` (exact command of any relational run), `unpack_results.sh` |
@@ -49,6 +54,7 @@ and [`experiments.md`](../docs/experiments.md) (zero-shot and LoRA baselines).
 | `results/lora/` | LoRA results table (`lora_pgm_results.md`), curves, validation-loss JSON; `run_records/<run>/` (config + training log for every LoRA run, including 1% and 5% data); `test_200k/<eval>/` (summary + config of every test evaluation; per-problem records for the final adapters) |
 | `results/relational/run_records/<run>/` | One folder per relational run (114): `args.json` (every setting), `metrics.jsonl.gz` (training and validation log), `best.json`, `done.json` / `stopped.json`, Stage 0 `log.jsonl.gz` and final slot picture |
 | `results/relational/test5000/` | A2: per-puzzle scores of every model on the 5,000 test puzzles (`*.json.gz`), the puzzle list (`test5000.tsv`), rules per puzzle, and the analysis (`report.md`) |
+| `results/relational/ablation_test5000/` | A3: per-puzzle scores of every interleave run under each token ablation (`*.json.gz`) and the analysis (`report.md`) |
 | `results/relational/overlap_val1000/` | A1: overlap and averaging check on the 1,000 validation puzzles, with `report.md` |
 | `results/relational/branchoff_val1000/` | The H8 branch-off check |
 | `results/relational/job_log/` | `night_queue_2026-11-08.txt`: every Slurm submission (job id, run, all flags, why); `priority.json` (scheduling tiers); run inventory |

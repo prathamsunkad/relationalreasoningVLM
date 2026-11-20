@@ -1,8 +1,8 @@
-# Status (Nov 19, 2026, 3:20 pm EST)
+# Status (Nov 20, 2026, 12:40 am EST)
 
 **Finished:** zero-shot and LoRA baselines; Stage 0; the branch-alone sweeps; H1–H12; the early-branch part of H13;
-A1 and A2. **Training:** four branch-alone runs. **Next, automatically:** the H8, H9 and H12 recipes on the finished
-60k-only branch, then their test scoring.
+A1, A2 and A3. **Training:** the two 50-epoch branch-alone runs, and the H8, H9 and H12 recipes on the finished 60k-only
+branch (H13; interleave since 12:07 am, fusion after its alignment levels off). **Next, automatically:** their test scoring.
 
 ## Finished experiments (headline numbers)
 
@@ -22,6 +22,7 @@ A1 and A2. **Training:** four branch-alone runs. **Next, automatically:** the H8
 | H13 (early) | 60k-only branch at step 43k: no gain in any recipe | H12 recipe 53.7% / 53.3%, branch off identical |
 | A1 | Branch knows things LoRA doesn't at 5%, not at full data | averaging +2.2 to +3.5 at 5% |
 | A2 | Test scoring of all of the above | `results/relational/test5000/report.md` |
+| A3 | Relation-token ablation: LoRA-first H12 loses 3.9 points zeroed, 8.8 shuffled; full-data H4 unaffected | `results/relational/ablation_test5000/report.md` |
 
 Pairs are interleave / fusion.
 
@@ -29,25 +30,30 @@ Pairs are interleave / fusion.
 
 | Run | What it is | Step | Best val (step) | Expected finish |
 |---|---|---|---|---|
-| `aux_ft60k_q_L6_lr3e-4` | 60k-only branch, lr 3e-4 (H13) | 135k / 150k | 29.4% (101k) | ~10 pm Nov 19 |
-| `aux_ft60k_q_L6_lr1e-3` | 60k-only branch, lr 1e-3 (H13) | 136k / 150k | 30.8% (71k) | ~10 pm Nov 19 |
-| `aux_ft_q_L6_lr3e-4_ep50` | 50-epoch branch, 6 layers (source of the H10–H12 branches) | 441k / 750k | **51.5%** (424k) | ~6 days |
-| `aux_ft_q_L24_lr8e-5_ep50` | 50-epoch branch, 24 layers | 379k / 750k | 48.4% (366k) | ~9 days |
+| `aux_ft_q_L6_lr3e-4_ep50` | 50-epoch branch, 6 layers (source of the H10–H12 branches) | 468k / 750k | **54.4%** (460k) | ~5 days |
+| `aux_ft_q_L24_lr8e-5_ep50` | 50-epoch branch, 24 layers | 396k / 750k | 49.7% (386k) | ~8 days |
+| `lora_{w5,w5d,lf}_q_int_c60` | H13: H8, H9, H12 recipes on the finished 60k-only branch | started 12:07 am Nov 20 | | H12 recipe ~midday Nov 20 |
+| `align_q_fuse_L6ft60k_lr3e-4` | H13: fusion alignment of the finished 60k-only branch | 3k / 10k | 29.5% (2k) | fusion hybrids launch when it levels off |
 
-The 60k-only branches have plateaued: training accuracy keeps rising while validation has been flat since about
-step 75k. Their cosine decay runs from step 135k to the end.
+The finished 60k-only branches (H13): `aux_ft60k_q_L6_lr1e-3` best 30.8% val (step 71k, used), `aux_ft60k_q_L6_lr3e-4`
+29.4% (101k); both ended at about 27% val after overfitting. Interleave alignment levelled at 29.6% (step 2k).
 
-## A3: relation-token ablation (submitted Nov 19, ~5 pm)
+## A3: relation-token ablation (finished Nov 19, 9:27 pm)
 
-Do the interleave models actually use their relation tokens? Each of 14 interleave runs (H4, H7–H12) is scored on
-the 5,000 test puzzles with its tokens left alone, zeroed, removed from the prompt, shuffled across the candidates of
-a puzzle, shuffled across puzzles, and (for the 9- and 144-token H4 runs) put in a random order. All conditions of a
-run share one job and one GPU type. A watcher (`experiments/diag_ablate/wait_ablate.sh`) writes
-`report.md` when all are done, about 2–3 hours per run once a GPU is free.
+14 interleave runs (H4, H7–H12), each scored on the 5,000 test puzzles with its relation tokens left alone, zeroed,
+removed, shuffled across a puzzle's candidates, shuffled across puzzles, and (9- and 144-token runs) reordered; all
+conditions of a run in one job on one GPU. Full table and McNemar tests: `results/relational/ablation_test5000/report.md`.
 
-First check, 200 puzzles, H12 LoRA-first interleave: normal 58.0%; shuffled across candidates 48.5%; across puzzles
-50.0%; removed 52.0%; zeroed 55.0%. So the decoder reads the tokens, and a misplaced token hurts more than a
-missing one.
+| Runs | Normal | Zeroed | Shuffled across candidates | Reading |
+|---|---|---|---|---|
+| H4 full data (5 runs, control included) | 80.2–81.0% | −0.7 to +0.5 | −0.4 to +0.2 | Tokens ignored |
+| Frozen-LLM alignments (H7, H10, H12) | 34.9–45.6% | 14.6% | 8.1–9.1% | Fully dependent; shuffled is below chance |
+| H8 Stage 2, no dropout | 48.8% | −16.9 | −24.5 | Shortcut through the branch |
+| H9 / H10 Stage 2 with dropout | 54.9% / 54.6% | −2.2 / −5.4 | −8.8 / −21.4 | Uses the tokens; more with the stronger branch |
+| H11 / H12 LoRA-first | 54.8% / 56.4% | −1.6 / −3.9 | −2.9 / −8.8 | Uses the tokens (H12: p < 1e-15); zeroed H12 ≈ its control |
+
+Zeroed and removed agree within 0.6 points in every run (the 3-point gap in the 200-puzzle check was noise).
+Reordering had no effect, but was only tested on H4 runs, which ignore the tokens.
 
 ## What launches by itself next
 

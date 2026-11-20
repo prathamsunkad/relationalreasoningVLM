@@ -57,7 +57,7 @@ Accuracies: val = 1,000 shared validation puzzles (±3 points); test = 5,000 tes
 |---|---|---|---|---|
 | A1 | Overlap and averaging (LoRA alone vs branch alone), 1,000 val puzzles | `experiments/diag_overlap/diag_overlap.sbatch`, `analyze.py`, `experiments/auto/wait_brset.sh` | `results/relational/overlap_val1000/report.md` | 5%: averaging +2.2 to +3.5; full data: −0.5 to −1.3 |
 | A2 | 5,000-puzzle test scoring of every model (8 jobs, 3 GPU types) | `experiments/diag_5k/diag_5k.sbatch`, `diag_5kw/`, `analyze5k.py`, `experiments/auto/wait_5k.sh` | `results/relational/test5000/report.md` | All test numbers above; figure `A2_test5000.png` |
-| A3 | Relation-token ablation (interleave runs of H4, H7–H12): score each model with its tokens zeroed, removed, shuffled across candidates, shuffled across puzzles, and reordered (multi-token runs) | `experiments/diag_ablate/diag_ablate.sbatch`, `submit_ablate.sh`, `analyze_ablate.py`; `relational/eval.py --rel_ablate` | `results/relational/ablation_test5000/` (`report.md` when done) | **Running** (14 jobs, submitted Nov 19). 200-puzzle check on H12 interleave: normal 58.0%, shuffled across candidates 48.5%, across puzzles 50.0%, removed 52.0%, zeroed 55.0% |
+| A3 | Relation-token ablation (interleave runs of H4, H7–H12): score each model with its tokens zeroed, removed, shuffled across candidates, shuffled across puzzles, and reordered (multi-token runs) | `experiments/diag_ablate/diag_ablate.sbatch`, `submit_ablate.sh`, `analyze_ablate.py`; `relational/eval.py --rel_ablate` | `results/relational/ablation_test5000/report.md` | H12 LoRA-first: 56.4% → 52.5% zeroed, 47.6% shuffled (p < 1e-15); H4 full data: within ±0.7 (tokens ignored); frozen-LLM alignments: 14.6% zeroed |
 
 ## Figures in `results/plots/`
 

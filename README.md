@@ -1,8 +1,10 @@
 # relationalreasoningVLM
 
-Abstract visual reasoning (PGM, CLEVR-ART) with small vision-language models on Georgia Tech PACE ICE: zero-shot
-baselines, LoRA fine-tuning with per-candidate scoring, and a relational branch (Slot Attention -> Abstractor ->
-connector) feeding the VLM. Models: `Qwen/Qwen3-VL-2B-Instruct` (main) and `OpenGVLab/InternVL3_5-1B-HF`.
+Abstract visual reasoning (PGM, CLEVR-ART, I-RAVEN) with small vision-language models on Georgia Tech PACE ICE:
+zero-shot baselines, LoRA fine-tuning, relational modules (Slot Attention -> Abstractor -> connector, LFM probes, RCA
+plugin) added to the VLM, a standalone Slot Abstractor baseline, and perception-vs-reasoning probes. Models:
+`Qwen/Qwen3-VL-2B-Instruct`, `OpenGVLab/InternVL3_5-1B-HF` (candidate scoring); `LiquidAI/LFM2.5-VL-1.6B`, SmolVLM2,
+SpatialEvo (answer-letter prediction).
 
 **New here? Start with [`00_START_HERE/`](00_START_HERE):** where everything is, every experiment with its runs,
 code and results ([`EXPERIMENTS.md`](00_START_HERE/EXPERIMENTS.md)), data ([`DATA.md`](00_START_HERE/DATA.md)), every setting and assumption
@@ -30,6 +32,25 @@ Slot Abstractor paper with the same 20% of the training data: 71.25%.
 | Task mixture (30% PGM) | not run | family score 87.2 | 87.6 (non-relational) | No gain; synthetic tasks saturate at 100% |
 | 5%, branch trained on the 60k only (early checkpoint) | 52.6% | 53.7% | 53.2% | No gain; the model ignores this weaker branch |
 
+**Answer-letter LoRA, LFM2.5 / SmolVLM2 / SpatialEvo** (one contact-sheet image per puzzle; details and records in
+[`results/vlm/README.md`](results/vlm/README.md)):
+
+| Model | CLEVR-ART RMTS | CLEVR-ART identity rules | PGM neutral (200k test) |
+|---|---|---|---|
+| LFM2.5-VL-1.6B | 99.39% | 93.07% | **76.69%** (checkpoint at epoch 6.73) |
+| SmolVLM2 | 89.05% | 68.54% | not finished |
+| SpatialEvo | 100.00% | 95.79% | 61.87% (6 epochs) |
+
+LFM relational probes (five insertion points, RCA plugin), frozen LLM or with LoRA: 12.1-13.6% on PGM validation, i.e.
+at chance ([`docs/VLM_INTEGRATION.md`](docs/VLM_INTEGRATION.md)).
+
+**Other baselines and transfer:**
+
+| What | Result | Where |
+|---|---|---|
+| Slot Abstractor trained from scratch on the same 240k puzzles | 62.8% PGM validation (epoch 64); test not run yet; paper 71.25% | [`slot_abstractor/`](slot_abstractor) |
+| LFM2.5 PGM adapter evaluated zero-shot on I-RAVEN (14,000 puzzles) | 23.1% (chance 12.5%) | [`iraven_eval/`](iraven_eval) |
+
 Figures: [`results/plots/`](results/plots). Full write-ups: [`docs/relational_deep_dives.md`](docs/relational_deep_dives.md)
 (one section per experiment, H1-H13, A1, A2), [`docs/experiments.md`](docs/experiments.md) (zero-shot and LoRA, including
 the approaches that failed).
@@ -43,13 +64,17 @@ the approaches that failed).
 | `lora/` | `train_lora.py` (resumable LoRA training), `eval_vlm.py` (sharded test evaluation + merge) |
 | `zeroshot/` | zero-shot inference for PGM and CLEVR-ART + their job scripts |
 | `relational/` | relational branch: slots, Abstractor, interleave / fusion wrapper, Stage 0-2 training, evaluation, dataset builders, Slurm scripts, tests (self-contained; run from that folder) |
-| `experiments/` | the exact launchers, hand-off chains and scoring jobs used for H7-H13, A1, A2 |
+| `experiments/` | the exact launchers, hand-off chains and scoring jobs used for H7-H13, A1, A2, A3 (`auto/`, `diag_*`); Exp1 gated hybrid at InternVL's projector (`exp1_gated_hybrid/`); Exp2 Slot Abstractor tokens interleaved into InternVL (`exp2_sa_interleave/`) |
+| `slot_abstractor/` | the standalone Slot Abstractor baseline on PGM (slot autoencoder pretraining, training, test, run logs, results) |
+| `probes/` | perception-vs-reasoning probes: attribute reading, rule identification, the same puzzle asked as matching and as reasoning |
+| `iraven_eval/` | I-RAVEN test set build and evaluation of the PGM-trained LFM2.5 adapter |
+| `configs/vlm/` | portable recipes for the answer-letter models (LFM2.5, SmolVLM2, SpatialEvo) and the LFM relational probes |
 | `tools/` | data preparation, preflight, plots, validation loss of checkpoints, single-problem demo, `rerun_cmd.py` |
 | `slurm/` | baseline training, evaluation (`run_test_eval.sh`: 28 shards, retries, merge), tests, plots |
 | `slurm_portable/` | path-free copies of every Slurm job and launcher (paths from `env.sh`); use these on any account |
 | `tests/` | CPU tests on tiny random models (`sbatch slurm/tests.sbatch`) |
-| `results/` | every run's settings and training log, per-problem test outputs, tables, figures (no weights, no data) |
-| `docs/` | experiment write-ups, protocol comparison with the Slot Abstractor paper |
+| `results/` | every run's settings and training log, per-problem test outputs, tables, figures (no weights, no data); `results/vlm/` holds the answer-letter and LFM probe records |
+| `docs/` | experiment write-ups, protocol comparison with the Slot Abstractor paper, the answer-letter / LFM integration guide (`VLM_INTEGRATION.md`), checkpoint recovery |
 | `share/` | building the adapter bundle shared with collaborators |
 | `legacy/` | the original LoRA code that produced the LoRA results |
 | `data_manifests/` | manifests of the mixture datasets (no images) |

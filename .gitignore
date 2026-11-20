@@ -13,6 +13,7 @@ share/build/
 results/relational/test5000/*.json
 results/relational/overlap_val1000/*.json
 results/relational/branchoff_val1000/*.json
+results/relational/ablation_test5000/*.json
 logs/
 # weights, caches and run outputs anywhere in the repo
 *.pth
