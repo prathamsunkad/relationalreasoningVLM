@@ -12,7 +12,7 @@ and we checked agent-written code and numbers as described below before relying 
 
 | Tool | Used by | Purpose |
 |---|---|---|
-| Claude Code (Anthropic; Claude Opus 5.5, Claude Fable 5.2) | Pratham Sunkad, Kun-Lin Hsieh | Implementation, refactoring, Slurm jobs and job chains, evaluation and analysis scripts, documentation, commits |
+| Claude Code (Anthropic; Claude Opus 5.5, Claude Fable 5.2) | Pratham Sunkad, Kun-Lin Hsieh, Sai Pranav Komaragiri | Implementation, refactoring, Slurm jobs and job chains, evaluation and analysis scripts, documentation, commits |
 | OpenAI Codex | Yiran Luo | Integrating the two codebases into shared training/evaluation infrastructure, porting modules, tests, documentation |
 | Local CodeGraph index | Yiran Luo | Code navigation during the Codex integration (not committed) |
 
@@ -62,11 +62,9 @@ Kun-Lin set the goal: evaluate the PGM-trained adapters on the I-RAVEN test set.
 - wrote the evaluation (`jobs/eval.sbatch`, `scripts/eval_adapter.py`);
 - submitted and monitored the Slurm jobs, and wrote `iraven_eval/README.md`, the results summaries and the commit.
 
-### `pranav` branch (Sai Pranav Komaragiri)
+### Claude Code: `pranav` branch (Sai Pranav Komaragiri)
 
-The commits on this branch (`slot_abstractor/`, `probes/`, `experiments/exp1_gated_hybrid/`,
-`experiments/exp2_sa_interleave/`) carry no agent trailer or note. *To be completed by Pranav: which agent, if any,
-was used and for which files.*
+The slot abstractor code was just cloned from the paper's repo and run on reduced pretraining data to match to the lower data. All the probes, experiments and the encoder feature extraction ablation were our ideas that were described to Claude to create bulk of the code.
 
 ## How the output was validated
 
