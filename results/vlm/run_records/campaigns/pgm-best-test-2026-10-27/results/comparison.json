@@ -1,0 +1,121 @@
+{
+  "external_paper": {
+    "note": "Published results, not reproduced; equal training fraction does not match compute, epochs, input representation, or exact subset.",
+    "slot_abstractor_20pct": 0.7125,
+    "slot_abstractor_full": 0.915,
+    "source": "https://arxiv.org/html/2403.03458v2"
+  },
+  "models": {
+    "lfm25": {
+      "accuracy": 0.695985,
+      "comparisons": [
+        {
+          "difference_percentage_points": 57.224999999999994,
+          "earlier_accuracy": 0.123735,
+          "earlier_evaluated": 200000,
+          "earlier_predictions_sha256": "7a6c58122f86fe4639d089d1cad46843a4b586bfe73e1e62393c5d5213cec78c",
+          "label": "Zero-shot",
+          "matched_count": 200000,
+          "new_accuracy": 0.695985,
+          "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm25-pgm-neutral-h200-full/predictions.jsonl"
+        },
+        {
+          "difference_percentage_points": 38.7035,
+          "earlier_accuracy": 0.30895,
+          "earlier_evaluated": 200000,
+          "earlier_predictions_sha256": "8853c8a45f248a5fa8f306f8edee3e7ae8a4e8df68e314ad63eca58bd3a7a7f7",
+          "label": "Earlier coverage LoRA",
+          "matched_count": 200000,
+          "new_accuracy": 0.695985,
+          "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-eval-2026-10-09/lfm25/test/predictions.jsonl"
+        },
+        {
+          "difference_percentage_points": 25.833499999999997,
+          "earlier_accuracy": 0.43765,
+          "earlier_evaluated": 200000,
+          "earlier_predictions_sha256": "48aa0a42868c792ac3dbf664d67c3b35bea2a06aaee1e62f45409d921f366775",
+          "label": "20% pool, one epoch LoRA",
+          "matched_count": 200000,
+          "new_accuracy": 0.695985,
+          "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/test/predictions.jsonl"
+        }
+      ],
+      "complete": true,
+      "evaluated": 200000,
+      "predictions_sha256": "bd7b6ff884e115c2bc0fd31c32789e85e163d65210162324d385283abd74b0d7",
+      "selected_checkpoint": {
+        "directory": "checkpoint-057000-2b660044",
+        "seen": 912000,
+        "step": 57000
+      }
+    },
+    "smolvlm2": {
+      "accuracy": 0.1576970782800441,
+      "comparisons": [
+        {
+          "difference_percentage_points": 3.238699007717749,
+          "earlier_accuracy": 0.1253100882028666,
+          "earlier_evaluated": 116527,
+          "earlier_predictions_sha256": "3fdadb65e0ec383d5b96d79a343f008077d0944d9d41d558f3b089f2f1c6d3cf",
+          "label": "Zero-shot",
+          "matched_count": 58048,
+          "new_accuracy": 0.1576970782800441,
+          "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-controls-2026-09-24/smolvlm2/full/predictions.jsonl"
+        },
+        {
+          "difference_percentage_points": 3.0130237045203954,
+          "earlier_accuracy": 0.12756684123484013,
+          "earlier_evaluated": 178411,
+          "earlier_predictions_sha256": "467fe11933e120b7ec976fc468390edcbb51810b957a4dfa28cdcaafadeb2ae6",
+          "label": "Earlier coverage LoRA",
+          "matched_count": 58048,
+          "new_accuracy": 0.1576970782800441,
+          "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-eval-2026-10-09/smolvlm2/test/predictions.jsonl"
+        }
+      ],
+      "complete": false,
+      "evaluated": 58048,
+      "predictions_sha256": "1665daf00df851376a188347e5af8e75b43691c89e8cc473f119365aea21b9ff",
+      "selected_checkpoint": {
+        "directory": "checkpoint-029000-6a20b99b",
+        "seen": 464000,
+        "step": 29000
+      }
+    },
+    "spatialevo": {
+      "accuracy": 0.581915,
+      "comparisons": [
+        {
+          "difference_percentage_points": 45.166345921154225,
+          "earlier_accuracy": 0.12965993293153716,
+          "earlier_evaluated": 173554,
+          "earlier_predictions_sha256": "1dde7db07bf8e1f735f5424ff0e4ac1e27efdaca6085747a58d06873a4649095",
+          "label": "Zero-shot",
+          "matched_count": 173554,
+          "new_accuracy": 0.5813233921430794,
+          "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-controls-2026-09-24/spatialevo/full/predictions.jsonl"
+        },
+        {
+          "difference_percentage_points": 28.160999999999998,
+          "earlier_accuracy": 0.300305,
+          "earlier_evaluated": 200000,
+          "earlier_predictions_sha256": "81395d7cd61476ba453e08a5932a289e8e484038b1f2834eedbbf8ee47fd84ff",
+          "label": "Earlier coverage LoRA",
+          "matched_count": 200000,
+          "new_accuracy": 0.581915,
+          "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-eval-2026-10-09/spatialevo/test/predictions.jsonl"
+        }
+      ],
+      "complete": true,
+      "evaluated": 200000,
+      "predictions_sha256": "2a791dd81142d203aceac5cd4df1b33c4d91734163b58f3fa46119556f350ac3",
+      "selected_checkpoint": {
+        "directory": "checkpoint-054000-e734efb1",
+        "seen": 864000,
+        "step": 54000
+      }
+    }
+  },
+  "test_count": 200000,
+  "test_split": "PGM neutral"
+}

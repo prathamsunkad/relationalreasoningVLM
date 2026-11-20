@@ -1,0 +1,10 @@
+{
+  "fraction_official_train": 0.11222666666666667,
+  "gradient_norm": 0.33341118693351746,
+  "job_id": "6200224",
+  "loss": 0.6956871747970581,
+  "seen": 134672,
+  "step": 8417,
+  "training_seconds": 12743.211245775223,
+  "unique_examples": 134672
+}

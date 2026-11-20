@@ -1,0 +1,14 @@
+{
+  "accuracy": 0.143,
+  "answer_ce": 2.0792094140052795,
+  "arm": "classifier_only",
+  "candidate_accuracy": 0.143,
+  "candidate_ce": 2.0792094140052795,
+  "complete": true,
+  "count": 1000,
+  "epoch": 5.0,
+  "planned": 1000,
+  "seconds": 2.9958238669205457,
+  "split": "validation",
+  "updates": 1280
+}

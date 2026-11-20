@@ -1,0 +1,40 @@
+{
+  "best_accuracy": 0.125,
+  "best_loss": 0.6979015795513988,
+  "effective_epochs": 1.0728888888888888,
+  "elapsed_seconds": 6810.082376630002,
+  "epoch": 1,
+  "job_id": "6096131",
+  "last_monitor_step": 604,
+  "offset": 656,
+  "resumable_checkpoint": {
+    "directory": "checkpoint-000604-823cd54c",
+    "seen": 9656,
+    "step": 604
+  },
+  "seen": 9656,
+  "selected_checkpoint": {
+    "directory": "checkpoint-000400-d834bd13",
+    "seen": 6400,
+    "step": 400
+  },
+  "status": "budget_or_signal_stop",
+  "step": 604,
+  "test_evaluated": false,
+  "training_seconds": 5330.858440040072,
+  "validation": {
+    "accuracy": 0.1160337552742616,
+    "complete": false,
+    "correct": 110,
+    "evaluated": 948,
+    "invalid": 0,
+    "loss": 0.6959966084122154,
+    "phase": "selected-validation",
+    "planned": 1000,
+    "seconds": 705.375422971003,
+    "wilson_95": [
+      0.09717859797814357,
+      0.13798814827603584
+    ]
+  }
+}

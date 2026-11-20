@@ -1,0 +1,31 @@
+{
+  "effective_epochs": 1.0,
+  "fraction_official_train": 0.2,
+  "job_id": "6200231",
+  "seen": 240000,
+  "selected_checkpoint": {
+    "directory": "checkpoint-015000-723d977c",
+    "seen": 240000,
+    "step": 15000
+  },
+  "source_sha256": "864f15861509b83bca702bb0ec9b69a0fd8144312f57c6ede764a72a16714066",
+  "status": "one-pass",
+  "step": 15000,
+  "test_evaluated": false,
+  "training_seconds": 16990.531816482544,
+  "unique_examples": 240000,
+  "validation": {
+    "accuracy": 0.121,
+    "complete": true,
+    "correct": 121,
+    "evaluated": 1000,
+    "invalid": 0,
+    "loss": 0.6959300000071525,
+    "phase": "selected-validation",
+    "planned": 1000,
+    "wilson_95": [
+      0.10222378228920963,
+      0.14267690064284116
+    ]
+  }
+}

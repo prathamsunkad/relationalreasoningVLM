@@ -1,0 +1,10 @@
+{
+  "examples_per_second": 5.64891353375405,
+  "global_batch": 16,
+  "initial_loss_difference": 0.0,
+  "replica_max_abs_error": 0.0,
+  "resume_next_update_max_abs_error": 0.0,
+  "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+  "status": "passed",
+  "world_size": 4
+}

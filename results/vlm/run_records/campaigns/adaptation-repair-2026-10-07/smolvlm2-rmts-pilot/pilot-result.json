@@ -1,0 +1,16 @@
+{
+  "checkpoint_roundtrip": true,
+  "elapsed_seconds": 84.37019005700131,
+  "examples_per_second": 2.4015674991610947,
+  "initial_adapter_loss_difference": 0.0,
+  "note": "Repeated 64-example correctness/throughput pilot; no benchmark accuracy claim. Weights discarded for production.",
+  "optimizer_updates": 8,
+  "peak_gpu_gib": 8.318417072296143,
+  "projected_seconds_per_9000_example_epoch": 3747.5523811609883,
+  "resume_next_update_max_abs_error": 0.0,
+  "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+  "source_sha256": "5c8a8ab41d4032cec5acdb1358699c02c188e7d06d9b0e8ad6fb2fd1f355019a",
+  "status": "passed",
+  "trainable_parameters": 18087936,
+  "training_only": true
+}

@@ -1,0 +1,56 @@
+{
+  "campaign": "pgm-lora-six-epochs-2026-10-28",
+  "remote": "/home/hice1/yluo432/vlm-continuations/pgm-lora-six-epochs-2026-10-28",
+  "outputs": "/home/hice1/yluo432/vlm-continuations/pgm-lora-six-epochs-2026-10-28",
+  "data_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-coverage-20pct-2026-10-08",
+  "max_epochs": {
+    "lfm25": 6,
+    "spatialevo": 6
+  },
+  "segments": {
+    "lfm25": 3,
+    "spatialevo": 6
+  },
+  "initial": {
+    "lfm25": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train",
+    "spatialevo": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train"
+  },
+  "dependencies": {
+    "lfm25": null,
+    "spatialevo": null
+  },
+  "replace_pending": [],
+  "gpus": 1,
+  "gpu_type": "h200",
+  "hours": 16,
+  "cpus": 4,
+  "memory_gb": 48,
+  "final_validation_reserve_seconds": 3600,
+  "stopping_policy": "Exactly two additional subset epochs, from 960000 to 1440000 presentations; no plateau early stop; no further automatic extension",
+  "retention": "Only new-campaign old checkpoints are pruned; current best/latest and global full-validation best retained, all curves/receipts retained",
+  "runtime": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/runtime",
+  "python": "/storage/ice1/9/8/yluo432/envs/vlm-bench/bin/python",
+  "prior_source_campaign": "pgm-lora-targets-2026-10-22",
+  "initial_seen": 960000,
+  "target_seen": 1440000,
+  "additional_presentations_per_model": 480000,
+  "validation_every_updates": 1000,
+  "validation_questions": 1000,
+  "test_jobs_included": false,
+  "monitor_created": false,
+  "expected_runtime_hours_excluding_queue": {
+    "lfm25": [
+      35,
+      40
+    ],
+    "spatialevo": [
+      65,
+      85
+    ]
+  },
+  "reserved_gpu_hours_upper_bound": {
+    "lfm25": 48,
+    "spatialevo": 96
+  },
+  "interpretation": "Compare complete fixed-ID validation loss and accuracy across epochs 4,5,6. A plateau is evidence under this recipe, not proof of global convergence."
+}

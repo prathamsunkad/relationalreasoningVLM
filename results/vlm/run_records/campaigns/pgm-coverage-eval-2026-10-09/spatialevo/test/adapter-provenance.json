@@ -1,0 +1,16 @@
+{
+  "adapter_sha256": {
+    "README.md": "2af44948afd80bc65ee2960286a25dfa83a7b332183db98d9b730434379df703",
+    "adapter_config.json": "3305523e086eb9fdc4909d7760906f76a9c9697f25081a8b1f406136aa038031",
+    "adapter_model.safetensors": "9b3af304513f0d2688924a3860cb9050dc08d28e30a7d629f4a1b29fac2ec658"
+  },
+  "checkpoint": {
+    "directory": "checkpoint-006167-98d35613",
+    "seen": 98672,
+    "step": 6167
+  },
+  "revision": "5fd684324a3d7e759c948b42f4a51b9b016c8d5f",
+  "selected_validation_sha256": "a16b3665e4140fee7b7c61dae7805d3011a0c73fdb371f661b04245611d7d250",
+  "train": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train",
+  "training_config_sha256": "52bdcca1931305b11b9adca8146c98492505b88364b222b95593e2098d154c06"
+}

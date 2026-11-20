@@ -1,0 +1,13 @@
+{
+  "extends": "_4k_base.json",
+  "epochs": 5,
+  "answer_loss_scope": "answer",
+  "early_stop_patience": 0,
+  "extension": "late",
+  "train_mode": "module",
+  "extension_depth": 2,
+  "readout": "llm",
+  "diagnostics_every": 256,
+  "insertion_layer": 12,
+  "max_steps": 256
+}

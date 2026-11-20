@@ -81,3 +81,7 @@ They never see the 8 options at once. For each candidate k, the model gets the f
 missing cell and the question "Is the bottom-right panel the correct completion of this matrix? Answer Yes or No."
 The score is logit(Yes) - logit(No); the answer is the candidate with the highest score. Free-text generation is not
 what the adapters were trained for (only the Yes-vs-No logit difference is), so always use the scores.
+
+## Additional VLM protocols and LFM architectures
+
+The existing training and evaluation commands now also support answer-letter prediction for LFM2.5, SmolVLM2 and SpatialEvo, plus the original five LFM probes, RCA plugin and relational memory. Start with [the integration guide](docs/VLM_INTEGRATION.md), [portable recipes](configs/vlm), and [historical results](results/vlm/README.md). Candidate scoring remains the default.

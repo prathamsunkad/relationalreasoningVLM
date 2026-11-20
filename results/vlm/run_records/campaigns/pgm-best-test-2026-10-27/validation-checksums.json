@@ -1,0 +1,1318 @@
+[
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/config.json",
+    "sha256": "797c3ecba78cf6b476b6a8263d7190c0d4973cdbc8805f2da3413084a71cb38d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/validation-055387.json",
+    "sha256": "ccec5239c9d49869984017c8e2cecab9a7788ae06405f33dd4bc3a0e5c4f96d2"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/latest.json",
+    "sha256": "5a7ff1be8ee1a008bcb412f4f78f49c46a2ed6f34b000e4ce313d41bd57c67ee"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/best.json",
+    "sha256": "60dcc5c51ff38e9d06a3d75451a07278cc81034973907040e9374963e72f8dd5"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/validation-056000.json",
+    "sha256": "73ea7d19b8f70628a2e9b70b2ae8b6d472e7acd03877f4cd702773c00714d728"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/validation-057000.json",
+    "sha256": "44e21875d4ffb1d4d19d0f50bd9332aa141b863c3f4f4cdbcd9c76b23fad9b95"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/validation-058000.json",
+    "sha256": "1762a1676a8130d1fce1b5eece0a65b3abc5e6805520202d297a3f690b90e5f3"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/validation-059000.json",
+    "sha256": "fcc058a0ac4208554cc6f142737c99d650960dae95a4eb87f4815d2e626af1a0"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/validation-060000.json",
+    "sha256": "8de555e07dc7e0461ac61d62cf5ec5d6d7fad91d5b41290a95739448673b5ed9"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/latest-validation.json",
+    "sha256": "3a9f309db4a878ff13236a4de445b25db9a62fb1f3d5e15efe580722e23af2c2"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/selected-validation.json",
+    "sha256": "9dea95fdc82e3be4f73b4b85488169cf214ea42c04d42b68e44bb53a5d21c1f0"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train/summary.json",
+    "sha256": "d66d9e2c3b198db5e4800ec24c3a5904a11ed7638b566fc08985b7c622bf57f5"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/config.json",
+    "sha256": "8f3ee8f8f6a084da9861b793ff0c6b01b084d8dd23f2cb136970bfda98a5b37f"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-042285.json",
+    "sha256": "8a5c6c5f2d36afc0e42b18030b147eb21dee93956f2556cfd25d14a9d41f17aa"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/latest.json",
+    "sha256": "6ffe53522d56667bb3aecffbad71104c802624cbd48531df9397f40f3e230186"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/best.json",
+    "sha256": "2741318601c3cbbe30076d229ecc22016b00bfa6e76705ec3cbd823c6d731cd3"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-043000.json",
+    "sha256": "fb7151239dd122eb435928a8b61bd11005e73e758bf56cffebd5f77e11960c27"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-047000.json",
+    "sha256": "f1c648a39f43322626643e03bfab260d889ddfd72fbd5f6f03cc0430d3c58ae0"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-044000.json",
+    "sha256": "733f5202b608112b48d11d457b6ae2c4e932fb48aeb6704d93643ca90d464a3f"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-045000.json",
+    "sha256": "45f90744e4a267ad30705f9a567f1dedab58bc42d618e8c33af566ca871560d5"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-046000.json",
+    "sha256": "ba4fca757713fa1187061a885d6b1ab31ee414766dd5de009c925c9ced648863"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-048000.json",
+    "sha256": "cc92ff735a70ed56bd8f14b69d25cfe030ab30dcb6c08c9c572862ad7a3b4ec7"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-051000.json",
+    "sha256": "4e5c20997e089cab2cc3f7766a6d662ede91108a604356c81f6d642b546639ad"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-049000.json",
+    "sha256": "9a4d2fd53e2deca4867812ad5b642fdd72bc4997843756b2f67b154a0007296d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-050000.json",
+    "sha256": "617875422ec57f31267ab31c6397e156faac06adc63596b98d2ae757a5cadcaf"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-052000.json",
+    "sha256": "8cdf612f1669d76cc5bc18dadf2e3691ecfb5daf7d8752b0dce1ca0ebb8dd010"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-053000.json",
+    "sha256": "b8c8f29a7f610b7822c8eb3c5a5c9612c3605c0352717bee71ff4de993e5b756"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-054000.json",
+    "sha256": "ba377ca7cccadbe20b51e4df6e07f264c909547b99f405f7823553b76f0f2bcc"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-055000.json",
+    "sha256": "2bb0f76a30cc9f73ea48087b48f69e2fdf122459aa7d46c32bde026a14b0ad11"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/validation-055387.json",
+    "sha256": "485c7a1c5afa283c12387e7a602481314dbe7fff0dbe57da5acf16ab7339c561"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/latest-validation.json",
+    "sha256": "8aae9b19889b4452f3698eaf12afdd03d11dd7636556e514fb0d0ca3c48f3650"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/selected-validation.json",
+    "sha256": "34f1beffba37d282a2d0126f14e110dc1355c1f75a074c096c86f6a09343fd82"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-02/train/summary.json",
+    "sha256": "f5068bc47ad34b12e85d8fcddd181789b4d4ae9fe1b32805a7ec006628b7d584"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/config.json",
+    "sha256": "f4ed0a06a34822a92768c274766ac7007816503c15aeab85d31ab9accd42b718"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-030000.json",
+    "sha256": "eb16fca20886dce4ba9f99e03592e5c5ac370e46c38278552a0f5eec0dbf99c9"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/latest.json",
+    "sha256": "11722856542aa90676907729bbcabf7ce5f6267a630a16cc095fa9542db8b74a"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/best.json",
+    "sha256": "f560f0a6928ad779c45d4bad852ed142ed8af7cc3434418c7b7dbb06d7472640"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-031000.json",
+    "sha256": "9ca9cea7c99af6fdddd702bff5b1b7ff6c78227d46d269e72d42b4a22cfc94e5"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-032000.json",
+    "sha256": "3ac26e3e137b56a3b1d6a2ff4181042d38cba9bc9824251bec3ad38d8b406782"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-033000.json",
+    "sha256": "f02d8f6b087f3e4adff936981c87d1f8c9100e14407a7332fc741cd4828c7b2a"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-036000.json",
+    "sha256": "e53943f24eca8c15271a60749afb68f3b8316bb2c66e8833063caf3c4ea9fec4"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-034000.json",
+    "sha256": "6d9fa873e379f1cdd6c0b79320984f0b409eb0c4d2e8e325a40d46dfe648676e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-035000.json",
+    "sha256": "af25e60597321f472afadbf0cb20543363499f4728bb5d4d9225d8c8ec7d0eea"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-037000.json",
+    "sha256": "f8d13ccc1d84eca78924ca1326e29fb25c74165374787d969f414c558f6e167e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-041000.json",
+    "sha256": "3c70275eb23af681b33fcd63b18edce1a0c4c4d94bcc3bed85b851f088fb94ff"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-038000.json",
+    "sha256": "56b5467ff0fd72d51a8556b26f2e5c66298fa5905c89d8a9cf94c981d718475d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-039000.json",
+    "sha256": "afb6664c639eabb9116885d1a5be1352bd804ea78f931936b1680cabe5dd02eb"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-040000.json",
+    "sha256": "7fdfebce2880cc1e8f2dfa6beeaba85439b81c4a5cf29e2a766694dd3ecd6eb1"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-042000.json",
+    "sha256": "4a8cf00690b0198500fab746b891b42c4bce6de678479202278953b011d70fe2"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/validation-042285.json",
+    "sha256": "5381547cd41e6af2ca08772da79e5868986f4dcacd20c73c8e61b9e849220172"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/latest-validation.json",
+    "sha256": "d39d1643fc2d9d9a818d99391ed8f863632319c711ca68edb9084542922d8dad"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/selected-validation.json",
+    "sha256": "8a92756f2be0aaec78645fa04a8feb627859a4799d6d2f868afb6f1af29092cc"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/lfm25/segment-01/train/summary.json",
+    "sha256": "4343837e38aee0c0c0edc9fce22a850a8fe4644f1a7a1f5bbbd46b2e54f30f17"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/config.json",
+    "sha256": "7bf0512796f86c1bf6821cc3657d2cf5c7426b19d979172a43d6e86d15d7ad49"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/validation-023359.json",
+    "sha256": "f4179b001905016cdde02b3da1c17d3fe2a26ac59eff18a36d7bc2f64eaf8a99"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/latest.json",
+    "sha256": "4a3a974d8120e7f7fddac5c93b59b48c7f0c789778331ae35bee2199e91936c2"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/best.json",
+    "sha256": "049babf083b7c81c66a5f89cc1aaeae62206759d87fcca9632ee06ac3fce337f"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/validation-024000.json",
+    "sha256": "f7434ebc4aa66e9d6106318cecedc14b7ba68a1c02068b7c72354287ae97fc20"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/validation-025000.json",
+    "sha256": "ed90f7d496cb4fbdaa827dd181be6d0cdae162bef8a3905a94d433b1e361195b"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/validation-026000.json",
+    "sha256": "554957ac8a1315f7dc25298a3c23471a5b080ca78d4ac04726efc3c1b34fbc67"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/validation-027000.json",
+    "sha256": "2f60abd2c2ad7bb09d9bc0c2fa7ed6e144e63760d1f4402ebdb004b69d051f0d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/validation-028000.json",
+    "sha256": "4ef607ae6a19eccf9e1831685a53bbfbebbf2b857f3763204630a7e348115f9e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/validation-029000.json",
+    "sha256": "5db8adebedfabafffaffc23f8adb90f3b36229b4c10437658170dce57af440ac"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/validation-030000.json",
+    "sha256": "d433b8872aa95398537b11ccd7b5ed9787c772b7ef7a6a839b56ed83bb4f3186"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/latest-validation.json",
+    "sha256": "8158ddd3fcb9a1117dacb392353a53297ce361d8eaaf33fa26dae856c5b62235"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/selected-validation.json",
+    "sha256": "b63f2ca764b83e735fd22890e21e5348b7d8d13fa5efa1701cc6f472d9a60b29"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/lfm25/segment-01/train/summary.json",
+    "sha256": "7b58be3d116161283cb4e2c350af20969207da10972fa7e22f86694fb112ffbe"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/validation-018000.json",
+    "sha256": "0f7c9eccb633191633c64453a0b21214b2f54bd6ecb3d3cd7b75ab12dd4086ec"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/validation-015000.json",
+    "sha256": "81c26cc4d229c71de442185e08108440a49dd88f416765aecc952beb9bdd0717"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/latest-validation.json",
+    "sha256": "b9eb98bc26f4d4d205b92acee2f8f7cdd336a0843d6568daf5b7853c49199f8d"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/latest.json",
+    "sha256": "7d8dea99b61a3953ea94cae36366ffffbc26ef122de977582c08cb9d9188eaa7"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/validation-020000.json",
+    "sha256": "21815d724b409f7848bcf2b0211a6274a5468c77680a598432002d72a9486ce8"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/validation-017000.json",
+    "sha256": "158c1078d3ef58ad32e4d3172d17f53ae4b0b9e7ee32c400449f848c0b9e713e"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/validation-016000.json",
+    "sha256": "6fdbeabefd73a78d36b8620d4403ff6ec55e373b3beda44a492b015ece79c604"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/validation-019000.json",
+    "sha256": "84f7b2769a185f532cf47c26eae9999c05af7fdd1ce9747251505be669988c9a"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/selected-validation.json",
+    "sha256": "a95a79067dc673bb01e075e149a9ed9ef694a78c944b8645be4840b4743d6851"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/validation-023359.json",
+    "sha256": "f4179b001905016cdde02b3da1c17d3fe2a26ac59eff18a36d7bc2f64eaf8a99"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/validation-021000.json",
+    "sha256": "eb2f8c704c224cec699c1b544e1c7d9cbad3ebcb954d55bed81082689da209bf"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/validation-022000.json",
+    "sha256": "efd6e4a5fc4370bbb6b63993c02261a82e8b0793e485ca97ba696e7e3579ee8f"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/best.json",
+    "sha256": "e85a4d6bc92f57d012654a4fd2ee7c3c4843b776551b6d985f5166dab14a5272"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/config.json",
+    "sha256": "a17d00f9ece3742ff4526e4c063eb5265c9948fae7624eec22edbb2e98a6e9c3"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/validation-023000.json",
+    "sha256": "3b76d823afe7c05aa84e25727d0146c1114b07c6975775352ab48969c1471afe"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-epoch2-16gpuh-2026-10-14/lfm25/pgm/train/summary.json",
+    "sha256": "646192bac7093529b641af0db46626e34c96654f0e78155e683c8a7e04e9212a"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/validation-015000.json",
+    "sha256": "264ddc12e84b7ffab09126cb9637fa0f2e936196e1cebe6845c25d7379d7ec25"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/latest.json",
+    "sha256": "725092594ac6f7873a2182a453f0e7b2bba4106e5f881e016da3f7600358cbd3"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/selected-validation.json",
+    "sha256": "b015e8c488c3e3736ed091624dc01f48be043fae1ce163fc8cc56134b1d9e0ea"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/validation-013000.json",
+    "sha256": "19a102b28d175eeec12761dae5926dcbcaf0001e1492f11c86fdcd08a954e7a4"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/validation-011000.json",
+    "sha256": "14ea167b16d3ef9904425e41fb38e4dc251bf0f2b36222cc7cad52d574920b05"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/validation-009000.json",
+    "sha256": "8d0d9677ec3f9fc212b8844b1c40903c0da30707ae5f45da8a46da88c7a515ad"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/validation-010000.json",
+    "sha256": "e201a7b45b2754c748106ea24dfe756e2f195dae233456396013ee81bb26c3e5"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/validation-012000.json",
+    "sha256": "14e3993ec1f73f7e3dc3e043fa3948cc6f7476cddf83e2c777a1b65a1cba0ca2"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/best.json",
+    "sha256": "725092594ac6f7873a2182a453f0e7b2bba4106e5f881e016da3f7600358cbd3"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/config.json",
+    "sha256": "bb15cf0df4576ef8064b795d21a7109ec1cd52aad45e15cda6b97f29e690b389"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/summary.json",
+    "sha256": "7a8e021cd04719791f47c72c06540c4493f146def5c7b816bff2c51481b4a424"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/pgm/train/validation-014000.json",
+    "sha256": "bab024352195db98f79fd72049371326490be0a23290d472ac19f3d5c874c5c4"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/latest.json",
+    "sha256": "9fdd4fe86b6b3088df24421234656e693db9825e3239abecfcdf4cc086ccf277"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/validation-004000.json",
+    "sha256": "a8f3cf45ff0ee050791ef50efebfc478497e58826a83bf96c55d823ed7a90f19"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/validation-007000.json",
+    "sha256": "6177fa50c1af67602d5b539014f1e69ba0bde2e3dcc68c1db170a5270b24808e"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/selected-validation.json",
+    "sha256": "9877646ebd1af1b9289cdfbc7cd5a3503e8e34f354ae8cb2eb56a2fe99413977"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/validation-002000.json",
+    "sha256": "e42755fda445b914c69e2f3c06b1ff2abbfc07a6f485b68dd4da585b29eb8473"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/validation-005000.json",
+    "sha256": "8b998a08e44a3c061c9e2766e8faad6a9a4e6beda7805f8dfdb8144d5aeafc88"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/validation-009000.json",
+    "sha256": "8d0d9677ec3f9fc212b8844b1c40903c0da30707ae5f45da8a46da88c7a515ad"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/validation-008000.json",
+    "sha256": "d31aff44eb7b97b98b75ff9d15a0b430ee05396d02bcdc5f0e04b38ea2ff0903"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/validation-003000.json",
+    "sha256": "0c80ffcb6ee524631d2906aeb27def5645bb28a4b3ab985eccd0028ffc5273f1"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/validation-006000.json",
+    "sha256": "43b455d6f7f51e6f82d77f19790a0932180a6b1e6d83e9d1ef9d1ed470f51434"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/validation-001000.json",
+    "sha256": "12c4e84a7e4d4e8de2112bc8629775df151dbd1fb7c48622bc276da332fa9ff7"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/validation-000000.json",
+    "sha256": "f88fb838b9dbbd6d0df0de197d3d18c73f0805202ec4e50059954a9f2554a8ef"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/validation-009923.json",
+    "sha256": "eab4e6c9040cb760d06dfffa4fb833cbd8dc9c32ca227fad0081b6f9c2129732"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/best.json",
+    "sha256": "87815d4d8c87c13bf5cec5e158ecf686c83f763ac295d240d29cf9c674ad0d5d"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/config.json",
+    "sha256": "2e0d01d5bd7712a67f2035ad8d916d977de14393f32c8cb4af7e04ee51db4608"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/lfm25/pgm/train/summary.json",
+    "sha256": "e6ced2c18daba06933dc9988ae3ba2b5ec082e13fc94d5a2c3678a077dd6adcf"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/config.json",
+    "sha256": "e802d7eeb960f920f49e289ec30b742d8b93fd00a480bdb5fd20d781ce60b04d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/validation-025256.json",
+    "sha256": "2c8acffb001baf2936b9aae0f89662ffcddcd3fa11c0894b8427a58d569e9d28"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/latest.json",
+    "sha256": "f6cad84e86690bb66a94414144a36837d788264fbe353d3145001a609dd7cf93"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/best.json",
+    "sha256": "6cf8a6aebb998cb7b73f310b316dec8bd62acb30b00c54c3018655000d54b1f2"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/validation-026000.json",
+    "sha256": "2f1fd134701f7f06d453b595974bbb29741a25df271183ea4d036d5523fed33d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/validation-027000.json",
+    "sha256": "3846e975686c32f99f0d65af84ffc6fa149b8ec380a359258b07ad496f84487c"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/validation-028000.json",
+    "sha256": "0e7ebe8d9f40a8d062ee66dcfda5739742cd12d0a810a20f23f47ef6616f5110"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/validation-029000.json",
+    "sha256": "58fcf2da4a3ffed5a8f42feea42b8d840f447e643b1778768b4669d0749394b3"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/validation-030000.json",
+    "sha256": "f75766cbc0fc7bd81e520d15d6f3280f837d453e15488b742cb5d8e850898c20"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/latest-validation.json",
+    "sha256": "14a099ad3107830d7ee52aed5fbb69b02b92e6142873beac42f3de79fdc11bc9"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/selected-validation.json",
+    "sha256": "91d806e577be56629c32690da1258c1bfb32de1d21766fdc2e8c9b2b6f873c56"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train/summary.json",
+    "sha256": "3c8e1af59a0afabf8adf845b83de94f67d555ebf3cbd6a66136323688b139e21"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/config.json",
+    "sha256": "fe48906ea3ccfb2fc9f2df3a9632a9673c687c82d986e8a9277e3f0b61f44ad2"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/validation-020000.json",
+    "sha256": "35ce49f2256f6db37f71608a1a0d43fe79bf7157eea54fd393613ba5da723952"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/latest.json",
+    "sha256": "6c5302c5f59ad6a6b7b102396ec5b298ba70a957f9a1e719fbf4fc6df3e0cff0"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/best.json",
+    "sha256": "28dadb4166503386ce72f11f2089870824c4d13c3cf35d76e9a57a9f226f1b47"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/validation-021000.json",
+    "sha256": "12cc957297dd767053ca8401f55c67b5b18e7ed782397a25de6141dfef8f750d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/validation-022000.json",
+    "sha256": "a22373bcb8f1ce2fd728bbd42e9f177e912c6699cf0e4b2a3be93ffffbfcd270"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/validation-023000.json",
+    "sha256": "759f2bce35458dac460bbd2ac7db5f17fe7fd8fcf4e9bcb85da20ff9465d6de4"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/validation-025256.json",
+    "sha256": "2c8acffb001baf2936b9aae0f89662ffcddcd3fa11c0894b8427a58d569e9d28"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/validation-024000.json",
+    "sha256": "93a87c366ea4c042e1dd6aafda127488ce8f11efe3ae436947286de9c421382a"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/validation-025000.json",
+    "sha256": "5892a37592444b807c96dbdc2fec1ff7260c4bce9843d50b410d6700beecd25f"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/latest-validation.json",
+    "sha256": "0b8d9b815bfd824431f52d838f19046b3ccdaccefb92453a8bc28d04756ee0c8"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/selected-validation.json",
+    "sha256": "ca0902cda85fb1dea894fe32e50735693e97aa0e2e71da10ce80af26f434dea9"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-01/train/summary.json",
+    "sha256": "389d112af267745d9ade96a26625b1299fff73e51b6026adf9ca9ca626c31edc"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/smolvlm2/segment-01/train/config.json",
+    "sha256": "ba2070ed3ef9008bf73e083e81de79c64b5d896eb70907615e774f1979b0681d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/smolvlm2/segment-01/train/validation-019144.json",
+    "sha256": "80fc24560af477eb041531924814f32f092e5aede26afb91d03f52001bc14781"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/smolvlm2/segment-01/train/latest.json",
+    "sha256": "93dfc5daf83f5c3533339bcf8cacbaa4b1014e4da87a516017cb429af55459bc"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/smolvlm2/segment-01/train/best.json",
+    "sha256": "93dfc5daf83f5c3533339bcf8cacbaa4b1014e4da87a516017cb429af55459bc"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/smolvlm2/segment-01/train/validation-020000.json",
+    "sha256": "35ce49f2256f6db37f71608a1a0d43fe79bf7157eea54fd393613ba5da723952"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/config.json",
+    "sha256": "046246935117f9fa77102e15962dde7a65394634049c0650f9a15e7170b5ad45"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/validation-014484.json",
+    "sha256": "425fcfe37e676b835e7cd6b327d7cea0051438a36b65319290bbbb175690a132"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/latest.json",
+    "sha256": "e62c6076a9fb263103fe65f97704659359ae4b8f8e208d009d0e6fb5b8a2ea71"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/best.json",
+    "sha256": "f4cfe0ebd8e275323c1a024760e97b301e893207f961658fc0dfb18ec74b766f"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/validation-015000.json",
+    "sha256": "ff409f340669f4760dac75c337d915cc8927de4f93e0e6f7776f5432769f1da5"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/validation-016000.json",
+    "sha256": "dea6cc1ab9346357d188fd71245b843422d0110121f0ab97a2b5eaa53cc15a7c"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/validation-017000.json",
+    "sha256": "cd121029f414a422fa26cc98b49eb438a07a6dbd1032d103568f7a6b9bc1ca24"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/validation-018000.json",
+    "sha256": "0889e03d63e155f5a3df0d35b0a8b6fb019d0b1f2e5e765ad792f8e9ffffcaa8"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/validation-019000.json",
+    "sha256": "2427799ffb4a44a15bf041807b825e3a384fb521723fcdbbd8b33ccc306f09eb"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/validation-019144.json",
+    "sha256": "c673b63e64bf0847f1660cdf2e71469720493d16e73ef3a3f1a42a66e9c9d8ec"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/latest-validation.json",
+    "sha256": "a8135cdb7361edb30c749de1ac422e5c669692e5f7aa6000ecbb537aa1794935"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/selected-validation.json",
+    "sha256": "083a1fc30c74fd194fca79bcfd4658f2c4ce015f1ba4abb31baf71c393eb6b1e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-03/train/summary.json",
+    "sha256": "a7dcbbdb55466851344b2296ff98f146b7f947cef727426c417bf188a075da1e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/config.json",
+    "sha256": "7cde141a14903a485287f3333d69c1a4b3415d4021195997eadaa074bdddd874"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/validation-009872.json",
+    "sha256": "36060784b58d5cce36f4ff9198bd30db85f49ca8d416243a98d05570692acc9a"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/latest.json",
+    "sha256": "937d2855417a8bf8e21b50bdc4212278e329ec2a7ebeb5360fa6186cc17d8dad"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/best.json",
+    "sha256": "937d2855417a8bf8e21b50bdc4212278e329ec2a7ebeb5360fa6186cc17d8dad"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/validation-010000.json",
+    "sha256": "20cf52c1d3c7c8e03761aef6e11731a144204580a18d336d701e2216671fd4ad"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/validation-011000.json",
+    "sha256": "cbf21107dcd44ddc62fa7a0819e7039f61aaef136f875d3d37407d4326ffc071"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/validation-012000.json",
+    "sha256": "8a500ed45be4a1682f3cee801405855c5c51469421d23af21211f972e3db6e8c"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/validation-013000.json",
+    "sha256": "9b0b9c4669d9b9c3a0b24755d5f4efdea444c37a7f42bb434a2bc0140d0d2213"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/validation-014000.json",
+    "sha256": "4762525ff18b386dc5e7fcaa4f9cd67abca97a4ea58f00f6489c947f098a9cca"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/validation-014484.json",
+    "sha256": "425fcfe37e676b835e7cd6b327d7cea0051438a36b65319290bbbb175690a132"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/latest-validation.json",
+    "sha256": "ced10d061b14490186885c270ac09e9952aabb9d20c0c092a2a7a62cace288a9"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/selected-validation.json",
+    "sha256": "083a1fc30c74fd194fca79bcfd4658f2c4ce015f1ba4abb31baf71c393eb6b1e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-02/train/summary.json",
+    "sha256": "477afa86e4f18ec01ddfd3e8c3c344ff711f458fdc3cc932f576b2e119e0f7e0"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/config.json",
+    "sha256": "33a697d62151761463705c30172e19669ae4bb10783ea75462c9a71c002955ae"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/validation-005180.json",
+    "sha256": "5822d353dcb459f7f98dce89affa39aa1bd85ee827dcd5548ed3542733560625"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/latest.json",
+    "sha256": "eac2ba0ff101e9846b626487b0da6197f079239dbd2ea0b7800521f712ad41df"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/best.json",
+    "sha256": "eefe090c97a9c5f50d1b9e04285b2b5ce79029ff874061465fa383887a6498c1"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/validation-006000.json",
+    "sha256": "75658b4d400078542635ec6532b60965eed7ae269819c4f07a3a7b9236882843"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/validation-007000.json",
+    "sha256": "4288677efc15a31200207f6e655bae5cba9a62e53c5f00308988ce59a4229ded"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/validation-008000.json",
+    "sha256": "e82aeb4ff967951bf01868baff3c28e38b30730b872984e7f70a56700afd7bc8"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/validation-009000.json",
+    "sha256": "3390ba6c83162a0cf24793b2e0e466670b431155e5aa6102f60a5fd92500e77d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/validation-009872.json",
+    "sha256": "36060784b58d5cce36f4ff9198bd30db85f49ca8d416243a98d05570692acc9a"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/latest-validation.json",
+    "sha256": "f0fcf5bc25984fd01e220bcd55fd79325616d8325ca83d819a9f747757646056"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/selected-validation.json",
+    "sha256": "b3da2c295a727875f6bbbe902a50dbdb0574e1471e71061c59acd228f73422ea"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/smolvlm2/segment-01/train/summary.json",
+    "sha256": "67b481f7c392a705c34051d5a749c282ad7a5e0577dec46fa9c493ecd36442eb"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/latest.json",
+    "sha256": "2ec0b0ab162c4121f2c471e8bddeb6ba57b8d8a82bfb923a22e91ab1aff3d149"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/validation-004000.json",
+    "sha256": "484e6178667b7fffc7f3b2e7b58684863be8df3efb4c848a789ba1fedc220d8d"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/selected-validation.json",
+    "sha256": "a3ee2fc2e284789f6399d2a2687a547d99fbc9f7198b2fcc582938797dcc6b40"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/validation-002000.json",
+    "sha256": "40090fa68912d8cb0f3c3def7d20734d4e692e053b8f69497a41a39fd838c127"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/validation-005000.json",
+    "sha256": "4086d8a4f6a9c0bd72938caa88cfcea64c4b2dbba11408b000f7cdfbaf3aeb53"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/validation-003000.json",
+    "sha256": "284409e3d47d5ce8c301a63d2b461a6ad920fcd7e2ad87c332b957f6df6f2da0"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/validation-001000.json",
+    "sha256": "3ce903a58891de5f19eed4c8757773f3ddc4d06fdbd87523095aae9ca958c0e6"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/validation-000000.json",
+    "sha256": "4e50dab501a504f51d06a374dde260ff6f222733688b9cf2b03b75898e632745"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/best.json",
+    "sha256": "2ec0b0ab162c4121f2c471e8bddeb6ba57b8d8a82bfb923a22e91ab1aff3d149"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/config.json",
+    "sha256": "6d99a0c27d63a9bba683784fcc7968bb5cf0f5f8cc157f2cb70a7ecc0ebb4fe9"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/summary.json",
+    "sha256": "08af63ce844757cb868ba504a1c4379e24db36c43a83abdf00f80dd30aafaf07"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/smolvlm2/pgm/train/validation-005180.json",
+    "sha256": "a103f683a601df8ed563268590b88355e77cf3aef2e179932b0ef8dc540ac3b9"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train/config.json",
+    "sha256": "c134c5b9e005a5b306f42e464d4e7046f6172b35165f3b312af8dd733c84a2a6"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train/validation-056874.json",
+    "sha256": "7824324e8f9d26ddd0377d37a76b65f1e98da2600e2fff19e37098e572ee7767"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train/latest.json",
+    "sha256": "2fc37309d93dd150ba9d9df2a4ab5c1c42ced014c6dcf9f829d34922fc809671"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train/best.json",
+    "sha256": "be1d6f7fa1e75ddc919064b181f71ae8230847cecdd483a91d047f7a0db3b0c8"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train/validation-057000.json",
+    "sha256": "55114beb211064196421dd58cd6ada33487c733275b52b9ea6e83ed7d1a80f14"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train/validation-060000.json",
+    "sha256": "46f7201dff3533ea76334b322db96c310d7667a0357a478af6900c061b2344e3"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train/validation-058000.json",
+    "sha256": "c4a88e39142605d9cb84ccc8bd3a150e58ddb0c12d569105bcf3802cecef7c96"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train/validation-059000.json",
+    "sha256": "e5994475fa6378327b574eab79b80af6af3643c42f39e522ebfe77d9c9c2c7d4"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train/latest-validation.json",
+    "sha256": "5aafb9126bf0fd9695ebcb7e1b8c8c334bc5c8978bc65a766c44893518a3f087"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train/selected-validation.json",
+    "sha256": "4b3b2e049285a287dc94f615237f5b9ecf91f9d9a865517ba55633fc0810eeed"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-05/train/summary.json",
+    "sha256": "ff91aa17044cd68beb6135133e60e58c356411e445be054ed185dcf37a4d4fb8"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/config.json",
+    "sha256": "9ff5db6baa211a475688f004a48c1a56fc92f386b814f0020f6a897bd7c02625"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/validation-049511.json",
+    "sha256": "7750d2a3de86783a792477dda8acf9586e558d679905c5e925bca699fa59578a"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/latest.json",
+    "sha256": "2dc604adc34f3cf15570854e1e68f59d0bb6837c3f7e6d0423536fc02a55d439"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/best.json",
+    "sha256": "6319a407b1a88e18651bcbde7ece3fdee1bc3e788e68819d937f40c0a805a103"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/validation-050000.json",
+    "sha256": "6a8dd7f96bbb1bededbf5246084b9ffbba5ef54523cec0c31523278e1297d04d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/validation-051000.json",
+    "sha256": "9c0592d945f6b18c741619d02d59923e5dffb98031741e29f3579a951a4a1654"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/validation-052000.json",
+    "sha256": "b9215798f76fa1da8df54ec4b867cd97f433c5ae23bd36eb14e1541b48c61819"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/validation-053000.json",
+    "sha256": "79cf60a6ff26221529436391d0b138794a28652b8a863a12bbcb523efa88baa7"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/validation-054000.json",
+    "sha256": "b6ec5b0f630f23709b64c6d1763b24e582118fdaf73cfa487832e9fcad369f1f"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/validation-055000.json",
+    "sha256": "1fdb0760e9fb68f0d870bdce1cee2bb65aa9b9c1670d61d8be8c3379e20425f7"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/validation-056000.json",
+    "sha256": "dad32a4a68b6dd08e7ee32c83efc5fc7e9d35b3a9b7240c0a724cd4c8939a8d3"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/validation-056874.json",
+    "sha256": "7824324e8f9d26ddd0377d37a76b65f1e98da2600e2fff19e37098e572ee7767"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/latest-validation.json",
+    "sha256": "16e5e2a71403afadd50767f53969359cf609622da8cd5306d237df833ca8247d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/selected-validation.json",
+    "sha256": "b45654418a611c54864029367165be71b0399990ea0b55de30f0fa9197d3af21"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train/summary.json",
+    "sha256": "524d4c67e658ff2dd60f40f3e512ee79d18f8d88539f2102cef840ee8d63e22d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/config.json",
+    "sha256": "32b286cb2fba08be199f91daaf2fc3da2bf6cf7884dc66cb15187acd3f77bdf6"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/validation-043230.json",
+    "sha256": "59d4b5fd7154bfeb4bf48fd13501688d60ea50c2c74e184cba4c2b11b389cfef"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/latest.json",
+    "sha256": "65ccf708146c99e1e7a5a0086fae3dc2adda66e0f47d26d65a17b81ba87891f4"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/best.json",
+    "sha256": "f60fb652e22695a29c8768c6308fcbdecd0cf4bf45230ecd553d50922a9829b6"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/validation-044000.json",
+    "sha256": "3301188a97924d3d3630793ee37752cf50cdc0f73b7a564fafabed0bc5a3915e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/validation-047000.json",
+    "sha256": "405a9d7180c622266d296db9bacf2ab37d448a16c533e48acb80b153b7c5c839"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/validation-045000.json",
+    "sha256": "84200dc22004f95177844d94d58cca2e84ddfc0bd2b74d47388fb9da4de25576"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/validation-046000.json",
+    "sha256": "a00ac2020ac61ca4d20f77830accc4347239214c021954bf10516865ff80c73e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/validation-048000.json",
+    "sha256": "0896ce3a052db1a848c58b68ec8d438b761fa0cf50ea7435cd40f66c9ad332e1"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/validation-049000.json",
+    "sha256": "33b429e0360c4e73e231dfb7a59d5f226cda6239c8aae22051768547b9bd8c57"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/validation-049511.json",
+    "sha256": "7750d2a3de86783a792477dda8acf9586e558d679905c5e925bca699fa59578a"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/latest-validation.json",
+    "sha256": "6b5de254004a1c7b5fd02da844958ec7b40d104b8875b3c512cdf71177b1513e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/selected-validation.json",
+    "sha256": "364112b15a3b24a8b2e24590870fbde5776c42520955cb0b13e8960b5fa62928"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-03/train/summary.json",
+    "sha256": "7ede2f7871a67fb1bcdb7847d91eb7c46a092cea1a6ddef0f9d5a2727c6c8ba0"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/config.json",
+    "sha256": "71e0f7e0fac5b397b506014ab2bee5511883d4e0700767d69250d735bbb7fc19"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/validation-037003.json",
+    "sha256": "61f091befa61832facda269a51c8b31fdf577b9e1533ea1f83640972fc6ff196"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/latest.json",
+    "sha256": "a41995372b82f6062d2b9d730b5d7b4a6639b5c332589a8c6a67dbdb693d5479"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/best.json",
+    "sha256": "09e11c3973450347a85ab3b4b886388f45e98afba12ca4d60603f8ea36600b06"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/validation-038000.json",
+    "sha256": "3b6722ffc3fb2fba79843d25d850de5b480a20de388b400f4d30aaeaf2430c6c"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/validation-039000.json",
+    "sha256": "082a3d4c3fd60a8854db65414f9c2d979fda29f1d0537f174724bdcfdecf9987"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/validation-040000.json",
+    "sha256": "fccc537fbeb654268bfce0dc116c429d4e34fc118ae65cc24c56808356f2147c"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/validation-041000.json",
+    "sha256": "f15ed4c8f07df5127323397c9d70f4ca4926e69d325a6b5ddf4e9d00e46fcdc7"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/validation-042000.json",
+    "sha256": "7aec860d3d423c92511c90dc469981ec2e56cceb3df596115235b4634af0fadd"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/validation-043000.json",
+    "sha256": "737da7f607f4a68ea47f8ff7cf5d36d11b1fc7f24c9c8f94a21ee8c49278d2ab"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/validation-043230.json",
+    "sha256": "59d4b5fd7154bfeb4bf48fd13501688d60ea50c2c74e184cba4c2b11b389cfef"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/latest-validation.json",
+    "sha256": "ea0752da87f5cdc4094d60b2cff3599dec1699bb435001b3d92bf4c768a5b22a"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/selected-validation.json",
+    "sha256": "4ec3cc2b348346a12661891aac3c4e23ea90d0f1a6e0b6ee28de8e291cc599e1"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-02/train/summary.json",
+    "sha256": "d48f588a9c158d1b7ada91983b7d0fcb75c7c340c9764d63f05cf437fafe3adc"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/config.json",
+    "sha256": "f0913816ebf4cda8574fe8e6b0bdc67279c3d4bcc7ee97ed7071d0a6ad032c53"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/validation-030852.json",
+    "sha256": "def7757e20b7205c92764f85b9fc939f60c6e21651f237a6cf1c8fa3d39e7881"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/latest.json",
+    "sha256": "dd5f5f5cee4f1973b075528757fbfb8143595ddedd0ce337e7fc52831677fa4c"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/best.json",
+    "sha256": "15485ce6eb807a19ee9ece3ea47088a61dbd9eb34e49a7973ba7c45be0aa39a7"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/validation-031000.json",
+    "sha256": "dc70f9509ea3ce66218ab505cfbc456a638033273abaae1a8e4afab6fc54c3ae"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/validation-032000.json",
+    "sha256": "7a98c55381f92cc99b7d6a7e72d816a8a57c797c6924412e6d3ffa16cc1355db"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/validation-033000.json",
+    "sha256": "ebb3a1fd8bd7d5afc879e261f90677b28ed48b88f1ed20ca9a432a177982bbd3"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/validation-034000.json",
+    "sha256": "d21cdfbb8146fc281827498c6d80c81dc74acd750e966a0c922d9e73ff639850"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/validation-035000.json",
+    "sha256": "527180b8e2b0050950ff81510e25732b6f5a72b35a472f13d4f94a60b415fab3"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/validation-036000.json",
+    "sha256": "42b8b6a334b64a74e62b31ad7f6ed1c47c71e24193dc338c19cd047980c7b8af"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/validation-037000.json",
+    "sha256": "aec8f1dee850c2987fc03408eaaa72a5980a3e765c9c2f6ee6c5f703414c3bda"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/validation-037003.json",
+    "sha256": "61f091befa61832facda269a51c8b31fdf577b9e1533ea1f83640972fc6ff196"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/latest-validation.json",
+    "sha256": "af40b0e6c3b28c903a53ca2400307884103adeefe71ebc13cfba35b34aff0696"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/selected-validation.json",
+    "sha256": "fdd63897101d27d34667d5e6a98069eeb83109c7256eb596ccfe71298b80e494"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-01/train/summary.json",
+    "sha256": "9c87110d57860d3ee6aada7d237f7308aade9485752d896a839d756e84757eb3"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/config.json",
+    "sha256": "b947644bf0f6d52219c92fdbab7310d06b8e943aaf13981a77392e021134ba5c"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/validation-024042.json",
+    "sha256": "ae51ec551be489c00a047acb2b05b61f49fa5fa72b0951d83095828175c6ca40"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/latest.json",
+    "sha256": "6b638c242e4cce6b511a0db41137e4b58101df58674a0b28ebaa2abe75fc9e5b"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/best.json",
+    "sha256": "08e362209f02f778f9aa6d7b88cfaa79dd9d7daf6b708ec8709a2669003aa08a"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/validation-025000.json",
+    "sha256": "9aeaf9f168a2eb02d6a4413c20d72c09845d030f0b8bd698880158a281d48cd1"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/validation-026000.json",
+    "sha256": "cb36a16db019b33fd0284c35fcd2855e7de7cf5fa2c8df49b49fe24225453536"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/validation-027000.json",
+    "sha256": "44ef1fee56437f9d66fcb69628aa08450622648befefa14c5fd9fd4faa58959d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/validation-028000.json",
+    "sha256": "2657fc81c241fd3e3102c76eaa2b73f10d5df0a7071335cd56eabf519b25f40e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/validation-029000.json",
+    "sha256": "291bc0fef72390367c6e7f33d9df74caeb378371ec1f0e0d02dbc01922161a72"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/validation-030000.json",
+    "sha256": "f90a9e340b409778a3a7ec0e9face00c609e38346a9cc329c6424c677bff5601"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/validation-030852.json",
+    "sha256": "e14cf61e85bcde090b09815ecd68ee11a98600de94fc2c3060e23d6fbb3fcee6"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/latest-validation.json",
+    "sha256": "bcdb255fa9de5a1570abae1339c2ead1bb7a3a8ff445ccbc579a88e546bf9b24"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/selected-validation.json",
+    "sha256": "95cc002b8df2f5f45ed648b522b9494654efc4b9992bafc7eb5be65ba51a8b66"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-02/train/summary.json",
+    "sha256": "1eeb7ccd4ab776c21a00e76116abc64a78ec9abf2a9ec9b9cc37cd153c3b9599"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/config.json",
+    "sha256": "1ada494c7d890adb9d0977299c8956f03e8640813b7cc653f3af5b1163968454"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/validation-017305.json",
+    "sha256": "cf837e41ff25813fb1876ec0b2f26955cb960d96d5e819006ad8fb44d38aa48f"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/latest.json",
+    "sha256": "290dac3e94a0d3c4fa85325bd2bcf225294843ab19de87763c7a57be1665a0f7"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/best.json",
+    "sha256": "8ea50d7c7f06c79bada37438f2587595acd376d6cfae9681d32be3045ce06737"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/validation-018000.json",
+    "sha256": "460be3d0b8b0fb2f8aaa1db8efbf34a5c2d9a763cf48de30b5be84c1302687d9"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/validation-019000.json",
+    "sha256": "71afbd5c383c33b4fba8682cab68d6aa595f276c7f49abbeb1bf766769cf5465"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/validation-020000.json",
+    "sha256": "2c1a23a706a3853572050655d91537b9ecd895c22eb8e3a844ecefd9fb9cad4e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/validation-023000.json",
+    "sha256": "ed07bc9296f64939d1011b62d758dcdb470fabbc5ae9080398b75c90cae69e43"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/validation-021000.json",
+    "sha256": "ae93a8d38157475a3c568f3b6d03c58e794cc9f5e7655f48611f085c78a04ab3"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/validation-022000.json",
+    "sha256": "cdb813164ec6711b217c189f520ea7b0ed188b81a90b9c6a501631ca69577836"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/validation-024000.json",
+    "sha256": "edbf07789249446c8ee70b639f0bd764b51650fae08253b123bb14b0d6e9148f"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/validation-024042.json",
+    "sha256": "71eb886ac97a2e19811d02e4942fbf90c220883ddfa50d54a3ed09783dae4f65"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/latest-validation.json",
+    "sha256": "f2625ed2450715f6186e711044cd9068cb6d9c2db0d312f1e9acb40efc0eb00d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/selected-validation.json",
+    "sha256": "9ae57d2578ecd5ac837d5bf536ce4db80d9fa52b60b58adfc9b283619108088b"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-five-epochs-2026-10-21/spatialevo/segment-01/train/summary.json",
+    "sha256": "45e518003e2da9773d99f9dacfe1a92a9e6e4985bd72ed15add75f7b9b04b3bc"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/config.json",
+    "sha256": "81d24c50fb131d522e8c9f5b8ba470aaeac270b8c482c61bc1c5b3b17d924be9"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/validation-011665.json",
+    "sha256": "92b37540684041853a0c7bd14e67423265d14319293a03526a6662d3becb1f10"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/latest.json",
+    "sha256": "20a7f4a7d666f0928df15735689386f0fa1b3818643cae05b77cb4126a809141"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/best.json",
+    "sha256": "f98fbc42d63aaf9268aad744adbabd1a77d88fd451ee466e9ec942d6866dcd08"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/validation-012000.json",
+    "sha256": "58f9dcbc2a9c6498be2ee212d19e5cf6bd8cac4545e73a20a920da7ec64f9a1d"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/validation-013000.json",
+    "sha256": "155fed4b74a623c7ff3578f552c0526e267dfac53a8af215bc9d31a0d04b8eec"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/validation-014000.json",
+    "sha256": "7588f05e655cbef7315097ed9e4ee5cbb609c0f4e09866685cae6d8eadc1c579"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/validation-015000.json",
+    "sha256": "4fe829cb9b1106ecc4774b20d9c812ae9cca296db6fb3742b289094e9d2bbb14"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/validation-016000.json",
+    "sha256": "baed79b1c71bfe16fc383b3c32a750de2322c85125843410efe99ecf6e3514ba"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/validation-017000.json",
+    "sha256": "947c70a6ee4523c667e8700393c1084a41635d9c0eff276b8979b5500d889dd3"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/validation-017305.json",
+    "sha256": "34d0a366a2c82152dbeb92d3912dfde20a4f2e28c8bbe457690bae047a146f34"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/latest-validation.json",
+    "sha256": "2327f010e17af298d03e911685fa704e38275a6707c00a9199297db675c731d5"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/selected-validation.json",
+    "sha256": "65c3031392750b8bfe1f37f0a3fecce1ab81eb528622422c7e3d7fc682b5ec49"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-02/train/summary.json",
+    "sha256": "a9cac6300a7fe7c7b379c7b673dcba778e07b7ce3f6c132e5749161ab58d6021"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/config.json",
+    "sha256": "5779c11387279c662694e23221b9c9482ff0935d352fbfa4eb03538b38e8de5a"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/validation-006167.json",
+    "sha256": "b6ace3bf14e7575cd6cf1939d5dd4d30c967f988b63e55aceec8cf362ae5596b"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/latest.json",
+    "sha256": "6e5ffd98e2f9a8b003fb26a7a41319e356cc773deb7b163e24f7e15679dd91c6"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/best.json",
+    "sha256": "149f37233e067dbeef4156bdcb5ab5038e3906efdb69445b608a029ae8b02d1f"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/validation-007000.json",
+    "sha256": "cc7e1b88a1c3c962c79f3eb60229e198944d222eac7a6a9e69ab5e971337f820"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/validation-008000.json",
+    "sha256": "1975177145bf264faed227d4af65b197d7641ce0f574ade6e9146f1180e7a140"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/validation-009000.json",
+    "sha256": "2cc998a1fc5120ad16fc68fa226c68445f7079c57aa6d8b05b0b8e038e07dd1e"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/validation-010000.json",
+    "sha256": "75fd1bf36e4e0f8e5a6474778bf1b21638702dd958290304d2e73d98fefbedf2"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/validation-011000.json",
+    "sha256": "e3b280b38d1245d19717e16f7ff7d4c92ae7b0f9ab0fbefd155ea789e7a9b1ec"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/validation-011665.json",
+    "sha256": "92b37540684041853a0c7bd14e67423265d14319293a03526a6662d3becb1f10"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/latest-validation.json",
+    "sha256": "9de0fb3b13617c5a68e5531efe5fa8e207907207f35d4a41671226409ee6fecf"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/selected-validation.json",
+    "sha256": "3bae82079842d52816474efde79e0fd00a5ac370a019ffb5909885a4b1aaa119"
+  },
+  {
+    "path": "/home/hice1/yluo432/vlm-continuations/pgm-lora-convergence-2026-10-19/spatialevo/segment-01/train/summary.json",
+    "sha256": "595197b39d2a292548d89aee43338d06ba48a1ea3e1a00f2b7e5c83ecebe6d0d"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/latest.json",
+    "sha256": "aa98a48501173a0583f738f2a5fe2e0eae00e56134c56e742b72e16c0a7ef66d"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/validation-004000.json",
+    "sha256": "ff5141c535fb9f042520ccb7a36e0c85b91163a039a8febd86c327173a2fcf5b"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/validation-006167.json",
+    "sha256": "bde81c004a8dab0c436a98a8cadf5d0e351d5499a77d9874eebd64a53c65ed5b"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/selected-validation.json",
+    "sha256": "a16b3665e4140fee7b7c61dae7805d3011a0c73fdb371f661b04245611d7d250"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/validation-002000.json",
+    "sha256": "7212a781ca532fedc351f36e701b6f526afa15e22b2cc20f14686bbc3f8a795a"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/validation-005000.json",
+    "sha256": "c3e29ca0924706c6a9bed16e18208f9312ad7ecf3d8360822eaa22d0e34bdd41"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/validation-003000.json",
+    "sha256": "af3327e87e50398b20cda20ef2cf108ac52f176a73a59f82e3e9a42fd30f3af3"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/validation-006000.json",
+    "sha256": "9d746d190c1e3bedbf2a3ef70c7f21318b17c6de78731dc062beb71bdd77e843"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/validation-001000.json",
+    "sha256": "6e2fdb71fd8716dcf318814b0b9a39e708367328965c485dfbc88578d190ae0a"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/validation-000000.json",
+    "sha256": "3283cf95f26c2bc2d54983864b899401927a4cb012ffd60ca1bba6491fc960d0"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/best.json",
+    "sha256": "aa98a48501173a0583f738f2a5fe2e0eae00e56134c56e742b72e16c0a7ef66d"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/config.json",
+    "sha256": "52bdcca1931305b11b9adca8146c98492505b88364b222b95593e2098d154c06"
+  },
+  {
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-16gpuh-2026-10-08/spatialevo/pgm/train/summary.json",
+    "sha256": "15927ceed374b4097f7db9e7458fe2bd21f439a947c1d5c908a8391043e077e1"
+  }
+]

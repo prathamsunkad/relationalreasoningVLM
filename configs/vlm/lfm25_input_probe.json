@@ -1,0 +1,23 @@
+{
+  "experiment": "frozen_lfm_input_representation",
+  "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+  "selected_rows": "/path/to/previous/train/selected-rows.json",
+  "selected_rows_sha256": "98ad5453243df19420c77aadad38a5da451fe831ada995d4dd0fa1c911e1b611",
+  "data_root": "/path/to/pgm-coverage-20pct",
+  "validation_image_root": "/path/to/pgm-adaptation/images/validation",
+  "initialization_seed": 20261118,
+  "training_seed": 20261112,
+  "global_batch": 16,
+  "lr": 0.0001,
+  "weight_decay": 0.01,
+  "clip_norm": 1.0,
+  "warmup_updates": 20,
+  "max_epochs": 10,
+  "reserve_seconds": 600,
+  "arms": ["sheet_flat", "panels_bands", "panels_grid", "panels_grid_context", "grid_context_classifier"],
+  "pretrained_vlm_frozen": true,
+  "lora": false,
+  "readout": "direct_eight_class_classifier",
+  "benchmark_test": false,
+  "maximum_gpu_hours": 2
+}

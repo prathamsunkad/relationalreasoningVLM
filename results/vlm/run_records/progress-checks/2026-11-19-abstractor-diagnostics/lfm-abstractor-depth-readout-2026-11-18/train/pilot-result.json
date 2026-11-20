@@ -1,0 +1,33 @@
+{
+  "cache_bytes": 38817348024,
+  "checks": [
+    {
+      "arm": "llm_d2",
+      "exact_update_replay": true,
+      "finite_nonzero_gradient": true
+    },
+    {
+      "arm": "llm_d6",
+      "exact_update_replay": true,
+      "finite_nonzero_gradient": true
+    },
+    {
+      "arm": "classifier_d2",
+      "exact_update_replay": true,
+      "finite_nonzero_gradient": true
+    },
+    {
+      "arm": "classifier_d6",
+      "exact_update_replay": true,
+      "finite_nonzero_gradient": true
+    },
+    {
+      "arm": "classifier_only",
+      "exact_update_replay": true,
+      "finite_nonzero_gradient": true
+    }
+  ],
+  "frozen_vlm_unchanged": true,
+  "seconds": 821.7350425720215,
+  "status": "passed"
+}

@@ -1,0 +1,80 @@
+{
+  "campaign": "lfm-relational-probes-2026-10-11",
+  "variants": [
+    "early",
+    "late",
+    "joint",
+    "memory",
+    "dual"
+  ],
+  "policy": "relational module plus language LoRA, original base frozen",
+  "train_count": 240000,
+  "official_train_count": 1200000,
+  "passes": 1,
+  "test_count": 200000,
+  "initialization": "original pretrained weights and fresh LoRA, not PGM-adapted checkpoint",
+  "pilot_resources": {
+    "gpus": 4,
+    "gpu": "h200",
+    "minutes": 20,
+    "cpus": 8,
+    "memory_gib": 64
+  },
+  "production": {
+    "train_segments_hours": [
+      4,
+      4
+    ],
+    "eval_hours": 3,
+    "gpus_per_job": 4,
+    "cpus_per_job": 8,
+    "memory_gib": 64,
+    "max_gpu_hours_per_job": 16,
+    "max_gpu_hours_per_variant_excluding_pilot": 44,
+    "max_gpu_hours_five_variants_excluding_pilots": 220,
+    "pilot_gpu_hours_cap_total": 6.666666666666666,
+    "expected_gpu_hours_per_variant_excluding_pilot": [
+      30,
+      40
+    ],
+    "early_exit": true,
+    "resume": "automatic next segment restores module, LoRA, Adam, per-rank RNG and next unseen index",
+    "retention": "last two complete checkpoints within each new output directory only",
+    "evaluation_gate": "240000 unique train questions and completed 1000-question validation"
+  },
+  "monitoring": false,
+  "architecture": {
+    "width": 256,
+    "heads": 4,
+    "depth": 2,
+    "symbols": 128,
+    "content_pool": "fixed contiguous native-token-order bins; no object slot encoder",
+    "relation_attention": "Q,K from content; V from learned symbols",
+    "native_path": "preserved via residual; output projection zero initialized",
+    "joint_safety": "input prefix only, excludes supplied answer; generation cache checked",
+    "dual_fusion": "shared initial symbol bank; separate stream layers; concatenate and MLP-fuse symbols"
+  },
+  "variant_parameters": {
+    "early": 2997760,
+    "late": 3458304,
+    "joint": 3458304,
+    "memory": 3986945,
+    "dual": 6228736
+  },
+  "baseline": {
+    "name": "LFM2.5 plus LoRA, 240k one-pass endpoint",
+    "full_test_count": 200000,
+    "correct": 87530,
+    "accuracy": 0.43765,
+    "active_training_gpu_hours": 19.533,
+    "evaluation_gpu_hours": 8.592
+  },
+  "limits": [
+    "One seed per variant; exploratory screen, not statistical proof",
+    "Different insertion/fusion choices and parameter counts are confounded; no matched ordinary-attention control yet",
+    "PGM instruction is constant; this does not establish cross-modal generalization",
+    "No full-base fine-tuning or module-only production runs in this first group",
+    "Slurm queue delay unknown; production runs depend on passing real-weight GPU pilots",
+    "Partial coverage or partial test must never be reported as full 20%-coverage results"
+  ]
+}

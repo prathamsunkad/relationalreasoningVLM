@@ -1,0 +1,10 @@
+{
+  "extends": "_pgm_base.json",
+  "extension": "memory",
+  "train_mode": "module",
+  "extension_width": 256,
+  "extension_depth": 2,
+  "extension_heads": 4,
+  "extension_symbols": 128,
+  "extension_lr": 0.0001
+}

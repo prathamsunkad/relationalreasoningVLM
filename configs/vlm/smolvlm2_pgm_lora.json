@@ -1,0 +1,5 @@
+{
+  "extends": "_pgm_base.json",
+  "model_id": "smolvlm2",
+  "train_mode": "lora"
+}

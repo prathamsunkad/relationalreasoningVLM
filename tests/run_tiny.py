@@ -16,7 +16,11 @@ FAM = os.environ["TINY_FAMILY"]
 
 
 def fake_load_base(model_id, dtype="bf16", attn="sdpa", device=None, family=None):
-    model, proc = (T.tiny_qwen3vl if FAM == "qwen3vl" else T.tiny_internvl)(seed=0)
+    if FAM == 'lfm25':
+        from tiny_lfm import tiny_lfm
+        model, proc = tiny_lfm(seed=0)
+    else:
+        model, proc = (T.tiny_qwen3vl if FAM == "qwen3vl" else T.tiny_internvl)(seed=0)
     proc.tokenizer.padding_side = "left"
     return (model.to(device) if device is not None else model), proc, FAM
 

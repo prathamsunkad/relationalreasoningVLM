@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-10-29T16:57:21.461232-04:00",
+  "verified_files": 73,
+  "models": {
+    "lfm25": {
+      "epoch": 5.100933333333334,
+      "seen": 1224224,
+      "previous_best_val_accuracy": 0.694,
+      "previous_best_val_loss": 0.26256349337421486,
+      "new_best_accuracy": 0.736,
+      "best_epoch": 4.871933333333334,
+      "loss_at_best": 0.230782709846776,
+      "latest_val_accuracy": 0.727,
+      "latest_val_loss": 0.250318940552399,
+      "latest_val_epoch": 5.066666666666666,
+      "estimated_remaining_compute_hours": 15.921893475496852,
+      "matched_validation_ids": 1000
+    },
+    "spatialevo": {
+      "epoch": 4.4878,
+      "seen": 1077072,
+      "previous_best_val_accuracy": 0.602,
+      "previous_best_val_loss": 0.35393438579743625,
+      "new_best_accuracy": 0.621,
+      "best_epoch": 4.333333333333333,
+      "loss_at_best": 0.3275511306876092,
+      "latest_val_accuracy": 0.619,
+      "latest_val_loss": 0.3268676815384101,
+      "latest_val_epoch": 4.466666666666667,
+      "estimated_remaining_compute_hours": 54.97207243366661,
+      "matched_validation_ids": 1000
+    }
+  }
+}

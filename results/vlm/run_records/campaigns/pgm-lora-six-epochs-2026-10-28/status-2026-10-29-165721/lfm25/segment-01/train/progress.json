@@ -1,0 +1,17 @@
+{
+  "additional_examples_this_job": 209264,
+  "best_accuracy": 0.729,
+  "best_loss": 0.244457758890655,
+  "effective_epochs": 4.871933333333334,
+  "elapsed_seconds": 53642.186227083206,
+  "epoch": 4,
+  "epoch_offset": 209264,
+  "example_exposures": 1169264,
+  "fraction_official_train": 0.2,
+  "gradient_norm": 3.5021491050720215,
+  "loss": 0.20276370644569397,
+  "seen": 1169264,
+  "step": 73079,
+  "training_seconds": 208030.1085498333,
+  "unique_examples": 240000
+}

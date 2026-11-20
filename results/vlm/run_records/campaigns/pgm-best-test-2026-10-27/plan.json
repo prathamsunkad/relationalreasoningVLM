@@ -1,0 +1,139 @@
+{
+  "manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/full-lfm25-2026-09-24/pgm-neutral-full.jsonl",
+  "manifest_sha256": "c413d475a0191e2a4e23d1aeda5814e61c433e7b29ec2f04ab14818e289bc340",
+  "images_sha256": "d1eb83484b325eec9a2fdb992f233f8b2c84298a3799e7331b9e43b9c1f49443",
+  "test_count": 200000,
+  "models": {
+    "lfm25": {
+      "train": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/lfm25/segment-01/train",
+      "checkpoint": {
+        "directory": "checkpoint-057000-2b660044",
+        "seen": 912000,
+        "step": 57000
+      },
+      "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+      "training_config_sha256": "797c3ecba78cf6b476b6a8263d7190c0d4973cdbc8805f2da3413084a71cb38d",
+      "selected_validation_sha256": "9dea95fdc82e3be4f73b4b85488169cf214ea42c04d42b68e44bb53a5d21c1f0",
+      "adapter_sha256": {
+        "README.md": "9deee44dfd0542d2e95375aed7a500f3aaeacf88b78406a32cb41f3327edc128",
+        "adapter_model.safetensors": "9adf148b317c1c8ffd927590889dd25c9ccbbe2c16c72e84c9c2158ecfe1f503",
+        "adapter_config.json": "970e832f94f5c72c465d553e73553e5c12313f1eb0655f6ba26d4b6b5d7e6fdd"
+      },
+      "validation_accuracy": 0.694
+    },
+    "smolvlm2": {
+      "train": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/smolvlm2/segment-02/train",
+      "checkpoint": {
+        "directory": "checkpoint-029000-6a20b99b",
+        "seen": 464000,
+        "step": 29000
+      },
+      "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+      "training_config_sha256": "e802d7eeb960f920f49e289ec30b742d8b93fd00a480bdb5fd20d781ce60b04d",
+      "selected_validation_sha256": "91d806e577be56629c32690da1258c1bfb32de1d21766fdc2e8c9b2b6f873c56",
+      "adapter_sha256": {
+        "README.md": "695e7c53703528428a3571d028565fb5c490af0a9e1489a623d1488f83dfdcc1",
+        "adapter_model.safetensors": "5517bf91e5b0264e8379a8f3c1b1b61d59dd2ef9fc077f3c662136c556df035b",
+        "adapter_config.json": "b61bf5c4ef1d51ce44cf749ff2b65552a212c917c6a05c080b0639954ab678f1"
+      },
+      "validation_accuracy": 0.167
+    },
+    "spatialevo": {
+      "train": "/home/hice1/yluo432/vlm-continuations/pgm-lora-targets-2026-10-22/spatialevo/segment-04/train",
+      "checkpoint": {
+        "directory": "checkpoint-054000-e734efb1",
+        "seen": 864000,
+        "step": 54000
+      },
+      "revision": "5fd684324a3d7e759c948b42f4a51b9b016c8d5f",
+      "training_config_sha256": "9ff5db6baa211a475688f004a48c1a56fc92f386b814f0020f6a897bd7c02625",
+      "selected_validation_sha256": "b45654418a611c54864029367165be71b0399990ea0b55de30f0fa9197d3af21",
+      "adapter_sha256": {
+        "README.md": "2af44948afd80bc65ee2960286a25dfa83a7b332183db98d9b730434379df703",
+        "adapter_model.safetensors": "bc78828363d187434743def83c930e3098ce7ffb0c4e141225d3171b332b89bb",
+        "adapter_config.json": "7e53e7568ad3132e6ebe70947aae345a3d700ef5a87a2c4017836f6c044ca56f"
+      },
+      "validation_accuracy": 0.602
+    }
+  },
+  "shards": [
+    {
+      "manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/full-lfm25-2026-09-24/pgm-neutral-full.jsonl",
+      "manifest_sha256": "c413d475a0191e2a4e23d1aeda5814e61c433e7b29ec2f04ab14818e289bc340",
+      "images_sha256": "d1eb83484b325eec9a2fdb992f233f8b2c84298a3799e7331b9e43b9c1f49443",
+      "count": 200000
+    }
+  ],
+  "selection": "Highest complete accuracy on the fixed 1000-question validation set across the continued training trajectory; loss breaks ties. Test labels are not used for checkpoint selection.",
+  "resources_per_model": {
+    "gpus": 1,
+    "gpu_type": "h200",
+    "cpus": 4,
+    "memory_gib": 48,
+    "hours": 16
+  },
+  "max_gpu_hours_total": 48,
+  "monitoring": "No recurring monitor. A dependent CPU job writes exact-ID comparison artifacts.",
+  "source_sha256": {
+    "cluster/compare_pgm_checkpoints.py": "d8eb3c7105cb5050598628df231ac06cc29eeb1c8799c0798c4b2341248567c4",
+    "cluster/guard.sh": "0cdcdd54ef5c551914c5c3642b616817bb681c71803a75b3ceb433f42b9586be",
+    "cluster/evaluate_pgm_parallel.py": "7005b73e5364701b25155f5922304b56fc9f6484dbba7983f8f1677be8611928",
+    "vlm_bench/finetune_pilot_compatibility.json": "9b41223ca1064b07c8d7ae005907cdafdca9acd18ec8bed5e4cdb1edf8840a19",
+    "vlm_bench/run.py": "5ad30b149c6f4ef60bcc544c49fd2e3238b6c45604cc016c45ae44c33ec88d35",
+    "vlm_bench/perf_audit.py": "f58cb0f06e5fc9a6fee60c2900bee9c3842787e1555be71ac3676adbd70b73d8",
+    "vlm_bench/adaptation_data.py": "9a932feb85993571659a052c68ad25eb25c935606ef03dacbf52d93da396c7f7",
+    "vlm_bench/models.py": "2d22c4ac909b6253ac96906efdf17c61c4b1efe00cd21821e1d7b2296e849d85",
+    "vlm_bench/relational_train.py": "d85fe57631731ee42727bccfe05b5eb0f236b17a1c89764883549eeb830d9a46",
+    "vlm_bench/pgm_panel_audit.py": "5b8f72e7461329ce9db0ed65d3ed47025788943ad20a47a6149fc73620c99bb6",
+    "vlm_bench/__init__.py": "9a57aed8e8c1fd628289d3d9d7d8606bfc251d844bea5c7fda0904c114abcc5d",
+    "vlm_bench/pgm_mirror.py": "d3bb32434c1b958234d3e7819c2aa06788bf9304cd6f9fd0dca037d9f2e6690c",
+    "vlm_bench/clevr_prepare.py": "2658ff302c833d82ebb61b6d6f8e5b4091ffc117d6b2439a334aebea9fb5009e",
+    "vlm_bench/pgm_plateau.py": "1374571ac58187b40284d8e8ea69a3729e9c7dee8fe8f73c5f02bacd6a09cd05",
+    "vlm_bench/pgm_epochs.py": "a793ad179a9abb6df0ec99528c103d9d00dfa7d960ff7577949fca215789cf93",
+    "vlm_bench/finetune_data.py": "2dbcb60833df0fa63e2131ce87fa2c11e0e7df1308286c543e6d5b5a68a69e7d",
+    "vlm_bench/relational.py": "68d28a7e6d02d57384828a0c08153b1caf585c25fba73865dd824c2b8cb176f5",
+    "vlm_bench/pgm_panel_inputs.py": "4913ad033d45756ed8a2ac463ea26259c5b0ef5c632e74f656b412622363498d",
+    "vlm_bench/parallel_adaptation.py": "b0f809cebd4d4946de4bef3fdf60e520ae20da091f2bc5a1447c69a6bc7a60d8",
+    "vlm_bench/relational_frozen_train.py": "bdcbe935c4fbf121879025dda5f5df3748992ac0d380f37518ed808f96fdbe03",
+    "vlm_bench/adaptation.py": "4f658ee4a7382a564d62d4db9ec57ab25eda91d0bcb18ec9bc80baf1def75853",
+    "vlm_bench/pgm_full.py": "8b4add7364fb4a95deba13d110d2367c2a7d0280ab58fca0c6d7966e3b8260a8",
+    "vlm_bench/finetune.py": "080a16c641889ad15555e4fafbb100e7de41d87414fcb0eee722db0a729d27e0",
+    "vlm_bench/data.py": "3ae594eed68a6f6984e9c5543b9cba1eef2c882e7f99006f0b4930cd286c8d65"
+  },
+  "earlier_results": {
+    "lfm25": [
+      {
+        "label": "Zero-shot",
+        "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm25-pgm-neutral-h200-full/predictions.jsonl"
+      },
+      {
+        "label": "Earlier coverage LoRA",
+        "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-eval-2026-10-09/lfm25/test/predictions.jsonl"
+      },
+      {
+        "label": "20% pool, one epoch LoRA",
+        "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pgm-20pct-2026-10-10/lfm25/test/predictions.jsonl"
+      }
+    ],
+    "smolvlm2": [
+      {
+        "label": "Zero-shot",
+        "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-controls-2026-09-24/smolvlm2/full/predictions.jsonl"
+      },
+      {
+        "label": "Earlier coverage LoRA",
+        "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-eval-2026-10-09/smolvlm2/test/predictions.jsonl"
+      }
+    ],
+    "spatialevo": [
+      {
+        "label": "Zero-shot",
+        "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-controls-2026-09-24/spatialevo/full/predictions.jsonl"
+      },
+      {
+        "label": "Earlier coverage LoRA",
+        "predictions": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/pgm-coverage-eval-2026-10-09/spatialevo/test/predictions.jsonl"
+      }
+    ]
+  }
+}

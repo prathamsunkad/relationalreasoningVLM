@@ -1,0 +1,11 @@
+{
+  "accuracy": 0.135,
+  "answer_loss": 2.0893665529489516,
+  "ending_loss": 8.359253803234879e-06,
+  "loss": 0.6964610659182072,
+  "n": 1000,
+  "phase": "plugin-4096",
+  "phase_update": 1792,
+  "presentations": 28672,
+  "total_update": 1792
+}

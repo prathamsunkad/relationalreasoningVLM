@@ -1,0 +1,71 @@
+{
+  "baseline_validation": 0.45,
+  "matched_final_validation": {
+    "early": {
+      "accuracy": 0.123,
+      "count": 1000,
+      "histogram": {
+        "C": 272,
+        "B": 212,
+        "D": 117,
+        "G": 399
+      },
+      "loss": 0.6962530065774918
+    },
+    "late": {
+      "accuracy": 0.126,
+      "count": 1000,
+      "histogram": {
+        "D": 997,
+        "C": 3
+      },
+      "loss": 0.6964215940237045
+    },
+    "joint": {
+      "accuracy": 0.126,
+      "count": 1000,
+      "histogram": {
+        "D": 999,
+        "C": 1
+      },
+      "loss": 0.6961680760383606
+    },
+    "memory": {
+      "accuracy": 0.121,
+      "count": 1000,
+      "histogram": {
+        "B": 313,
+        "G": 477,
+        "C": 93,
+        "D": 117
+      },
+      "loss": 0.6959300000071525
+    }
+  },
+  "ablation": {
+    "early": {
+      "training_questions": 126384,
+      "count": 128,
+      "enabled": 0.125,
+      "bypassed": 0.125
+    },
+    "late": {
+      "training_questions": 134672,
+      "count": 128,
+      "enabled": 0.1171875,
+      "bypassed": 0.0859375
+    },
+    "joint": {
+      "training_questions": 143888,
+      "count": 128,
+      "enabled": 0.1328125,
+      "bypassed": 0.140625
+    },
+    "memory": {
+      "training_questions": 160000,
+      "count": 128,
+      "enabled": 0.171875,
+      "bypassed": 0.140625
+    }
+  }
+}

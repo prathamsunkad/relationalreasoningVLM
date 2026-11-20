@@ -23,3 +23,17 @@ weights/
 ckpt/
 *_cache/
 exp2_runs/
+
+# Local environments and private runtime state; no datasets or weights in this integration.
+.venv*/
+.cache/
+.local/
+checkpoints/
+data/
+!iraven_eval/data/
+*.parquet
+*.arrow
+
+# Transactional checkpoints and process locks are local run state.
+.checkpoints/
+.run.lock

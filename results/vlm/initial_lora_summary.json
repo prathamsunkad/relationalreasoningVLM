@@ -1,0 +1,92 @@
+[
+  {
+    "model": "lfm25",
+    "task": "rmts",
+    "complete": true,
+    "planned": 10000,
+    "evaluated": 10000,
+    "accuracy": 0.9939,
+    "correct": 9939,
+    "source_sha256": "7bac2e260dba23b6a8cdc58c04194745e38ae975a67a8b30eb8c37312d538637"
+  },
+  {
+    "model": "lfm25",
+    "task": "idrules",
+    "complete": true,
+    "planned": 10000,
+    "evaluated": 10000,
+    "accuracy": 0.9307,
+    "correct": 9307,
+    "source_sha256": "0b96239d35bba974de164164d4c711ee08cc8f9f89d75f44b37a51b51823e407"
+  },
+  {
+    "model": "lfm25",
+    "task": "pgm",
+    "complete": true,
+    "planned": 200000,
+    "evaluated": 200000,
+    "accuracy": 0.13096,
+    "correct": 26192,
+    "source_sha256": "914714c5bfd927059978de0fe0efbf9ecabacede38ad12f64ecc63a804b6c364"
+  },
+  {
+    "model": "smolvlm2",
+    "task": "rmts",
+    "complete": true,
+    "planned": 10000,
+    "evaluated": 10000,
+    "accuracy": 0.8905,
+    "correct": 8905,
+    "source_sha256": "cf991096099edd09ba092d8e138e309bc31975b9b67bb44fd9512c26a83455aa"
+  },
+  {
+    "model": "smolvlm2",
+    "task": "idrules",
+    "complete": true,
+    "planned": 10000,
+    "evaluated": 10000,
+    "accuracy": 0.6854,
+    "correct": 6854,
+    "source_sha256": "37dd019ce1de1520b1b3a956506891116f44ac455407fa6570a2b6ad8ef565c2"
+  },
+  {
+    "model": "smolvlm2",
+    "task": "pgm",
+    "complete": false,
+    "planned": 200000,
+    "evaluated": 118574,
+    "accuracy": 0.12469850051444667,
+    "correct": 14786,
+    "source_sha256": "874a3d562a50de14228ea51028ba97ef3771510cf36f4524be39af47069801e0"
+  },
+  {
+    "model": "spatialevo",
+    "task": "rmts",
+    "complete": true,
+    "planned": 10000,
+    "evaluated": 10000,
+    "accuracy": 1.0,
+    "correct": 10000,
+    "source_sha256": "6a7ab5f43004dd1aa5859a73b3a6cdc93c90fbd7aead0c9817343c3b6ec184fd"
+  },
+  {
+    "model": "spatialevo",
+    "task": "idrules",
+    "complete": true,
+    "planned": 10000,
+    "evaluated": 10000,
+    "accuracy": 0.9579,
+    "correct": 9579,
+    "source_sha256": "8355920bf1c185b18a43d64d2465e92059e5532c91197e86dedd4d5d1fd58dee"
+  },
+  {
+    "model": "spatialevo",
+    "task": "pgm",
+    "complete": false,
+    "planned": 200000,
+    "evaluated": 119104,
+    "accuracy": 0.13321131112305212,
+    "correct": 15866,
+    "source_sha256": "e01d09143056ff43fb56cc2cbd17374b2a7999479b405dba70a1e5b5a826b483"
+  }
+]

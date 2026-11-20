@@ -1,0 +1,54 @@
+{
+  "segment": "segment-05",
+  "best_step": 76000,
+  "latest_step": 89000,
+  "best_validation": {
+    "accuracy": 0.653,
+    "complete": true,
+    "correct": 653,
+    "evaluated": 1000,
+    "invalid": 0,
+    "loss": 0.3127410560297412,
+    "phase": "validation-076000",
+    "planned": 1000,
+    "wilson_95": [
+      0.6229619706570872,
+      0.681867041246333
+    ]
+  },
+  "latest_validation": {
+    "accuracy": 0.646,
+    "complete": true,
+    "correct": 646,
+    "evaluated": 1000,
+    "invalid": 0,
+    "loss": 0.31009380936481873,
+    "phase": "validation-089000",
+    "planned": 1000,
+    "wilson_95": [
+      0.6158536169290485,
+      0.6750289695931695
+    ]
+  },
+  "checked_at": "2026-10-31T23:12:41.615704-04:00",
+  "progress": {
+    "additional_examples_this_job": 62608,
+    "best_accuracy": 0.646,
+    "best_loss": 0.31009380936481873,
+    "effective_epochs": 5.9724,
+    "elapsed_seconds": 33988.98685503006,
+    "epoch": 5,
+    "epoch_offset": 233376,
+    "example_exposures": 1433376,
+    "fraction_official_train": 0.2,
+    "gradient_norm": 4.595278739929199,
+    "loss": 0.34608182311058044,
+    "seen": 1433376,
+    "step": 89586,
+    "training_seconds": 585616.9725701809,
+    "unique_examples": 240000
+  },
+  "recent_examples_per_second": 2.0718755295478246,
+  "estimated_training_minutes_remaining": 53.285054254245765,
+  "archive": "/Users/yluo/Downloads/Projects/VLM/benchmarks/.local/campaigns/pgm-lora-six-epochs-2026-10-28/spatial-status-2026-10-31-231241"
+}

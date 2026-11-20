@@ -11,6 +11,12 @@ def evaluate_batches(model, loader, st, device, dtype, on_batch=None):
     """Yields one record per problem: the 8 candidate scores, the argmax choice and whether it is correct."""
     model.eval()
     for batch in loader:
+        if hasattr(st, 'records'):
+            recs = st.records(model, batch, device, dtype)
+            if on_batch:
+                on_batch(recs)
+            yield from recs
+            continue
         scores = candidate_scores(model, batch, st, device, dtype).cpu()
         recs = []
         for f, t, s in zip(batch["files"], batch["targets"].tolist(), scores):
@@ -38,6 +44,27 @@ def summarize(records):
     out = {"n": len(rs)}
     if not rs:
         return out
+    protocols = {r.get('protocol', 'candidate') for r in rs}
+    if len(protocols) != 1:
+        raise ValueError('Cannot combine different evaluation protocols')
+    if len({r.get('readout', 'llm') for r in rs}) != 1:
+        raise ValueError('Cannot combine different readouts')
+    for key, default in (('pgm_presentation', 'composite'), ('extension_enabled', None)):
+        if len({r.get(key, default) for r in rs}) != 1:
+            raise ValueError('Cannot combine different ablation conditions')
+    if protocols == {'answer_letter'}:
+        choice_counts = {len(r['choices']) for r in rs}
+        if len(choice_counts) != 1:
+            raise ValueError('Summarize each task separately')
+        n = choice_counts.pop()
+        k = sum(r['correct'] for r in rs)
+        return dict(n=len(rs), protocol='answer_letter', scores=dict(
+            acc=k/len(rs), ci95=list(wilson(k, len(rs))), n=len(rs),
+            invalid=sum(r['pred'] < 0 for r in rs),
+            pred_hist=[sum(r['pred'] == i for r in rs) for i in range(n)],
+            target_hist=[sum(r['target'] == i for r in rs) for i in range(n)],
+            loss=sum(r['loss'] for r in rs)/len(rs),
+            answer_loss=sum(r['answer_loss'] for r in rs)/len(rs)))
     k = sum(r["correct"] for r in rs)
     lo, hi = wilson(k, len(rs))
     out["scores"] = {

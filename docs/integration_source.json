@@ -1,0 +1,46 @@
+{
+  "repository": "https://github.com/yluo5820/abstractor_VLM",
+  "source_worktree_date": "2026-11-19",
+  "note": "Includes uncommitted source work. SHA256 identifies the actual imported bytes; source HEAD alone is insufficient.",
+  "modules": [
+    {
+      "source": "benchmarks/vlm_bench/relational.py",
+      "source_sha256": "68d28a7e6d02d57384828a0c08153b1caf585c25fba73865dd824c2b8cb176f5",
+      "destination": "pgmvlm/extensions/relational.py"
+    },
+    {
+      "source": "benchmarks/vlm_bench/abstractor_plugin.py",
+      "source_sha256": "4705ef80191d0d70a77638a42522bd14ddc8c0c5f04ad2c79a8ad4bc8b3a3549",
+      "destination": "pgmvlm/extensions/abstractor_plugin.py"
+    },
+    {
+      "source": "benchmarks/vlm_bench/abstractor_memory.py",
+      "source_sha256": "6012065dbb52cef0eb46db43480a2fe8d3759b8353e3626772eeb731b8504432",
+      "destination": "pgmvlm/extensions/abstractor_memory.py"
+    },
+    {
+      "source": "benchmarks/vlm_bench/data.py",
+      "source_sha256": "3ae594eed68a6f6984e9c5543b9cba1eef2c882e7f99006f0b4930cd286c8d65",
+      "destination": "pgmvlm/manifests.py",
+      "notes": "Portable preparation/rendering and prompt logic, with package-local imports."
+    },
+    {
+      "source": "benchmarks/cluster/storage_guard.py",
+      "source_sha256": "935f728443f34ec6ce4d30cf07730da81ac69b92d59a41f95f320b5ebd61c5e4",
+      "destination": "pgmvlm/storage.py",
+      "notes": "Quota reporting/headroom checks only; deletion/pruning excluded."
+    },
+    {
+      "source": "benchmarks/vlm_bench/abstractor_diagnostic.py",
+      "source_sha256": "8c883b143b145b162e78d220c915f5974ca549c3d172af7df2437f328bd21717",
+      "destination": "pgmvlm/extensions/probe_diagnostics.py",
+      "notes": "Reusable depth/readout kernels; original campaign orchestration excluded."
+    },
+    {
+      "source": "benchmarks/vlm_bench/pgm_panel_inputs.py",
+      "source_sha256": "4913ad033d45756ed8a2ac463ea26259c5b0ef5c632e74f656b412622363498d",
+      "destination": "pgmvlm/panels.py",
+      "notes": "Lossless canonical PGM panel splitting and labeled multi-image messages."
+    }
+  ]
+}

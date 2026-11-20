@@ -1,0 +1,19 @@
+{
+  "adapter_sha256": {
+    "README.md": "2af44948afd80bc65ee2960286a25dfa83a7b332183db98d9b730434379df703",
+    "adapter_config.json": "7808e07632a239b878f007747bca17362913dee8e2fd6725a13795068a840984",
+    "adapter_model.safetensors": "09143ad6ad288650fbf922500b9310c4347ecf45421f655ed1f7084b298da98c"
+  },
+  "checkpoint": {
+    "directory": "checkpoint-076000-02e9c405",
+    "seen": 1216000,
+    "step": 76000
+  },
+  "revision": "5fd684324a3d7e759c948b42f4a51b9b016c8d5f",
+  "selected_epochs": 5.066666666666666,
+  "selected_validation_sha256": "d33e29c1b0a73d0219770323941ccfe8067ded4734f411544fb25533a43d9f27",
+  "train": "/home/hice1/yluo432/vlm-continuations/pgm-lora-six-epochs-2026-10-28/spatialevo/segment-03/train",
+  "training_config_sha256": "ff27c3f20d2f6cde4ddd07a1b130c76fbbcf8ee49fc9426acc852cdb0584b7f2",
+  "validation_accuracy": 0.653,
+  "validation_loss": 0.3127410560297412
+}

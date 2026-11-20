@@ -1,0 +1,31 @@
+{
+  "checks": [
+    {
+      "arm": "projector",
+      "deep_qk_nonzero": true,
+      "noop_exact": true,
+      "replay_exact": true
+    },
+    {
+      "arm": "early_block2",
+      "deep_qk_nonzero": true,
+      "noop_exact": true,
+      "replay_exact": true
+    },
+    {
+      "arm": "middle_block8",
+      "deep_qk_nonzero": true,
+      "noop_exact": true,
+      "replay_exact": true
+    },
+    {
+      "arm": "late_block12",
+      "deep_qk_nonzero": true,
+      "noop_exact": true,
+      "replay_exact": true
+    }
+  ],
+  "frozen_base_unchanged": true,
+  "seconds": 49.578473806381226,
+  "status": "passed"
+}

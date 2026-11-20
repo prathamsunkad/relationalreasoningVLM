@@ -1,0 +1,59 @@
+{
+  "arm": "disabled",
+  "bypass": null,
+  "complete": true,
+  "final": {
+    "accuracy": 1.0,
+    "answer_loss": 1.3262018647708373e-06,
+    "ending_loss": 1.3411040744593095e-07,
+    "invalid": 0,
+    "loss": 5.314742428375041e-07,
+    "presentations": 3200,
+    "unique_questions": 16,
+    "update": 200
+  },
+  "final_weights_sha256": "d29ed516163d8bba9ff63d1b3c2b144ceaa24bffda73a01353767ae61ba5fdf8",
+  "first_overfit_update": 20,
+  "initial": {
+    "accuracy": 0.125,
+    "answer_loss": 2.3699925169348717,
+    "ending_loss": 1.9185162418722257e-06,
+    "invalid": 0,
+    "loss": 0.7899987660348415,
+    "presentations": 0,
+    "unique_questions": 16,
+    "update": 0
+  },
+  "not_benchmark_result": true,
+  "overfit_criterion": "100% greedy accuracy and answer-token CE <=0.1 on the repeated training batch",
+  "overfit_reached": true,
+  "parameter_changes": {
+    "lora": {
+      "changed_tensors": 184,
+      "delta_l2": 3.463129526093331,
+      "tensors": 184
+    },
+    "plugin": {
+      "changed_tensors": 0,
+      "delta_l2": 0.0,
+      "tensors": 39
+    }
+  },
+  "presentations": 3200,
+  "storage_after": {
+    "checked_unix": 1794856140.726457,
+    "filesystem_free_bytes": 4258199332376576,
+    "filesystem_free_files": 946253699,
+    "free_bytes": 97229479936,
+    "free_files": 26520,
+    "limit_bytes": 322122547200,
+    "limit_files": 1000000,
+    "mount": "/storage/ice1",
+    "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-abstractor-overfit-2026-11-16/disabled",
+    "uid": 3184198,
+    "used_bytes": 224893067264,
+    "used_files": 973480
+  },
+  "unique_questions": 16,
+  "updates": 200
+}

@@ -1,0 +1,12 @@
+{
+  "complete": true,
+  "elapsed_seconds": 12307.619393403002,
+  "evaluated": 200000,
+  "job_id": "6129633",
+  "worker_exit_codes": [
+    0,
+    0,
+    0,
+    0
+  ]
+}

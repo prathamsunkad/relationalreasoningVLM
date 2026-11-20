@@ -1,0 +1,26 @@
+{
+  "complete": true,
+  "evaluated": 200000,
+  "groups": [
+    {
+      "accuracy": 0.581915,
+      "chance_accuracy": 0.125,
+      "correct": 116383,
+      "dataset": "pgm",
+      "evaluated": 200000,
+      "invalid_outputs": 0,
+      "invalid_rate": 0.0,
+      "mean_latency_seconds": 0.19143123966441605,
+      "planned": 200000,
+      "regime": "neutral",
+      "split": "test",
+      "task": "matrix-completion",
+      "wilson_95_interval": [
+        0.579751748147049,
+        0.584075105182397
+      ]
+    }
+  ],
+  "interval_note": "Wilson binomial intervals; correlated examples may violate independence.",
+  "planned": 200000
+}

@@ -1,0 +1,39 @@
+{
+  "best_accuracy": 0.3515625,
+  "best_loss": 0.5714978379660351,
+  "effective_epochs": 0.41113333333333335,
+  "elapsed_seconds": 13054.753075122833,
+  "fraction_official_train": 0.08222666666666667,
+  "job_id": "6109369",
+  "resumable_checkpoint": {
+    "directory": "checkpoint-006167-55adffbf",
+    "seen": 98672,
+    "step": 6167
+  },
+  "seen": 98672,
+  "selected_checkpoint": {
+    "directory": "checkpoint-006167-98d35613",
+    "seen": 98672,
+    "step": 6167
+  },
+  "status": "allocation-budget-stop",
+  "step": 6167,
+  "test_evaluated": false,
+  "training_seconds": 12457.846737861633,
+  "unique_examples": 98672,
+  "validation": {
+    "accuracy": 0.301,
+    "complete": true,
+    "correct": 301,
+    "evaluated": 1000,
+    "invalid": 0,
+    "loss": 0.5891069281132659,
+    "phase": "selected-validation",
+    "planned": 1000,
+    "wilson_95": [
+      0.2733762104461901,
+      0.3301468394310608
+    ]
+  },
+  "world_size": 4
+}

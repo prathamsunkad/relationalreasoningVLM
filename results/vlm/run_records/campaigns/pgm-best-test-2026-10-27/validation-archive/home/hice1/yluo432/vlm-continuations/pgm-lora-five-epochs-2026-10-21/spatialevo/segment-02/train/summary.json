@@ -1,0 +1,58 @@
+{
+  "additional_examples_this_job": 108960,
+  "best_accuracy": 0.513,
+  "best_loss": 0.41125738482974705,
+  "effective_epochs": 2.0568,
+  "elapsed_seconds": 57112.55426096916,
+  "epoch": 2,
+  "epoch_offset": 13632,
+  "example_exposures": 493632,
+  "fraction_official_train": 0.2,
+  "job_id": "6465225",
+  "latest_validation": {
+    "accuracy": 0.5039525691699605,
+    "complete": false,
+    "correct": 255,
+    "evaluated": 506,
+    "invalid": 0,
+    "loss": 0.4065143705266841,
+    "phase": "latest-validation",
+    "planned": 1000,
+    "wilson_95": [
+      0.4605230555219224,
+      0.5473225206484666
+    ]
+  },
+  "resumable_checkpoint": {
+    "directory": "checkpoint-030852-022c1fbd",
+    "seen": 493632,
+    "step": 30852
+  },
+  "seen": 493632,
+  "selected_checkpoint": {
+    "directory": "checkpoint-029000-65db9567",
+    "seen": 464000,
+    "step": 29000
+  },
+  "status": "allocation-budget-stop",
+  "step": 30852,
+  "target_exposures": 1200000,
+  "test_evaluated": false,
+  "training_seconds": 137944.48786497116,
+  "unique_examples": 240000,
+  "validation": {
+    "accuracy": 0.5063145809414467,
+    "complete": false,
+    "correct": 441,
+    "evaluated": 871,
+    "invalid": 0,
+    "loss": 0.4178233036386518,
+    "phase": "selected-validation",
+    "planned": 1000,
+    "wilson_95": [
+      0.47315704436278005,
+      0.5394166624375679
+    ]
+  },
+  "world_size": 1
+}

@@ -1,0 +1,5 @@
+{
+  "extends": "_pgm_base.json",
+  "model_id": "spatialevo",
+  "train_mode": "lora"
+}

@@ -1,0 +1,19 @@
+{
+  "adapter_sha256": {
+    "README.md": "9deee44dfd0542d2e95375aed7a500f3aaeacf88b78406a32cb41f3327edc128",
+    "adapter_config.json": "08fb4e4648c05e31ed7ba8fdabe0764619ee3db989c6b766845edca326c12ea3",
+    "adapter_model.safetensors": "c4e75883e8fe62097018e4aafd113475cd6191775602489eef4b12e4b337d6cd"
+  },
+  "checkpoint": {
+    "directory": "checkpoint-090000-d5621243",
+    "seen": 1440000,
+    "step": 90000
+  },
+  "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+  "selected_epochs": 6.0,
+  "selected_validation_sha256": "187118993e4ee3736e09075390fbb435ec40524452b9d85f788b77040127d0a6",
+  "train": "/home/hice1/yluo432/vlm-continuations/pgm-lora-six-epochs-2026-10-28/lfm25/segment-03/train",
+  "training_config_sha256": "d747223d47696471b18c914ef7534da9353ecf3b93e1963fd29f8eed63d2639c",
+  "validation_accuracy": 0.759,
+  "validation_loss": 0.20731799577145113
+}

@@ -1,0 +1,14 @@
+{
+  "extends": "_pgm_base.json",
+  "epochs": 30,
+  "seed": 20261112,
+  "data_order": "python_epoch",
+  "train_list": "data_manifests/vlm/pgm_train4096.txt",
+  "val_list": "data_manifests/vlm/pgm_val1000.txt",
+  "select_by": "loss",
+  "save_every": 128,
+  "val_every": 256,
+  "fit_eval_samples": 512,
+  "early_stop_patience": 5,
+  "early_stop_min_delta": 0.001
+}

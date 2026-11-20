@@ -1,0 +1,23 @@
+{
+  "models": [
+    "lfm25",
+    "smolvlm2",
+    "spatialevo"
+  ],
+  "gpu_count_per_job": 4,
+  "wall_hours_per_job": 4,
+  "gpu_hours_per_model": 16,
+  "total_gpu_hours": 48,
+  "global_batch": 16,
+  "train_pool": 240000,
+  "official_train_count": 1200000,
+  "max_epochs": 1,
+  "fresh_base": true,
+  "validation": 1000,
+  "test_evaluation_included": false,
+  "data_preparation": {
+    "cpus": 8,
+    "memory_gib": 32,
+    "wall_hours": 4
+  }
+}
