@@ -9,6 +9,7 @@ This folder is the map of the repo. Read this page first, then:
 | [`DATA.md`](DATA.md) | Every dataset (PGM and the mixture), the exact splits and subsets, the mixture weights, and how the code loads them |
 | [`CONDITIONS_AND_ASSUMPTIONS.md`](CONDITIONS_AND_ASSUMPTIONS.md) | Every recipe's hyperparameters, how results were measured, the assumptions and untested choices, and the caveats |
 | [`CHECKPOINTS.md`](CHECKPOINTS.md) | Where every saved model is on PACE (LoRA adapters, slots, branches, aligned checkpoints, hybrids), how teammates get access, and the code to load each |
+| [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) | One page for the report: the commit and tag of these results, the exact commands for the main results, where logs, checkpoints, outputs and figures are, and the known limits on reproducibility and compute |
 | [`REPRODUCE.md`](REPRODUCE.md) | Setup on PACE, data, which checkpoints each step needs, the exact command for any run, and how to rebuild every table and figure |
 
 The full write-ups are in [`../docs/`](../docs): [`relational_deep_dives.md`](../docs/relational_deep_dives.md)
