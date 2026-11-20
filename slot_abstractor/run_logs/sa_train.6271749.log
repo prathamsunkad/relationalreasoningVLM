@@ -1,0 +1,33 @@
+---------------------------------------
+Begin Slurm Prolog: Oct-14-2026 17:55:36
+Job ID:    6271749
+User ID:   skomaragiri8
+Account:   ece
+Job name:  sa_train
+Partition: coc-gpu
+QOS:       coc-ice
+---------------------------------------
+[17:57:06] world_size=1 device=cuda:0 args={'mode': 'train', 'jsonl_root': '/home/hice1/skomaragiri8/scratch/datasets/pgm-neutral-train20pct-seed20261007-v1/pgm-neutral-train20pct-seed20261007-v1', 'layout': 'layout.json', 'train_file': 'train.jsonl', 'val_file': 'validation.jsonl', 'test_file': 'test.jsonl', 'n_train': 0, 'n_val': 0, 'n_test': 0, 'test_offset': 0, 'skip_val': False, 'slot_checkpoint': 'weights/slot_ae_pgm20.pth.tar', 'model_checkpoint': None, 'save_path': 'weights/', 'tag': 'pgm20_1gpu', 'resume': True, 'max_hours': 5.9, 'margin_min': 5, 'snapshot_every': 5, 'img_size': 80, 'batch_size': 96, 'depth': 24, 'heads': 8, 'mlp_dim': 512, 'num_slots': 16, 'num_iterations': 3, 'hid_dim': 32, 'learning_rate': 8e-05, 'num_epochs': 50, 'apply_context_norm': True, 'log_interval': 100, 'num_workers': 14, 'seed': 0, 'image_key': 'images', 'answer_key': 'answer', 'tf32': False}
+[17:57:11] train 240000 questions (2500 batches/GPU, global batch 96), validation 1000
+[17:57:20] epoch 0 batch 0/2500 loss 2.0814 [0.1 min in this job]
+[18:01:54] epoch 0 batch 100/2500 loss 2.0784 [4.7 min in this job]
+[18:06:28] epoch 0 batch 200/2500 loss 2.0718 [9.3 min in this job]
+[18:11:02] epoch 0 batch 300/2500 loss 2.0745 [13.8 min in this job]
+[18:15:36] epoch 0 batch 400/2500 loss 2.0906 [18.4 min in this job]
+[18:20:09] epoch 0 batch 500/2500 loss 2.0740 [23.0 min in this job]
+[18:24:43] epoch 0 batch 600/2500 loss 2.0862 [27.5 min in this job]
+[18:29:17] epoch 0 batch 700/2500 loss 2.0734 [32.1 min in this job]
+[18:33:50] epoch 0 batch 800/2500 loss 2.0872 [36.6 min in this job]
+[2026-10-14T18:36:49.988] error: *** JOB 6271749 ON atl1-1-01-005-15-0 CANCELLED AT 2026-10-14T18:36:49 DUE to SIGNAL Terminated ***
+---------------------------------------
+Begin Slurm Epilog: Oct-14-2026 18:36:52
+Job ID:        6271749
+User ID:       skomaragiri8
+Account:       ece
+Job name:      sa_train
+Resources:     cpu=16,gres/gpu:a100=1,mem=224G,node=1
+Rsrc Used:     cput=11:00:00,vmem=0,walltime=00:41:15,mem=6497816K,energy_used=0
+Partition:     coc-gpu
+QOS:           coc-ice
+Nodes:         atl1-1-01-005-15-0
+---------------------------------------

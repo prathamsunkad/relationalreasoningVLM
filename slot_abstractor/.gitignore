@@ -1,0 +1,9 @@
+# checkpoints, data, caches and job output stay out of git (results/ and run_logs/ are committed)
+weights/
+*.pth.tar
+pgm_datasets/
+logs/
+__pycache__/
+.ipynb_checkpoints/
+*.log
+!run_logs/*.log
