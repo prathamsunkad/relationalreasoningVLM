@@ -59,6 +59,19 @@ class StagedUnitTests(unittest.TestCase):
                 if not design.startswith('memory_'):
                     self.assertTrue(torch.equal(x[:,addresses<0],out[:,:len(addresses)][:,addresses<0]))
 
+    def test_digest_accepts_scalar_gates_and_preserves_existing_hashes(self):
+        import hashlib
+        from pgmvlm.extensions.probe_diagnostics import tensor_digest
+        for dtype in (torch.float32,torch.bfloat16):
+            value=torch.tensor(.1,dtype=dtype)
+            first=tensor_digest([('gate',value)])
+            self.assertEqual(first,tensor_digest([('gate',value.clone())]))
+            self.assertNotEqual(first,tensor_digest([('gate',value+1)]))
+        matrix=torch.randn(3,5).t()
+        old=hashlib.sha256()
+        old.update(b'matrix');old.update(matrix.contiguous().view(torch.uint8).numpy().tobytes())
+        self.assertEqual(old.hexdigest(),tensor_digest([('matrix',matrix)]))
+
     def test_schedule(self):
         from tools.staged_abstractor_pilot import lr_at
         values=[lr_at(i,16,3e-4,2,.1) for i in range(16)]

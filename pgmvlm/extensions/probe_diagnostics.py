@@ -88,7 +88,7 @@ def tensor_digest(named):
     digest = hashlib.sha256()
     for name, tensor in named:
         digest.update(name.encode())
-        digest.update(tensor.detach().contiguous().view(torch.uint8).cpu().numpy().tobytes())
+        digest.update(tensor.detach().contiguous().reshape(-1).view(torch.uint8).cpu().numpy().tobytes())
     return digest.hexdigest()
 
 def rms(tensor):

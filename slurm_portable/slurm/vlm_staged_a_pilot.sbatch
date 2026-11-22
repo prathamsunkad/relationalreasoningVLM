@@ -21,7 +21,7 @@ export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2
 export PYTHONPATH="$VLM_REPO${PYTHONPATH:+:$PYTHONPATH}"
-deadline=$("$VLM_PYTHON" -c 'import time; print(time.time()+6960)')
+deadline=$("$VLM_PYTHON" -c 'import time; import os; print(time.time()+int(os.environ.get("VLM_A_SECONDS","6960")))')
 "$VLM_PYTHON" -m unittest discover -s tests -p test_staged_abstractor.py -v
 "$VLM_PYTHON" -m unittest discover -s tests -p test_staged_abstractor_native.py -v
 exec "$VLM_PYTHON" -u tools/staged_abstractor_pilot.py \

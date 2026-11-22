@@ -13,6 +13,7 @@ import random
 import signal
 import sys
 import time
+import traceback
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import torch
@@ -281,6 +282,7 @@ def run(plan,output,deadline,resume=False):
             except Exception as exc:
                 results[design]=dict(status='failed',error=repr(exc))
                 atomic_json(folder/'failure.json',results[design])
+                (folder/'traceback.txt').write_text(traceback.format_exc())
                 # Corrupting the original model must abort the complete pilot.
                 frozen_check(model,before)
             finally:
