@@ -42,5 +42,6 @@
   "early_stop_patience": 5,
   "early_stop_min_delta": 0.001,
   "maximum_gpu_hours_per_design": 4,
-  "maximum_total_gpu_hours": 28
+  "maximum_total_gpu_hours": 28,
+  "lr_decay_updates": 1024
 }

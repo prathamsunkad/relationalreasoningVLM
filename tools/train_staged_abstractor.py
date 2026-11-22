@@ -217,7 +217,7 @@ def run(plan,design,output,deadline,resume=False):
                 progress['stop_reason']='signal' if STOP else 'wall_time';break
             u=progress['updates'];rows=[train[i] for i in order[u*batch:(u+1)*batch]]
             info=train_batch(model,processor,ctl,tokens,opt,rows,images,
-                lr_at(u,total,plan['lr'],plan['warmup_updates'],plan['min_lr_ratio']),plan['clip_norm'])
+                lr_at(u,plan.get('lr_decay_updates',total),plan['lr'],plan['warmup_updates'],plan['min_lr_ratio']),plan['clip_norm'])
             progress['updates']+=1;times.append(info['seconds']);u=progress['updates']
             info.update(update=u,epoch=u*batch/len(train),presentations=u*batch,question_ids=[r['id'] for r in rows])
             append(output/'learning-curve.jsonl',info)

@@ -32,8 +32,10 @@ original frozen LFM, fresh added modules, unchanged candidate-scoring protocol,
 and no LoRA. Do not continue from the tiny pilot's trained module weights.
 
 The shared recipe is AdamW 3e-4, weight decay .01, global batch16, gradient clip1,
-20-update warmup and cosine decay to .1 of the initial LR across the planned
-epoch schedule. The 4k option validates each epoch and can stop after at least
+20-update warmup and cosine decay to .1 of the initial LR over 1,024 updates
+(four 4k epochs), then hold that minimum. The pilot measured about 1.5 questions
+per second, making about 3–4 epochs plausible within four hours including
+validation; a 30-epoch decay would barely change the LR within this allocation. The 4k option validates each epoch and can stop after at least
 three epochs plus five checks without a cumulative validation-CE improvement of
 .001. Save the minimum complete validation CE even if the gain is smaller than
 .001; the threshold affects stopping only. The 240k/one-pass option disables
