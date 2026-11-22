@@ -1,7 +1,8 @@
 # Conditional larger Case-A campaign
 
-Status: launcher prepared; campaign size/budget awaits user selection. No larger
-jobs are authorized by this file and none are submitted by these scripts.
+User-approved scope: the historical 4,096 questions, up to 30 epochs or four
+H200-hours per design (28 GPU-hours total), after all seven pilot arms pass.
+No larger jobs are submitted by the trainer itself.
 
 Current pilot: job 7237733 (the isolated retry after a scalar checksum fix),
 `lfm-abstractor-staged-a-2026-11-22/retry-01`. All seven designs must pass; accuracy
@@ -17,12 +18,12 @@ reload and next-update replay. Every larger job independently rechecks the gate.
 It also hashes architecture, native-model, image/protocol and scoring source files
 against the passing pilot. A changed mechanism requires another pilot.
 
-Prepared options (choose one before submission):
+The selected campaign and the unselected future option are:
 
 | Option | Train pool | Epoch limit | Allocation cap per design | Seven-design cap |
 | --- | ---: | ---: | ---: | ---: |
-| Smaller learning campaign | Historical 4,096 | 30 | 1 H200 x 4h | 28 GPU-hours |
-| Fixed 20% campaign | Historical 240,000 | 1 | 1 H200 x 16h | 112 GPU-hours |
+| **Approved: smaller learning campaign** | Historical 4,096 | 30 | 1 H200 x 4h | 28 GPU-hours |
+| Not authorized: fixed 20% campaign | Historical 240,000 | 1 | 1 H200 x 16h | 112 GPU-hours |
 
 A cap may stop training before the requested epochs. Report actual unique
 questions, presentations, optimizer updates and coverage; pool size is not
