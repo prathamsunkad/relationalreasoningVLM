@@ -1,5 +1,7 @@
 # Case A: seven Abstractors with a frozen LFM
 
+> **Status, 2026-11-23:** This campaign is stopped by user request. Early, Late and Joint completed; pending jobs `7238324_3`–`7238324_6` were cancelled. Preserve the results; do not relaunch. The new priority is [pretrained Abstractor connectors](PRETRAINED_ABSTRACTOR_CONNECTORS.md).
+
 The staged experiment now has a separate implementation. Existing historical
 probes and their checkpoint formats are unchanged. A trains randomly initialized
 Abstractors/connectors through the original pretrained LFM2.5-VL-1.6B, pinned at

@@ -1,5 +1,7 @@
 # Conditional larger Case-A campaign
 
+> **Status, 2026-11-23:** This campaign is stopped by user request. Early, Late and Joint completed; pending jobs `7238324_3`–`7238324_6` were cancelled. Preserve the results; do not relaunch. The new priority is [pretrained Abstractor connectors](PRETRAINED_ABSTRACTOR_CONNECTORS.md).
+
 User-approved scope: the historical 4,096 questions, up to 30 epochs or four
 H200-hours per design (28 GPU-hours total), after all seven pilot arms pass.
 No larger jobs are submitted by the trainer itself.
