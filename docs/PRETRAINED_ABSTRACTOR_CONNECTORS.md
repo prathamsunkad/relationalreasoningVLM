@@ -137,6 +137,48 @@ validation suffix loss, track answer loss and generated accuracy, and retain
 resumable connector-only state. No automated resubmissions or full-test jobs.
 Do not interpret incomplete arms or 32-question pilot accuracy as full results.
 
+## Authorized 5% campaign (2026-11-23)
+
+The user authorized one epoch on the same 60,000 questions for all three
+connectors, with both pretrained models frozen, after every pilot arm passes.
+This supersedes the previously proposed 4,096-question learning stage.
+Original pilot 7266249 failed before training because the externally shared
+reference code needed colorlog and einops. Pinned wheels are supplied in an
+isolated runtime, without modifying the shared environment. Strict CPU reference
+checkpoint loading passed; the repaired GPU pilot is 7271131. Model/connector
+source and numerical pass criteria are unchanged.
+
+`tools/prepare_connector_subset.py` verifies the existing 240k manifest and its
+seeded SHA256 ordering, selects its first 60k rows, and preserves the historical
+1k validation set. No images are copied. Training manifest SHA256:
+`f0141b074e8abfba8c2a148dedb71aa115cca93857e3648da5eca568c1a071c2`.
+Validation SHA256: `d3f685f7400d5bda50cb6077fd06e2b6054a295c0757aa64127f6e88937876c6`.
+
+Entry points: `tools/train_pretrained_connectors.py` (shared feature cache or
+single-connector training), `tools/launch_pretrained_connectors.py` (idempotent
+conditional submission), `configs/vlm/pretrained_connectors_5pct.json`, and
+`slurm_portable/slurm/pretrained_connectors_train.sbatch`. Dependency pins:
+`requirements-pretrained-connectors.txt`. The existing pilot architecture/input/
+loss code must match byte-for-byte. The full jobs never warm-start from pilot
+connector weights.
+
+Fresh connectors, batch 4, 15,000 optimizer updates (60,000 unique questions),
+AdamW 3e-4, weight decay .01, clip 1, 150-update warmup then cosine decay to 3e-5.
+No early stopping before the requested epoch. Validate on all 1,000 IDs every
+3,750 updates (15k questions); save minimum complete validation suffix CE plus
+final weights. Save transactional connector/optimizer/RNG checkpoints every 100
+updates; resumed jobs continue the same shuffled pass. No baseline reevaluation,
+LoRA updates, extra epochs or full-test evaluation.
+
+The 61k frozen-teacher banks occupy about 562 MB (FP32), stored in 256-question
+shards and reused by all three arms. Decoded images use a bounded cache. The
+launcher waits for the shared cache to be complete before submitting training.
+Pilot throughput sizes single-H200 allocations, capped at 16 hours per job;
+hourly monitoring may resume clean allocation-limited cache/training work only
+until the one epoch and complete final validation finish. Material failures stop
+for inspection; pass thresholds are never relaxed. Submission intents/receipts
+prevent duplicate jobs. Checkpoint retention touches only new run generations.
+
 ## What the experiment can establish
 
 The hypothesis is that a pretrained relational representation supplies useful
