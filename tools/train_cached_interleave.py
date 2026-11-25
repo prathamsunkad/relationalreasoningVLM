@@ -76,6 +76,28 @@ def ordered_rows(plan):
     return old, val, order
 
 
+class ZeroBanks:
+    """Control (plan['control'] == 'branch_off', added Nov 25): no Slot Abstractor features are read, computed or
+    cached; every candidate gets a zero bank and the connector's branch_off zeroes the relation token anyway."""
+    extracted, identity, blocks = 0, 'control-branch_off', []
+
+    def __getitem__(self, key):
+        return torch.zeros(1, 8, 9, 32)
+
+    def flush(self):
+        pass
+
+    def committed_count(self):
+        return 0
+
+
+def is_control(plan):
+    control = plan.get('control')
+    if control not in (None, 'branch_off'):
+        raise ValueError('control must be absent or "branch_off"')
+    return control == 'branch_off'
+
+
 class Run:
     def __init__(self, plan, out, mode, deadline, *, banks_factory=IncrementalRelations):
         self.plan, self.out, self.mode, self.deadline = plan, out, mode, deadline
@@ -84,11 +106,15 @@ class Run:
         self.old, self.val, self.order = ordered_rows(plan)
         self.rows = {r['id']: r for r in self.order + self.val}
         self.images = Images(self.order + self.val, plan, capacity=8)
-        self.old_banks = Banks(plan['cache_output'], self.old + self.val, plan, capacity=4)
-        identity = contract({k: plan[k] for k in ('teacher_hashes', 'teacher_seed', 'full_train_manifest_sha256', 'val_manifest_sha256')})
-        self.banks = banks_factory(plan['incremental_cache'], identity, self.order + self.val,
-            self.old_banks, {r['id'] for r in self.old + self.val}, self.extract,
-            headroom=lambda root, **_: require_headroom(root, reserve_bytes=8*1024**3, reserve_files=300))
+        self.control = is_control(plan)
+        if self.control:
+            self.old_banks, self.banks = None, ZeroBanks()
+        else:
+            self.old_banks = Banks(plan['cache_output'], self.old + self.val, plan, capacity=4)
+            identity = contract({k: plan[k] for k in ('teacher_hashes', 'teacher_seed', 'full_train_manifest_sha256', 'val_manifest_sha256')})
+            self.banks = banks_factory(plan['incremental_cache'], identity, self.order + self.val,
+                self.old_banks, {r['id'] for r in self.old + self.val}, self.extract,
+                headroom=lambda root, **_: require_headroom(root, reserve_bytes=8*1024**3, reserve_files=300))
         if mode == 'pilot':
             offset = plan.get('pilot_uncached_start', 60000)
             self.train = self.order[:128] + self.order[offset:offset+128]
@@ -112,6 +138,7 @@ class Run:
         self.bb = Backbone(self.model.get_base_model(), processor, family)
         self.st = ScoreTokens(processor.tokenizer)
         self.connector = CachedInterleave(self.bb).to(device=self.device, dtype=torch.float32)
+        self.connector.branch_off = self.control      # control: the relation token is always zero
         self.native = CandidateCollator(processor, family, crop_to_patches=True)
         self.single_tile = CandidateCollator(processor, family, crop_to_patches=False)
         # Keep the pretrained checkpoint's crop setting. Interleave has no
@@ -196,7 +223,7 @@ class Run:
         for label, ps in [('connector', self.connector.parameters()), ('lora', (p for _, p in self.lora))]:
             values = [float(p.grad.detach().float().square().sum()) for p in ps if p.grad is not None]
             grads[label] = math.sqrt(sum(values))
-        if grads['connector'] <= 0 or (joint and grads['lora'] <= 0):
+        if (grads['connector'] <= 0 and not self.control) or (joint and grads['lora'] <= 0):
             raise RuntimeError('Missing connector/LoRA gradient')
         norm = torch.nn.utils.clip_grad_norm_(self.all_params, 1., error_if_nonfinite=True)
         self.opt.step()
@@ -274,8 +301,9 @@ class Run:
         original, _ = self.scores(row)
         permuted, _ = self.scores(row, perm)
         torch.testing.assert_close(permuted, original[:,perm], rtol=1e-5, atol=1e-5)
-        fresh = self.extract(row['id'])
-        torch.testing.assert_close(fresh.mean(2), self.banks[row['id']].mean(2), rtol=1e-5, atol=1e-5)
+        if not self.control:          # control: no teacher features exist to compare
+            fresh = self.extract(row['id'])
+            torch.testing.assert_close(fresh.mean(2), self.banks[row['id']].mean(2), rtol=1e-5, atol=1e-5)
         return dict(native_protocol_exact=True, candidate_permutation=True, teacher_cached_pool_parity=True,
                     crop_true_false_pixels_identical=pixel_equal, crop_true_shape=list(native['pixel_values'].shape),
                     crop_false_shape=list(single['pixel_values'].shape), preserved_crop_to_patches=True,
@@ -380,7 +408,7 @@ def main(plan, out, mode, seconds, resume):
                                  ('uncached_joint',lambda m:m['phase']=='joint' and m['cache_misses']>0)]:
                 chosen=[m for m in metrics if select(m)]
                 summary[label+'_questions_per_second']=16*len(chosen)/sum(m['seconds'] for m in chosen) if chosen else None
-        if complete and mode=='train':
+        if complete and mode=='train' and not run.control:
             cached=sum(len(run.banks._read_pointer(i)['ids']) if run.banks._read_pointer(i) else 0 for i in range(len(run.banks.blocks)))
             if cached!=180000: raise RuntimeError('Completed epoch has an incomplete incremental feature cache')
             atomic_json(Path(plan['incremental_cache'])/'READY.json',dict(complete=True,new_training_questions=cached,
