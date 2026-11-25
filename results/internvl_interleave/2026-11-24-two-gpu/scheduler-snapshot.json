@@ -1,0 +1,42 @@
+{
+  "checked_utc": "2026-11-25T20:05:54.414449+00:00",
+  "revision": {
+    "phase": "submitted",
+    "active_attempt": "two-gpu",
+    "pilot": "7305934",
+    "segments": [
+      "7305935",
+      "7305936",
+      "7305937",
+      "7305938",
+      "7305939",
+      "7305940",
+      "7305941",
+      "7305942",
+      "7305943",
+      "7305944",
+      "7305945",
+      "7305946"
+    ],
+    "obsolete_jobs_cancelled": [
+      "7305455",
+      "7305456",
+      "7305457",
+      "7305458",
+      "7305459",
+      "7305460",
+      "7305461"
+    ],
+    "updated_utc": "2026-11-25T06:03:13.051523+00:00"
+  },
+  "squeue": {
+    "returncode": 0,
+    "stdout": "7305946|PENDING|gres/gpu:h200:2|4:00:00|0:00|N/A|(Dependency)\n7305945|PENDING|gres/gpu:h200:2|4:00:00|0:00|N/A|(Dependency)\n7305944|PENDING|gres/gpu:h200:2|4:00:00|0:00|N/A|(Dependency)\n7305943|PENDING|gres/gpu:h200:2|4:00:00|0:00|N/A|(Dependency)\n7305942|PENDING|gres/gpu:h200:2|4:00:00|0:00|N/A|(Dependency)\n7305941|PENDING|gres/gpu:h200:2|4:00:00|0:00|N/A|(Dependency)\n7305940|PENDING|gres/gpu:h200:2|4:00:00|0:00|N/A|(Dependency)\n7305939|PENDING|gres/gpu:h200:2|4:00:00|0:00|N/A|(Dependency)\n7305938|PENDING|gres/gpu:h200:2|4:00:00|0:00|N/A|(Dependency)\n7305937|PENDING|gres/gpu:h200:2|4:00:00|0:00|N/A|(Dependency)\n7305936|PENDING|gres/gpu:h200:2|4:00:00|0:00|N/A|(Priority)\n",
+    "stderr": ""
+  },
+  "sacct": {
+    "returncode": 0,
+    "stdout": "7305934|COMPLETED|0:0|00:06:01|2026-11-25T01:07:35|2026-11-25T01:13:36|billing=8,cpu=8,gres/gpu:h200=2,gres/gpu=2,mem=48G,node=1\n7305935|COMPLETED|0:0|03:45:40|2026-11-25T10:30:37|2026-11-25T14:16:17|billing=8,cpu=8,gres/gpu:h200=2,gres/gpu=2,mem=48G,node=1\n7305936|PENDING|0:0|00:00:00|Unknown|Unknown|\n7305937|PENDING|0:0|00:00:00|Unknown|Unknown|\n7305938|PENDING|0:0|00:00:00|Unknown|Unknown|\n7305939|PENDING|0:0|00:00:00|Unknown|Unknown|\n7305940|PENDING|0:0|00:00:00|Unknown|Unknown|\n7305941|PENDING|0:0|00:00:00|Unknown|Unknown|\n7305942|PENDING|0:0|00:00:00|Unknown|Unknown|\n7305943|PENDING|0:0|00:00:00|Unknown|Unknown|\n7305944|PENDING|0:0|00:00:00|Unknown|Unknown|\n7305945|PENDING|0:0|00:00:00|Unknown|Unknown|\n7305946|PENDING|0:0|00:00:00|Unknown|Unknown|\n",
+    "stderr": ""
+  }
+}

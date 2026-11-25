@@ -1,0 +1,21 @@
+{
+  "complete": false,
+  "passed": false,
+  "mode": "train",
+  "plan_sha256": "e81de310be2a03dec5090c7c231274cee3779240b759e1bada5f16e3f9f59bdd",
+  "world_size": 2,
+  "update": 3978,
+  "examples": 63648,
+  "best_loss": 1.0007272896990456,
+  "best_checkpoint": {
+    "directory": "best-7abb86b8e3f44b81bfbc20908d7af5ef",
+    "manifest_sha256": "525f8be1a7573296171ecf25f0d3d63c788e0dec7bca6ebf5c07df4f3ba0237b"
+  },
+  "pending_validation": false,
+  "early_stopped": false,
+  "frozen_weights_unchanged": true,
+  "cache_extracted_this_allocation": 3392,
+  "allocation_seconds": 13503.778400107985,
+  "stop_reason": "allocation_boundary",
+  "new_cache_committed_questions": 3648
+}

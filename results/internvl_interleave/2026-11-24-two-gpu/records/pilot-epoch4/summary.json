@@ -1,0 +1,23 @@
+{
+  "complete": true,
+  "passed": true,
+  "mode": "pilot",
+  "plan_sha256": "a33732ae674f2151a51bc31444fccea8c25caac6feb2398f550e2e551c22a202",
+  "world_size": 2,
+  "update": 16,
+  "examples": 256,
+  "best_loss": 1.0647738672563847,
+  "best_checkpoint": {
+    "directory": "best-a628119e7c514d419f4b1922d1931903",
+    "manifest_sha256": "bc6c8d3091770aadd330a614dad1ee1c1b71dda4477be5d85fc7c62eef858308"
+  },
+  "pending_validation": false,
+  "early_stopped": false,
+  "frozen_weights_unchanged": true,
+  "cache_extracted_this_allocation": 0,
+  "allocation_seconds": 102.37616541795433,
+  "stop_reason": "one_epoch",
+  "cached_joint_questions_per_second": 5.66557634691715,
+  "uncached_joint_questions_per_second": null,
+  "new_cache_committed_questions": 256
+}

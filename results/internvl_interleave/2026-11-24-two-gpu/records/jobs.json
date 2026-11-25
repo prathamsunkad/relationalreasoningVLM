@@ -1,0 +1,45 @@
+{
+  "campaign": "internvl-interleave-two-gpu",
+  "source_commit": "44ac9c74da42ed56d94d8798d24d2f8b0745a7a0",
+  "campaign_sha256": "7af6ee26ce8824f046bdd3b4f9f5a7e7bcb79c58c4c251205043e9ce0c0df6c0",
+  "created_utc": "2026-11-25T06:03:11.579360+00:00",
+  "pilot": "7305934",
+  "segments": [
+    "7305935",
+    "7305936",
+    "7305937",
+    "7305938",
+    "7305939",
+    "7305940",
+    "7305941",
+    "7305942",
+    "7305943",
+    "7305944",
+    "7305945",
+    "7305946"
+  ],
+  "resources": {
+    "pilot": {
+      "h200": 2,
+      "minutes": 30
+    },
+    "segment": {
+      "h200": 2,
+      "hours": 4
+    },
+    "initial_segments": 12,
+    "max_initial_training_gpu_hours": 96
+  },
+  "old_queue_cancelled": [
+    "7305455",
+    "7305456",
+    "7305457",
+    "7305458",
+    "7305459",
+    "7305460",
+    "7305461"
+  ],
+  "old_queue_cancelled_utc": "2026-11-25T06:03:12.030677+00:00",
+  "pilot_released": true,
+  "pilot_released_utc": "2026-11-25T06:03:13.138804+00:00"
+}

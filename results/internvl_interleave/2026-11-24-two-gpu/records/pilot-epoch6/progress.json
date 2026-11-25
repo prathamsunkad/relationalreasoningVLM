@@ -1,0 +1,12 @@
+{
+  "update": 16,
+  "examples": 256,
+  "best_loss": 1.1098114363300906,
+  "best_checkpoint": {
+    "directory": "best-ddfab02478fb44f0bcf01a9fc64fb57a",
+    "manifest_sha256": "4df86330584082f90197b7ae6fcdd74e143034516f8e6157c96e5fed123b10b1"
+  },
+  "pending_validation": false,
+  "early_stopped": false,
+  "stop_reason": "one_epoch"
+}

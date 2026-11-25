@@ -1,0 +1,7 @@
+{
+  "snapshot": "records",
+  "checked_utc": "2026-11-25T20:05:54.414449+00:00",
+  "training_smoothing_updates": 100,
+  "training_points": 3978,
+  "validation_points": 8
+}

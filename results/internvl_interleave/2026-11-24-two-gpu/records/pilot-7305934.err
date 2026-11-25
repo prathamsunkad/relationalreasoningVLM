@@ -1,0 +1,67 @@
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+test_non_distributed_calls_are_noops (test_distributed_training.DistributedTrainingTests) ... ok
+test_question_rng_restores_state_after_exception (test_distributed_training.DistributedTrainingTests) ... ok
+test_question_rng_restores_state_and_distinguishes_updates (test_distributed_training.DistributedTrainingTests) ... ok
+test_two_and_four_rank_global_batch_gradient_update_and_replay (test_distributed_training.DistributedTrainingTests) ... /tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 6.786s
+
+OK
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+test_production_step_disk_checkpoint_rank_rng_and_stopper_replay (test_distributed_interleave_resume.DistributedInterleaveResumeTests) ... /tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 18.889s
+
+OK
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+Loading weights:   0%|          | 0/753 [00:00<?, ?it/s]Loading weights:   4%|▎         | 27/753 [00:00<00:02, 269.36it/s]Loading weights:   7%|▋         | 54/753 [00:00<00:04, 156.00it/s]Loading weights:  10%|▉         | 73/753 [00:00<00:05, 120.08it/s]Loading weights:  12%|█▏        | 87/753 [00:00<00:06, 109.99it/s]Loading weights:  14%|█▍        | 105/753 [00:00<00:05, 121.12it/s]Loading weights:  16%|█▌        | 120/753 [00:00<00:05, 118.66it/s]Loading weights:  19%|█▊        | 141/753 [00:01<00:04, 136.37it/s]Loading weights:  21%|██        | 156/753 [00:01<00:04, 131.40it/s]Loading weights:  23%|██▎       | 170/753 [00:01<00:04, 129.13it/s]Loading weights:  26%|██▌       | 196/753 [00:01<00:03, 153.46it/s]Loading weights:  28%|██▊       | 212/753 [00:01<00:03, 138.07it/s]Loading weights:   0%|          | 0/753 [00:00<?, ?it/s]Loading weights:  31%|███       | 233/753 [00:01<00:03, 154.49it/s]Loading weights:  35%|███▍      | 260/753 [00:00<00:00, 2599.57it/s]Loading weights:  44%|████▍     | 332/753 [00:01<00:01, 349.85it/s]Loading weights:  49%|████▉     | 368/753 [00:01<00:01, 288.66it/s]Loading weights:  53%|█████▎    | 399/753 [00:02<00:01, 288.56it/s]Loading weights:  57%|█████▋    | 432/753 [00:02<00:01, 295.25it/s]Loading weights:  62%|██████▏   | 464/753 [00:02<00:00, 292.21it/s]Loading weights:  66%|██████▌   | 494/753 [00:02<00:01, 222.70it/s]Loading weights:  69%|██████▉   | 519/753 [00:02<00:01, 222.59it/s]Loading weights:  75%|███████▍  | 563/753 [00:02<00:00, 265.16it/s]Loading weights:  69%|██████▉   | 520/753 [00:01<00:00, 352.14it/s] Loading weights:  79%|███████▊  | 592/753 [00:02<00:00, 234.69it/s]Loading weights:  83%|████████▎ | 628/753 [00:03<00:00, 263.59it/s]Loading weights:  85%|████████▍ | 640/753 [00:01<00:00, 420.34it/s]Loading weights:  90%|████████▉ | 676/753 [00:03<00:00, 307.31it/s]Loading weights:  94%|█████████▍| 709/753 [00:03<00:00, 283.70it/s]Loading weights:  99%|█████████▉| 744/753 [00:01<00:00, 392.70it/s]Loading weights: 100%|██████████| 753/753 [00:01<00:00, 431.80it/s]
+Loading weights: 100%|██████████| 753/753 [00:03<00:00, 225.18it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie model.language_model.embed_tokens.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+[transformers] The tied weights mapping and config for this model specifies to tie model.language_model.embed_tokens.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+/tmp/internvl-connectors.nbLYCFgd/env/peft/utils/save_and_load.py:313: UserWarning: Could not find a config file in OpenGVLab/InternVL3_5-1B-HF - will assume that the vocabulary was not modified.
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/peft/utils/save_and_load.py:313: UserWarning: Could not find a config file in OpenGVLab/InternVL3_5-1B-HF - will assume that the vocabulary was not modified.
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+  warnings.warn(
+Loading weights:   0%|          | 0/753 [00:00<?, ?it/s]Loading weights:  31%|███       | 231/753 [00:00<00:00, 2306.82it/s]Loading weights: 100%|██████████| 753/753 [00:00<00:00, 5356.96it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie model.language_model.embed_tokens.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+Loading weights:   0%|          | 0/753 [00:00<?, ?it/s]Loading weights:  34%|███▎      | 254/753 [00:00<00:00, 2527.44it/s]Loading weights: 100%|██████████| 753/753 [00:00<00:00, 4151.70it/s]
+[transformers] The tied weights mapping and config for this model specifies to tie model.language_model.embed_tokens.weight to lm_head.weight, but both are present in the checkpoints with different values, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning.
+/tmp/internvl-connectors.nbLYCFgd/env/peft/utils/save_and_load.py:313: UserWarning: Could not find a config file in OpenGVLab/InternVL3_5-1B-HF - will assume that the vocabulary was not modified.
+  warnings.warn(
+/tmp/internvl-connectors.nbLYCFgd/env/peft/utils/save_and_load.py:313: UserWarning: Could not find a config file in OpenGVLab/InternVL3_5-1B-HF - will assume that the vocabulary was not modified.
+  warnings.warn(

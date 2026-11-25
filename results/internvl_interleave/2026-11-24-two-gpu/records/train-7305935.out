@@ -1,0 +1,24 @@
+---------------------------------------
+Begin Slurm Prolog: Nov-25-2026 10:30:38
+Job ID:    7305935
+User ID:   yluo432
+Account:   coc
+Job name:  ivl2-train-01
+Partition: ice-gpu
+QOS:       coc-ice
+---------------------------------------
+{"used_bytes": 281662423040, "limit_bytes": 322122547200, "free_bytes": 40460124160, "used_files": 985206, "limit_files": 1000000, "free_files": 14794, "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu/pilot", "mount": "/storage/ice1", "uid": 3184198, "filesystem_free_bytes": 4247541108011008, "filesystem_free_files": 919257567, "checked_unix": 1795620652.542922, "metadata_target": 3, "metadata_free_files": 12006, "job_id": "7305935", "provider": "live_host_lfs"}
+{"passed": true, "check": "real reference imports, hashes and strict CPU checkpoint loading", "dependencies": {"colorlog": {"version": "6.9.0", "path": "/tmp/internvl-connectors.pzIPzi0N/reference-deps/colorlog/__init__.py"}, "einops": {"version": "0.8.1", "path": "/tmp/internvl-connectors.pzIPzi0N/reference-deps/einops/__init__.py"}}, "parameters": {"encoder": 169506, "abstractor": 2378817}, "torch": "2.6.0+cu124"}
+CHECKPOINTED_NEEDS_RESUME
+---------------------------------------
+Begin Slurm Epilog: Nov-25-2026 14:16:18
+Job ID:        7305935
+User ID:       yluo432
+Account:       coc
+Job name:      ivl2-train-01
+Resources:     cpu=8,gres/gpu:h200=2,mem=48G,node=1
+Rsrc Used:     cput=1-06:05:20,vmem=0,walltime=03:45:40,mem=18437112K,energy_used=0
+Partition:     ice-gpu
+QOS:           coc-ice
+Nodes:         atl1-1-03-018-2-0
+---------------------------------------
