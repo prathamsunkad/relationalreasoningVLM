@@ -120,6 +120,9 @@ def parse():
                     help="also measure accuracy on the first N TRAINING problems at every validation (overfit test: "
                          "with --train_samples N this should climb towards 100%%)")
     ap.add_argument("--save_every", type=int, default=500, help="steps")
+    ap.add_argument("--keep_steps", default="",
+                    help="also keep a copy of the adapter as step_<N>/ at these steps (comma or space separated; "
+                         "<out_dir>/keep_steps.txt is read too, since sbatch --export splits commas)")
     args = parse_configured(ap)
     args.select_by = args.select_by or ('accuracy' if args.protocol == 'candidate' else 'accuracy_loss')
     args.loss = args.loss or ('ce8' if args.protocol == 'candidate' else 'causal_ce')
@@ -381,6 +384,10 @@ def train(args, ctx, stop, imports):
     set_shared_train_mode(model, args)
     recorder = GradientRecorder(model) if args.diagnostics_every else None
     t0, seen, agg, n_agg = time.time(), 0, defaultdict(float), 0
+    keep_steps = {int(x) for x in args.keep_steps.replace(",", " ").split()}
+    kf = os.path.join(args.out_dir, "keep_steps.txt")
+    if os.path.exists(kf):
+        keep_steps |= {int(x) for x in open(kf).read().replace(",", " ").split()}
     step = start_step
     if ctx.any(stop.externally_stopped()):
         save_state(start_step)
@@ -434,6 +441,8 @@ def train(args, ctx, stop, imports):
             set_shared_train_mode(model, args)
         out_of_time = ctx.any(stop.exhausted())
         stop_training = ctx.any(stop_training)
+        if ctx.primary and done in keep_steps:
+            save_model(model, os.path.join(args.out_dir, f"step_{done}"), args)
         if done % args.save_every == 0 or done == max_steps or out_of_time or stop_training:
             save_state(done)
         if stop_training:

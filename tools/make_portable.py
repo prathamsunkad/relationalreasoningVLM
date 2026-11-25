@@ -102,6 +102,7 @@ def convert_python(text):
     text = text.replace('{A}/snap', '{R}/auto/snap').replace('{A}/wait_5k_', '{R}/auto/wait_5k_')
     text = text.replace('A = f"{R}/auto"', 'A = os.environ["REPO_ROOT"] + "/slurm_portable/experiments/auto"   # the portable launchers')
     text = text.replace(f"{S}/relvlm_runs", '" + os.environ["RELVLM_RUNS"] + "')
+    text = text.replace(f'"{S}/vlm_lora_pc_runs', 'os.environ["LORA_RUNS"] + "')   # LoRA adapters (auto_p636.py)
     text = text.replace('os.environ.get("USER", "psunkad3")', 'os.environ["USER"]')
     return ('# portable copy (tools/make_portable.py): paths from env.sh (source it first)\n' + text) if not text.startswith("#!") else text
 

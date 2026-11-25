@@ -132,6 +132,7 @@ class MatrixSource:
     def __init__(self, npz_dir, files=None, prompt=PGM_PROMPT, cell=160, context_mode="normal", file_cache=None):
         self.dir, self.prompt, self.cell, self.context_mode = npz_dir, prompt, cell, context_mode
         self.files = list(files) if files is not None else list_npz(npz_dir, file_cache)
+        self.row_swap = 0.0      # training augmentation (set by train_stage1 --row_swap_p): swap context rows 1 and 2
 
     def __len__(self):
         return len(self.files)
@@ -148,6 +149,8 @@ class MatrixSource:
             ctx = np.zeros_like(ctx)
         elif self.context_mode == "shuffle":
             ctx = ctx[rng.permutation(8)]
+        if self.row_swap and rng.random() < self.row_swap:   # rows are rule-independent: each obeys the rules alone
+            ctx = ctx[[3, 4, 5, 0, 1, 2, 6, 7]]
         seqs = []
         for k in range(8):
             img, boxes = render_grid(list(ctx) + [cand[k]], cell=self.cell)

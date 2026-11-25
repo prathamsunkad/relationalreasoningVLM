@@ -29,6 +29,10 @@ Chance = 12.5%. Change = condition minus normal; p = exact McNemar on the same p
 | H11 | `lora_lf_q_int_ft50` | **54.8** | 53.2 (-1.6) | 53.5 (-1.4) | 51.9 (-2.9) | 52.2 (-2.7) |  |
 | H12 | `align_q_int_L6ft276k_lr3e-4` | **45.6** | 14.6 (-30.9) | 14.7 (-30.9) | 8.1 (-37.5) | 11.7 (-33.8) |  |
 | H12 | `lora_lf_q_int_ft276k` | **56.4** | 52.5 (-3.9) | 52.7 (-3.7) | 47.6 (-8.8) | 48.5 (-8.0) |  |
+| ? | `align_q_int_L6ft636k_lr3e-4` | **62.1** | 14.6 (-47.4) | 14.7 (-47.4) | 5.7 (-56.3) | 12.2 (-49.8) |  |
+| ? | `lora_lf20e1_q_int_ft636k` | **65.7** | 57.7 (-8.0) | 57.6 (-8.1) | 18.8 (-46.9) | 30.7 (-35.0) |  |
+| ? | `lora_lf20e4_q_int_ft636k` | **81.3** | 80.8 (-0.5) | 80.8 (-0.5) | 79.9 (-1.4) | 79.3 (-1.9) |  |
+| ? | `lora_lf_q_int_ft636k` | **63.4** | 51.7 (-11.7) | 52.2 (-11.2) | 32.2 (-31.3) | 38.9 (-24.6) |  |
 
 ## Paired tests against the unablated score
 
@@ -94,6 +98,22 @@ Chance = 12.5%. Change = condition minus normal; p = exact McNemar on the same p
 | H12 | `lora_lf_q_int_ft276k` | drop | 56.4 | 52.7 | **-3.7** | 385 | 201 | 2.5e-14 |
 | H12 | `lora_lf_q_int_ft276k` | shuffle_cand | 56.4 | 47.6 | **-8.8** | 707 | 267 | 1.6e-46 |
 | H12 | `lora_lf_q_int_ft276k` | shuffle_puzzle | 56.4 | 48.5 | **-8.0** | 670 | 272 | 2e-39 |
+| ? | `align_q_int_L6ft636k_lr3e-4` | zero | 62.1 | 14.6 | **-47.4** | 2604 | 232 | 0 |
+| ? | `align_q_int_L6ft636k_lr3e-4` | drop | 62.1 | 14.7 | **-47.4** | 2611 | 241 | 0 |
+| ? | `align_q_int_L6ft636k_lr3e-4` | shuffle_cand | 62.1 | 5.7 | **-56.3** | 3099 | 283 | 0 |
+| ? | `align_q_int_L6ft636k_lr3e-4` | shuffle_puzzle | 62.1 | 12.2 | **-49.8** | 2712 | 221 | 0 |
+| ? | `lora_lf20e1_q_int_ft636k` | zero | 65.7 | 57.7 | **-8.0** | 768 | 369 | 8.4e-33 |
+| ? | `lora_lf20e1_q_int_ft636k` | drop | 65.7 | 57.6 | **-8.1** | 773 | 369 | 1.8e-33 |
+| ? | `lora_lf20e1_q_int_ft636k` | shuffle_cand | 65.7 | 18.8 | **-46.9** | 2650 | 306 | 0 |
+| ? | `lora_lf20e1_q_int_ft636k` | shuffle_puzzle | 65.7 | 30.7 | **-35.0** | 2045 | 293 | 1.4e-322 |
+| ? | `lora_lf20e4_q_int_ft636k` | zero | 81.3 | 80.8 | **-0.5** | 134 | 108 | 0.11 |
+| ? | `lora_lf20e4_q_int_ft636k` | drop | 81.3 | 80.8 | **-0.5** | 143 | 117 | 0.12 |
+| ? | `lora_lf20e4_q_int_ft636k` | shuffle_cand | 81.3 | 79.9 | **-1.4** | 211 | 140 | 0.00018 |
+| ? | `lora_lf20e4_q_int_ft636k` | shuffle_puzzle | 81.3 | 79.3 | **-1.9** | 240 | 143 | 8.2e-07 |
+| ? | `lora_lf_q_int_ft636k` | zero | 63.4 | 51.7 | **-11.7** | 779 | 193 | 5.3e-84 |
+| ? | `lora_lf_q_int_ft636k` | drop | 63.4 | 52.2 | **-11.2** | 771 | 209 | 3.1e-76 |
+| ? | `lora_lf_q_int_ft636k` | shuffle_cand | 63.4 | 32.2 | **-31.3** | 1839 | 275 | 2e-283 |
+| ? | `lora_lf_q_int_ft636k` | shuffle_puzzle | 63.4 | 38.9 | **-24.6** | 1499 | 271 | 1.1e-205 |
 
 ## Runs
 
@@ -113,3 +133,7 @@ Chance = 12.5%. Change = condition minus normal; p = exact McNemar on the same p
 | H11 | `lora_lf_q_int_ft50` | LoRA-first, step-204k branch | 3000 |
 | H12 | `align_q_int_L6ft276k_lr3e-4` | alignment, frozen LLM, step-276k branch | 10000 |
 | H12 | `lora_lf_q_int_ft276k` | LoRA-first, step-276k branch | 2000 |
+| ? | `align_q_int_L6ft636k_lr3e-4` |  | 2000 |
+| ? | `lora_lf20e1_q_int_ft636k` |  | 3000 |
+| ? | `lora_lf20e4_q_int_ft636k` |  | 2000 |
+| ? | `lora_lf_q_int_ft636k` |  | 2500 |
