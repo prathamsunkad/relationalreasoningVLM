@@ -2,7 +2,8 @@
 
 Snapshot: **2026-11-25 03:05 PM Eastern**. Training source:
 [`44ac9c7`](https://github.com/prathamsunkad/relationalreasoningVLM/commit/44ac9c74da42ed56d94d8798d24d2f8b0745a7a0)
-on `codex/internvl-interleave-20pct`. This later record-only commit does not
+on `internvl-interleave-20pct` (renamed from `codex/internvl-interleave-20pct`).
+This later record-only commit does not
 change the immutable source bundle running on PACE.
 
 ## Status and results
