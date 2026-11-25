@@ -83,6 +83,9 @@ def parse():
                          "branch-always-off control, validated with the branch off too")
     ap.add_argument("--finetune_slots", action="store_true", help="also train slot attention on the task loss (decoder excluded)")
     ap.add_argument("--slot_lr", type=float, default=3e-5, help="slot attention rate with --finetune_slots")
+    ap.add_argument("--abs_dropout", type=float, default=0.0, help="dropout inside the Abstractor (attention + MLP)")
+    ap.add_argument("--row_swap_p", type=float, default=0.0,
+                    help="training only: swap the two complete context rows with this probability (rule-preserving)")
     # LoRA (Stage 2)
     ap.add_argument("--lora_r", type=int, default=0)
     ap.add_argument("--lora_alpha", type=int, default=32)
@@ -126,7 +129,7 @@ def branch_cfg(args):
                 learn_lambda=not args.fixed_lambda, no_slots=args.no_slots, rel_mode=args.rel_mode,
                 finetune_slots=args.finetune_slots,
                 abstractor_cfg=dict(layers=args.layers, heads=args.heads, head_dim=args.head_dim, mlp_dim=args.mlp_dim,
-                                    relational=not args.no_relational))
+                                    dropout=args.abs_dropout, relational=not args.no_relational))
 
 
 @torch.no_grad()
@@ -216,6 +219,9 @@ def main():
     # ---------------- data
     mix = parse_mix(args.train)
     srcs = build_sources(mix, args.panel_px, args.file_cache_dir)
+    for src in srcs:                                     # training sources only; validation is built separately below
+        if hasattr(src, "row_swap"):
+            src.row_swap = args.row_swap_p
     if args.train_samples and hasattr(srcs[0], "files"):
         srcs[0].files = subset(srcs[0].files, args.train_samples, args.seed)
     weights = [w for *_, w in mix]

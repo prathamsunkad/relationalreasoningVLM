@@ -28,6 +28,19 @@
 | `lf276_int_off` | lf276_int scored with the branch off | 2000 | 52.5% (+/-1.4) |
 | `lf276_fuse` | LoRA first + step-276k branch, fusion | 3000 | 56.4% (+/-1.4) |
 | `lf276_fuse_off` | lf276_fuse scored with the branch off | 3000 | 53.2% (+/-1.4) |
+| `c60_lf_int` | Clean 60k: LoRA-first, interleave (H12 recipe, 60k-only branch) | 3000 | 53.8% (+/-1.4) |
+| `c60_lf_int_off` | c60_lf_int scored with the branch off | 3000 | 52.8% (+/-1.4) |
+| `c60_lf_fuse` | Clean 60k: LoRA-first, fusion | 3500 | 53.4% (+/-1.4) |
+| `c60_lf_fuse_off` | c60_lf_fuse scored with the branch off | 3500 | 53.0% (+/-1.4) |
+| `c60_w5_int` | Clean 60k: Stage 2, no dropout, interleave (H8 recipe) | 15000 | 43.5% (+/-1.4) |
+| `c60_w5_int_off` | c60_w5_int scored with the branch off | 15000 | 35.5% (+/-1.3) |
+| `c60_w5_fuse` | Clean 60k: Stage 2, no dropout, fusion | 15000 | 46.8% (+/-1.4) |
+| `c60_w5_fuse_off` | c60_w5_fuse scored with the branch off | 15000 | 38.8% (+/-1.4) |
+| `c60_w5d_int` | Clean 60k: Stage 2, dropout 0.5, interleave (H9 recipe) | 14000 | 50.4% (+/-1.4) |
+| `c60_w5d_int_off` | c60_w5d_int scored with the branch off | 14000 | 50.5% (+/-1.4) |
+| `c60_w5d_fuse` | Clean 60k: Stage 2, dropout 0.5, fusion | 15000 | 52.1% (+/-1.4) |
+| `c60_w5d_fuse_off` | c60_w5d_fuse scored with the branch off | 15000 | 52.6% (+/-1.4) |
+| `br60` | 60k-only branch alone (used by c60_*) | 71000 | 28.1% (+/-1.2) |
 | `c60e_lf_int` | Early 60k (branch step 43k): LoRA-first, interleave (H12 recipe, 60k-only branch) | 3000 | 53.7% (+/-1.4) |
 | `c60e_lf_int_off` | c60e_lf_int scored with the branch off | 3000 | 53.7% (+/-1.4) |
 | `c60e_lf_fuse` | Early 60k (branch step 43k): LoRA-first, fusion | 3500 | 53.3% (+/-1.4) |
@@ -44,6 +57,27 @@
 | `br10` | 10-epoch branch alone (used by w5_*, w5d_*) | 145000 | 35.3% (+/-1.3) |
 | `br204k` | 50-epoch branch at step 204k alone (used by lf_*, w5d50_*) | 204000 | 39.8% (+/-1.4) |
 | `br276k` | 50-epoch branch at step 276k alone (its best so far) | 276000 | 45.0% (+/-1.4) |
+| `br636k` |  | 636000 | 62.0% (+/-1.3) |
+| `lf20e1_fuse` |  | 3500 | 65.9% (+/-1.3) |
+| `lf20e1_fuse_ctrl` |  | 3000 | 60.2% (+/-1.4) |
+| `lf20e1_fuse_off` |  | 3500 | 57.3% (+/-1.4) |
+| `lf20e1_int` |  | 3000 | 65.5% (+/-1.3) |
+| `lf20e1_int_ctrl` |  | 2500 | 60.2% (+/-1.4) |
+| `lf20e1_int_off` |  | 3000 | 57.4% (+/-1.4) |
+| `lf20e4_fuse` |  | 2000 | 81.3% (+/-1.1) |
+| `lf20e4_fuse_ctrl` |  | 3500 | 80.9% (+/-1.1) |
+| `lf20e4_fuse_off` |  | 2000 | 81.0% (+/-1.1) |
+| `lf20e4_int` |  | 2000 | 81.4% (+/-1.1) |
+| `lf20e4_int_ctrl` |  | 1000 | 80.5% (+/-1.1) |
+| `lf20e4_int_off` |  | 2000 | 80.4% (+/-1.1) |
+| `lf636_fuse` |  | 1500 | 62.9% (+/-1.3) |
+| `lf636_fuse_off` |  | 1500 | 51.5% (+/-1.4) |
+| `lf636_int` |  | 2500 | 63.2% (+/-1.3) |
+| `lf636_int_off` |  | 2500 | 52.4% (+/-1.4) |
+| `lora20e1` |  | 3000 | 55.2% (+/-1.4) |
+| `lora20e2` |  | 3000 | 68.1% (+/-1.3) |
+| `lora20e4` |  | 3000 | 81.2% (+/-1.1) |
+| `lora5p0` |  | 14000 | 52.8% (+/-1.4) |
 
 ## 2. Paired comparisons
 
@@ -80,6 +114,22 @@
 | Does the stronger branch help LoRA-first? (fusion) | `lf276_fuse` | `lf_fuse` | 56.4% | 54.9% | **+1.5** | 277 | 201 | 0.000588 |
 | Step-276k interleave: did its own LoRA keep up? | `lf276_int_off` | `lf_int_ctrl` | 52.5% | 53.2% | **-0.7** | 195 | 230 | 0.099 |
 | Step-276k fusion: did its own LoRA keep up? | `lf276_fuse_off` | `lf_fuse_ctrl` | 53.2% | 52.9% | **+0.3** | 211 | 194 | 0.427 |
+| Clean 60k LoRA-first interleave vs the control | `c60_lf_int` | `lf_int_ctrl` | 53.8% | 53.2% | **+0.6** | 212 | 183 | 0.159 |
+| Clean 60k LoRA-first fusion vs the control | `c60_lf_fuse` | `lf_fuse_ctrl` | 53.4% | 52.9% | **+0.5** | 254 | 228 | 0.255 |
+| Clean 60k LoRA-first interleave vs LoRA alone | `c60_lf_int` | `lora5` | 53.8% | 52.6% | **+1.2** | 342 | 282 | 0.0181 |
+| Clean 60k LoRA-first fusion vs LoRA alone | `c60_lf_fuse` | `lora5` | 53.4% | 52.6% | **+0.8** | 332 | 291 | 0.109 |
+| Clean 60k LoRA-first interleave: did its own LoRA keep up? | `c60_lf_int_off` | `lf_int_ctrl` | 52.8% | 53.2% | **-0.5** | 178 | 201 | 0.258 |
+| Clean 60k LoRA-first fusion: did its own LoRA keep up? | `c60_lf_fuse_off` | `lf_fuse_ctrl` | 53.0% | 52.9% | **+0.1** | 223 | 220 | 0.924 |
+| Clean 60k Stage 2 dropout interleave vs LoRA alone | `c60_w5d_int` | `lora5` | 50.4% | 52.6% | **-2.2** | 516 | 624 | 0.00152 |
+| Clean 60k Stage 2 dropout fusion vs LoRA alone | `c60_w5d_fuse` | `lora5` | 52.1% | 52.6% | **-0.5** | 536 | 563 | 0.433 |
+| Clean 60k Stage 2 dropout interleave: branch on vs off | `c60_w5d_int` | `c60_w5d_int_off` | 50.4% | 50.5% | **-0.1** | 327 | 332 | 0.876 |
+| Clean 60k Stage 2 dropout fusion: branch on vs off | `c60_w5d_fuse` | `c60_w5d_fuse_off` | 52.1% | 52.6% | **-0.6** | 348 | 376 | 0.316 |
+| Clean 60k Stage 2 no-dropout interleave vs LoRA alone | `c60_w5_int` | `lora5` | 43.5% | 52.6% | **-9.1** | 496 | 949 | 3.99e-33 |
+| Clean 60k Stage 2 no-dropout fusion vs LoRA alone | `c60_w5_fuse` | `lora5` | 46.8% | 52.6% | **-5.8** | 550 | 841 | 6.01e-15 |
+| Clean 60k Stage 2 no-dropout interleave: branch on vs off | `c60_w5_int` | `c60_w5_int_off` | 43.5% | 35.5% | **+8.1** | 892 | 488 | 8.54e-28 |
+| Clean 60k Stage 2 no-dropout fusion: branch on vs off | `c60_w5_fuse` | `c60_w5_fuse_off` | 46.8% | 38.8% | **+8.0** | 840 | 440 | 2.44e-29 |
+| 60k-only branch vs 240k step-276k branch (LoRA-first, interleave) | `c60_lf_int` | `lf276_int` | 53.8% | 56.5% | **-2.7** | 228 | 364 | 2.52e-08 |
+| 60k-only branch vs 240k step-276k branch (LoRA-first, fusion) | `c60_lf_fuse` | `lf276_fuse` | 53.4% | 56.4% | **-3.0** | 204 | 355 | 1.74e-10 |
 | Early 60k LoRA-first interleave vs the control | `c60e_lf_int` | `lf_int_ctrl` | 53.7% | 53.2% | **+0.5** | 179 | 154 | 0.188 |
 | Early 60k LoRA-first fusion vs the control | `c60e_lf_fuse` | `lf_fuse_ctrl` | 53.3% | 52.9% | **+0.4** | 210 | 188 | 0.292 |
 | Early 60k LoRA-first interleave vs LoRA alone | `c60e_lf_int` | `lora5` | 53.7% | 52.6% | **+1.1** | 319 | 263 | 0.0225 |
@@ -94,6 +144,8 @@
 | Early 60k Stage 2 no-dropout fusion vs LoRA alone | `c60e_w5_fuse` | `lora5` | 50.0% | 52.6% | **-2.6** | 533 | 661 | 0.000235 |
 | Early 60k Stage 2 no-dropout interleave: branch on vs off | `c60e_w5_int` | `c60e_w5_int_off` | 49.3% | 43.7% | **+5.6** | 612 | 333 | 8.25e-20 |
 | Early 60k Stage 2 no-dropout fusion: branch on vs off | `c60e_w5_fuse` | `c60e_w5_fuse_off` | 50.0% | 46.9% | **+3.1** | 504 | 349 | 1.24e-07 |
+| Finished vs early 60k branch (LoRA-first, interleave) | `c60_lf_int` | `c60e_lf_int` | 53.8% | 53.7% | **+0.1** | 205 | 201 | 0.882 |
+| Finished vs early 60k branch (LoRA-first, fusion) | `c60_lf_fuse` | `c60e_lf_fuse` | 53.4% | 53.3% | **+0.1** | 214 | 210 | 0.884 |
 
 ## 3. Late-fusion reference (average of LoRA's and the branch's answers, w = 0.5, untuned)
 
@@ -102,10 +154,12 @@ What simply averaging two separately trained models gets; the trained hybrids sh
 | LoRA | + branch | Branch alone | LoRA alone | Averaged | Gain | McNemar p |
 |---|---|---|---|---|---|---|
 | `lora5` | `brset` | 43.3% | 52.6% | 55.5% | +2.9 | 4.22e-09 |
+| `lora5` | `br60` | 28.1% | 52.6% | 51.7% | -0.9 | 0.0741 |
 | `lora5` | `br60e` | 26.8% | 52.6% | 52.1% | -0.5 | 0.216 |
 | `lora5` | `br10` | 35.3% | 52.6% | 53.7% | +1.1 | 0.0118 |
 | `lora5` | `br204k` | 39.8% | 52.6% | 54.2% | +1.6 | 0.00103 |
 | `lora5` | `br276k` | 45.0% | 52.6% | 56.5% | +3.9 | 1.91e-14 |
+| `lora5` | `br636k` | 62.0% | 52.6% | 63.5% | +10.9 | 5.16e-73 |
 | `lf_int_ctrl` | `brset` | 43.3% | 53.2% | 56.5% | +3.3 | 1.7e-13 |
 | `lf_fuse_ctrl` | `brset` | 43.3% | 52.9% | 56.6% | +3.7 | 7.81e-16 |
 
@@ -156,6 +210,30 @@ A problem counts once in each attribute it has rules on.
 | size | 956 | 24.9% | 24.7% | +0.2 | 21.9% |
 | position | 854 | 51.5% | 46.7% | +4.8 | 40.6% |
 | number | 539 | 50.3% | 36.9% | +13.4 | 48.8% |
+
+## 4. By attribute: `c60_lf_int` vs `lf_int_ctrl`
+
+A problem counts once in each attribute it has rules on.
+
+| Attribute | n | Hybrid | Control | Gap | Branch alone |
+|---|---|---|---|---|---|
+| color | 2243 | 50.9% | 50.6% | +0.3 | 28.5% |
+| type | 2207 | 68.4% | 67.8% | +0.6 | 59.7% |
+| size | 956 | 24.8% | 24.1% | +0.7 | 21.9% |
+| position | 854 | 47.0% | 47.9% | -0.9 | 40.6% |
+| number | 539 | 38.6% | 38.6% | +0.0 | 48.8% |
+
+## 4. By attribute: `c60_lf_fuse` vs `lf_fuse_ctrl`
+
+A problem counts once in each attribute it has rules on.
+
+| Attribute | n | Hybrid | Control | Gap | Branch alone |
+|---|---|---|---|---|---|
+| color | 2243 | 50.3% | 50.2% | +0.1 | 28.5% |
+| type | 2207 | 68.2% | 67.6% | +0.5 | 59.7% |
+| size | 956 | 24.9% | 24.7% | +0.2 | 21.9% |
+| position | 854 | 48.7% | 46.7% | +2.0 | 40.6% |
+| number | 539 | 39.0% | 36.9% | +2.0 | 48.8% |
 
 ## 4. By attribute: `c60e_lf_int` vs `lf_int_ctrl`
 

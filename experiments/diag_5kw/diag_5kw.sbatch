@@ -93,6 +93,44 @@ ev c60e_w5d_int_off  --ckpt $RUNS/lora_w5d_q_int_c60e/best.pt --branch_off
 ev c60e_w5d_fuse     --ckpt $RUNS/lora_w5d_q_fuse_c60e/best.pt
 ev c60e_w5d_fuse_off --ckpt $RUNS/lora_w5d_q_fuse_c60e/best.pt --branch_off
 ev br60e  --ckpt $RUNS/snapshots/aux_ft60k_q_L6_lr3e-4_step43000.pt --readout aux
+# Phase 0-2 (Nov 23, user: 'start all the phases'): the 50-epoch branch at step 636k (63.9% val), LoRA alone at 20%
+# after epochs 1/2/4 and 5% rescored in the same job (one GPU type for the overlap check); then the hybrids with it.
+ev br636k   --ckpt $RUNS/snapshots/aux_ft_q_L6_lr3e-4_ep50_step636000.pt --readout aux
+ev lora20e1 --ckpt $FUSE --branch_off --lora_from $LP/qwen_pc_recipe_e1/final_e1
+ev lora20e2 --ckpt $FUSE --branch_off --lora_from $LP/qwen_pc_recipe_e1/final_e2
+ev lora20e4 --ckpt $FUSE --branch_off --lora_from $LP/qwen_pc_recipe_e1/final_e4
+ev lora5p0  --ckpt $FUSE --branch_off --lora_from $LP/qwen_pc_neutral5pct_recipe/best
+for m in int fuse; do
+  ev lf636_$m       --ckpt $RUNS/lora_lf_q_${m}_ft636k/best.pt
+  ev lf636_${m}_off --ckpt $RUNS/lora_lf_q_${m}_ft636k/best.pt --branch_off
+  ev w5d636_$m       --ckpt $RUNS/lora_w5d_q_${m}_L6ft636k/best.pt
+  ev w5d636_${m}_off --ckpt $RUNS/lora_w5d_q_${m}_L6ft636k/best.pt --branch_off
+  for e in e1 e4; do
+    ev lf20${e}_$m       --ckpt $RUNS/lora_lf20${e}_q_${m}_ft636k/best.pt
+    ev lf20${e}_${m}_off --ckpt $RUNS/lora_lf20${e}_q_${m}_ft636k/best.pt --branch_off
+    ev lf20${e}_${m}_ctrl --ckpt $RUNS/lora_lf20${e}_q_${m}_ctrl/best.pt --branch_off
+  done
+done
+# 5% per-epoch (Nov 24): the 5% LoRA rerun after epochs 1-4 alone, and LoRA-first with the 60k-only branch on epochs 1-2
+E5=$LP/qwen_pc_neutral5pct_ep
+ev lora5ep_e1 --ckpt $FUSE --branch_off --lora_from $E5/step_3750
+ev lora5ep_e2 --ckpt $FUSE --branch_off --lora_from $E5/step_7500
+ev lora5ep_e3 --ckpt $FUSE --branch_off --lora_from $E5/step_11250
+ev lora5ep_e4 --ckpt $FUSE --branch_off --lora_from $E5/final
+for e in e1 e2; do
+  ev lf5${e}_int      --ckpt $RUNS/lora_lf5${e}_q_int_c60/best.pt
+  ev lf5${e}_int_off  --ckpt $RUNS/lora_lf5${e}_q_int_c60/best.pt --branch_off
+  ev lf5${e}_int_ctrl --ckpt $RUNS/lora_lf5${e}_q_int_ctrl/best.pt --branch_off
+done
+# Unfrozen-Abstractor check (Nov 24): H15 epoch-1 interleave with the Abstractor trained at 3e-5; scored as a hybrid,
+# with the branch off, and the adapted Abstractor alone through its (untouched) answer head
+U=$RUNS/lora_lfu20e1_q_int_ft636k_a3e-5/best.pt
+ev lfu20e1_int     --ckpt $U
+ev lfu20e1_int_off --ckpt $U --branch_off
+ev lfu20e1_aux     --ckpt $U --readout aux
+# H15 epoch-1 interleave and its control re-scored in the same job as lfu20e1_* (same GPU type: an exact paired comparison)
+ev lf20e1_int_rs      --ckpt $RUNS/lora_lf20e1_q_int_ft636k/best.pt
+ev lf20e1_int_ctrl_rs --ckpt $RUNS/lora_lf20e1_q_int_ctrl/best.pt --branch_off
 if [ -z "$ONLY" ] || [[ " $ONLY " == *" rules "* ]]; then
   if [ -s $D/rules.json ]; then echo "=== rules: exists, skipping"
   else echo "=== rules ($(date +%H:%M:%S))"; X python $RUNS/diag_overlap/rules.py $LIST $DATA $D/rules.json; fi
