@@ -1,4 +1,4 @@
-# Status (Nov 25, 2026, 3 pm EST)
+# Status (Nov 25, 2026, 6 pm EST)
 
 **Finished since Nov 24:** H16 (the 5%-only branch on the 5% LoRA after epochs 1, 2, 4), H17 (H15 with the Abstractor
 unfrozen), the Stage 2 arm of H14, the 5% branch smoke runs (B8), the 6-layer 50-epoch branch (B6), the hybrid-vs-ensemble
@@ -11,7 +11,7 @@ kept per epoch (I3), both for H16 on InternVL. Every experiment, run and test sc
 
 | # | Result | Test (5,000) or val |
 |---|---|---|
-| Zero-shot | Near chance on PGM | 12.48% Qwen (final run, 187,315 puzzles), 13.75% InternVL (200k test) |
+| Zero-shot | Near chance on PGM | Letter answers: 12.48% Qwen (187,315 puzzles), 13.75% InternVL (200k). Candidate scoring (the LoRA protocol, Kun-Lin, `pgm_zeroshot_pc/`, partial 128,574 / 200k): 14.57% Qwen, 13.74% InternVL |
 | LoRA alone, 20% | Main baseline | 81.50% Qwen (200k test); on `test5000`: epoch 1 / 2 / 4 = 55.2 / 68.1 / 81.2% |
 | LoRA alone, 5% | Low-data baseline | 52.6% test; rerun per epoch: 31.1 / 40.3 / 45.7 / 51.3% after epochs 1-4 |
 | H1-H3, H6 | Branch trained through a frozen LLM: memorises only with 6 layers, generalises slowly | 16-27% val |
@@ -29,7 +29,7 @@ kept per epoch (I3), both for H16 on InternVL. Every experiment, run and test sc
 | B8 | 5% branch smoke runs (fewer layers, dropout, row swap, frozen slots) | Best 31.6% val vs the old 30.8%: no clear gain; limited by data |
 | E1 | Hybrid vs calibrated ensemble of the same two checkpoints | Ties for H12 and H14; H15 epoch 1 beats it by +1.4/+1.8 (p <= 6e-4) |
 | A3 | Relation-token ablation (19 runs) | H14 / H15 ep 1: shuffled across candidates 32.2 / 18.8%; H15 ep 4 and H17 as expected |
-| H15 (InternVL, Yiran) | LoRA-first interleaving on the InternVL 20% epoch-6 LoRA with the shared Slot Abstractor (1 pooled token; connector 1e-4, LoRA 2e-5 from update 501; 15,000 updates) | **In progress:** 3,978 / 15,000 updates, best 66.8% val vs 59.8% at step 0. No control, test, branch-off, ensemble or ablation yet; epoch-4 run not started. `results/internvl_interleave/2026-11-24-two-gpu/` |
+| H15 (InternVL, Yiran) | LoRA-first interleaving on the InternVL 20% epoch-6 LoRA with the shared Slot Abstractor (1 pooled token; 15,000 updates planned) | **In progress, validation:** best 66.8% at update 3,500 vs LoRA alone 60.5% (+6.3, p = 2e-6) and Slot Abstractor alone 60.2% (+6.6, p = 2e-6); ties the ensemble (66.3%, p = 0.68). `results/internvl_interleave/comparisons/`. Running: equal-steps control (`tools/train_distributed_interleave.py`, control=branch_off), test5000 + ablations (`tools/eval_interleave_checkpoint.py`) |
 | **I1** | InternVL: shared 20% Slot Abstractor vs InternVL LoRA alone | SA 61.0%; InternVL LoRA 38.3% (5%), 40.1 / 48.4 / 57.9 / 60.3% (20% ep 1/2/4/6); ensembles 61.2-67.0%: complementary even at epoch 6 |
 
 Pairs are interleave / fusion.
