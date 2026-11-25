@@ -106,7 +106,7 @@ class DistributedRun(Run):
         gradients = {}
         for label, ps in [('connector', self.connector.parameters()), ('lora', (p for _,p in self.lora))]:
             gradients[label] = sum(float(p.grad.detach().float().square().sum()) for p in ps if p.grad is not None)**.5
-        if gradients['connector'] <= 0 or (joint and gradients['lora'] <= 0):
+        if (gradients['connector'] <= 0 and not self.control) or (joint and gradients['lora'] <= 0):
             raise RuntimeError('Missing trainable gradient')
         norm = torch.nn.utils.clip_grad_norm_(self.all_params, 1., error_if_nonfinite=True)
         self.opt.step()
@@ -293,7 +293,7 @@ def run(plan, out, mode, seconds, resume):
     if mode=='pilot' and complete:
         for key in ('global_batch16_serial_equivalence','joint_next_update_replay_exact','native_protocol_exact','candidate_permutation','teacher_cached_pool_parity'):
             if runner.pilot_checks.get(key) is not True:raise RuntimeError('Missing pilot check '+key)
-        if tensor_digest(runner.lora)==runner.initial_lora_hash or tensor_digest(list(runner.connector.named_parameters()))==runner.initial_connector_hash:
+        if tensor_digest(runner.lora)==runner.initial_lora_hash or (not runner.control and tensor_digest(list(runner.connector.named_parameters()))==runner.initial_connector_hash):
             raise RuntimeError('Pilot trainable parameters did not update')
     extracted=torch.tensor(runner.banks.extracted,device=runner.device);dist.all_reduce(extracted,op=dist.ReduceOp.SUM)
     summary=dict(complete=complete,passed=complete,mode=mode,plan_sha256=contract(plan),world_size=runner.world,
@@ -307,7 +307,7 @@ def run(plan, out, mode, seconds, resume):
             summary[label+'_questions_per_second']=16*len(selected)/sum(m['seconds'] for m in selected) if selected else None
     if rank==0:
         summary['new_cache_committed_questions']=runner.banks.committed_count()
-        if runner.progress['update']==runner.total and mode=='train':
+        if runner.progress['update']==runner.total and mode=='train' and not runner.control:
             if summary['new_cache_committed_questions']!=180000:raise RuntimeError('Incomplete feature cache after full epoch')
             atomic_json(Path(plan['incremental_cache'])/'READY.json',dict(complete=True,new_training_questions=180000,reused_training_questions=60000,validation_questions=1000,total_questions=241000,identity=runner.banks.identity,old_cache=plan['cache_output']))
         atomic_json(out/'summary.json',summary)
