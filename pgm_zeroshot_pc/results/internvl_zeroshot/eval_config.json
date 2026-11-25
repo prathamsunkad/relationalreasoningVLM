@@ -1,0 +1,10 @@
+{
+ "model_id": "/home/hice1/khsieh37/scratch/pgm-lora-v1/models/InternVL3_5-1B-HF",
+ "adapter": null,
+ "family": "internvl",
+ "npz_dir": "/tmp/pgmzs_7318456",
+ "context_mode": "normal",
+ "crop_to_patches": 1,
+ "panel_px": 160,
+ "num_shards": 1
+}
