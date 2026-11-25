@@ -1,59 +1,59 @@
-# Status (Nov 24, 2026, 8 pm EST)
+# Status (Nov 25, 2026, 3 pm EST)
 
-**Finished since Nov 20:** H13 on the finished 60k-only branch; A1b (overlap on the 5,000 test puzzles with the step-636k
-branch); H14 (LoRA-first with the step-636k branch at 5%); H15 (the same on the 20% LoRA after epochs 1 and 4, matched
-data); A3 extended to H14 and H15. **Training:** the 5% branch smoke runs, the per-epoch 5% LoRA and its hybrids, Stage 2
-with the step-636k branch, the unfrozen-Abstractor check, and the two 50-epoch branches. Full write-up with every setting:
+**Finished since Nov 24:** H16 (the 5%-only branch on the 5% LoRA after epochs 1, 2, 4), H17 (H15 with the Abstractor
+unfrozen), the Stage 2 arm of H14, the 5% branch smoke runs (B8), the 6-layer 50-epoch branch (B6), the hybrid-vs-ensemble
+check (E1), and InternVL phase 1 (I1). **Training:** the Slot Abstractor retrained on our 5% (I2) and the InternVL 5% LoRA
+kept per epoch (I3), both for H16 on InternVL. Every experiment, run and test score with its exact settings:
+[`docs/relvlm_experiments.xlsx`](../docs/relvlm_experiments.xlsx); narrative write-up:
 [`docs/relvlm_results_H1_H15.md`](../docs/relvlm_results_H1_H15.md).
 
 ## Finished experiments (headline numbers)
 
 | # | Result | Test (5,000) or val |
 |---|---|---|
-| Zero-shot | At chance on PGM | 12.85% Qwen, 13.75% InternVL (200k test) |
-| LoRA alone, full data (20%) | Main baseline | 81.50% Qwen (200k test); on `test5000`: epoch 1 / 2 / 4 = 55.2 / 68.1 / 81.2% |
-| LoRA alone, 5% | Low-data baseline | 52.6% test (52.8% rescored with the H14 job) |
-| H1–H3, H6 | Branch trained through a frozen LLM: memorises only with 6 layers, generalises slowly | 16–27% val |
-| H4, H5 | Hybrids at full data and on the mixture: no gain | 81.3–81.4% val vs 81.6%; family 87.2 vs control 87.6 |
-| H7 | Alignment: the frozen LLM reads the branch within 1k steps | = branch accuracy (step 636k: 62.1% test) |
+| Zero-shot | Near chance on PGM | 12.48% Qwen (final run, 187,315 puzzles), 13.75% InternVL (200k test) |
+| LoRA alone, 20% | Main baseline | 81.50% Qwen (200k test); on `test5000`: epoch 1 / 2 / 4 = 55.2 / 68.1 / 81.2% |
+| LoRA alone, 5% | Low-data baseline | 52.6% test; rerun per epoch: 31.1 / 40.3 / 45.7 / 51.3% after epochs 1-4 |
+| H1-H3, H6 | Branch trained through a frozen LLM: memorises only with 6 layers, generalises slowly | 16-27% val |
+| H4, H5 | Hybrids at full data and on the mixture: no gain | 81.3-81.4% val vs 81.6%; family 87.2 vs control 87.6 |
+| H7 | Alignment: the frozen LLM reads the branch within 1-3k steps | = branch accuracy (step 636k: 62.1% test) |
 | H8 / H9 / H10 | Stage 2 at 5%: shortcut, fixed by dropout, flat with a stronger branch | 49.1/38.8; 55.2/54.1; 55.1/55.3% |
-| H11 / H12 | LoRA-first at 5%, steps 204k / 276k branch | 55.1/54.9; **56.5/56.4%** (controls 53.2/52.9) |
-| H13 | Everything at matched 5% data (60k-only branch, 28.1% test alone) | LoRA-first 53.8/53.4% vs control 53.2/52.9 (n.s.); H9 recipe 50.4/52.1; H8 recipe 43.5/46.8 |
-| A1 / **A1b** | The branch solves puzzles LoRA misses; averaging gain shrinks as LoRA trains | A1b (636k branch, 62.0%): +10.2 (5%), +8.7 (20% ep 1), +2.3 (ep 2), −0.1 (ep 4) |
-| **H14** | LoRA-first with the step-636k branch on the 5% LoRA | **63.2 / 62.9%** vs control 53.2/52.9 (p < 1e-59); only +1.2/+0.9 over the branch alone |
-| **H15** | Same on the 20% LoRA (matched data) | **Epoch 1: 65.5 / 65.9%** vs control 60.2, LoRA 55.2, branch 62.0 (p < 1e-14). Epoch 4: 81.4 / 81.3% vs LoRA 81.2 (n.s.) |
-| A3 | Relation-token ablation (now 18 runs) | H14 / H15 ep 1: zeroed −11.7 / −8.0, shuffled across candidates −31.2 / −46.9; H15 ep 4: at most 2 points |
+| H11 / H12 | LoRA-first at 5%, steps 204k / 276k branch | 55.1/54.9; 56.5/56.4% (controls 53.2/52.9); H12 ties a calibrated ensemble |
+| H13 | Everything at matched 5% data (60k-only branch, 28.1% alone) | LoRA-first 53.8/53.4% vs control 53.2/52.9 (n.s.) |
+| A1 / A1b | The branch solves puzzles LoRA misses; averaging gain shrinks as LoRA trains | A1b: +10.2 (5%), +8.7 / +2.3 / -0.1 (20% epochs 1 / 2 / 4) |
+| H14 | Step-636k branch on the 5% LoRA | LoRA-first 63.2/62.9% vs control 53.2/52.9 (+1.2/+0.9 over the branch alone); Stage 2 arm 62.4/61.7%, branch off 33.5/20.0% |
+| **H15** | Same on the 20% LoRA (matched data) | **Epoch 1: 65.5/65.9%** vs control 60.2, LoRA 55.2, branch 62.0, ensemble 64.1. Epoch 4: 81.4/81.3% vs 81.2 (n.s.) |
+| H16 | 60k-only branch on weaker 5% LoRAs | Epoch 1: 36.0 vs control 36.0; epoch 2: 44.1 vs 43.6 (n.s.); number puzzles at epoch 1: +7.1 (p = 3e-4) |
+| H17 | H15 epoch 1 with the Abstractor unfrozen (3e-5) | 66.0% vs 65.8% frozen (p = 0.5); the Abstractor barely moved |
+| B6 | 50-epoch branch, 6 layers, finished | Step 746k (best val, 67.2%): 64.8% test; final 750k: 65.3% test |
+| B8 | 5% branch smoke runs (fewer layers, dropout, row swap, frozen slots) | Best 31.6% val vs the old 30.8%: no clear gain; limited by data |
+| E1 | Hybrid vs calibrated ensemble of the same two checkpoints | Ties for H12 and H14; H15 epoch 1 beats it by +1.4/+1.8 (p <= 6e-4) |
+| A3 | Relation-token ablation (19 runs) | H14 / H15 ep 1: shuffled across candidates 32.2 / 18.8%; H15 ep 4 and H17 as expected |
+| **I1** | InternVL: shared 20% Slot Abstractor vs InternVL LoRA alone | SA 61.0%; InternVL LoRA 38.3% (5%), 40.1 / 48.4 / 57.9 / 60.3% (20% ep 1/2/4/6); ensembles 61.2-67.0%: complementary even at epoch 6 |
 
 Pairs are interleave / fusion.
 
-## Still training (Nov 24, 8 pm)
+## Running (Nov 25, 3 pm)
 
-| Run(s) | What it is | Progress | Latest val |
-|---|---|---|---|
-| `aux60s_*` (9 runs) | Smoke runs: can a smaller or regularised 5% branch beat the 60k-only branch's 30.8% peak? | 40–52k / 75k | 21–28% (old run ~27–28% at the same steps) |
-| `qwen_pc_neutral5pct_ep` | 5% LoRA rerun keeping the adapter after each epoch (`--keep_steps`) | ~10.5k / 15k | 43.7% |
-| `lora_lf5e{1,2}_q_int_c60`, `_ctrl` | LoRA-first with the 60k-only branch on the 5% LoRA after epochs 1 and 2 | 3.5k / 3.5k, scoring next | ep 1: 37.5 vs 35.2; ep 2: 44.5 vs 42.5 |
-| `lora_lfu20e1_q_int_ft636k_a3e-5` | H15 epoch 1 with the Abstractor unfrozen (lr 3e-5, slots frozen) | started 7 pm | — |
-| `lora_w5d_q_{int,fuse}_L6ft636k` | Stage 2 + dropout 0.5 with the step-636k branch at 5% | 13k, 10k / 15k | 63.7 / 63.6% |
-| `aux_ft_q_L6_lr3e-4_ep50` | 50-epoch branch, 6 layers | 718k / 750k | best 65.6% (714k) |
-| `aux_ft_q_L24_lr8e-5_ep50` | 50-epoch branch, 24 layers | 600k / 750k | best 52.3% |
-
-Every finished run is test-scored automatically by `experiments/auto/wait_5k.sh` (and `wait_ep5.sh` for the 5% LoRA epochs).
+| Run(s) | What it is | Progress |
+|---|---|---|
+| `ivl1b_pc_neutral5pct_ep` (I3) | InternVL 5% LoRA rerun keeping each epoch | ~1k / 15k steps |
+| `sa5_ae`, `sa5_train`, `sa5_test` (I2) | Slot Abstractor retrained on our 5%: slot AE (300k steps), Abstractor (80 epochs), test | AE at ~20k steps; ~1.5-2 days in total |
+| `aux_ft_q_L24_lr8e-5_ep50` | 50-epoch branch, 24 layers | **Paused** Nov 25 at ~636k to free a GPU; resumable |
 
 ## Open decisions
 
 | Decision | What it would answer |
 |---|---|
-| Epoch sweep at 20% and 5%, Abstractor frozen vs unfrozen (19 runs, designed) | Whether the gain over control falls with LoRA strength at both scales, and whether an adapting Abstractor beats averaging. Waiting on the unfrozen-Abstractor check |
-| Longer LoRA-first on H15 epoch 1 (hybrid + control, ~15k steps, normal LoRA rate) | Whether the branch speeds learning or raises the final level; 3,500 steps is only 0.23 epoch at 20% |
-| Seeds for H15 epoch 1 | Error bars on the headline result |
-| Single-job re-score of the key models | Settles cross-job gaps under ~1 point and the H12-vs-averaging tie |
-| Held-out-rule PGM split or I-RAVEN | Generalisation beyond PGM neutral |
+| H16 on InternVL (connectors + LoRA-first on the 5% epochs, with controls) | A low-data claim on InternVL. Runs only if the 5% Slot Abstractor beats the InternVL 5% LoRA (38.3%) |
+| Add the teammate's InternVL H15 results | Scored on test5000 with the same paired checks |
+| Stage 2 at 20% (LoRA from scratch + branch + dropout, Qwen and InternVL) | Whether the branch speeds up LoRA learning epoch by epoch |
+| Longer LoRA-first on H15 epoch 1; seeds; single-job re-score | Robustness of the headline result |
 
 ## Known caveats
 
 - One seed everywhere.
-- H8–H12 and H14 use a branch trained on all 240k labelled puzzles (4× the 5% LoRA's data); H13, H15 and the per-epoch 5% runs are at matched data.
-- Scoring jobs ran on different GPU types; bf16 rounding moves scores by ~0.5 points, so cross-job gaps under ~1 point are not settled.
+- H8-H12 and H14 use a branch trained on all 240k labelled puzzles (4x the 5% LoRA's data); H13, H15, H16 are at matched data.
+- InternVL uses a different relational module (the paper's pixel-based Slot Abstractor) from the Qwen H-series (ViT-feature branch).
+- Scoring jobs ran on different GPU types; cross-job gaps under ~1 point are not settled. `diag_5k/analyze5k.py` currently fails on the newest result names, so `results/relational/test5000/report.md` lags; the spreadsheet is computed from the per-puzzle files directly.
 - Validation puzzles were also used to choose checkpoints; quote the test numbers.
-- LoRA-first lasts 3,500 steps with LoRA at 2e-5: one epoch at 5%, only 0.23 epoch at 20%.

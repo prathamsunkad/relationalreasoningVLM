@@ -1,0 +1,2 @@
+[sa_builder] Slot Abstractor slot_abstractor_pgm_pgm20_1gpu_d24_lr8e-05_run0_best.pth.tar (depth 24, 16 slots x 32) + slot AE slot_ae_pgm20.pth.tar; antialias=1
+SA alone on 1000 validation problems: 61.0% (95% CI 57.9%-64.0%); chance 12.5%

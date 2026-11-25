@@ -1,0 +1,20 @@
+H12 (276k branch, 5% LoRA): n=5000 LoRA 52.6 branch 45.0 | ens w=.5 56.5 | ens cross-fit (w=[0.5, 0.5]) 56.5
+   lf276_int    56.5 vs ens w=.5      56.5: diff -0.0  only-hybrid 286 only-ens 287 p=1
+   lf276_int    56.5 vs ens cross-fit 56.5: diff -0.0  only-hybrid 286 only-ens 287 p=1
+   lf276_fuse   56.4 vs ens w=.5      56.5: diff -0.1  only-hybrid 327 only-ens 332 p=0.88
+   lf276_fuse   56.4 vs ens cross-fit 56.5: diff -0.1  only-hybrid 327 only-ens 332 p=0.88
+H14 (636k branch, 5% LoRA): n=5000 LoRA 52.8 branch 62.0 | ens w=.5 63.0 | ens cross-fit (w=[0.2, 0.4]) 63.3
+   lf636_int    63.2 vs ens w=.5      63.0: diff +0.2  only-hybrid 199 only-ens 187 p=0.58
+   lf636_int    63.2 vs ens cross-fit 63.3: diff -0.1  only-hybrid 256 only-ens 260 p=0.89
+   lf636_fuse   62.9 vs ens w=.5      63.0: diff -0.1  only-hybrid 226 only-ens 229 p=0.93
+   lf636_fuse   62.9 vs ens cross-fit 63.3: diff -0.4  only-hybrid 276 only-ens 295 p=0.45
+H15 ep1 (636k branch, 20% LoRA ep1): n=5000 LoRA 55.2 branch 62.0 | ens w=.5 63.9 | ens cross-fit (w=[0.45, 0.35]) 64.1
+   lf20e1_int   65.5 vs ens w=.5      63.9: diff +1.6  only-hybrid 261 only-ens 182 p=0.0002
+   lf20e1_int   65.5 vs ens cross-fit 64.1: diff +1.4  only-hybrid 232 only-ens 163 p=0.00061
+   lf20e1_fuse  65.9 vs ens w=.5      63.9: diff +2.0  only-hybrid 281 only-ens 183 p=6.2e-06
+   lf20e1_fuse  65.9 vs ens cross-fit 64.1: diff +1.8  only-hybrid 241 only-ens 153 p=1.1e-05
+H15 ep4 (636k branch, 20% LoRA ep4): n=5000 LoRA 81.2 branch 62.0 | ens w=.5 81.1 | ens cross-fit (w=[0.85, 0.9]) 81.5
+   lf20e4_int   81.4 vs ens w=.5      81.1: diff +0.3  only-hybrid 171 only-ens 154 p=0.37
+   lf20e4_int   81.4 vs ens cross-fit 81.5: diff -0.0  only-hybrid 133 only-ens 134 p=1
+   lf20e4_fuse  81.3 vs ens w=.5      81.1: diff +0.2  only-hybrid 160 only-ens 152 p=0.69
+   lf20e4_fuse  81.3 vs ens cross-fit 81.5: diff -0.2  only-hybrid 161 only-ens 171 p=0.62
