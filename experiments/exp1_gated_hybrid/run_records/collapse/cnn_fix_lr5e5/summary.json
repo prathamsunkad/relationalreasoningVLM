@@ -1,0 +1,73 @@
+{
+ "best": {
+  "key": 2.0444735584259033,
+  "loss": 2.0444735584259033,
+  "acc": 0.1763,
+  "n": 10000,
+  "step": 6000,
+  "epoch": 0.417
+ },
+ "history": [
+  {
+   "loss": 2.077900821685791,
+   "acc": 0.1407,
+   "n": 10000,
+   "step": 1000,
+   "epoch": 0.07
+  },
+  {
+   "loss": 2.074591015625,
+   "acc": 0.1531,
+   "n": 10000,
+   "step": 2000,
+   "epoch": 0.139
+  },
+  {
+   "loss": 2.0736975898742678,
+   "acc": 0.1526,
+   "n": 10000,
+   "step": 3000,
+   "epoch": 0.209
+  },
+  {
+   "loss": 2.067332908630371,
+   "acc": 0.1586,
+   "n": 10000,
+   "step": 4000,
+   "epoch": 0.278
+  },
+  {
+   "loss": 2.062295568084717,
+   "acc": 0.1703,
+   "n": 10000,
+   "step": 5000,
+   "epoch": 0.348
+  },
+  {
+   "loss": 2.0444735584259033,
+   "acc": 0.1763,
+   "n": 10000,
+   "step": 6000,
+   "epoch": 0.417
+  }
+ ],
+ "step": 6000,
+ "slot": "cnn",
+ "fusion_config": {
+  "missing": 8,
+  "panels": 16,
+  "rel_dim": 256,
+  "n_slots": 10,
+  "slot_iters": 3,
+  "abs_layers": 2,
+  "gate": "channel",
+  "n_branches": 1,
+  "source": "cnn",
+  "slot_layer": -1,
+  "recon_res": 64,
+  "recon_panels": 32,
+  "qk_norm": true
+ },
+ "recon_weight": 1.0,
+ "val_set": "last 10000 of train.jsonl"
+}
