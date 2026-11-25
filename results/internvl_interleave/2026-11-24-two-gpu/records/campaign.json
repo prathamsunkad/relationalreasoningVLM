@@ -1,0 +1,42 @@
+{
+  "name": "InternVL interleave: two GPUs, epoch 6 then epoch 4",
+  "models": [
+    {
+      "name": "epoch6",
+      "plan": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu/ep6-plan.json"
+    },
+    {
+      "name": "epoch4",
+      "plan": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu/ep4-plan.json"
+    }
+  ],
+  "resources": {
+    "pilot": {
+      "h200": 2,
+      "minutes": 30
+    },
+    "segment": {
+      "h200": 2,
+      "hours": 4
+    },
+    "initial_segments": 12,
+    "max_initial_training_gpu_hours": 96
+  },
+  "goal": "Each model at most one240k-question pass or conservative validation plateau; epoch6 first; no test evaluation",
+  "original_campaign": "/Users/yluo/Downloads/Projects/VLM/benchmarks/.local/campaigns/internvl-interleave-20pct-2026-11-24",
+  "validation_only": true,
+  "shared_feature_cache": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/cache",
+  "source_commit": "44ac9c74da42ed56d94d8798d24d2f8b0745a7a0",
+  "available_checkpoint_epochs": [
+    6,
+    4,
+    3,
+    2,
+    1
+  ],
+  "later_checkpoint_epochs_not_submitted": [
+    3,
+    2,
+    1
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "native_protocol_exact": true,
+  "candidate_permutation": true,
+  "teacher_cached_pool_parity": true,
+  "crop_true_false_pixels_identical": true,
+  "crop_true_shape": [
+    8,
+    3,
+    448,
+    448
+  ],
+  "crop_false_shape": [
+    8,
+    3,
+    448,
+    448
+  ],
+  "preserved_crop_to_patches": true,
+  "reference_connector": true,
+  "original_token_embedding_path": true,
+  "max_gradient_absolute_error": 7.450580596923828e-09,
+  "gradient_atol": 1e-06,
+  "gradient_rtol": 1e-05,
+  "update_atol": 1e-06,
+  "max_update_absolute_error": 4.0978193283081055e-08,
+  "global_batch16_serial_equivalence": true,
+  "joint_next_update_replay_exact": true
+}

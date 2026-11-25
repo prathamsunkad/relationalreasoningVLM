@@ -21,3 +21,12 @@ The later PGM runs used the fixed 240,000-question pool for repeated epochs:
 Those tables include published Slot Abstractor reference scores. They are not matched-compute reproductions. Checkpoint selection uses validation; test scores are reported separately.
 
 The five original architectural probes, their frozen variants, and later plugin/memory experiments are included as experimental code, despite weak learning in the archived campaigns. Their presence is not an accuracy claim. See [the integration guide](../../docs/VLM_INTEGRATION.md#architectural-experiments) for the exact insertion sites and modes. The newer diagnostic recipes support capacity, classifier-readout, gradient and correction-size investigations; no new research runs were submitted during this migration.
+
+## Current InternVL interleaving campaign
+
+The [November 25 training snapshot](../internvl_interleave/2026-11-24-two-gpu/README.md)
+contains the two-H200 epoch-6-then-epoch-4 candidate-scoring experiment: exact
+plans, passed pilot checks, per-update training/validation logs, checkpoint
+pointers and plots. It is a partial training snapshot with 63,648 questions
+processed, not a completed epoch or benchmark test. The export preserves and
+verifies remote SHA256; weights and feature caches remain external.

@@ -1,0 +1,56 @@
+{
+  "experiment": "pretrained_slot_abstractor_frozen_best_lfm_connectors",
+  "designs": [
+    "reader",
+    "kv_memory",
+    "tokens"
+  ],
+  "revision": "919fde3d022e3f90a4716006f993938ee8c2eb97",
+  "adapter": "/home/hice1/yluo432/vlm-continuations/lfm-pgm-seven-epochs-2026-11-02/lfm25/segment-01/train/checkpoint-101000-ecb566b9/adapter",
+  "adapter_hashes": {
+    "adapter_model.safetensors": "b7c369ff0ffbf996f6c38a6bc093e2c2201eaa48b262e4a0191d409478ed88c7",
+    "adapter_config.json": "bd4af2ef98c4367f54cdd31788cc2f9f7aa1c3149754f532f5ca46d72fe4614f"
+  },
+  "teacher_package": "/storage/ice1/9/8/yluo432/vlm-benchmark/shared-imports/slotabstractor-pgm20-2026-11-18-v1",
+  "teacher_hashes": {
+    "slot_abstractor_pgm.py": "f70676665fe6bfc4cbe75437db43a8d859f41302759142b7c490b8fa22698d8c",
+    "util.py": "952bb538f55bce915cdc887a166f38fc16a169cb051b61b92cac3e3ec923f4a4",
+    "pgm_jsonl_data.py": "b38afe3c1eee866c94b230c0fd232714566cd9cbcb871070b3ef3e9a0b32836e",
+    "layout.json": "21ef723234f5beb97221633f4556dc1405b8e9d165a79092c2d2f0132f496241",
+    "weights/slot_ae_pgm20.pth.tar": "9146e233e130ff7b0544c031ad47a877f8b63105fa35f3717c640bd817e8b5ee",
+    "weights/slot_abstractor_pgm_pgm20_1gpu_d24_lr8e-05_run0_best.pth.tar": "e1fa6cf42f172eecf4a340cc5e1306d7beaf8cba2c89eeb46c4f3b5a66c966b2"
+  },
+  "selected_rows": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-abstractor-plugin-4k-2026-11-17/train/selected-rows.json",
+  "selected_rows_sha256": "98ad5453243df19420c77aadad38a5da451fe831ada995d4dd0fa1c911e1b611",
+  "data_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-coverage-20pct-2026-10-08",
+  "validation_image_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-adaptation-2026-10-07/images/validation",
+  "teacher_seed": 20261123,
+  "initialization_seed": 20261123,
+  "training_seed": 20261112,
+  "train_questions": 64,
+  "validation_questions": 32,
+  "global_batch": 4,
+  "max_updates": 16,
+  "lr": 0.0003,
+  "weight_decay": 0.01,
+  "warmup_updates": 2,
+  "reserve_seconds": 600,
+  "connector": {
+    "layer_index": 8,
+    "width": 256,
+    "heads": 8,
+    "cap": 0.1
+  },
+  "frozen": [
+    "VLM",
+    "existing_LoRA",
+    "slot_encoder",
+    "pretrained_Abstractor"
+  ],
+  "benchmark_test": false,
+  "maximum_gpu_hours": 2,
+  "objective": "Historical direct-answer suffix CE; answer CE reported separately",
+  "input_policy": "Native multi-tile 700x1016 contact sheet for LFM; original sixteen grayscale 80x80 panels for teacher",
+  "larger_runs_submitted": false,
+  "checkpoint_policy": "Final common update; correctness/throughput pilot, not model selection"
+}

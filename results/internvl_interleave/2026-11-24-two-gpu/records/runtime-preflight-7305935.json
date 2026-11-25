@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "check": "real reference imports, hashes and strict CPU checkpoint loading",
+  "dependencies": {
+    "colorlog": {
+      "version": "6.9.0",
+      "path": "/tmp/internvl-connectors.pzIPzi0N/reference-deps/colorlog/__init__.py"
+    },
+    "einops": {
+      "version": "0.8.1",
+      "path": "/tmp/internvl-connectors.pzIPzi0N/reference-deps/einops/__init__.py"
+    }
+  },
+  "parameters": {
+    "encoder": 169506,
+    "abstractor": 2378817
+  },
+  "torch": "2.6.0+cu124"
+}

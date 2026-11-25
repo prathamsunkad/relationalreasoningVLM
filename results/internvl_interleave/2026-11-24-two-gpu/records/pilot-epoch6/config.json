@@ -1,0 +1,105 @@
+{
+  "plan": {
+    "train_manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pretrained-connectors-5pct-2026-11-23/data/train.jsonl",
+    "train_manifest_sha256": "f0141b074e8abfba8c2a148dedb71aa115cca93857e3648da5eca568c1a071c2",
+    "val_manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pretrained-connectors-5pct-2026-11-23/data/validation.jsonl",
+    "val_manifest_sha256": "d3f685f7400d5bda50cb6077fd06e2b6054a295c0757aa64127f6e88937876c6",
+    "data_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-coverage-20pct-2026-10-08",
+    "validation_image_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-adaptation-2026-10-07/images/validation",
+    "cache_output": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pretrained-connectors-5pct-2026-11-23/cache",
+    "teacher_hashes": {
+      "slot_abstractor_pgm.py": "f70676665fe6bfc4cbe75437db43a8d859f41302759142b7c490b8fa22698d8c",
+      "util.py": "952bb538f55bce915cdc887a166f38fc16a169cb051b61b92cac3e3ec923f4a4",
+      "pgm_jsonl_data.py": "b38afe3c1eee866c94b230c0fd232714566cd9cbcb871070b3ef3e9a0b32836e",
+      "layout.json": "21ef723234f5beb97221633f4556dc1405b8e9d165a79092c2d2f0132f496241",
+      "weights/slot_ae_pgm20.pth.tar": "9146e233e130ff7b0544c031ad47a877f8b63105fa35f3717c640bd817e8b5ee",
+      "weights/slot_abstractor_pgm_pgm20_1gpu_d24_lr8e-05_run0_best.pth.tar": "e1fa6cf42f172eecf4a340cc5e1306d7beaf8cba2c89eeb46c4f3b5a66c966b2"
+    },
+    "teacher_seed": 20261123,
+    "initialization_seed": 20261123,
+    "experiment": "internvl_epoch6_interleave_20pct_two_gpu",
+    "model": "/storage/ice1/9/8/yluo432/pgm-lora-v1/models/InternVL3_5-1B-HF",
+    "model_revision": "9191dbccf312b537016f041b25d61c72e7c5c9f3",
+    "adapter": "/storage/ice1/9/8/yluo432/pgm-lora-v1/adapters/internvl35_1b_pgm_ep6",
+    "adapter_hashes": {
+      "adapter_config.json": "402c4d7b7fb13d134696d7e1a41a33085efd3d74f454204b00a277b7bae3f15a",
+      "adapter_model.safetensors": "687354b244667347824e162964e36442da236e9c20945da4bba40d98e538bd10"
+    },
+    "weight_decay": 0.01,
+    "objective": "candidate_scoring_ce8",
+    "benchmark_test": false,
+    "full_train_manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-coverage-20pct-2026-10-08/train.jsonl",
+    "full_train_manifest_sha256": "9bc5ce2bd5b829b95c3079d4e8b16270ee5b2d7f4d10de227495b8bf3d2c3710",
+    "teacher_package": "/storage/ice1/9/8/yluo432/vlm-benchmark/shared-imports/slotabstractor-pgm20-2026-11-18-v1",
+    "incremental_cache": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/cache",
+    "pilot_output": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu/pilot-epoch6",
+    "training_output": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu/epoch6",
+    "base_frozen": true,
+    "teacher_frozen": true,
+    "trainable": [
+      "connector",
+      "existing_language_LoRA_after_warmup"
+    ],
+    "protocol": {
+      "crop_to_patches": true,
+      "relation_tokens": 1,
+      "rel_mode": "pool",
+      "objective": "candidate_scoring_ce8"
+    },
+    "training": {
+      "questions": 240000,
+      "epochs": 1,
+      "global_batch_questions": 16,
+      "updates": 15000,
+      "connector_only_updates": 500,
+      "warmup_updates": 50,
+      "decay_start": 500,
+      "connector_lr": 0.0001,
+      "lora_lr": 2e-05,
+      "minimum_lr_fraction": 0.1,
+      "weight_decay": 0.01,
+      "weight_decay_exclude_bias_gain": true,
+      "selection": "minimum_validation_CE"
+    },
+    "pilot": {
+      "cached_questions": 128,
+      "uncached_questions": 128,
+      "validation_questions": 32,
+      "updates": 16,
+      "connector_only_updates": 4,
+      "minutes": 30,
+      "gpus": 2
+    },
+    "no_separate_cache_job": true,
+    "no_fusion": true,
+    "teammate_branch_commit": "2916e8f",
+    "source_commit": "44ac9c74da42ed56d94d8798d24d2f8b0745a7a0",
+    "runtime_dependencies": {
+      "colorlog": "6.9.0",
+      "einops": "0.8.1"
+    },
+    "early_stopping": {
+      "warmup_updates": 500,
+      "interval": 500,
+      "patience": 6,
+      "absolute_delta": 0.001,
+      "relative_delta": 0.001,
+      "accuracy_delta": 0.002,
+      "min_joint_updates": 1000,
+      "expected_count": 1000
+    },
+    "world_size": 2,
+    "pilot_uncached_start": 60128,
+    "checkpoint_epoch": 6,
+    "validation_interval_updates": 500,
+    "execution": {
+      "global_batch_questions": 16,
+      "questions_per_rank": 8,
+      "gradient_reduction": "sum local gradients of question_loss/16",
+      "dropout_rng": "deterministic per question ID and global update",
+      "gpus_per_allocation": 2,
+      "hours_per_allocation": 4
+    }
+  },
+  "mode": "pilot"
+}

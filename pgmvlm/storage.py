@@ -1,6 +1,8 @@
 """Optional personal Lustre quota checks; never deletes checkpoints."""
 import os
+import json
 import re
+import socket
 import subprocess
 import time
 from pathlib import Path
@@ -37,7 +39,7 @@ def parse_lustre_quota(output, mount):
                 'limit_files':min(ilimits),'free_files':max(0,min(ilimits)-files)}
     raise StorageHeadroomError('No quota row for the checkpoint filesystem')
 
-def storage_report(path):
+def _native_storage_report(path):
     path=Path(path).resolve()
     while not path.exists():
         path=path.parent
@@ -55,10 +57,45 @@ def storage_report(path):
                   filesystem_free_files=stats.f_favail,checked_unix=time.time())
     return report
 
+def storage_report(path):
+    """Use native tools, or the same user's live host service inside a container."""
+    endpoint=os.environ.get('PGMVLM_STORAGE_SOCKET')
+    if not endpoint:
+        return _native_storage_report(path)
+    path=Path(path).resolve()
+    while not path.exists():
+        path=path.parent
+    job=os.environ.get('SLURM_JOB_ID','')
+    request=json.dumps({'path':str(path),'job_id':job}).encode()+b'\n'
+    try:
+        with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as client:
+            client.settimeout(65)
+            client.connect(endpoint);client.sendall(request)
+            with client.makefile('rb') as stream:
+                raw=stream.readline(65537)
+        if len(raw)>65536 or not raw.endswith(b'\n'):
+            raise ValueError('Invalid quota response')
+        data=json.loads(raw)
+        if 'error' in data:
+            raise ValueError(data['error'])
+        if data['uid']!=os.getuid() or data['job_id']!=job or data['path']!=str(path):
+            raise ValueError('Quota response identity/path mismatch')
+        age=time.time()-data['checked_unix']
+        if not -5<=age<=60:
+            raise ValueError('Stale quota response')
+        for key in ('free_bytes','free_files','filesystem_free_bytes','filesystem_free_files','metadata_free_files'):
+            if not isinstance(data[key],int) or isinstance(data[key],bool) or data[key]<0:
+                raise ValueError('Invalid quota counts')
+        return data
+    except (OSError,ValueError,KeyError,TypeError) as exc:
+        raise StorageHeadroomError(f'Host quota check failed: {exc}') from exc
+
 def require_headroom(path, reserve_bytes=8*GIB, reserve_files=2000):
     report=storage_report(path)
     if report['free_bytes']<reserve_bytes or report['filesystem_free_bytes']<reserve_bytes:
         raise StorageHeadroomError(f"Checkpoint storage headroom too low: personal {report['free_bytes']/GIB:.3f} GiB; require {reserve_bytes/GIB:.3f} GiB")
     if report['free_files']<reserve_files or (report['filesystem_free_files']>0 and report['filesystem_free_files']<reserve_files):
         raise StorageHeadroomError('Checkpoint file-count quota headroom too low')
+    if report.get('metadata_free_files',reserve_files)<reserve_files:
+        raise StorageHeadroomError('Checkpoint metadata-target quota headroom too low')
     return report

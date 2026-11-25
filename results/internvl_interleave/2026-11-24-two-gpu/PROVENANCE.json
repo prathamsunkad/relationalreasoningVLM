@@ -1,0 +1,378 @@
+{
+  "captured_utc": "2026-11-25T20:05:54.414449+00:00",
+  "source_commit": "44ac9c74da42ed56d94d8798d24d2f8b0745a7a0",
+  "branch": "codex/internvl-interleave-20pct",
+  "remote_run_directory": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu",
+  "artifacts": [
+    {
+      "path": "records/campaign.json",
+      "source_relative_path": "campaign.json",
+      "encoding": "identity",
+      "bytes": 1208,
+      "sha256": "7af6ee26ce8824f046bdd3b4f9f5a7e7bcb79c58c4c251205043e9ce0c0df6c0",
+      "original_bytes": 1208,
+      "remote_sha256": "7af6ee26ce8824f046bdd3b4f9f5a7e7bcb79c58c4c251205043e9ce0c0df6c0"
+    },
+    {
+      "path": "records/jobs.json",
+      "source_relative_path": "jobs.json",
+      "encoding": "identity",
+      "bytes": 970,
+      "sha256": "da5e4018d484cb04aafcd8fbb2f81bb03757b80cb994cf27d94fde6726a26024",
+      "original_bytes": 970,
+      "remote_sha256": "da5e4018d484cb04aafcd8fbb2f81bb03757b80cb994cf27d94fde6726a26024"
+    },
+    {
+      "path": "records/ep6-plan.json",
+      "source_relative_path": "ep6-plan.json",
+      "encoding": "identity",
+      "bytes": 4497,
+      "sha256": "943a82a29690bb37e413d2f83d04ed32a0f83af35a84e7923dcec8d0f4d8b79c",
+      "original_bytes": 4497,
+      "remote_sha256": "943a82a29690bb37e413d2f83d04ed32a0f83af35a84e7923dcec8d0f4d8b79c"
+    },
+    {
+      "path": "records/ep4-plan.json",
+      "source_relative_path": "ep4-plan.json",
+      "encoding": "identity",
+      "bytes": 4497,
+      "sha256": "5eb40a9ef3b4929d7d59cb663fd8602a599e5eeb5598c5f8d4586082275b1147",
+      "original_bytes": 4497,
+      "remote_sha256": "5eb40a9ef3b4929d7d59cb663fd8602a599e5eeb5598c5f8d4586082275b1147"
+    },
+    {
+      "path": "records/parent-jobs.json",
+      "source_relative_path": "parent-jobs.json",
+      "encoding": "identity",
+      "bytes": 2443,
+      "sha256": "834555a4fb96899240547f603a843defba6581fe2f5824571e44fc675680abfe",
+      "original_bytes": 2443,
+      "remote_sha256": "834555a4fb96899240547f603a843defba6581fe2f5824571e44fc675680abfe"
+    },
+    {
+      "path": "records/parent-queue-revision.json",
+      "source_relative_path": "parent-queue-revision.json",
+      "encoding": "identity",
+      "bytes": 473,
+      "sha256": "63d525ee168c6975d0d70e5b67ad564b414cb247d284a9d3d447230ec82b8f33",
+      "original_bytes": 473,
+      "remote_sha256": "63d525ee168c6975d0d70e5b67ad564b414cb247d284a9d3d447230ec82b8f33"
+    },
+    {
+      "path": "records/pilot-7305934.out",
+      "source_relative_path": "pilot-7305934.out",
+      "encoding": "identity",
+      "bytes": 1597,
+      "sha256": "3cc5e970f85aa4e7c45057b03d31af7518b71249979926c7ad59d2ec28bd42c6",
+      "original_bytes": 1597,
+      "remote_sha256": "3cc5e970f85aa4e7c45057b03d31af7518b71249979926c7ad59d2ec28bd42c6"
+    },
+    {
+      "path": "records/train-7305935.out",
+      "source_relative_path": "train-7305935.out",
+      "encoding": "identity",
+      "bytes": 1630,
+      "sha256": "3a848e7f41b7a976a136524acb3e1583388502b7a708f1316bf632edb822e1ba",
+      "original_bytes": 1630,
+      "remote_sha256": "3a848e7f41b7a976a136524acb3e1583388502b7a708f1316bf632edb822e1ba"
+    },
+    {
+      "path": "records/pilot-7305934.err",
+      "source_relative_path": "pilot-7305934.err",
+      "encoding": "identity",
+      "bytes": 13376,
+      "sha256": "912a2924b346cb84c85f5d9eafa50ade350b86ef13fa386a5f5865247b8bbc8c",
+      "original_bytes": 13376,
+      "remote_sha256": "912a2924b346cb84c85f5d9eafa50ade350b86ef13fa386a5f5865247b8bbc8c"
+    },
+    {
+      "path": "records/train-7305935.err",
+      "source_relative_path": "train-7305935.err",
+      "encoding": "identity",
+      "bytes": 3442,
+      "sha256": "813d5855ba63671b9acfbd6f9359600df2bf212fc0bc40e0bba78435e739c9fa",
+      "original_bytes": 3442,
+      "remote_sha256": "813d5855ba63671b9acfbd6f9359600df2bf212fc0bc40e0bba78435e739c9fa"
+    },
+    {
+      "path": "records/runtime-preflight-7305934.json",
+      "source_relative_path": "runtime-preflight-7305934.json",
+      "encoding": "identity",
+      "bytes": 492,
+      "sha256": "a825e643836e44a81e418e043849b3ea9ffcfc223e8f03c71658c3d0e1835933",
+      "original_bytes": 492,
+      "remote_sha256": "a825e643836e44a81e418e043849b3ea9ffcfc223e8f03c71658c3d0e1835933"
+    },
+    {
+      "path": "records/runtime-preflight-7305935.json",
+      "source_relative_path": "runtime-preflight-7305935.json",
+      "encoding": "identity",
+      "bytes": 492,
+      "sha256": "0f1d6cdd056e076b08ea389597e74d8af30f3192ffae79092a9d4fd939066e72",
+      "original_bytes": 492,
+      "remote_sha256": "0f1d6cdd056e076b08ea389597e74d8af30f3192ffae79092a9d4fd939066e72"
+    },
+    {
+      "path": "records/campaign-progress.json",
+      "source_relative_path": "campaign-progress.json",
+      "encoding": "identity",
+      "bytes": 1538,
+      "sha256": "1ea2713613200fd2a48a46024cd7220bef6bfa522d2ed35de8d2cb2b208c1802",
+      "original_bytes": 1538,
+      "remote_sha256": "1ea2713613200fd2a48a46024cd7220bef6bfa522d2ed35de8d2cb2b208c1802"
+    },
+    {
+      "path": "records/campaign-summary.json",
+      "source_relative_path": "campaign-summary.json",
+      "encoding": "identity",
+      "bytes": 1538,
+      "sha256": "1ea2713613200fd2a48a46024cd7220bef6bfa522d2ed35de8d2cb2b208c1802",
+      "original_bytes": 1538,
+      "remote_sha256": "1ea2713613200fd2a48a46024cd7220bef6bfa522d2ed35de8d2cb2b208c1802"
+    },
+    {
+      "path": "records/pilot-epoch6/best.json",
+      "source_relative_path": "pilot-epoch6/best.json",
+      "encoding": "identity",
+      "bytes": 60,
+      "sha256": "354c6058d7a96288be509b93f6c1c6a4f160234a5e3e0f885d3cccf5cb934e9b",
+      "original_bytes": 60,
+      "remote_sha256": "354c6058d7a96288be509b93f6c1c6a4f160234a5e3e0f885d3cccf5cb934e9b"
+    },
+    {
+      "path": "records/pilot-epoch6/checks.json",
+      "source_relative_path": "pilot-epoch6/checks.json",
+      "encoding": "identity",
+      "bytes": 653,
+      "sha256": "e59a4d3b030b3cd44759f7adafec4833885b89881fa435daffabd253a7c8a42d",
+      "original_bytes": 653,
+      "remote_sha256": "e59a4d3b030b3cd44759f7adafec4833885b89881fa435daffabd253a7c8a42d"
+    },
+    {
+      "path": "records/pilot-epoch6/config.json",
+      "source_relative_path": "pilot-epoch6/config.json",
+      "encoding": "identity",
+      "bytes": 4732,
+      "sha256": "54a8620ee628012af50021ea201098631c7136e7f2d588ec06b581af27083e25",
+      "original_bytes": 4732,
+      "remote_sha256": "54a8620ee628012af50021ea201098631c7136e7f2d588ec06b581af27083e25"
+    },
+    {
+      "path": "records/pilot-epoch6/progress.json",
+      "source_relative_path": "pilot-epoch6/progress.json",
+      "encoding": "identity",
+      "bytes": 336,
+      "sha256": "8b009d463ccf56b96f192149bbae1f2f9f7f9680f6dbeaa9b4707163bd4305b5",
+      "original_bytes": 336,
+      "remote_sha256": "8b009d463ccf56b96f192149bbae1f2f9f7f9680f6dbeaa9b4707163bd4305b5"
+    },
+    {
+      "path": "records/pilot-epoch6/summary.json",
+      "source_relative_path": "pilot-epoch6/summary.json",
+      "encoding": "identity",
+      "bytes": 778,
+      "sha256": "c1f4cf4963a161df8513d5220dc606260607867878f9193693c9efe61847af5c",
+      "original_bytes": 778,
+      "remote_sha256": "c1f4cf4963a161df8513d5220dc606260607867878f9193693c9efe61847af5c"
+    },
+    {
+      "path": "records/pilot-epoch6/validation-best.json",
+      "source_relative_path": "pilot-epoch6/validation-best.json",
+      "encoding": "identity",
+      "bytes": 13761,
+      "sha256": "2f6fa7375822df6f8d223b8581c26977eb381a9e5874ee7a8beb31c6cf0ac3b7",
+      "original_bytes": 13761,
+      "remote_sha256": "2f6fa7375822df6f8d223b8581c26977eb381a9e5874ee7a8beb31c6cf0ac3b7"
+    },
+    {
+      "path": "records/pilot-epoch6/validation-latest.json",
+      "source_relative_path": "pilot-epoch6/validation-latest.json",
+      "encoding": "identity",
+      "bytes": 13754,
+      "sha256": "ffdfe2312933c9d80a7fa6c1f42d342e86282330f4e5eea13c7c9cd2e94e262f",
+      "original_bytes": 13754,
+      "remote_sha256": "ffdfe2312933c9d80a7fa6c1f42d342e86282330f4e5eea13c7c9cd2e94e262f"
+    },
+    {
+      "path": "records/pilot-epoch6/learning-curve.jsonl.gz",
+      "source_relative_path": "pilot-epoch6/learning-curve.jsonl",
+      "encoding": "gzip",
+      "bytes": 1644,
+      "sha256": "3c4cc83f3a9da59662329cf5bc637df1669044e9b31db42c523028653e761bd5",
+      "original_bytes": 6413,
+      "remote_sha256": "e8531a2377ac2d5a99f9d06de21bf5b5d05aeae8ec9964c3a43f0a16697ab3da"
+    },
+    {
+      "path": "records/pilot-epoch6/validation-curve.jsonl.gz",
+      "source_relative_path": "pilot-epoch6/validation-curve.jsonl",
+      "encoding": "gzip",
+      "bytes": 236,
+      "sha256": "9971b5d65db67f5ad0af58f1a8b52a6c6aede60836bde2bd212e23d02957fe17",
+      "original_bytes": 700,
+      "remote_sha256": "80b7066ae95c2e735aa3e164c6fb1c34bdb4c481685e4da3f4ed7f29a8ed827e"
+    },
+    {
+      "path": "records/pilot-epoch4/best.json",
+      "source_relative_path": "pilot-epoch4/best.json",
+      "encoding": "identity",
+      "bytes": 60,
+      "sha256": "daf649a6ac60b686430f6d1c9a30e7651e43562ad97b31d979cd06869bf5dfe8",
+      "original_bytes": 60,
+      "remote_sha256": "daf649a6ac60b686430f6d1c9a30e7651e43562ad97b31d979cd06869bf5dfe8"
+    },
+    {
+      "path": "records/pilot-epoch4/checks.json",
+      "source_relative_path": "pilot-epoch4/checks.json",
+      "encoding": "identity",
+      "bytes": 653,
+      "sha256": "65eff2009d0514c51c67ee0d33ecd01526d5d12ab54203235fcfb58b9bc02566",
+      "original_bytes": 653,
+      "remote_sha256": "65eff2009d0514c51c67ee0d33ecd01526d5d12ab54203235fcfb58b9bc02566"
+    },
+    {
+      "path": "records/pilot-epoch4/config.json",
+      "source_relative_path": "pilot-epoch4/config.json",
+      "encoding": "identity",
+      "bytes": 4732,
+      "sha256": "372acfc7a2b26f9395ff96e14d401f79913e1b6e8cbe51559760defa2ef114f6",
+      "original_bytes": 4732,
+      "remote_sha256": "372acfc7a2b26f9395ff96e14d401f79913e1b6e8cbe51559760defa2ef114f6"
+    },
+    {
+      "path": "records/pilot-epoch4/progress.json",
+      "source_relative_path": "pilot-epoch4/progress.json",
+      "encoding": "identity",
+      "bytes": 336,
+      "sha256": "d88d4c606fece43804bc35eb40fb00fe40168304074ee73b2597734d17fe9169",
+      "original_bytes": 336,
+      "remote_sha256": "d88d4c606fece43804bc35eb40fb00fe40168304074ee73b2597734d17fe9169"
+    },
+    {
+      "path": "records/pilot-epoch4/summary.json",
+      "source_relative_path": "pilot-epoch4/summary.json",
+      "encoding": "identity",
+      "bytes": 761,
+      "sha256": "30f76f0a53d241cc466b2be9097a1fc2ca53bae035655b9b58fa1e1b683616a1",
+      "original_bytes": 761,
+      "remote_sha256": "30f76f0a53d241cc466b2be9097a1fc2ca53bae035655b9b58fa1e1b683616a1"
+    },
+    {
+      "path": "records/pilot-epoch4/validation-best.json",
+      "source_relative_path": "pilot-epoch4/validation-best.json",
+      "encoding": "identity",
+      "bytes": 13804,
+      "sha256": "fcafb2cde7fb2552053b1bed0b191615afb45e0555ba4127283cfb265400ea4f",
+      "original_bytes": 13804,
+      "remote_sha256": "fcafb2cde7fb2552053b1bed0b191615afb45e0555ba4127283cfb265400ea4f"
+    },
+    {
+      "path": "records/pilot-epoch4/validation-latest.json",
+      "source_relative_path": "pilot-epoch4/validation-latest.json",
+      "encoding": "identity",
+      "bytes": 13815,
+      "sha256": "56aebc5ea339f3a136fee9ba73dd57d6b762fb2de0039240975b583d26e2165f",
+      "original_bytes": 13815,
+      "remote_sha256": "56aebc5ea339f3a136fee9ba73dd57d6b762fb2de0039240975b583d26e2165f"
+    },
+    {
+      "path": "records/pilot-epoch4/learning-curve.jsonl.gz",
+      "source_relative_path": "pilot-epoch4/learning-curve.jsonl",
+      "encoding": "gzip",
+      "bytes": 1619,
+      "sha256": "867b0bca24fa03b2b0a32d1c689f28d617e3bcc0d0deaca3d4ca045857fdea43",
+      "original_bytes": 6414,
+      "remote_sha256": "af357f4277002c2bcdc4ab52f48e42898fa45805bb2a7fc2603900343b081bd6"
+    },
+    {
+      "path": "records/pilot-epoch4/validation-curve.jsonl.gz",
+      "source_relative_path": "pilot-epoch4/validation-curve.jsonl",
+      "encoding": "gzip",
+      "bytes": 234,
+      "sha256": "e11e08625dba710e9118ad91292a6ff6740475f91030a5eef4115946cd8db2c6",
+      "original_bytes": 693,
+      "remote_sha256": "f4ea1eaa5295d0e982a2b82d54d4c603d8ab5a64289907b66d9b0d20d3950ab7"
+    },
+    {
+      "path": "records/epoch6/best.json",
+      "source_relative_path": "epoch6/best.json",
+      "encoding": "identity",
+      "bytes": 62,
+      "sha256": "850e37bcd2f84f7608d47fba6ca7460345210a0dbb5003c5cfa28d2c623ae542",
+      "original_bytes": 62,
+      "remote_sha256": "850e37bcd2f84f7608d47fba6ca7460345210a0dbb5003c5cfa28d2c623ae542"
+    },
+    {
+      "path": "records/epoch6/config.json",
+      "source_relative_path": "epoch6/config.json",
+      "encoding": "identity",
+      "bytes": 4732,
+      "sha256": "a11e41cfa4030dc4b990254ffc57cab3a73c002e527b213a4a3988df870df6d3",
+      "original_bytes": 4732,
+      "remote_sha256": "a11e41cfa4030dc4b990254ffc57cab3a73c002e527b213a4a3988df870df6d3"
+    },
+    {
+      "path": "records/epoch6/progress.json",
+      "source_relative_path": "epoch6/progress.json",
+      "encoding": "identity",
+      "bytes": 350,
+      "sha256": "3b7ac200c80eaa94a9fb2e21113028ccf16829ee85ebc7eba05450fca387c9de",
+      "original_bytes": 350,
+      "remote_sha256": "3b7ac200c80eaa94a9fb2e21113028ccf16829ee85ebc7eba05450fca387c9de"
+    },
+    {
+      "path": "records/epoch6/summary.json",
+      "source_relative_path": "epoch6/summary.json",
+      "encoding": "identity",
+      "bytes": 677,
+      "sha256": "629aa680eb75f849d5e3a6c8a5d026087b4f53f5a2e87ac3a6c42b8b9edae39b",
+      "original_bytes": 677,
+      "remote_sha256": "629aa680eb75f849d5e3a6c8a5d026087b4f53f5a2e87ac3a6c42b8b9edae39b"
+    },
+    {
+      "path": "records/epoch6/validation-best.json.gz",
+      "source_relative_path": "epoch6/validation-best.json",
+      "encoding": "gzip",
+      "bytes": 99612,
+      "sha256": "fc7f18be1e86d58efdfbb0ba3e88e07db207b574f50a49c4ee33221bd12da845",
+      "original_bytes": 423072,
+      "remote_sha256": "668493aee2d09f93e00b06db935622fea2f7d066e8a4d6dcc82deefa59f36a9b"
+    },
+    {
+      "path": "records/epoch6/validation-latest.json.gz",
+      "source_relative_path": "epoch6/validation-latest.json",
+      "encoding": "gzip",
+      "bytes": 99612,
+      "sha256": "fc7f18be1e86d58efdfbb0ba3e88e07db207b574f50a49c4ee33221bd12da845",
+      "original_bytes": 423072,
+      "remote_sha256": "668493aee2d09f93e00b06db935622fea2f7d066e8a4d6dcc82deefa59f36a9b"
+    },
+    {
+      "path": "records/epoch6/learning-curve.jsonl.gz",
+      "source_relative_path": "epoch6/learning-curve.jsonl",
+      "encoding": "gzip",
+      "bytes": 334343,
+      "sha256": "e2fbbd776c6b470eaba25a4ebf59a8a183c438f0ff52de472803dd6f11ea7a14",
+      "original_bytes": 1643642,
+      "remote_sha256": "462b2d3a1489946dcefcd6eecc58e3ed8659f5231ecc68a4b12dac814bd5c250"
+    },
+    {
+      "path": "records/epoch6/stopping-curve.jsonl.gz",
+      "source_relative_path": "epoch6/stopping-curve.jsonl",
+      "encoding": "gzip",
+      "bytes": 312,
+      "sha256": "29dc5459198fe4efe054782858b7c545a8d3bc7709ed6e4d4817dbd7f8fa43dd",
+      "original_bytes": 1332,
+      "remote_sha256": "4b027631004a3c9b4aec0228d55aef43407a68f9f8b8b46fa37af56c6db64800"
+    },
+    {
+      "path": "records/epoch6/validation-curve.jsonl.gz",
+      "source_relative_path": "epoch6/validation-curve.jsonl",
+      "encoding": "gzip",
+      "bytes": 327,
+      "sha256": "983810b624a2ba1143e1f4dd09cd64982188bfbef54710ae730b4e1323ae1501",
+      "original_bytes": 1151,
+      "remote_sha256": "a87fe0d76835ce13739d854053d68b4a0ab48c76d2f74ed265469534cfb9bde6"
+    }
+  ],
+  "scope": "Incomplete training snapshot, not final benchmark results. JSONL and larger JSON records are losslessly gzip compressed; other files are byte-identical. No model weights or feature cache."
+}

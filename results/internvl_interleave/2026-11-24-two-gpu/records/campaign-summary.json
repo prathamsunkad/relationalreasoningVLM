@@ -1,0 +1,50 @@
+{
+  "mode": "train",
+  "campaign_sha256": "11192d28e2733fa718a4b8990b9524b40181e504253e92a76ed2b61b07645ba2",
+  "complete": false,
+  "status": "checkpointed_needs_continuation",
+  "models": {
+    "epoch6": {
+      "complete": false,
+      "passed": false,
+      "mode": "train",
+      "plan_sha256": "e81de310be2a03dec5090c7c231274cee3779240b759e1bada5f16e3f9f59bdd",
+      "update": 3978,
+      "examples": 63648,
+      "stop_reason": "allocation_boundary",
+      "best_loss": 1.0007272896990456,
+      "best_checkpoint": {
+        "directory": "best-7abb86b8e3f44b81bfbc20908d7af5ef",
+        "manifest_sha256": "525f8be1a7573296171ecf25f0d3d63c788e0dec7bca6ebf5c07df4f3ba0237b"
+      },
+      "early_stopped": false
+    }
+  },
+  "invocations": [
+    {
+      "model": "epoch6",
+      "command": [
+        "/usr/bin/python",
+        "-m",
+        "torch.distributed.run",
+        "--standalone",
+        "--nnodes=1",
+        "--nproc_per_node=2",
+        "/tmp/internvl-connectors.pzIPzi0N/source/tools/train_distributed_interleave.py",
+        "--plan",
+        "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu/ep6-plan.json",
+        "--output",
+        "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu/epoch6",
+        "--mode",
+        "train",
+        "--seconds",
+        "13799"
+      ],
+      "previous_update": 0,
+      "remaining_seconds": 13799,
+      "status": "checkpointed",
+      "returncode": 0
+    }
+  ],
+  "current_model": "epoch6"
+}

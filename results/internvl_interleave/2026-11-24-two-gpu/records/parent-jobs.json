@@ -1,0 +1,75 @@
+{
+  "campaign": "internvl-interleave-20pct-2026-11-24",
+  "source_commit": "44ac9c74da42ed56d94d8798d24d2f8b0745a7a0",
+  "plan_sha256": "c4838a7c3e3d7dedfcb8d465f2a7f6e51f84b55b0b057f928f3aee9693f47a9c",
+  "created_utc": "2026-11-25T02:34:52.220308+00:00",
+  "pilot": "7305934",
+  "training": "7305935",
+  "resources": {
+    "pilot": {
+      "h200": 2,
+      "minutes": 30
+    },
+    "segment": {
+      "h200": 2,
+      "hours": 4
+    },
+    "initial_segments": 12,
+    "max_initial_training_gpu_hours": 96
+  },
+  "goal": "Epoch6 then epoch4: each one240k pass or conservative validation plateau",
+  "history": [
+    {
+      "pilot": "7300780",
+      "training": "7300781",
+      "source_commit": "a8384868061976b74a918ec1f4433aade3e3c898",
+      "plan_sha256": "0db4f6e52ad41f7b175e5acf84095af8978ed872bed9215a3aec6614dcb989c8",
+      "pilot_state": "FAILED",
+      "training_state": "CANCELLED",
+      "failure": "No module named colorlog",
+      "evidence": "original source/plan/logs retained"
+    },
+    {
+      "pilot": "7302890",
+      "training": "7302891",
+      "source_commit": "c3e38704d7aae7735b7102128123076baff1c01f",
+      "pilot_state": "COMPLETED",
+      "training_state": "CANCELLED",
+      "reason": "User authorizedfourGPU4hallocations andvalidation stopping"
+    },
+    {
+      "pilot": "7305455",
+      "segments": [
+        "7305456",
+        "7305457",
+        "7305458",
+        "7305459",
+        "7305460",
+        "7305461"
+      ],
+      "source_commit": "3fa39a48c66664e4e997c9327d831633160ef6bd",
+      "state": "CANCELLED_BEFORE_START",
+      "reason": "User requested two GPUs to balance queue wait and throughput"
+    }
+  ],
+  "active_attempt": "two-gpu",
+  "active_plan": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu/ep6-plan.json",
+  "active_source": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu/source.tar.gz",
+  "active_submission_dir": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu",
+  "updated_utc": "2026-11-25T06:03:13.042083+00:00",
+  "active_campaign": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu/campaign.json",
+  "segments": [
+    "7305935",
+    "7305936",
+    "7305937",
+    "7305938",
+    "7305939",
+    "7305940",
+    "7305941",
+    "7305942",
+    "7305943",
+    "7305944",
+    "7305945",
+    "7305946"
+  ]
+}
