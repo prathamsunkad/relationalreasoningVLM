@@ -77,20 +77,21 @@ def ordered_rows(plan):
 
 
 class Run:
-    def __init__(self, plan, out, mode, deadline):
+    def __init__(self, plan, out, mode, deadline, *, banks_factory=IncrementalRelations):
         self.plan, self.out, self.mode, self.deadline = plan, out, mode, deadline
-        self.device = torch.device('cuda')
+        self.device = torch.device('cuda', torch.cuda.current_device())
         self.teacher = None
         self.old, self.val, self.order = ordered_rows(plan)
         self.rows = {r['id']: r for r in self.order + self.val}
         self.images = Images(self.order + self.val, plan, capacity=8)
         self.old_banks = Banks(plan['cache_output'], self.old + self.val, plan, capacity=4)
         identity = contract({k: plan[k] for k in ('teacher_hashes', 'teacher_seed', 'full_train_manifest_sha256', 'val_manifest_sha256')})
-        self.banks = IncrementalRelations(plan['incremental_cache'], identity, self.order + self.val,
+        self.banks = banks_factory(plan['incremental_cache'], identity, self.order + self.val,
             self.old_banks, {r['id'] for r in self.old + self.val}, self.extract,
             headroom=lambda root, **_: require_headroom(root, reserve_bytes=8*1024**3, reserve_files=300))
         if mode == 'pilot':
-            self.train = self.order[:128] + self.order[60000:60128]
+            offset = plan.get('pilot_uncached_start', 60000)
+            self.train = self.order[:128] + self.order[offset:offset+128]
             self.validation = self.val[:32]
             self.total, self.frozen_steps, self.warmup = 16, 4, 2
         else:
@@ -135,7 +136,7 @@ class Run:
         if self.teacher is None:
             # Lazy model construction must not perturb LoRA's dropout RNG.
             with torch.random.fork_rng(devices=[self.device.index or 0]):
-                self.teacher = FrozenRelations(self.plan['teacher_package'], self.plan['teacher_hashes'])
+                self.teacher = FrozenRelations(self.plan['teacher_package'], self.plan['teacher_hashes'], device=self.device)
         return self.teacher.extract(self.images[key], key, self.plan['teacher_seed'], verify=not self.teacher.parity_verified)
 
     def batch(self, row, permutation=None):
