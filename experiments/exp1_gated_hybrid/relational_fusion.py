@@ -282,6 +282,8 @@ class GatedRelationalProjector(nn.Module):
         self.enabled = True        # False = plain InternVL (ablation)
         self.route = None          # per-puzzle branch index (cross-fitting); None = average all branches
         self.shuffle = False       # control: give each puzzle another puzzle's relational features
+        self.drop = None           # training: per-puzzle bools, True = relational path off for that puzzle
+                                   # (branch dropout, so the LLM cannot lean on the branch alone)
         self.compute_recon = False # stage 0: also compute the reconstruction loss
         self.stage0_only = False   # stage 0: compute candidate logits only, pass v through unchanged
         self.last = {}             # gate stats, candidate logits, reconstruction loss of the last forward
@@ -383,6 +385,10 @@ class GatedRelationalProjector(nn.Module):
         g = torch.sigmoid(self.gate(torch.cat([self.nv(v), self.nu(u)], -1)))
         self.last = {"candidate_logits": logits, "recon_loss": recon, "gate_mean": g.mean().detach(),
                      "gate_per_panel": g.mean((1, 2)).detach(), "slot_assign": A.detach()}
+        if self.drop is not None:  # branch dropout: those puzzles get the plain InternVL tokens
+            keep = ~torch.as_tensor(self.drop, dtype=torch.bool, device=g.device)
+            assert len(keep) * self.panels == g.shape[0], f"drop has {len(keep)} entries for {g.shape[0]} tiles"
+            g = g * keep.repeat_interleave(self.panels).to(g.dtype).view(-1, *([1] * (g.dim() - 1)))
         return v + g * u
 
 

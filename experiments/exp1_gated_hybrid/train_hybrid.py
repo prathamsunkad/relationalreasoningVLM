@@ -30,6 +30,16 @@ flat after --warmup_steps, so a run can be extended later by re-running it with 
 (it resumes from last.pt). --val_from_train N holds out the LAST N rows of train.jsonl as the validation
 set (excluded from training) for a less noisy comparison; your 1,000 validation puzzles stay untouched.
 
+Long runs in 6-hour jobs: --max_hours H saves last.pt and exits cleanly after H hours (no summary.json yet), so
+the same command in the next job continues. --patience N stops after N validations without a new best; with
+--decay_steps K (constant schedule) it first decays the learning rate linearly to 0 over K more steps, then stops.
+Without a plateau the decay is the last K steps before --max_steps.
+
+The recipe (LoRA first, then the branch): `baseline` trains LoRA on the crops; `stage1 --lora_from <baseline>`
+aligns the branch with that LoRA frozen in place; `stage2` then continues LoRA + branch with --branch_dropout p
+(each puzzle has its relational path switched off with probability p, so the LLM keeps solving on its own); the
+equal-step control is `baseline --init <baseline>` for the same epochs. pipeline.sh runs all of it.
+
 Data-scaling: --train_limit N uses the first N training rows. The file order is your fixed nested
 ranking, so smaller limits are subsets of larger ones.
 
@@ -369,15 +379,23 @@ def build(args, mode, lay):
                 print(f"branch {i} <- {path}")
             meta["branch_halves"] = [load_ckpt(p)["meta"].get("half", "all") for p in args.branches]
         meta["fusion_config"] = dict(fusion.config)
-    if mode in ("stage2", "baseline") or (mode == "eval" and init and init.get("lora")):
+    # LoRA weights come from --init (stage2 after a LoRA-first stage1, a continued baseline, eval) or from
+    # --lora_from (stage1/stage2: a trained baseline's LoRA). Stage 1 and eval keep them frozen.
+    lora_src = init if (init and init.get("lora")) else None
+    if lora_src is None and getattr(args, "lora_from", None):
+        lora_src = load_ckpt(args.lora_from)
+        if not lora_src.get("lora"):
+            raise SystemExit(f"--lora_from {args.lora_from}: that checkpoint has no LoRA weights")
+        meta["lora_from"] = os.path.abspath(args.lora_from)
+    if mode in ("stage2", "baseline") or lora_src is not None:
         from peft import get_peft_model, set_peft_model_state_dict
-        cfg = lora_config(SimpleNamespace(**meta["lora"])) if init and init.get("lora") else lora_config(args)
+        cfg = lora_config(SimpleNamespace(**lora_src["meta"]["lora"])) if lora_src else lora_config(args)
         model = get_peft_model(model, cfg)
-        if init and init.get("lora"):
-            set_peft_model_state_dict(model, init["lora"])
+        if lora_src:
+            set_peft_model_state_dict(model, lora_src["lora"])
         meta["lora"] = dict(lora_r=cfg.r, lora_alpha=cfg.lora_alpha, lora_dropout=cfg.lora_dropout)
         for n, p in model.named_parameters():
-            p.requires_grad_("lora_" in n and mode != "eval")
+            p.requires_grad_("lora_" in n and mode in ("stage2", "baseline"))
     if fusion is not None and mode != "eval":
         fusion.float()   # trainable fusion weights in fp32; autocast handles bf16 activations
         fusion.projector.to(dtype)
@@ -468,6 +486,7 @@ def evaluate(args, mode, model, fusion, val_ds, coll, letter_ids, dev, dtype, wr
     model.eval()
     if fusion is not None:
         fusion.route = None
+        fusion.drop = None
     rows, tot_loss, n = [], 0.0, 0
     for enc, y, ids in loader(val_ds, coll, args.eval_batch_size, args.workers):
         logits, cand = forward(model, fusion, enc, "stage0" if mode == "stage0" else "lm", dev, dtype, pix)
@@ -580,9 +599,17 @@ def train(args, mode):
     per_epoch = math.ceil(len(ds) / (args.batch_size * args.grad_accum))
     total = args.max_steps if args.max_steps else math.ceil(args.epochs * per_epoch)
     warm = args.warmup_steps if args.warmup_steps else int(args.warmup * total)
+    plan = {"total": total, "stopped": False}   # --patience can move the end earlier (kept in last.pt)
     if args.schedule == "constant":
         ws = max(1, args.warmup_steps or 500)
-        sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda s: min(1.0, (s + 1) / ws))
+        K = args.decay_steps
+
+        def lr_lambda(s):
+            f = min(1.0, (s + 1) / ws)
+            if K and s >= plan["total"] - K:        # linear decay to 0 over the last K steps
+                f *= max(0.0, (plan["total"] - s) / K)
+            return f
+        sched = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda)
     else:
         from transformers import get_cosine_schedule_with_warmup
         sched = get_cosine_schedule_with_warmup(opt, warm, total)
@@ -603,7 +630,10 @@ def train(args, mode):
         opt.load_state_dict(st["opt"])
         sched.load_state_dict(st["sched"])
         step, best, history = st["step"], st["best"], st["history"]
-        print(f"resumed from step {step}", flush=True)
+        if st.get("plan") and (st["plan"]["stopped"] or st["plan"]["total"] < total):
+            plan.update(st["plan"])               # an early stop / decay decided by --patience stays decided
+        total = plan["total"]
+        print(f"resumed from step {step} (training to step {total})", flush=True)
     if step >= total:
         print(f"already at step {step} >= {total}; nothing to train (raise --max_steps to continue)", flush=True)
     meta.update({"mode": mode, "half": args.half if mode == "stage0" else None, "model": args.model,
@@ -611,7 +641,14 @@ def train(args, mode):
 
     log = open(os.path.join(args.out, "train_log.jsonl"), "a")
     t0, seen = time.time(), 0
-    while step < total:
+    deadline = t0 + args.max_hours * 3600 if args.max_hours else None
+    timed_out = False
+    drop_p = args.branch_dropout if (mode == "stage2" and fusion is not None) else 0.0
+
+    def save_last():
+        save_ckpt(last_path, model, fusion, meta, {"opt": opt.state_dict(), "sched": sched.state_dict(),
+                                                   "step": step, "best": best, "history": history, "plan": plan})
+    while step < total and not timed_out:
         epoch, pos = divmod(step, per_epoch)
         order = list(range(len(ds)))
         if args.shuffle:
@@ -630,6 +667,8 @@ def train(args, mode):
                 got += 1
                 if route_of is not None:
                     fusion.route = [route_of(i) for i in ids]
+                if drop_p > 0:            # reproducible after a resume: depends on seed, step and puzzle
+                    fusion.drop = [random.Random(f"{args.seed}/{step}/{i}").random() < drop_p for i in ids]
                 logits, cand = forward(model, fusion, enc, "stage0" if mode == "stage0" else "lm", dev, dtype, pix)
                 y = y.to(dev)
                 if mode == "stage0":
@@ -659,9 +698,9 @@ def train(args, mode):
             sched.step()
             step += 1
             if step % args.log_every == 0 or step == 1:
-                rec = {"step": step, "epoch": round(step / per_epoch, 3), "lr": sched.get_last_lr()[0],
+                rec = {"step": step, "of": total, "epoch": round(step / per_epoch, 3), "lr": sched.get_last_lr()[0],
                        **{k: round(v, 4) for k, v in stats.items()},
-                       "puzzles_per_s": round(seen / (time.time() - t0), 2)}
+                       "puzzles_per_s": round(seen / (time.time() - t0), 2), "t": round(time.time(), 1)}
                 if fusion is not None and fusion.last and mode != "stage0":
                     rec["gate_mean"] = round(float(fusion.last["gate_mean"]), 4)
                 if fusion is not None:
@@ -681,13 +720,36 @@ def train(args, mode):
                     best = {"key": key, **res}
                     save_ckpt(os.path.join(args.out, "best.pt"), model, fusion, dict(meta, selected=res))
                     print(f"  new best at step {step}", flush=True)
+                since = sum(1 for h in history if h["step"] > best["step"])
+                decaying = bool(args.schedule == "constant" and args.decay_steps
+                                and step >= plan["total"] - args.decay_steps)
+                if args.patience and since >= args.patience and step < total and not decaying:   # a decay runs to its end
+                    if args.schedule == "constant" and args.decay_steps:
+                        plan["total"] = total = step + args.decay_steps
+                        plan["plateau_at"] = step
+                        msg = f"plateau ({since} validations without a new best): decaying the LR to 0 by step {total}"
+                    else:
+                        plan["total"], plan["stopped"], total = step, True, step
+                        msg = f"early stop: {since} validations without a new best"
+                    print("  " + msg, flush=True)
+                    log.write(json.dumps({"event": msg, "step": step}) + "\n")
+                    log.flush()
                 model.train()
             if step % args.save_every == 0 or step == total:
-                save_ckpt(last_path, model, fusion, meta, {"opt": opt.state_dict(), "sched": sched.state_dict(),
-                                                           "step": step, "best": best, "history": history})
+                save_last()
+            if deadline and time.time() > deadline and step < total:
+                save_last()
+                timed_out = True
+                print(f"time budget of {args.max_hours} h reached at step {step}/{total}: saved last.pt; "
+                      "run the same command again to continue", flush=True)
+                break
         if fusion is not None:
             fusion.route = None
-    json.dump({"best": best, "history": history, "step": step, "slot": meta.get("slot"),
+            fusion.drop = None
+    log.close()
+    if timed_out:
+        return
+    json.dump({"best": best, "stopped_early": plan["stopped"], "plateau_at": plan.get("plateau_at"), "history": history, "step": step, "slot": meta.get("slot"),
                "fusion_config": meta.get("fusion_config"), "recon_weight": args.recon_weight,
                "val_set": f"last {len(val_p)} of train.jsonl" if args.val_from_train else "validation.jsonl"},
               open(os.path.join(args.out, "summary.json"), "w"), indent=1)
@@ -761,6 +823,15 @@ def main():
     ap.add_argument("--batch_size", type=int), ap.add_argument("--grad_accum", type=int)
     ap.add_argument("--eval_batch_size", type=int, default=8)
     ap.add_argument("--aux_weight", type=float, default=0.2, help="stage2: weight of the score-head loss")
+    ap.add_argument("--branch_dropout", type=float, default=0.0,
+                    help="stage2: probability of switching a puzzle's relational path off (0.5 avoided the shortcut)")
+    ap.add_argument("--lora_from", help="stage1/stage2: start from this checkpoint's LoRA (a trained baseline)")
+    ap.add_argument("--max_hours", type=float, default=0,
+                    help="save last.pt and exit after this many hours (0 = no limit); rerun to continue")
+    ap.add_argument("--patience", type=int, default=0,
+                    help="validations without a new best before stopping (or decaying, see --decay_steps); 0 = off")
+    ap.add_argument("--decay_steps", type=int, default=0,
+                    help="constant schedule: decay the LR linearly to 0 over the last N steps (or after a plateau)")
     ap.add_argument("--warmup", type=float, default=0.03, help="cosine: warmup as a fraction of the run")
     ap.add_argument("--warmup_steps", type=int, default=0, help="warmup in optimizer steps (constant default: 500)")
     ap.add_argument("--schedule", choices=["cosine", "constant"], default="cosine",
@@ -819,6 +890,10 @@ def main():
         ap.error("stage1 needs --branches <stage-0 checkpoint(s)>")
     if args.mode == "stage2" and not args.init:
         ap.error("stage2 needs --init <stage-1 checkpoint>")
+    if args.lora_from and args.mode not in ("stage1", "stage2"):
+        ap.error("--lora_from is for stage1/stage2 (use --init to continue a baseline)")
+    if args.branch_dropout and args.mode != "stage2":
+        ap.error("--branch_dropout is for stage2")
     for k, v in zip(["epochs", "lr_lora", "lr_head", "lr_rel", "batch_size", "grad_accum"], DEFAULTS[args.mode]):
         if getattr(args, k) is None:
             setattr(args, k, v)

@@ -1,0 +1,67 @@
+{"step": 1, "epoch": 0.0, "lr": 4.0000000000000003e-07, "loss": 7.6051, "ce": 2.0794, "acc": 0.1875, "aux": 0.0, "spread": 0.0002, "recon": 5.5257, "puzzles_per_s": 12.91, "attn_max": 0.0166, "x_norm": 23.64}
+{"step": 100, "epoch": 0.007, "lr": 2.0200000000000003e-05, "loss": 4.4837, "ce": 2.0794, "acc": 0.25, "aux": 0.0, "spread": 0.0002, "recon": 2.4042, "puzzles_per_s": 295.49, "attn_max": 0.0157, "x_norm": 28.04}
+{"step": 200, "epoch": 0.014, "lr": 4.02e-05, "loss": 2.9329, "ce": 2.0796, "acc": 0.0625, "aux": 0.0, "spread": 0.0007, "recon": 0.8533, "puzzles_per_s": 332.03, "attn_max": 0.0234, "x_norm": 30.6}
+{"step": 300, "epoch": 0.021, "lr": 6.02e-05, "loss": 3.0851, "ce": 2.0846, "acc": 0.1875, "aux": 0.0, "spread": 0.036, "recon": 1.0006, "puzzles_per_s": 346.45, "attn_max": 0.0303, "x_norm": 34.55}
+{"step": 400, "epoch": 0.028, "lr": 8.020000000000001e-05, "loss": 2.7693, "ce": 2.0795, "acc": 0.125, "aux": 0.0, "spread": 0.011, "recon": 0.6898, "puzzles_per_s": 354.03, "attn_max": 0.0323, "x_norm": 32.98}
+{"step": 500, "epoch": 0.035, "lr": 0.0001, "loss": 2.7518, "ce": 2.0794, "acc": 0.125, "aux": 0.0, "spread": 0.0, "recon": 0.6724, "puzzles_per_s": 358.77, "attn_max": 0.0366, "x_norm": 30.99}
+{"step": 600, "epoch": 0.042, "lr": 0.0001, "loss": 2.829, "ce": 2.0739, "acc": 0.3125, "aux": 0.0, "spread": 0.0044, "recon": 0.7551, "puzzles_per_s": 361.01, "attn_max": 0.0645, "x_norm": 29.14}
+{"step": 700, "epoch": 0.049, "lr": 0.0001, "loss": 2.8026, "ce": 2.0764, "acc": 0.1875, "aux": 0.0, "spread": 0.0273, "recon": 0.7261, "puzzles_per_s": 363.64, "attn_max": 0.0556, "x_norm": 28.28}
+{"step": 800, "epoch": 0.056, "lr": 0.0001, "loss": 2.6597, "ce": 2.0826, "acc": 0.0625, "aux": 0.0, "spread": 0.0492, "recon": 0.5771, "puzzles_per_s": 365.7, "attn_max": 0.0616, "x_norm": 27.13}
+{"step": 900, "epoch": 0.063, "lr": 0.0001, "loss": 2.6699, "ce": 2.0875, "acc": 0.125, "aux": 0.0, "spread": 0.0525, "recon": 0.5824, "puzzles_per_s": 367.22, "attn_max": 0.0735, "x_norm": 26.43}
+{"step": 1000, "epoch": 0.07, "lr": 0.0001, "loss": 2.6146, "ce": 2.0682, "acc": 0.3125, "aux": 0.0, "spread": 0.0557, "recon": 0.5463, "puzzles_per_s": 368.45, "attn_max": 0.083, "x_norm": 25.85}
+{"val": {"loss": 2.076981071090698, "acc": 0.1411, "n": 10000, "step": 1000, "epoch": 0.07}}
+{"step": 1100, "epoch": 0.077, "lr": 0.0001, "loss": 2.5711, "ce": 2.1146, "acc": 0.1875, "aux": 0.0, "spread": 0.2054, "recon": 0.4566, "puzzles_per_s": 290.41, "attn_max": 0.0895, "x_norm": 25.5}
+{"step": 1200, "epoch": 0.083, "lr": 0.0001, "loss": 2.4969, "ce": 2.0717, "acc": 0.1875, "aux": 0.0, "spread": 0.0772, "recon": 0.4252, "puzzles_per_s": 296.5, "attn_max": 0.0968, "x_norm": 25.43}
+{"step": 1300, "epoch": 0.09, "lr": 0.0001, "loss": 2.5608, "ce": 2.099, "acc": 0.125, "aux": 0.0, "spread": 0.1198, "recon": 0.4618, "puzzles_per_s": 301.86, "attn_max": 0.1087, "x_norm": 25.38}
+{"step": 1400, "epoch": 0.097, "lr": 0.0001, "loss": 2.5265, "ce": 2.0833, "acc": 0.3125, "aux": 0.0, "spread": 0.074, "recon": 0.4432, "puzzles_per_s": 306.61, "attn_max": 0.1165, "x_norm": 25.36}
+{"step": 1500, "epoch": 0.104, "lr": 0.0001, "loss": 2.5517, "ce": 2.087, "acc": 0.0625, "aux": 0.0, "spread": 0.0347, "recon": 0.4647, "puzzles_per_s": 310.79, "attn_max": 0.1336, "x_norm": 25.18}
+{"step": 1600, "epoch": 0.111, "lr": 0.0001, "loss": 2.5337, "ce": 2.1449, "acc": 0.0625, "aux": 0.0, "spread": 0.1081, "recon": 0.3888, "puzzles_per_s": 314.37, "attn_max": 0.079, "x_norm": 25.17}
+{"step": 1700, "epoch": 0.118, "lr": 0.0001, "loss": 2.3802, "ce": 2.1022, "acc": 0.0625, "aux": 0.0, "spread": 0.05, "recon": 0.278, "puzzles_per_s": 317.85, "attn_max": 0.1297, "x_norm": 25.18}
+{"step": 1800, "epoch": 0.125, "lr": 0.0001, "loss": 2.6278, "ce": 2.203, "acc": 0.1875, "aux": 0.0, "spread": 0.2096, "recon": 0.4248, "puzzles_per_s": 321.01, "attn_max": 0.1344, "x_norm": 25.15}
+{"step": 1900, "epoch": 0.132, "lr": 0.0001, "loss": 2.2851, "ce": 1.9902, "acc": 0.375, "aux": 0.0, "spread": 0.12, "recon": 0.2949, "puzzles_per_s": 323.85, "attn_max": 0.1441, "x_norm": 25.18}
+{"step": 2000, "epoch": 0.139, "lr": 0.0001, "loss": 2.5121, "ce": 2.094, "acc": 0.0625, "aux": 0.0, "spread": 0.1529, "recon": 0.4181, "puzzles_per_s": 326.5, "attn_max": 0.1322, "x_norm": 25.14}
+{"val": {"loss": 2.0711508529663085, "acc": 0.1534, "n": 10000, "step": 2000, "epoch": 0.139}}
+{"step": 2100, "epoch": 0.146, "lr": 0.0001, "loss": 2.3698, "ce": 2.0692, "acc": 0.125, "aux": 0.0, "spread": 0.0795, "recon": 0.3005, "puzzles_per_s": 291.88, "attn_max": 0.1426, "x_norm": 25.11}
+{"step": 2200, "epoch": 0.153, "lr": 0.0001, "loss": 2.4021, "ce": 2.0614, "acc": 0.0625, "aux": 0.0, "spread": 0.1069, "recon": 0.3407, "puzzles_per_s": 295.14, "attn_max": 0.1361, "x_norm": 25.03}
+{"step": 2300, "epoch": 0.16, "lr": 0.0001, "loss": 2.36, "ce": 2.0386, "acc": 0.125, "aux": 0.0, "spread": 0.1703, "recon": 0.3214, "puzzles_per_s": 298.19, "attn_max": 0.1382, "x_norm": 24.98}
+{"step": 2400, "epoch": 0.167, "lr": 0.0001, "loss": 2.444, "ce": 2.0497, "acc": 0.25, "aux": 0.0, "spread": 0.0816, "recon": 0.3943, "puzzles_per_s": 301.03, "attn_max": 0.0792, "x_norm": 24.94}
+{"step": 2500, "epoch": 0.174, "lr": 0.0001, "loss": 2.3178, "ce": 2.0892, "acc": 0.1875, "aux": 0.0, "spread": 0.1057, "recon": 0.2286, "puzzles_per_s": 303.69, "attn_max": 0.1305, "x_norm": 24.83}
+{"step": 2600, "epoch": 0.181, "lr": 0.0001, "loss": 2.3508, "ce": 2.0202, "acc": 0.25, "aux": 0.0, "spread": 0.0977, "recon": 0.3306, "puzzles_per_s": 305.92, "attn_max": 0.1171, "x_norm": 24.9}
+{"step": 2700, "epoch": 0.188, "lr": 0.0001, "loss": 2.3686, "ce": 2.0743, "acc": 0.25, "aux": 0.0, "spread": 0.086, "recon": 0.2943, "puzzles_per_s": 308.28, "attn_max": 0.1327, "x_norm": 24.88}
+{"step": 2800, "epoch": 0.195, "lr": 0.0001, "loss": 2.4322, "ce": 2.1181, "acc": 0.0, "aux": 0.0, "spread": 0.0561, "recon": 0.3141, "puzzles_per_s": 310.48, "attn_max": 0.148, "x_norm": 24.87}
+{"step": 2900, "epoch": 0.202, "lr": 0.0001, "loss": 2.3074, "ce": 2.0563, "acc": 0.0625, "aux": 0.0, "spread": 0.064, "recon": 0.2511, "puzzles_per_s": 312.6, "attn_max": 0.164, "x_norm": 24.88}
+{"step": 3000, "epoch": 0.209, "lr": 0.0001, "loss": 2.3643, "ce": 2.0626, "acc": 0.1875, "aux": 0.0, "spread": 0.1062, "recon": 0.3018, "puzzles_per_s": 314.61, "attn_max": 0.1386, "x_norm": 24.92}
+{"val": {"loss": 2.0677830703735354, "acc": 0.1556, "n": 10000, "step": 3000, "epoch": 0.209}}
+{"step": 3100, "epoch": 0.216, "lr": 0.0001, "loss": 2.2795, "ce": 2.0068, "acc": 0.3125, "aux": 0.0, "spread": 0.1166, "recon": 0.2727, "puzzles_per_s": 292.44, "attn_max": 0.1676, "x_norm": 24.9}
+{"step": 3200, "epoch": 0.223, "lr": 0.0001, "loss": 2.4126, "ce": 2.156, "acc": 0.0625, "aux": 0.0, "spread": 0.1619, "recon": 0.2566, "puzzles_per_s": 294.68, "attn_max": 0.1695, "x_norm": 24.9}
+{"step": 3300, "epoch": 0.23, "lr": 0.0001, "loss": 2.3361, "ce": 2.0534, "acc": 0.0625, "aux": 0.0, "spread": 0.0565, "recon": 0.2827, "puzzles_per_s": 296.82, "attn_max": 0.1664, "x_norm": 24.98}
+{"step": 3400, "epoch": 0.237, "lr": 0.0001, "loss": 2.3977, "ce": 2.1066, "acc": 0.125, "aux": 0.0, "spread": 0.066, "recon": 0.2911, "puzzles_per_s": 298.82, "attn_max": 0.1805, "x_norm": 24.89}
+{"step": 3500, "epoch": 0.243, "lr": 0.0001, "loss": 2.2748, "ce": 2.0887, "acc": 0.0625, "aux": 0.0, "spread": 0.0333, "recon": 0.1861, "puzzles_per_s": 300.76, "attn_max": 0.2116, "x_norm": 24.92}
+{"step": 3600, "epoch": 0.25, "lr": 0.0001, "loss": 2.2896, "ce": 2.0493, "acc": 0.25, "aux": 0.0, "spread": 0.0561, "recon": 0.2403, "puzzles_per_s": 302.28, "attn_max": 0.1932, "x_norm": 24.83}
+{"step": 3700, "epoch": 0.257, "lr": 0.0001, "loss": 2.3509, "ce": 2.0651, "acc": 0.0625, "aux": 0.0, "spread": 0.2548, "recon": 0.2858, "puzzles_per_s": 304.06, "attn_max": 0.1612, "x_norm": 24.94}
+{"step": 3800, "epoch": 0.264, "lr": 0.0001, "loss": 2.2074, "ce": 2.0032, "acc": 0.25, "aux": 0.0, "spread": 0.0819, "recon": 0.2042, "puzzles_per_s": 305.75, "attn_max": 0.1773, "x_norm": 24.91}
+{"step": 3900, "epoch": 0.271, "lr": 0.0001, "loss": 2.4375, "ce": 2.0794, "acc": 0.25, "aux": 0.0, "spread": 0.1161, "recon": 0.3581, "puzzles_per_s": 307.4, "attn_max": 0.1487, "x_norm": 24.8}
+{"step": 4000, "epoch": 0.278, "lr": 0.0001, "loss": 2.3052, "ce": 2.0704, "acc": 0.125, "aux": 0.0, "spread": 0.2524, "recon": 0.2348, "puzzles_per_s": 308.98, "attn_max": 0.1841, "x_norm": 24.8}
+{"val": {"loss": 2.062669327545166, "acc": 0.1606, "n": 10000, "step": 4000, "epoch": 0.278}}
+{"step": 4100, "epoch": 0.285, "lr": 0.0001, "loss": 2.2475, "ce": 2.0314, "acc": 0.1875, "aux": 0.0, "spread": 0.1123, "recon": 0.2161, "puzzles_per_s": 292.62, "attn_max": 0.1905, "x_norm": 24.87}
+{"step": 4200, "epoch": 0.292, "lr": 0.0001, "loss": 2.2554, "ce": 2.0347, "acc": 0.25, "aux": 0.0, "spread": 0.2729, "recon": 0.2207, "puzzles_per_s": 294.32, "attn_max": 0.2609, "x_norm": 25.03}
+{"step": 4300, "epoch": 0.299, "lr": 0.0001, "loss": 2.1966, "ce": 1.9981, "acc": 0.0625, "aux": 0.0, "spread": 0.2376, "recon": 0.1985, "puzzles_per_s": 295.94, "attn_max": 0.2772, "x_norm": 24.96}
+{"step": 4400, "epoch": 0.306, "lr": 0.0001, "loss": 2.366, "ce": 2.1683, "acc": 0.125, "aux": 0.0, "spread": 0.2371, "recon": 0.1977, "puzzles_per_s": 297.52, "attn_max": 0.3154, "x_norm": 24.91}
+{"step": 4500, "epoch": 0.313, "lr": 0.0001, "loss": 2.2318, "ce": 2.0464, "acc": 0.1875, "aux": 0.0, "spread": 0.1075, "recon": 0.1854, "puzzles_per_s": 299.05, "attn_max": 0.3032, "x_norm": 24.95}
+{"step": 4600, "epoch": 0.32, "lr": 0.0001, "loss": 2.2238, "ce": 2.0222, "acc": 0.1875, "aux": 0.0, "spread": 0.1253, "recon": 0.2016, "puzzles_per_s": 300.28, "attn_max": 0.255, "x_norm": 24.97}
+{"step": 4700, "epoch": 0.327, "lr": 0.0001, "loss": 2.4131, "ce": 2.1728, "acc": 0.375, "aux": 0.0, "spread": 0.3431, "recon": 0.2403, "puzzles_per_s": 301.7, "attn_max": 0.2918, "x_norm": 24.91}
+{"step": 4800, "epoch": 0.334, "lr": 0.0001, "loss": 2.0186, "ce": 1.791, "acc": 0.25, "aux": 0.0, "spread": 0.5034, "recon": 0.2276, "puzzles_per_s": 303.07, "attn_max": 0.2948, "x_norm": 24.92}
+{"step": 4900, "epoch": 0.341, "lr": 0.0001, "loss": 2.2542, "ce": 2.0269, "acc": 0.0625, "aux": 0.0, "spread": 0.2481, "recon": 0.2273, "puzzles_per_s": 304.4, "attn_max": 0.2371, "x_norm": 24.85}
+{"step": 5000, "epoch": 0.348, "lr": 0.0001, "loss": 2.257, "ce": 2.0566, "acc": 0.4375, "aux": 0.0, "spread": 0.0884, "recon": 0.2004, "puzzles_per_s": 305.69, "attn_max": 0.2984, "x_norm": 25.03}
+{"val": {"loss": 2.0569430965423585, "acc": 0.1751, "n": 10000, "step": 5000, "epoch": 0.348}}
+{"step": 5100, "epoch": 0.355, "lr": 0.0001, "loss": 2.2614, "ce": 2.0784, "acc": 0.1875, "aux": 0.0, "spread": 0.1502, "recon": 0.183, "puzzles_per_s": 292.76, "attn_max": 0.2721, "x_norm": 24.81}
+{"step": 5200, "epoch": 0.362, "lr": 0.0001, "loss": 2.14, "ce": 2.0164, "acc": 0.125, "aux": 0.0, "spread": 0.2191, "recon": 0.1236, "puzzles_per_s": 294.12, "attn_max": 0.3221, "x_norm": 24.86}
+{"step": 5300, "epoch": 0.369, "lr": 0.0001, "loss": 2.1193, "ce": 1.9187, "acc": 0.0, "aux": 0.0, "spread": 0.3116, "recon": 0.2006, "puzzles_per_s": 295.44, "attn_max": 0.2953, "x_norm": 24.85}
+{"step": 5400, "epoch": 0.376, "lr": 0.0001, "loss": 2.2845, "ce": 2.1121, "acc": 0.125, "aux": 0.0, "spread": 0.1465, "recon": 0.1724, "puzzles_per_s": 296.72, "attn_max": 0.3155, "x_norm": 24.91}
+{"step": 5500, "epoch": 0.383, "lr": 0.0001, "loss": 2.2039, "ce": 2.0552, "acc": 0.25, "aux": 0.0, "spread": 0.1911, "recon": 0.1488, "puzzles_per_s": 297.98, "attn_max": 0.3322, "x_norm": 24.87}
+{"step": 5600, "epoch": 0.39, "lr": 0.0001, "loss": 2.1809, "ce": 2.0179, "acc": 0.125, "aux": 0.0, "spread": 0.3839, "recon": 0.163, "puzzles_per_s": 299.09, "attn_max": 0.3581, "x_norm": 24.84}
+{"step": 5700, "epoch": 0.397, "lr": 0.0001, "loss": 2.094, "ce": 1.926, "acc": 0.25, "aux": 0.0, "spread": 0.3816, "recon": 0.168, "puzzles_per_s": 300.26, "attn_max": 0.3718, "x_norm": 25.1}
+{"step": 5800, "epoch": 0.403, "lr": 0.0001, "loss": 2.3488, "ce": 2.0979, "acc": 0.125, "aux": 0.0, "spread": 0.0813, "recon": 0.2509, "puzzles_per_s": 301.42, "attn_max": 0.2047, "x_norm": 24.79}
+{"step": 5900, "epoch": 0.41, "lr": 0.0001, "loss": 2.1686, "ce": 1.9813, "acc": 0.3125, "aux": 0.0, "spread": 0.2407, "recon": 0.1874, "puzzles_per_s": 302.54, "attn_max": 0.3481, "x_norm": 25.0}
+{"step": 6000, "epoch": 0.417, "lr": 0.0001, "loss": 2.1826, "ce": 2.0093, "acc": 0.25, "aux": 0.0, "spread": 0.2844, "recon": 0.1733, "puzzles_per_s": 303.64, "attn_max": 0.3439, "x_norm": 24.89}
+{"val": {"loss": 2.0320721828460693, "acc": 0.1874, "n": 10000, "step": 6000, "epoch": 0.417}}
