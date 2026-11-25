@@ -1,0 +1,79 @@
+{
+ "n": 128574,
+ "scores": {
+  "acc": 0.14565153141381618,
+  "ci95": [
+   0.1437339072968467,
+   0.14759032970916636
+  ],
+  "n": 128574,
+  "pred_hist": [
+   16267,
+   16208,
+   16068,
+   16064,
+   16133,
+   15992,
+   16067,
+   15775
+  ],
+  "target_hist": [
+   16201,
+   15988,
+   16221,
+   16024,
+   16106,
+   15844,
+   16139,
+   16051
+  ],
+  "acc_by_target_position": [
+   0.14480587618048268,
+   0.14467100325243934,
+   0.14364095925035447,
+   0.14197453819271094,
+   0.14522538184527506,
+   0.14453420853319868,
+   0.1513724518247723,
+   0.14896268145286898
+  ],
+  "answer_says_yes": 0.923149314791482,
+  "distractor_says_yes": 0.91373616972105
+ },
+ "shards": 18,
+ "errors": 0,
+ "unique_files": 128574,
+ "duplicates": 0,
+ "expected_n": 200000,
+ "complete": false,
+ "shards_included": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17
+ ],
+ "config": {
+  "model_id": "/home/hice1/khsieh37/scratch/pgm-lora-v1/models/Qwen3-VL-2B-Instruct",
+  "adapter": null,
+  "family": "qwen3vl",
+  "npz_dir": "/tmp/pgmzs_7318456",
+  "context_mode": "normal",
+  "crop_to_patches": 1,
+  "panel_px": 160,
+  "num_shards": 1
+ }
+}
