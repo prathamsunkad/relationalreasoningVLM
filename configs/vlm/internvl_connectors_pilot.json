@@ -1,0 +1,53 @@
+{
+  "train_manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pretrained-connectors-5pct-2026-11-23/data/train.jsonl",
+  "train_manifest_sha256": "f0141b074e8abfba8c2a148dedb71aa115cca93857e3648da5eca568c1a071c2",
+  "val_manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pretrained-connectors-5pct-2026-11-23/data/validation.jsonl",
+  "val_manifest_sha256": "d3f685f7400d5bda50cb6077fd06e2b6054a295c0757aa64127f6e88937876c6",
+  "data_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-coverage-20pct-2026-10-08",
+  "validation_image_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-adaptation-2026-10-07/images/validation",
+  "cache_output": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pretrained-connectors-5pct-2026-11-23/cache",
+  "teacher_hashes": {
+    "slot_abstractor_pgm.py": "f70676665fe6bfc4cbe75437db43a8d859f41302759142b7c490b8fa22698d8c",
+    "util.py": "952bb538f55bce915cdc887a166f38fc16a169cb051b61b92cac3e3ec923f4a4",
+    "pgm_jsonl_data.py": "b38afe3c1eee866c94b230c0fd232714566cd9cbcb871070b3ef3e9a0b32836e",
+    "layout.json": "21ef723234f5beb97221633f4556dc1405b8e9d165a79092c2d2f0132f496241",
+    "weights/slot_ae_pgm20.pth.tar": "9146e233e130ff7b0544c031ad47a877f8b63105fa35f3717c640bd817e8b5ee",
+    "weights/slot_abstractor_pgm_pgm20_1gpu_d24_lr8e-05_run0_best.pth.tar": "e1fa6cf42f172eecf4a340cc5e1306d7beaf8cba2c89eeb46c4f3b5a66c966b2"
+  },
+  "teacher_seed": 20261123,
+  "initialization_seed": 20261123,
+  "connector": {
+    "layer_index": 8,
+    "width": 256,
+    "heads": 8,
+    "cap": 0.1
+  },
+  "experiment": "internvl_frozen_connector_correctness",
+  "designs": [
+    "reader",
+    "kv_memory",
+    "tokens"
+  ],
+  "model": "/storage/ice1/9/8/yluo432/pgm-lora-v1/models/InternVL3_5-1B-HF",
+  "model_revision": "9191dbccf312b537016f041b25d61c72e7c5c9f3",
+  "adapter": "/storage/ice1/9/8/yluo432/pgm-lora-v1/adapters/internvl35_1b_pgm_ep6",
+  "adapter_hashes": {
+    "adapter_config.json": "402c4d7b7fb13d134696d7e1a41a33085efd3d74f454204b00a277b7bae3f15a",
+    "adapter_model.safetensors": "687354b244667347824e162964e36442da236e9c20945da4bba40d98e538bd10"
+  },
+  "train_questions": 8,
+  "validation_questions": 4,
+  "max_updates": 8,
+  "lr": 0.0003,
+  "weight_decay": 0.01,
+  "frozen": [
+    "VLM",
+    "epoch6_LoRA",
+    "slot_encoder",
+    "pretrained_Abstractor"
+  ],
+  "objective": "candidate_scoring_ce8",
+  "benchmark_test": false,
+  "budget": "One H200, 30 minutes maximum; no automatic larger campaign",
+  "parent_train_questions": 60000
+}
