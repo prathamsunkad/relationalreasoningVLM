@@ -1,4 +1,4 @@
-"""Production four-rank step and disk resume on native tiny InternVL + PEFT."""
+"""Production two- and four-rank step and disk resume on native tiny InternVL + PEFT."""
 import copy
 from datetime import timedelta
 from pathlib import Path
@@ -17,10 +17,10 @@ from pgmvlm.plateau_stop import ConservativePlateau
 from tools import train_distributed_interleave as trainer
 
 
-def _worker(rank, rendezvous, directory):
+def _worker(rank, rendezvous, directory, world):
     torch.set_num_threads(1)
     torch.use_deterministic_algorithms(True)
-    dist.init_process_group('gloo', init_method='file://' + rendezvous, rank=rank, world_size=4,
+    dist.init_process_group('gloo', init_method='file://' + rendezvous, rank=rank, world_size=world,
                             timeout=timedelta(seconds=120))
     connector = None
     try:
@@ -31,11 +31,11 @@ def _worker(rank, rendezvous, directory):
         for group, kind in zip(opt.param_groups, ['connector', 'lora']):
             group['kind'] = kind
         run = trainer.DistributedRun.__new__(trainer.DistributedRun)
-        run.rank, run.world, run.device = rank, 4, torch.device('cpu')
+        run.rank, run.world, run.device = rank, world, torch.device('cpu')
         run.model, run.connector, run.opt = model, connector, opt
         run.out = Path(directory)
         run.plan = {'initialization_seed': 923}
-        run.identity = trainer.contract({'test':'production-distributed-native-internvl','world_size':4})
+        run.identity = trainer.contract({'test':'production-distributed-native-internvl','world_size':world})
         run.train = [{'id':str(i)} for i in range(96)]
         run.banks = SimpleNamespace(extracted=0, flush=Mock())
         run.lora = [(n,p) for n,p in model.named_parameters() if 'lora_' in n]
@@ -87,9 +87,9 @@ def _worker(rank, rendezvous, directory):
             run.save()
             if rank == 0:
                 saved = torch.load(run.out/'state.pt', map_location='cpu', weights_only=True)
-                assert saved['step'] == 2 and saved['world_size'] == 4
-                assert len(saved['rng_by_rank']) == 4
-                assert len({bytes(s['cpu'].tolist()) for s in saved['rng_by_rank']}) == 4
+                assert saved['step'] == 2 and saved['world_size'] == world
+                assert len(saved['rng_by_rank']) == world
+                assert len({bytes(s['cpu'].tolist()) for s in saved['rng_by_rank']}) == world
                 assert saved['stopper'] == saved_stopper
             expected_loss = run.step(2)['loss']
             expected_model = copy.deepcopy(model.state_dict())
@@ -121,8 +121,9 @@ def _worker(rank, rendezvous, directory):
 
 class DistributedInterleaveResumeTests(unittest.TestCase):
     def test_production_step_disk_checkpoint_rank_rng_and_stopper_replay(self):
-        with tempfile.TemporaryDirectory() as directory:
-            mp.spawn(_worker, args=(str(Path(directory)/'gloo-rendezvous'), directory), nprocs=4, join=True)
+        for world in (2, 4):
+            with self.subTest(world=world), tempfile.TemporaryDirectory() as directory:
+                mp.spawn(_worker, args=(str(Path(directory)/'gloo-rendezvous'), directory, world), nprocs=world, join=True)
 
 
 if __name__ == '__main__':

@@ -86,10 +86,15 @@ def dispatch(campaign_path, source, seconds, mode, *, runner=None, clock=None):
             plan_path = campaign_path.parent / plan_path
         plan_path = plan_path.resolve()
         plan = json.loads(plan_path.read_text())
+        world = plan.get('world_size', 4)
+        if type(world) is not int or world not in (2, 4):
+            raise ValueError('world_size must be two or four GPU ranks')
         output = Path(plan["pilot_output" if mode == "pilot" else "training_output"])
         if not output.is_absolute():
             raise ValueError("Model output paths must be absolute")
         models.append((entry["name"], plan_path, plan, output))
+    if len({item[2].get('world_size', 4) for item in models}) != 1:
+        raise ValueError('All models in an allocation must use the same world_size')
     if models[0][3] == models[1][3]:
         raise ValueError("Both models cannot share an output directory")
     deadline = clock() + seconds
@@ -127,7 +132,7 @@ def dispatch(campaign_path, source, seconds, mode, *, runner=None, clock=None):
             if not isinstance(previous_update, int) or previous_update < 0:
                 raise RuntimeError("Invalid previous progress")
             command = [sys.executable, "-m", "torch.distributed.run", "--standalone", "--nnodes=1",
-                       "--nproc_per_node=4", str(source / "tools/train_distributed_interleave.py"),
+                       f"--nproc_per_node={plan.get('world_size', 4)}", str(source / "tools/train_distributed_interleave.py"),
                        "--plan", str(plan_path), "--output", str(output), "--mode", mode,
                        "--seconds", str(remaining)]
             if mode == "train" and checkpoint.exists():

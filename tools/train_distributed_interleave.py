@@ -1,4 +1,4 @@
-"""Four-GPU, global-batch16 interleave with exact resume and cautious stopping."""
+"""Two- or four-GPU, global-batch16 interleave with exact resume and cautious stopping."""
 from __future__ import annotations
 import argparse
 import copy
@@ -43,8 +43,8 @@ def broadcast(value):
 class DistributedRun(Run):
     def __init__(self, plan, out, mode, deadline):
         self.rank, self.world = dist.get_rank(), dist.get_world_size()
-        if self.world != 4:
-            raise ValueError('This approved campaign requires exactly four GPU ranks')
+        if self.world not in (2, 4) or self.world != plan.get('world_size', 4):
+            raise ValueError('GPU rank count must match the plan: two or four ranks')
         super().__init__(plan, out, mode, deadline, banks_factory=ConcurrentRelations)
         self.stopper = ConservativePlateau(**plan['early_stopping'])
         self.progress['early_stopped'] = False
@@ -213,7 +213,7 @@ def run(plan, out, mode, seconds, resume):
         if mode=='train':
             gate=json.loads((Path(plan['pilot_output'])/'summary.json').read_text())
             if not gate.get('passed') or gate.get('plan_sha256')!=contract(plan):
-                raise RuntimeError('Matching four-GPU pilot must pass first')
+                raise RuntimeError('Matching distributed pilot must pass first')
         config=out/'config.json';value=dict(plan=plan,mode=mode)
         if config.exists():
             if not resume or json.loads(config.read_text())!=value:
@@ -296,7 +296,7 @@ def run(plan, out, mode, seconds, resume):
         if tensor_digest(runner.lora)==runner.initial_lora_hash or tensor_digest(list(runner.connector.named_parameters()))==runner.initial_connector_hash:
             raise RuntimeError('Pilot trainable parameters did not update')
     extracted=torch.tensor(runner.banks.extracted,device=runner.device);dist.all_reduce(extracted,op=dist.ReduceOp.SUM)
-    summary=dict(complete=complete,passed=complete,mode=mode,plan_sha256=contract(plan),world_size=4,
+    summary=dict(complete=complete,passed=complete,mode=mode,plan_sha256=contract(plan),world_size=runner.world,
                  **runner.progress,frozen_weights_unchanged=True,cache_extracted_this_allocation=int(extracted),
                  allocation_seconds=seconds-max(0,deadline-time.monotonic()),
                  stop_reason='validation_plateau' if runner.progress['early_stopped'] else ('one_epoch' if complete else 'allocation_boundary'))

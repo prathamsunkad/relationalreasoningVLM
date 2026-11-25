@@ -44,8 +44,8 @@ class DispatchTests(unittest.TestCase):
     def runner(self, *, mode='train', complete=True, advance=100, duration=100, exit_code=0):
         def run(command, check):
             self.assertFalse(check)
-            self.assertIn('--nproc_per_node=4', command)
             name = Path(command[command.index('--plan') + 1]).stem
+            self.assertIn(f"--nproc_per_node={self.plans[name].get('world_size', 4)}", command)
             self.calls.append(command)
             self.clock.now += duration
             if exit_code == 0:
@@ -62,6 +62,24 @@ class DispatchTests(unittest.TestCase):
         self.assertEqual([x['model'] for x in result['invocations']], ['epoch6', 'epoch4'])
         self.assertEqual([c[c.index('--seconds') + 1] for c in self.calls], ['13800', '9800'])
         self.assertEqual(json.loads((self.root / 'campaign-summary.json').read_text())['mode'], 'train')
+
+    def test_two_gpu_plans_launch_two_workers_for_both_checkpoints(self):
+        for name, plan in self.plans.items():
+            plan['world_size'] = 2
+            (self.root / (name + '.json')).write_text(json.dumps(plan))
+        result = self.go(self.runner())
+        self.assertTrue(result['complete'])
+        self.assertEqual(len(self.calls), 2)
+        for command in self.calls:
+            self.assertIn('--nproc_per_node=2', command)
+
+    def test_invalid_or_mixed_world_sizes_fail_before_launching(self):
+        for world in (1, 8, '2', True, 2):
+            with self.subTest(world=world):
+                self.plans['epoch6']['world_size'] = world
+                (self.root / 'epoch6.json').write_text(json.dumps(self.plans['epoch6']))
+                with self.assertRaisesRegex(ValueError, 'world_size'):
+                    self.go(lambda *_a, **_k: self.fail('unexpected child'))
 
     def test_incomplete_epoch6_with_advancing_checkpoint_defers_epoch4(self):
         self.write('epoch6', complete=False, update=100, checkpoint=True)

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-#SBATCH -J ivl4-pilot
+#SBATCH -J ivl2-pilot
 #SBATCH -N 1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=96G
-#SBATCH --gres=gpu:h200:4
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=48G
+#SBATCH --gres=gpu:h200:2
 #SBATCH -p ice-gpu
 #SBATCH -A coc
 #SBATCH --qos=coc-ice

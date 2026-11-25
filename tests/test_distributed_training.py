@@ -1,4 +1,4 @@
-"""Four-rank CPU checks of global-batch scaling, dropout and exact replay."""
+"""Two- and four-rank CPU checks of global-batch scaling, dropout and exact replay."""
 import copy
 import datetime
 from pathlib import Path
@@ -37,7 +37,7 @@ def _backward(model, images, relations, targets, indices, update):
     for index in indices:
         with question_rng('question-' + str(index), update, 731, device='cpu'):
             logits = model(images[index:index+1], relations[index:index+1])
-            # The entire distributed batch has16 questions, not4 per rank.
+            # The entire distributed batch has16 questions, not the per-rank count.
             (nn.functional.cross_entropy(logits, targets[index:index+1]) / 16).backward()
 
 
@@ -50,10 +50,10 @@ def _expect_collective_error(call, text):
         raise AssertionError('Expected collective error: ' + text)
 
 
-def _worker(rank, rendezvous):
+def _worker(rank, rendezvous, world):
     torch.set_num_threads(1)
     torch.use_deterministic_algorithms(True)
-    dist.init_process_group('gloo', init_method='file://' + rendezvous, rank=rank, world_size=4,
+    dist.init_process_group('gloo', init_method='file://' + rendezvous, rank=rank, world_size=world,
                             timeout=datetime.timedelta(seconds=90))
     try:
         torch.manual_seed(115)
@@ -67,7 +67,7 @@ def _worker(rank, rendezvous):
         frozen = {n:p.detach().clone() for n,p in model.named_parameters() if not p.requires_grad}
         initial_rng = torch.get_rng_state().clone()
 
-        _backward(model, images, relations, targets, range(rank, 16, 4), update=0)
+        _backward(model, images, relations, targets, range(rank, 16, world), update=0)
         _backward(serial, images, relations, targets, range(16), update=0)
         assert torch.equal(torch.get_rng_state(), initial_rng), 'Question dropout consumed caller RNG'
         sum_gradients(model.parameters())
@@ -88,13 +88,13 @@ def _worker(rank, rendezvous):
         saved_model, saved_optimizer = copy.deepcopy(model.state_dict()), copy.deepcopy(optimizer.state_dict())
         saved_rng = torch.get_rng_state().clone()
         optimizer.zero_grad(set_to_none=True)
-        _backward(model, images, relations, targets, range(rank,16,4), update=1)
+        _backward(model, images, relations, targets, range(rank,16,world), update=1)
         sum_gradients(model.parameters()); optimizer.step()
         expected = copy.deepcopy(model.state_dict())
         model.load_state_dict(saved_model); optimizer.load_state_dict(saved_optimizer)
         torch.set_rng_state(saved_rng)
         optimizer.zero_grad(set_to_none=True)
-        _backward(model, images, relations, targets, range(rank,16,4), update=1)
+        _backward(model, images, relations, targets, range(rank,16,world), update=1)
         sum_gradients(model.parameters()); optimizer.step()
         for name,value in model.state_dict().items():
             torch.testing.assert_close(value, expected[name], rtol=0, atol=0)
@@ -105,10 +105,10 @@ def _worker(rank, rendezvous):
         active.grad = torch.full_like(active, rank+1.)
         frozen_parameter.grad = torch.full_like(frozen_parameter, 19.)
         sum_gradients([active, unused, frozen_parameter])
-        assert torch.equal(active.grad, torch.full_like(active, 10.))
+        assert torch.equal(active.grad, torch.full_like(active, float(world * (world + 1) // 2)))
         assert unused.grad is None
         assert torch.equal(frozen_parameter.grad, torch.full_like(frozen_parameter, 19.))
-        assert stop_vote(rank == 3) is True
+        assert stop_vote(rank == world - 1) is True
         assert stop_vote(False) is False
 
         mismatch = nn.Parameter(torch.ones(2))
@@ -128,9 +128,10 @@ def _worker(rank, rendezvous):
 
 
 class DistributedTrainingTests(unittest.TestCase):
-    def test_four_rank_global_batch_gradient_update_and_replay(self):
-        with tempfile.TemporaryDirectory() as directory:
-            mp.spawn(_worker, args=(str(Path(directory)/'gloo-rendezvous'),), nprocs=4, join=True)
+    def test_two_and_four_rank_global_batch_gradient_update_and_replay(self):
+        for world in (2, 4):
+            with self.subTest(world=world), tempfile.TemporaryDirectory() as directory:
+                mp.spawn(_worker, args=(str(Path(directory)/'gloo-rendezvous'), world), nprocs=world, join=True)
 
     def test_question_rng_restores_state_and_distinguishes_updates(self):
         torch.manual_seed(91)

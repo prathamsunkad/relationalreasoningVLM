@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-#SBATCH -J ivl4-train
+#SBATCH -J ivl2-train
 #SBATCH -N 1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=96G
-#SBATCH --gres=gpu:h200:4
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=48G
+#SBATCH --gres=gpu:h200:2
 #SBATCH -p ice-gpu
 #SBATCH -A coc
 #SBATCH --qos=coc-ice
@@ -86,6 +86,6 @@ if summary.exists() and json.loads(summary.read_text()).get('mode')=='train' and
     for job in jobs.get('segments',[]):
         if job==os.environ.get('SLURM_JOB_ID'): continue
         row=subprocess.check_output(['squeue','-h','-j',job,'-o','%T|%j'],text=True).strip()
-        if row.startswith('PENDING|ivl4-train'):
+        if row.startswith('PENDING|ivl2-train'):
             subprocess.run(['scancel',job],check=True)
 PYFINISH
