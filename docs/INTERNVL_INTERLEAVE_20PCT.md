@@ -49,3 +49,7 @@ same experiment after a checkpointed time boundary. A passing exact-planpilot
 is mandatory. Slurm wrappers and immutable source/plan hashes are archived
 under `benchmarks/.local/campaigns/internvl-interleave-20pct-2026-11-24` in the
 original VLM workspace. No fusion or full-test evaluation is included.
+
+## Runtime dependency repair
+
+Pilot 7300780 stopped before training because the InternVL runtime omitted the external teacher's colorlog dependency. Both job wrappers now load isolated, hash-pinned colorlog 6.9.0 and einops 0.8.1 wheels from `requirements-pretrained-connectors.txt`. `tools/check_pretrained_runtime.py` checks the real teacher imports, source/weight hashes and strict CPU checkpoint loading in the job container before InternVL loading. The GPU pilot still requires fresh/cache feature parity and exact checkpoint replay. No model, image protocol, cache identity or training hyperparameters changed. Repair bundles include the requirement pins, wheels and checksums; the shared runtime is untouched.
