@@ -58,7 +58,7 @@ at chance; follow-up diagnostics (depth, readout, gradients) are in [`results/vl
 |---|---|---|
 | Slot Abstractor trained from scratch on the same 240k puzzles | 62.8% PGM validation (epoch 64); test not run yet; paper 71.25% | [`slot_abstractor/`](slot_abstractor) |
 | LFM2.5 PGM adapter evaluated zero-shot on I-RAVEN (14,000 puzzles) | 23.1% (chance 12.5%) | [`iraven_eval/`](iraven_eval) |
-| Base Qwen3-VL-2B / InternVL3.5-1B, no adapter, scored with the LoRA runs per-candidate Yes/No protocol (PGM neutral test; partial: 128,574 of 200,000) | 14.57% / 13.74% (chance 12.5%) | [`pgm_zeroshot_pc/`](pgm_zeroshot_pc) |
+| Base Qwen3-VL-2B / InternVL3.5-1B, no adapter, scored with the LoRA runs per-candidate Yes/No protocol (PGM neutral test, 200,000 problems) | 14.59% / 13.66% (chance 12.5%) | [`pgm_zeroshot_pc/`](pgm_zeroshot_pc) |
 | Letter-answer LoRA from one contact-sheet image, 240k, 3 epochs | Qwen3-VL-2B 75.33%, InternVL3.5-1B 52.31% (200k test) | [`probes/README.md`](probes/README.md) |
 | Perception pilot: find the answer panel among the 8 choices, no rule needed (Qwen, zero-shot, 50 puzzles) | 78% from separate panels vs 10% from the contact sheet | [`probes/`](probes) |
 | Exp1: gated relational branch at InternVL's projector, branch alone (stage 0, 7 slot sources) | 20.4–21.6% on 10,000 held-out puzzles; InternViT layer 18 best by loss | [`experiments/exp1_gated_hybrid/`](experiments/exp1_gated_hybrid) |

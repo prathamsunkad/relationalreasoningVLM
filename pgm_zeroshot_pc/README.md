@@ -8,16 +8,15 @@ The existing zero-shot numbers in `zeroshot/` and `results/zeroshot/` (12.85% / 
 one context-grid image plus a 2x4 candidate image, with the model generating `Answer: <n>`. This folder uses the
 per-candidate Yes/No readout the LoRA adapters were trained and tested with.
 
-**Status: partial.** 18 of 28 shards (128,574 of 200,000 problems) are done; the other 10 are queued on ICE. When
-they finish, `jobs/merge_zeroshot.sbatch` merges all 28 with the bundle's own `--merge_dir --expected_n 200000`.
-This folder is then updated with the full records.
+**Status: complete.** All 28 shards, 200,000 of 200,000 problems, merged with the bundle's own
+`eval_vlm.py --merge_dir --expected_n 200000` (`complete: true`, 0 errors, 0 duplicates).
 
-## Results so far (128,574 problems, shards 0-17)
+## Results (200,000 problems)
 
 | Model (zero-shot, no adapter) | Problems | Accuracy | 95% Wilson interval | Answer scored Yes > No | Distractors scored Yes > No | LoRA (bundle, 200k test) |
 |---|---|---|---|---|---|---|
-| Qwen3-VL-2B-Instruct (`89644892`) | 128,574 | 14.57% | 14.37-14.76% | 92.3% | 91.4% | 82.06% (ep5) |
-| InternVL3.5-1B-HF (`9191dbcc`) | 128,574 | 13.74% | 13.55-13.92% | 82.1% | 82.2% | 60.31% (ep6) |
+| Qwen3-VL-2B-Instruct (`89644892`) | 200,000 | **14.59%** | 14.44-14.74% | 92.4% | 91.5% | 82.06% (ep5) |
+| InternVL3.5-1B-HF (`9191dbcc`) | 200,000 | **13.66%** | 13.51-13.81% | 81.9% | 82.0% | 60.31% (ep6) |
 | Chance | | 12.5% | | | | |
 
 - Both base models are barely above chance. They score Yes on almost every candidate: the correct one and the 7
@@ -25,8 +24,9 @@ This folder is then updated with the full records.
 - The predicted positions are spread evenly, so there is no collapse onto one answer slot
   (`pred_hist` in `summary.json`).
 - 0 errors and 0 duplicate problems. One run with no sampling, so no seeds are involved.
-- GPUs: NVIDIA L40S for 15 shards, A100-PCIE-40GB for 3 (shards 6, 9, 10). The repo documents that about 0.5% of answers
-  flip across GPU types (`CONDITIONS_AND_ASSUMPTIONS.md`).
+- GPUs: NVIDIA L40S for 18 shards, H200 for 7 (shards 18-24) and A100-PCIE-40GB for 3 (shards 6, 9, 10). The repo
+  documents that about 0.5% of answers flip across GPU types (`CONDITIONS_AND_ASSUMPTIONS.md`).
+- The partial results committed first (shards 0-17, 128,574 problems: 14.57% / 13.74%) are within 0.1 point of these.
 
 ## Input and output (identical to the LoRA runs)
 
@@ -62,13 +62,11 @@ set has ids 1-200,000, all unique.
 | `jobs/eval_zeroshot.sbatch` | GPU array (28 tasks): unpacks one shard, then runs the bundle `eval_vlm.py` without `--adapter` for InternVL and then Qwen; resumable |
 | `jobs/merge_zeroshot.sbatch`, `scripts/summ.py` | CPU job queued with `--dependency=afterany` on the array: bundle merge with `--expected_n 200000`, plus a short text summary |
 | `results/<model>_zeroshot/per_problem.json.gz` | one record per problem: `file`, `target`, `pred`, `correct`, the 8 `scores` (sorted by problem id) |
-| `results/<model>_zeroshot/summary.json` | the bundle `summarize()` output (accuracy, Wilson CI, histograms, Yes rates), plus `shards_included` and `complete` |
+| `results/<model>_zeroshot/summary.json` | written by the bundle's `eval_vlm.py --merge_dir --expected_n 200000`: accuracy, Wilson CI, histograms, Yes rates, `complete` |
+| `results/zeroshot_summary.txt` | the short text summary from `scripts/summ.py` (written by the merge job) |
 | `results/<model>_zeroshot/eval_config.json` | the configuration `eval_vlm.py` recorded |
-| `results/run_logs/*.log.gz` | Slurm logs. `prep-7309700` failed (an argument-name clash in `np.savez_compressed`, fixed before the successful run `prep-7309742`) |
+| `results/run_logs/*.log.gz` | Slurm logs of all 28 eval tasks, the merge job and the data prep. `prep-7309700` failed (an argument-name clash in `np.savez_compressed`, fixed before the successful run `prep-7309742`) |
 | `data/packs.json` | data source, revision, count and the two check results |
-
-`summary.json` for the partial results was computed on the login node with the bundle's own `wilson()` and `summarize()`
-functions, taken from `pgmvlm/evalcore.py` unchanged. It has the same fields `eval_vlm.py --merge_dir` writes.
 
 ## Reproduce (ICE)
 

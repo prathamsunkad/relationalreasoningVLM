@@ -2,7 +2,7 @@
  "model_id": "/home/hice1/khsieh37/scratch/pgm-lora-v1/models/Qwen3-VL-2B-Instruct",
  "adapter": null,
  "family": "qwen3vl",
- "npz_dir": "/tmp/pgmzs_7318456",
+ "npz_dir": "/tmp/pgmzs_7309743",
  "context_mode": "normal",
  "crop_to_patches": 1,
  "panel_px": 160,
