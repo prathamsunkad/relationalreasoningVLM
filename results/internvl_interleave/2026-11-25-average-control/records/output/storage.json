@@ -1,0 +1,18 @@
+{
+  "used_bytes": 282059726848,
+  "limit_bytes": 322122547200,
+  "free_bytes": 40062820352,
+  "used_files": 985355,
+  "limit_files": 1000000,
+  "free_files": 14645,
+  "path": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/average-control/output",
+  "mount": "/storage/ice1",
+  "uid": 3184198,
+  "filesystem_free_bytes": 4247608474275840,
+  "filesystem_free_files": 918628542,
+  "checked_unix": 1795640352.6191459,
+  "metadata_target": 3,
+  "metadata_free_files": 11863,
+  "job_id": "7324410",
+  "provider": "live_host_lfs"
+}

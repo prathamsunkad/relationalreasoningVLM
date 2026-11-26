@@ -1,0 +1,43 @@
+{
+  "train_manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pretrained-connectors-5pct-2026-11-23/data/train.jsonl",
+  "train_manifest_sha256": "f0141b074e8abfba8c2a148dedb71aa115cca93857e3648da5eca568c1a071c2",
+  "val_manifest": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pretrained-connectors-5pct-2026-11-23/data/validation.jsonl",
+  "val_manifest_sha256": "d3f685f7400d5bda50cb6077fd06e2b6054a295c0757aa64127f6e88937876c6",
+  "data_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-coverage-20pct-2026-10-08",
+  "validation_image_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/data/pgm-adaptation-2026-10-07/images/validation",
+  "cache_output": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/lfm-pretrained-connectors-5pct-2026-11-23/cache",
+  "teacher_hashes": {
+    "slot_abstractor_pgm.py": "f70676665fe6bfc4cbe75437db43a8d859f41302759142b7c490b8fa22698d8c",
+    "util.py": "952bb538f55bce915cdc887a166f38fc16a169cb051b61b92cac3e3ec923f4a4",
+    "pgm_jsonl_data.py": "b38afe3c1eee866c94b230c0fd232714566cd9cbcb871070b3ef3e9a0b32836e",
+    "layout.json": "21ef723234f5beb97221633f4556dc1405b8e9d165a79092c2d2f0132f496241",
+    "weights/slot_ae_pgm20.pth.tar": "9146e233e130ff7b0544c031ad47a877f8b63105fa35f3717c640bd817e8b5ee",
+    "weights/slot_abstractor_pgm_pgm20_1gpu_d24_lr8e-05_run0_best.pth.tar": "e1fa6cf42f172eecf4a340cc5e1306d7beaf8cba2c89eeb46c4f3b5a66c966b2"
+  },
+  "teacher_seed": 20261123,
+  "teacher_package": "/storage/ice1/9/8/yluo432/vlm-benchmark/shared-imports/slotabstractor-pgm20-2026-11-18-v1",
+  "model": "/storage/ice1/9/8/yluo432/pgm-lora-v1/models/InternVL3_5-1B-HF",
+  "model_revision": "9191dbccf312b537016f041b25d61c72e7c5c9f3",
+  "adapter": "/storage/ice1/9/8/yluo432/pgm-lora-v1/adapters/internvl35_1b_pgm_ep6",
+  "adapter_hashes": {
+    "adapter_config.json": "402c4d7b7fb13d134696d7e1a41a33085efd3d74f454204b00a277b7bae3f15a",
+    "adapter_model.safetensors": "687354b244667347824e162964e36442da236e9c20945da4bba40d98e538bd10"
+  },
+  "experiment": "internvl_epoch6_abstractor_equal_average",
+  "source_commit": "fc9decfe582349f9ca6399fed47952b6cc335207",
+  "validation_questions": 1000,
+  "benchmark_test": false,
+  "evaluation_seconds": 1500,
+  "hybrid_reference": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/average-control/hybrid-reference.json",
+  "hybrid_reference_sha256": "668493aee2d09f93e00b06db935622fea2f7d066e8a4d6dcc82deefa59f36a9b",
+  "hybrid_reference_update": 3500,
+  "selection": "hybrid minimum validation CE as of 2026-11-25T20:05Z",
+  "base_frozen": true,
+  "lora_frozen": true,
+  "teacher_frozen": true,
+  "connector": false,
+  "primary_average": "equal_weight_log_softmax",
+  "secondary_average": "equal_weight_softmax",
+  "tune_weights": false,
+  "tune_temperature": false
+}

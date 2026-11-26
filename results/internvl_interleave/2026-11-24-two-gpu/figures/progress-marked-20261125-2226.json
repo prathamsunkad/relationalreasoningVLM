@@ -1,0 +1,34 @@
+{
+  "snapshot": "records",
+  "captured_utc": "2026-11-26T03:26:27.248337+00:00",
+  "validation_count": 1000,
+  "training_update": 5832,
+  "training_examples": 93312,
+  "best_validation_loss": {
+    "count": 1000,
+    "expected": 1000,
+    "complete": true,
+    "loss": 1.0007272896990456,
+    "accuracy": 0.668,
+    "seconds": 95.37925218883902,
+    "update": 3500
+  },
+  "best_validation_accuracy": {
+    "count": 1000,
+    "expected": 1000,
+    "complete": true,
+    "loss": 1.0505062534377265,
+    "accuracy": 0.672,
+    "seconds": 89.5460096790921,
+    "update": 1500
+  },
+  "latest_validation": {
+    "count": 1000,
+    "expected": 1000,
+    "complete": true,
+    "loss": 1.0575027989309547,
+    "accuracy": 0.667,
+    "seconds": 99.10264853108674,
+    "update": 5500
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "original_adapter_exact": true,
+  "teacher_reference_parity": true,
+  "cache_feature_parity": true,
+  "original_teacher_head_reconstruction": true,
+  "candidate_permutation": true
+}

@@ -1,5 +1,12 @@
 # H15 on InternVL: Yiran's hybrid (epoch-6 LoRA + Slot Abstractor, update 3500) vs its parts, 1,000 validation puzzles
 
+A separate native-input H200 evaluation is archived in
+[`2026-11-25-average-control`](../2026-11-25-average-control/README.md).
+It uses its own standalone score records and reports 61.6% / 61.7% / 66.7%
+(LoRA / branch / primary average). The Exp2 numbers below are preserved;
+do not mix the two sets of scores or paired statistics. Both find no
+demonstrated hybrid advantage over averaging.
+
 Interim (the run continues to 15,000 updates or the plateau rule). Hybrid scores: Yiran's `average-control/hybrid-reference.json`
 (update 3500, minimum validation CE). LoRA alone (`ivl1b_pc_recipe_e1/final_e6`, the same adapter) and Slot Abstractor alone:
 `results/internvl_sa/complement_val1000_e6/` (Exp2 `complement`). Same 1,000 puzzle IDs; exact McNemar on the paired outcomes.

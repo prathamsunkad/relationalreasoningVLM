@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "artifacts_verified": 12,
+  "remote_local_sha256_match": true,
+  "full_matched_ids": 1000,
+  "recomputed_accuracies_and_counts_exact": true,
+  "loss_recomputation_tolerance": 1e-10,
+  "loss_recomputation_differences": {
+    "lora": -2.220446049250313e-16,
+    "abstractor": 0.0,
+    "average_log_probability": 1.1102230246251565e-16,
+    "average_probability": 0.0,
+    "hybrid": 0.0
+  },
+  "mcnemar_exact_two_sided_hybrid_vs_primary_average": 1.0,
+  "snapshot": "/Users/yluo/Downloads/Projects/VLM/benchmarks/.local/campaigns/internvl-interleave-20pct-2026-11-24/average-control/monitor-snapshots/20261125T211239Z"
+}
