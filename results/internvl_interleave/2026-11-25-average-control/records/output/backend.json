@@ -1,0 +1,15 @@
+{
+  "torch": "2.6.0+cu124",
+  "peft": "0.21.2",
+  "transformers": "5.17.0",
+  "gpu": "NVIDIA H200",
+  "prompt": "The image shows a 3x3 abstract reasoning matrix. In a correct matrix, shape type, size, color, count, and position, and line type and color, follow consistent rules across rows and columns (constant, progression, XOR, OR, AND, or consistent union).\n\nIs the bottom-right panel the correct completion of this matrix? Answer Yes or No.",
+  "relation_tokens": 0,
+  "connector_installed": false,
+  "visual_input": "8 completed 520x520 matrices; native crop_to_patches=True",
+  "scoring": "FP32 Yes-minus-No from final hidden states",
+  "cache_ready_sha256": "acb841dedb818af06d0abc36dc0d9e1e82fb2d17f1c0097147a90ff034278dad",
+  "model_revision": "9191dbccf312b537016f041b25d61c72e7c5c9f3",
+  "base_and_lora_sha256": "a621277eaed9c3b7eded585745be53d0f829e6ebe380d1ce6ad8c969b1a889a8",
+  "teacher_sha256": "1960c8b3d4269900e3b3491b248500aa7cb3992108a8f7bde20eb42bc435e472"
+}

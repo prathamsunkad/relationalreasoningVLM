@@ -1,0 +1,61 @@
+{
+  "complete": true,
+  "split": "validation",
+  "benchmark_test": false,
+  "count": 1000,
+  "metrics": {
+    "lora": {
+      "count": 1000,
+      "correct": 616,
+      "accuracy": 0.616,
+      "loss": 1.045294821703538
+    },
+    "abstractor": {
+      "count": 1000,
+      "correct": 617,
+      "accuracy": 0.617,
+      "loss": 1.1545515524889174
+    },
+    "average_log_probability": {
+      "count": 1000,
+      "correct": 667,
+      "accuracy": 0.667,
+      "loss": 0.878893550838953
+    },
+    "average_probability": {
+      "count": 1000,
+      "correct": 669,
+      "accuracy": 0.669,
+      "loss": 0.9139157126196921
+    },
+    "hybrid": {
+      "count": 1000,
+      "correct": 668,
+      "accuracy": 0.668,
+      "loss": 1.0007272899357622
+    }
+  },
+  "hybrid_update": 3500,
+  "primary_rule": "argmax(0.5*log_softmax(lora)+0.5*log_softmax(abstractor))",
+  "secondary_rule": "argmax(0.5*softmax(lora)+0.5*softmax(abstractor))",
+  "tuned_weights": false,
+  "calibrated_temperatures": false,
+  "overlap_lora_abstractor": {
+    "both_correct": 477,
+    "first_only": 139,
+    "second_only": 140,
+    "neither_correct": 244
+  },
+  "overlap_average_hybrid": {
+    "both_correct": 636,
+    "first_only": 31,
+    "second_only": 32,
+    "neither_correct": 301
+  },
+  "hybrid_minus_average_percentage_points": 0.10000000000000009,
+  "limitation": "Same validation IDs used to select the hybrid; not a held-out test result.",
+  "seconds": 193.68281651707366,
+  "frozen_weights_unchanged": true,
+  "predictions_sha256": "3c5f2370ca122ab7dbcb6dc571dd37b44ac71f4c0917dae00140f8b15cda1104",
+  "hybrid_reference_sha256": "668493aee2d09f93e00b06db935622fea2f7d066e8a4d6dcc82deefa59f36a9b"
+}

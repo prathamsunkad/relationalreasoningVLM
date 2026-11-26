@@ -1,0 +1,134 @@
+{
+  "exported_utc": "2026-11-26T00:44:10.078365+00:00",
+  "source_snapshot": "/Users/yluo/Downloads/Projects/VLM/benchmarks/.local/campaigns/internvl-interleave-20pct-2026-11-24/average-control/monitor-snapshots/20261125T211239Z",
+  "remote_root": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/average-control",
+  "evaluation_source_commit": "fc9decfe582349f9ca6399fed47952b6cc335207",
+  "training_source_commit": "44ac9c74da42ed56d94d8798d24d2f8b0745a7a0",
+  "job_id": "7324410",
+  "split": "validation",
+  "benchmark_test": false,
+  "files": [
+    {
+      "path": "records/jobs.json",
+      "source_path": "jobs.json",
+      "encoding": "identity",
+      "sha256": "fb7d87430584b90c20118ba57d7327b57f54b57646fc75d645a779ae7260ff27",
+      "original_sha256": "fb7d87430584b90c20118ba57d7327b57f54b57646fc75d645a779ae7260ff27",
+      "remote_sha256": "fb7d87430584b90c20118ba57d7327b57f54b57646fc75d645a779ae7260ff27"
+    },
+    {
+      "path": "records/plan.json",
+      "source_path": "plan.json",
+      "encoding": "identity",
+      "sha256": "d1e6cde7d9feae364d912ba0f6de3bb8daaf2cff369066cba1596777c455e7dd",
+      "original_sha256": "d1e6cde7d9feae364d912ba0f6de3bb8daaf2cff369066cba1596777c455e7dd",
+      "remote_sha256": "d1e6cde7d9feae364d912ba0f6de3bb8daaf2cff369066cba1596777c455e7dd"
+    },
+    {
+      "path": "records/hybrid-reference.json.gz",
+      "source_path": "hybrid-reference.json",
+      "encoding": "gzip",
+      "sha256": "dc169abc66b826b996d8277dbcbe1f99faa3649d9c2bc2c7e2c8f2adf8436468",
+      "original_sha256": "668493aee2d09f93e00b06db935622fea2f7d066e8a4d6dcc82deefa59f36a9b",
+      "remote_sha256": "668493aee2d09f93e00b06db935622fea2f7d066e8a4d6dcc82deefa59f36a9b"
+    },
+    {
+      "path": "records/average-7324410.out",
+      "source_path": "average-7324410.out",
+      "encoding": "identity",
+      "sha256": "12f4af7a052f9fbe732b41b528f59cee9ca1ac17a66a2319e8870e3d96685f1c",
+      "original_sha256": "12f4af7a052f9fbe732b41b528f59cee9ca1ac17a66a2319e8870e3d96685f1c",
+      "remote_sha256": "12f4af7a052f9fbe732b41b528f59cee9ca1ac17a66a2319e8870e3d96685f1c"
+    },
+    {
+      "path": "records/average-7324410.err",
+      "source_path": "average-7324410.err",
+      "encoding": "identity",
+      "sha256": "08e6693f6d469609dc2650c082adda1ec71c53f6118f8e34e81c7a31f6df2fda",
+      "original_sha256": "08e6693f6d469609dc2650c082adda1ec71c53f6118f8e34e81c7a31f6df2fda",
+      "remote_sha256": "08e6693f6d469609dc2650c082adda1ec71c53f6118f8e34e81c7a31f6df2fda"
+    },
+    {
+      "path": "records/output/backend.json",
+      "source_path": "output/backend.json",
+      "encoding": "identity",
+      "sha256": "7b646bd6ed64898edc73a31f5fda67c644c096f31395ec051ecb8c52159820c7",
+      "original_sha256": "7b646bd6ed64898edc73a31f5fda67c644c096f31395ec051ecb8c52159820c7",
+      "remote_sha256": "7b646bd6ed64898edc73a31f5fda67c644c096f31395ec051ecb8c52159820c7"
+    },
+    {
+      "path": "records/output/checks.json",
+      "source_path": "output/checks.json",
+      "encoding": "identity",
+      "sha256": "0266ff5f0fac9473cd303d0be82db0de607fdc8006eb2c4b5a0d35144cdcde04",
+      "original_sha256": "0266ff5f0fac9473cd303d0be82db0de607fdc8006eb2c4b5a0d35144cdcde04",
+      "remote_sha256": "0266ff5f0fac9473cd303d0be82db0de607fdc8006eb2c4b5a0d35144cdcde04"
+    },
+    {
+      "path": "records/output/config.json",
+      "source_path": "output/config.json",
+      "encoding": "identity",
+      "sha256": "d1e6cde7d9feae364d912ba0f6de3bb8daaf2cff369066cba1596777c455e7dd",
+      "original_sha256": "d1e6cde7d9feae364d912ba0f6de3bb8daaf2cff369066cba1596777c455e7dd",
+      "remote_sha256": "d1e6cde7d9feae364d912ba0f6de3bb8daaf2cff369066cba1596777c455e7dd"
+    },
+    {
+      "path": "records/output/progress.json",
+      "source_path": "output/progress.json",
+      "encoding": "identity",
+      "sha256": "26721a5acf7f2d4967c352f8620b51b0c1ca87602e670958bb626b2cdc147434",
+      "original_sha256": "26721a5acf7f2d4967c352f8620b51b0c1ca87602e670958bb626b2cdc147434",
+      "remote_sha256": "26721a5acf7f2d4967c352f8620b51b0c1ca87602e670958bb626b2cdc147434"
+    },
+    {
+      "path": "records/output/storage.json",
+      "source_path": "output/storage.json",
+      "encoding": "identity",
+      "sha256": "6675c029b7440392a84d2129bb67d5fbdea418fd85e10d4707c7f721b460ecd2",
+      "original_sha256": "6675c029b7440392a84d2129bb67d5fbdea418fd85e10d4707c7f721b460ecd2",
+      "remote_sha256": "6675c029b7440392a84d2129bb67d5fbdea418fd85e10d4707c7f721b460ecd2"
+    },
+    {
+      "path": "records/output/summary.json",
+      "source_path": "output/summary.json",
+      "encoding": "identity",
+      "sha256": "ed4b2865a48ca595ccac464ce0d005e6f7204ab55dd7c228ea78c7ad07729239",
+      "original_sha256": "ed4b2865a48ca595ccac464ce0d005e6f7204ab55dd7c228ea78c7ad07729239",
+      "remote_sha256": "ed4b2865a48ca595ccac464ce0d005e6f7204ab55dd7c228ea78c7ad07729239"
+    },
+    {
+      "path": "records/output/predictions.jsonl.gz",
+      "source_path": "output/predictions.jsonl",
+      "encoding": "gzip",
+      "sha256": "173396b1f24ffbb437e0ecf70912e853015971b249bd1470cf6fc2a01aa83d4e",
+      "original_sha256": "3c5f2370ca122ab7dbcb6dc571dd37b44ac71f4c0917dae00140f8b15cda1104",
+      "remote_sha256": "3c5f2370ca122ab7dbcb6dc571dd37b44ac71f4c0917dae00140f8b15cda1104"
+    },
+    {
+      "path": "records/scheduler.json",
+      "source_path": "scheduler.json",
+      "encoding": "identity",
+      "sha256": "f8dfa4c73b43a56b0b510bfa49f19c7f70eb27a5b5d4cac2d993160cca304db1",
+      "original_sha256": "f8dfa4c73b43a56b0b510bfa49f19c7f70eb27a5b5d4cac2d993160cca304db1",
+      "remote_sha256": null
+    },
+    {
+      "path": "records/verification.json",
+      "source_path": "verification.json",
+      "encoding": "identity",
+      "sha256": "bc47507b39295a45abf4ef6764b82a8aebc93a10b1f6f7fdb0bde5119a9ac609",
+      "original_sha256": "bc47507b39295a45abf4ef6764b82a8aebc93a10b1f6f7fdb0bde5119a9ac609",
+      "remote_sha256": null
+    },
+    {
+      "path": "REMOTE_SHA256SUMS",
+      "encoding": "identity",
+      "sha256": "4f3605f16d7e31ab24b10bc6d9149fb57028a5ce8dfd9643d77c9b5588e8ce9a"
+    },
+    {
+      "path": "run.sbatch",
+      "encoding": "identity",
+      "sha256": "157c6e7e743d8db91f30b68658286c1b5165342b9d7d24ff528e00b9c143894c"
+    }
+  ]
+}

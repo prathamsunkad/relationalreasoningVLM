@@ -1,0 +1,26 @@
+{
+  "job_id": "7324410",
+  "submitted_utc": "2026-11-25T20:38:23.283809+00:00",
+  "source_commit": "fc9decfe582349f9ca6399fed47952b6cc335207",
+  "resources": {
+    "gpus": 1,
+    "gpu_type": "H200",
+    "hours": 0.5,
+    "cpus": 4,
+    "memory_gib": 24
+  },
+  "training": false,
+  "split": "validation",
+  "count": 1000,
+  "dependencies": [],
+  "queue_before": "7305936|ivl2-train-02|PENDING|583334|Priority\n7305946|ivl2-train-12|PENDING|583333|Dependency\n7305945|ivl2-train-11|PENDING|583333|Dependency\n7305944|ivl2-train-10|PENDING|583333|Dependency\n7305943|ivl2-train-09|PENDING|583333|Dependency\n7305942|ivl2-train-08|PENDING|583333|Dependency\n7305941|ivl2-train-07|PENDING|583333|Dependency\n7305940|ivl2-train-06|PENDING|583333|Dependency\n7305939|ivl2-train-05|PENDING|583333|Dependency\n7305938|ivl2-train-04|PENDING|583333|Dependency\n7305937|ivl2-train-03|PENDING|583333|Dependency\n",
+  "dry_run": "sbatch: Job 7324409 to start at 2026-11-28T03:11:23 a using 4 processors on nodes atl1-1-03-017-9-0 in partition ice-gpu\n",
+  "priority_request": {
+    "command": "scontrol top 7324410",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Access/permission denied for job 7324410\n"
+  },
+  "queue_after": "7305936|ivl2-train-02|PENDING|583334|Priority\n7324410|ivl6-average|PENDING|583333|None\n7305946|ivl2-train-12|PENDING|583333|Dependency\n7305945|ivl2-train-11|PENDING|583333|Dependency\n7305944|ivl2-train-10|PENDING|583333|Dependency\n7305943|ivl2-train-09|PENDING|583333|Dependency\n7305942|ivl2-train-08|PENDING|583333|Dependency\n7305941|ivl2-train-07|PENDING|583333|Dependency\n7305940|ivl2-train-06|PENDING|583333|Dependency\n7305939|ivl2-train-05|PENDING|583333|Dependency\n7305938|ivl2-train-04|PENDING|583333|Dependency\n7305937|ivl2-train-03|PENDING|583333|Dependency\n",
+  "job_detail": "JobId=7324410 JobName=ivl6-average\n   UserId=yluo432(3184198) GroupId=gtperson(2626) MCS_label=N/A\n   Priority=583333 Nice=0 Account=coc QOS=coc-ice\n   JobState=PENDING Reason=None Dependency=(null)\n   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:00:00 TimeLimit=00:30:00 TimeMin=N/A\n   SubmitTime=2026-11-25T15:38:23 EligibleTime=2026-11-25T15:38:23\n   AccrueTime=Unknown\n   StartTime=Unknown EndTime=Unknown Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-11-25T15:38:23 Scheduler=Main\n   Partition=ice-gpu AllocNode:Sid=login-ice-gnr-1.pace.gatech.edu:3518034\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=\n   NumNodes=1-1 NumCPUs=4 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=4,mem=24G,node=1,billing=4,gres/gpu=1,gres/gpu:h200=1\n   AllocTRES=(null)\n   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*\n   MinCPUsNode=4 MinMemoryNode=24G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=NO Exclusive=NO Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/average-control/run.sbatch\n   SubmitLine=sbatch --parsable run.sbatch\n   WorkDir=/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/average-control\n   StdErr=/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/average-control/average-7324410.err\n   StdIn=/dev/null\n   StdOut=/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/average-control/average-7324410.out\n   TresPerNode=gres/gpu:h200:1\n   TresPerTask=cpu=4\n\n"
+}

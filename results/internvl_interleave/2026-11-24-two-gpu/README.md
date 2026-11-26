@@ -75,3 +75,12 @@ lossless decompression. Plans and logs retain original PACE paths for provenance
 models, data, optimizer state and feature banks remain external. This snapshot
 supports auditing the current partial run, not a claim of full-epoch or test
 results. Training curves use a trailing 100-update mean; validation is unsmoothed.
+
+## Completed averaging control
+
+The [November 25 averaging archive](../2026-11-25-average-control/README.md)
+contains the original epoch-6 LoRA and Abstractor scores, untuned averaging,
+and the pinned update-3,500 hybrid comparison on the same 1,000 validation IDs.
+Primary averaging reaches 66.7% versus hybrid 66.8% (paired p=1.0); no hybrid
+advantage is demonstrated. Raw predictions, checksums, logs and a CPU-only
+verification command are included. These are validation results.
