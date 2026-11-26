@@ -1,7 +1,7 @@
 {
-  "captured_utc": "2026-11-25T20:05:54.414449+00:00",
+  "captured_utc": "2026-11-26T03:26:27.248337+00:00",
   "source_commit": "44ac9c74da42ed56d94d8798d24d2f8b0745a7a0",
-  "branch": "codex/internvl-interleave-20pct",
+  "branch": "internvl-interleave-20pct",
   "remote_run_directory": "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu",
   "artifacts": [
     {
@@ -116,19 +116,19 @@
       "path": "records/campaign-progress.json",
       "source_relative_path": "campaign-progress.json",
       "encoding": "identity",
-      "bytes": 1538,
-      "sha256": "1ea2713613200fd2a48a46024cd7220bef6bfa522d2ed35de8d2cb2b208c1802",
-      "original_bytes": 1538,
-      "remote_sha256": "1ea2713613200fd2a48a46024cd7220bef6bfa522d2ed35de8d2cb2b208c1802"
+      "bytes": 1561,
+      "sha256": "8b8f77cbce4b064ca04b28da8c705e29a9e59199d5c75d87f6df81ed8a6ec57a",
+      "original_bytes": 1561,
+      "remote_sha256": "8b8f77cbce4b064ca04b28da8c705e29a9e59199d5c75d87f6df81ed8a6ec57a"
     },
     {
       "path": "records/campaign-summary.json",
       "source_relative_path": "campaign-summary.json",
       "encoding": "identity",
-      "bytes": 1538,
-      "sha256": "1ea2713613200fd2a48a46024cd7220bef6bfa522d2ed35de8d2cb2b208c1802",
-      "original_bytes": 1538,
-      "remote_sha256": "1ea2713613200fd2a48a46024cd7220bef6bfa522d2ed35de8d2cb2b208c1802"
+      "bytes": 1561,
+      "sha256": "8b8f77cbce4b064ca04b28da8c705e29a9e59199d5c75d87f6df81ed8a6ec57a",
+      "original_bytes": 1561,
+      "remote_sha256": "8b8f77cbce4b064ca04b28da8c705e29a9e59199d5c75d87f6df81ed8a6ec57a"
     },
     {
       "path": "records/pilot-epoch6/best.json",
@@ -315,18 +315,18 @@
       "source_relative_path": "epoch6/progress.json",
       "encoding": "identity",
       "bytes": 350,
-      "sha256": "3b7ac200c80eaa94a9fb2e21113028ccf16829ee85ebc7eba05450fca387c9de",
+      "sha256": "7001f9254b62c423c63517af76301baf0729e09c69dbc653194339225afca0d7",
       "original_bytes": 350,
-      "remote_sha256": "3b7ac200c80eaa94a9fb2e21113028ccf16829ee85ebc7eba05450fca387c9de"
+      "remote_sha256": "7001f9254b62c423c63517af76301baf0729e09c69dbc653194339225afca0d7"
     },
     {
       "path": "records/epoch6/summary.json",
       "source_relative_path": "epoch6/summary.json",
       "encoding": "identity",
-      "bytes": 677,
-      "sha256": "629aa680eb75f849d5e3a6c8a5d026087b4f53f5a2e87ac3a6c42b8b9edae39b",
-      "original_bytes": 677,
-      "remote_sha256": "629aa680eb75f849d5e3a6c8a5d026087b4f53f5a2e87ac3a6c42b8b9edae39b"
+      "bytes": 679,
+      "sha256": "770da115c333e534631e38efaf8dc613c3b1e7914875338ebbe824fd9bd6541c",
+      "original_bytes": 679,
+      "remote_sha256": "770da115c333e534631e38efaf8dc613c3b1e7914875338ebbe824fd9bd6541c"
     },
     {
       "path": "records/epoch6/validation-best.json.gz",
@@ -341,37 +341,64 @@
       "path": "records/epoch6/validation-latest.json.gz",
       "source_relative_path": "epoch6/validation-latest.json",
       "encoding": "gzip",
-      "bytes": 99612,
-      "sha256": "fc7f18be1e86d58efdfbb0ba3e88e07db207b574f50a49c4ee33221bd12da845",
-      "original_bytes": 423072,
-      "remote_sha256": "668493aee2d09f93e00b06db935622fea2f7d066e8a4d6dcc82deefa59f36a9b"
+      "bytes": 98756,
+      "sha256": "1b14ac4ce21d13e9efa81b5bf84076ad565198c36af03a99f661271423ec8e40",
+      "original_bytes": 422733,
+      "remote_sha256": "b150f18146fb26aef751d97427dfcdbaf6aa402bb9a492426bfc595a79a7d690"
     },
     {
       "path": "records/epoch6/learning-curve.jsonl.gz",
       "source_relative_path": "epoch6/learning-curve.jsonl",
       "encoding": "gzip",
-      "bytes": 334343,
-      "sha256": "e2fbbd776c6b470eaba25a4ebf59a8a183c438f0ff52de472803dd6f11ea7a14",
-      "original_bytes": 1643642,
-      "remote_sha256": "462b2d3a1489946dcefcd6eecc58e3ed8659f5231ecc68a4b12dac814bd5c250"
+      "bytes": 497270,
+      "sha256": "c3b8f5efef8a67c38c6edb3ef4f19a9c6fcd388281db48aa93be5f237c0dee70",
+      "original_bytes": 2420400,
+      "remote_sha256": "aad21eb10c4577bde1c62f898138112b3607f029c6578d86f79904c5a8f71b8c"
     },
     {
       "path": "records/epoch6/stopping-curve.jsonl.gz",
       "source_relative_path": "epoch6/stopping-curve.jsonl",
       "encoding": "gzip",
-      "bytes": 312,
-      "sha256": "29dc5459198fe4efe054782858b7c545a8d3bc7709ed6e4d4817dbd7f8fa43dd",
-      "original_bytes": 1332,
-      "remote_sha256": "4b027631004a3c9b4aec0228d55aef43407a68f9f8b8b46fa37af56c6db64800"
+      "bytes": 417,
+      "sha256": "346b47615da68dbc6e141df1922efcf5b5d09f1dbe0ddacdddafb1fbe2ab68d1",
+      "original_bytes": 2497,
+      "remote_sha256": "27c631cb431cf9d53e17538aa5f0fa4da719d619a2a8a15f7906fa1a9e9ef55f"
     },
     {
       "path": "records/epoch6/validation-curve.jsonl.gz",
       "source_relative_path": "epoch6/validation-curve.jsonl",
       "encoding": "gzip",
-      "bytes": 327,
-      "sha256": "983810b624a2ba1143e1f4dd09cd64982188bfbef54710ae730b4e1323ae1501",
-      "original_bytes": 1151,
-      "remote_sha256": "a87fe0d76835ce13739d854053d68b4a0ab48c76d2f74ed265469534cfb9bde6"
+      "bytes": 429,
+      "sha256": "15e36578ada4753d6fcdb9f97eb8825aa1fab3905f129b07d5db31d9a5b83ba2",
+      "original_bytes": 1729,
+      "remote_sha256": "7cc535164ffd86edf46c04b4ff38133182dcf29f8d4d3fc474d6db11375c025a"
+    },
+    {
+      "path": "records/runtime-preflight-7305936.json",
+      "source_relative_path": "runtime-preflight-7305936.json",
+      "encoding": "identity",
+      "bytes": 492,
+      "sha256": "819b2830f277810b11d99c2e360c253f5b77cafc2335c1d99f63ad01be93be4a",
+      "original_bytes": 492,
+      "remote_sha256": "819b2830f277810b11d99c2e360c253f5b77cafc2335c1d99f63ad01be93be4a"
+    },
+    {
+      "path": "records/train-7305936.err",
+      "source_relative_path": "train-7305936.err",
+      "encoding": "identity",
+      "bytes": 4819,
+      "sha256": "0aa1abeee3eb0d867ff906e56c1043ae3bde129064eb6bf3ab7e5dcc3f44152e",
+      "original_bytes": 4819,
+      "remote_sha256": "0aa1abeee3eb0d867ff906e56c1043ae3bde129064eb6bf3ab7e5dcc3f44152e"
+    },
+    {
+      "path": "records/train-7305936.out",
+      "source_relative_path": "train-7305936.out",
+      "encoding": "identity",
+      "bytes": 1631,
+      "sha256": "36f77ed77f66d21d57f0d6efacdb55f5aa316c9a8c86f98d8a8390679ca00fd1",
+      "original_bytes": 1631,
+      "remote_sha256": "36f77ed77f66d21d57f0d6efacdb55f5aa316c9a8c86f98d8a8390679ca00fd1"
     }
   ],
   "scope": "Incomplete training snapshot, not final benchmark results. JSONL and larger JSON records are losslessly gzip compressed; other files are byte-identical. No model weights or feature cache."

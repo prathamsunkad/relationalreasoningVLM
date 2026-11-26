@@ -9,8 +9,8 @@
       "passed": false,
       "mode": "train",
       "plan_sha256": "e81de310be2a03dec5090c7c231274cee3779240b759e1bada5f16e3f9f59bdd",
-      "update": 3978,
-      "examples": 63648,
+      "update": 5832,
+      "examples": 93312,
       "stop_reason": "allocation_boundary",
       "best_loss": 1.0007272896990456,
       "best_checkpoint": {
@@ -30,7 +30,7 @@
         "--standalone",
         "--nnodes=1",
         "--nproc_per_node=2",
-        "/tmp/internvl-connectors.pzIPzi0N/source/tools/train_distributed_interleave.py",
+        "/tmp/internvl-connectors.1AcUk0OV/source/tools/train_distributed_interleave.py",
         "--plan",
         "/storage/ice1/9/8/yluo432/vlm-benchmark/runs/internvl-interleave-20pct-2026-11-24/two-gpu/ep6-plan.json",
         "--output",
@@ -38,9 +38,10 @@
         "--mode",
         "train",
         "--seconds",
-        "13799"
+        "13799",
+        "--resume"
       ],
-      "previous_update": 0,
+      "previous_update": 3978,
       "remaining_seconds": 13799,
       "status": "checkpointed",
       "returncode": 0

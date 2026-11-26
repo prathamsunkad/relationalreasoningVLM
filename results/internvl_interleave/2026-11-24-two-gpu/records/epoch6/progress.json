@@ -1,6 +1,6 @@
 {
-  "update": 3978,
-  "examples": 63648,
+  "update": 5832,
+  "examples": 93312,
   "best_loss": 1.0007272896990456,
   "best_checkpoint": {
     "directory": "best-7abb86b8e3f44b81bfbc20908d7af5ef",
